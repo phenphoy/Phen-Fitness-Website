@@ -2099,7 +2099,7 @@
 
           <div class="pf-services-photo">
 
-            <img src="images/service-personal-training.JPG" alt="Phen Fitness personal training session" />
+            <img src="images/service-personal-training.jpg" alt="Phen Fitness personal training session" />
 
             <div class="pf-services-photo-content">
               <span>Personalized Coaching</span>
@@ -3558,28 +3558,21 @@
             </h3>
 
             <!-- =================================================================== -->
-            <!-- FormSubmit: Replace YOUR_EMAIL@gmail.com with your actual email     -->
+            <!-- Formspree Integration: Direct email delivery via endpoint           -->
             <!-- =================================================================== -->
-            <form id="contactForm" action="https://formsubmit.co/YOUR_EMAIL@gmail.com" method="POST">
-
-              <!-- FormSubmit Configuration -->
-              <input type="hidden" name="_subject" value="New Enquiry - Phen Fitness Website" />
-              <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="_template" value="table" />
+            <form action="https://formspree.io/f/myegapqp" method="POST">
 
               <div class="form-row">
 
                 <label>
                   Name
-
-                  <input type="text" name="name" required />
+                  <input type="text" name="name" placeholder="Your Name" required />
                 </label>
 
 
                 <label>
                   Email
-
-                  <input type="email" name="email" required />
+                  <input type="email" name="email" placeholder="your@email.com" required />
                 </label>
 
               </div>
@@ -3589,73 +3582,27 @@
 
                 <label>
                   Service
-
                   <select name="service" required>
-
-                    <option value="">
-                      Select a service
-                    </option>
-
-                    <option>
-                      Initial Fitness Consultation
-                    </option>
-
-                    <option>
-                      Fitness Assessment
-                    </option>
-
-                    <option>
-                      1-on-1 Personal Training
-                    </option>
-
-                    <option>
-                      Small-Group Training
-                    </option>
-
-                    <option>
-                      Online Coaching
-                    </option>
-
-                    <option>
-                      Single Personal Training Session
-                    </option>
-
-                    <option>
-                      10-Session Package
-                    </option>
-
-                    <option>
-                      other
-                    </option>
-
+                    <option value="" disabled selected>Select a service</option>
+                    <option value="Initial Fitness Consultation">Initial Fitness Consultation</option>
+                    <option value="Fitness Assessment">Fitness Assessment</option>
+                    <option value="1-on-1 Personal Training">1-on-1 Personal Training</option>
+                    <option value="Small-Group Training">Small-Group Training</option>
+                    <option value="Online Coaching">Online Coaching</option>
+                    <option value="Single Personal Training Session">Single Personal Training Session</option>
+                    <option value="10-Session Package">10-Session Package</option>
                   </select>
-
                 </label>
 
 
                 <label>
                   Experience Level
-
                   <select name="experience" required>
-
-                    <option value="">
-                      Select your level
-                    </option>
-
-                    <option>
-                      Beginner
-                    </option>
-
-                    <option>
-                      Intermediate
-                    </option>
-
-                    <option>
-                      Advanced
-                    </option>
-
+                    <option value="" disabled selected>Select your level</option>
+                    <option value="Beginner">Beginner</option>
+                    <option value="Intermediate">Intermediate</option>
+                    <option value="Advanced">Advanced</option>
                   </select>
-
                 </label>
 
               </div>
@@ -3663,57 +3610,18 @@
 
               <label>
                 Fitness Goal
-
                 <textarea name="goal" placeholder="Tell me what you would like to achieve..." required></textarea>
-
               </label>
 
-<form action="https://formspree.io/f/myegapqp" method="POST" class="form-card">
-    <h3>Send an Enquiry</h3>
-    
-    <div class="form-row">
-        <label>
-            Name
-            <input type="text" name="name" placeholder="Your Name" required />
-        </label>
-        <label>
-            Email
-            <input type="email" name="email" placeholder="your@email.com" required />
-        </label>
-    </div>
 
-    <div class="form-row">
-        <label>
-            Service
-            <select name="service" required>
-                <option value="" disabled selected>Select a service</option>
-                <option value="Initial Fitness Consultation">Initial Fitness Consultation</option>
-                <option value="Fitness Assessment">Fitness Assessment</option>
-                <option value="1-on-1 Personal Training">1-on-1 Personal Training</option>
-                <option value="Small-Group Training">Small-Group Training</option>
-                <option value="Online Coaching">Online Coaching</option>
-                <option value="Single Personal Training Session">Single Personal Training Session</option>
-                <option value="10-Session Package">10-Session Package</option>
-            </select>
-        </label>
-        <label>
-            Experience Level
-            <select name="experience" required>
-                <option value="" disabled selected>Select your level</option>
-                <option value="Beginner">Beginner</option>
-                <option value="Intermediate">Intermediate</option>
-                <option value="Advanced">Advanced</option>
-            </select>
-        </label>
-    </div>
+              <button class="button button-primary" type="submit" style="width: 100%; margin-top: 16px;">
+                Send Message
+              </button>
 
-    <label>
-        Fitness Goal
-        <textarea name="goal" placeholder="Tell me what you would like to achieve..." required></textarea>
-    </label>
 
-    <button type="submit" class="button button-primary" style="width: 100%; margin-top: 16px;">Send Message</button>
-</form>
+              <p class="form-status" id="formStatus"></p>
+
+            </form>
 
           </div>
 
@@ -4064,7 +3972,7 @@
 
 
     /* =========================================================
-       CONTACT FORM (FormSubmit)
+       CONTACT FORM (Formspree)
     ========================================================= */
 
     const contactForm =

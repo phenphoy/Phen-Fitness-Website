@@ -3668,11 +3668,52 @@
 
               </label>
 
-<a href="https://forms.gle/jTZpHZSBXCKQSqvb8" target="_blank" class="button button-primary" style="display: inline-block; text-align: center; text-decoration: none;">Send Message</a>
+<form action="https://formspree.io/f/myegapqp" method="POST" class="form-card">
+    <h3>Send an Enquiry</h3>
+    
+    <div class="form-row">
+        <label>
+            Name
+            <input type="text" name="name" placeholder="Your Name" required />
+        </label>
+        <label>
+            Email
+            <input type="email" name="email" placeholder="your@email.com" required />
+        </label>
+    </div>
 
-              <p class="form-status" id="formStatus"></p>
+    <div class="form-row">
+        <label>
+            Service
+            <select name="service" required>
+                <option value="" disabled selected>Select a service</option>
+                <option value="Initial Fitness Consultation">Initial Fitness Consultation</option>
+                <option value="Fitness Assessment">Fitness Assessment</option>
+                <option value="1-on-1 Personal Training">1-on-1 Personal Training</option>
+                <option value="Small-Group Training">Small-Group Training</option>
+                <option value="Online Coaching">Online Coaching</option>
+                <option value="Single Personal Training Session">Single Personal Training Session</option>
+                <option value="10-Session Package">10-Session Package</option>
+            </select>
+        </label>
+        <label>
+            Experience Level
+            <select name="experience" required>
+                <option value="" disabled selected>Select your level</option>
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Advanced">Advanced</option>
+            </select>
+        </label>
+    </div>
 
-            </form>
+    <label>
+        Fitness Goal
+        <textarea name="goal" placeholder="Tell me what you would like to achieve..." required></textarea>
+    </label>
+
+    <button type="submit" class="button button-primary" style="width: 100%; margin-top: 16px;">Send Message</button>
+</form>
 
           </div>
 

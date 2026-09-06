@@ -870,14 +870,15 @@
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), var(--shadow);
-      display: flex;
       height: 100%;
       overflow: hidden;
       position: relative;
     }
 
     .story-image img {
-      height: 80%;
+      position: absolute;
+      inset: 0;
+      height: 100%;
       object-fit: cover;
       object-position: center 12%;
       width: 100%;
@@ -2201,17 +2202,20 @@
       }
 
       .story-image {
+        aspect-ratio: 4 / 5;
         height: auto;
         min-height: unset;
+        max-height: 480px;
         max-width: 480px;
         margin: 0 auto;
         width: 100%;
+        position: relative;
       }
 
       .story-image img {
-        aspect-ratio: 4 / 5;
-        height: auto;
-        max-height: 480px;
+        position: absolute;
+        inset: 0;
+        height: 100%;
         width: 100%;
         object-fit: cover;
         object-position: center 12%;
@@ -2349,17 +2353,20 @@
       }
 
       .story-image {
+        aspect-ratio: 4 / 5;
         height: auto;
         min-height: unset;
+        max-height: 380px;
         max-width: 100%;
         margin: 0 auto;
         width: 100%;
+        position: relative;
       }
 
       .story-image img {
-        aspect-ratio: 4 / 5;
-        height: auto;
-        max-height: 390px;
+        position: absolute;
+        inset: 0;
+        height: 100%;
         width: 100%;
         object-fit: cover;
         object-position: center 10%;

@@ -462,24 +462,26 @@
 
     .ereps-badge-group {
       align-items: center;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      background: rgba(10, 14, 11, 0.78);
-      border: 1px solid var(--border-strong);
-      border-radius: var(--radius-sm);
-      display: flex;
+      background: transparent;
+      border: none;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      display: inline-flex;
       gap: 10px;
-      padding: 7px 12px;
+      padding: 0;
       position: absolute;
       right: 16px;
       top: 16px;
       z-index: 3;
+      filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.75));
     }
 
     .ereps-logo {
-      height: 30px;
-      max-width: 75px;
+      background: transparent;
+      height: 36px;
+      max-width: 85px;
       object-fit: contain;
+      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
     }
 
     .hero-badge {
@@ -488,10 +490,11 @@
       color: #060806;
       font-size: 0.68rem;
       font-weight: 850;
-      letter-spacing: 0.03em;
-      padding: 4px 10px;
+      letter-spacing: 0.04em;
+      padding: 5px 12px;
       text-transform: uppercase;
       white-space: nowrap;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
     }
 
     .hero-visual-copy {
@@ -529,10 +532,11 @@
 
     .card {
       background:
-        linear-gradient(145deg, rgba(255, 255, 255, 0.03) 0%, transparent 60%),
+        linear-gradient(165deg, rgba(255, 255, 255, 0.035) 0%, rgba(255, 255, 255, 0.008) 50%, transparent 100%),
         var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), var(--shadow-card);
       padding: 24px 22px;
       transition:
         border-color 0.25s ease,
@@ -542,7 +546,7 @@
 
     .card:hover {
       border-color: var(--green-border);
-      box-shadow: 0 14px 30px -8px rgba(0, 0, 0, 0.5), 0 0 20px -6px var(--green-glow);
+      box-shadow: inset 0 1px 0 rgba(200, 255, 56, 0.2), 0 14px 30px -8px rgba(0, 0, 0, 0.5), 0 0 20px -6px var(--green-glow);
       transform: translateY(-3px);
     }
 
@@ -642,20 +646,21 @@
 
     .pf-services-list {
       background:
-        linear-gradient(145deg, rgba(255, 255, 255, 0.02) 0%, transparent 100%),
+        linear-gradient(165deg, rgba(255, 255, 255, 0.025) 0%, transparent 60%),
         var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-card);
-      padding: 6px 26px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), var(--shadow-card);
+      padding: 8px 24px;
     }
 
     .pf-service-row {
       border-bottom: 1px solid var(--border);
       display: grid;
       gap: 16px;
-      grid-template-columns: 40px 1fr;
+      grid-template-columns: 38px 1fr;
       padding: 20px 0;
+      align-items: start;
     }
 
     .pf-service-row:last-child {
@@ -673,6 +678,7 @@
       height: 38px;
       justify-content: center;
       width: 38px;
+      box-shadow: 0 4px 12px rgba(200, 255, 56, 0.22);
     }
 
     .pf-service-header {
@@ -789,12 +795,12 @@
 
     .pf-why-box {
       background:
-        radial-gradient(circle at 100% 0%, rgba(200, 255, 56, 0.035) 0%, transparent 40%),
-        linear-gradient(135deg, rgba(255, 255, 255, 0.018) 0%, transparent 100%),
+        radial-gradient(circle at 100% 0%, rgba(200, 255, 56, 0.05) 0%, transparent 45%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.025) 0%, transparent 100%),
         var(--card-strong);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      box-shadow: var(--shadow);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), var(--shadow);
       padding: 34px 32px;
     }
 
@@ -856,7 +862,7 @@
     .story-image {
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      box-shadow: var(--shadow);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), var(--shadow);
       max-height: 440px;
       overflow: hidden;
       position: relative;
@@ -889,12 +895,20 @@
 
     .story-point {
       align-items: flex-start;
-      background: rgba(255, 255, 255, 0.02);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.02) 0%, transparent 100%),
+        rgba(16, 21, 17, 0.6);
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
       display: flex;
       gap: 12px;
       padding: 14px 16px;
+      transition: border-color 0.2s ease;
+    }
+
+    .story-point:hover {
+      border-color: var(--border-strong);
     }
 
     .story-point span {
@@ -931,56 +945,82 @@
 
     .transformation-grid {
       display: grid;
-      gap: 20px;
+      gap: 24px;
       grid-template-columns: 1fr 1fr;
       margin: 36px auto 0;
       max-width: 860px;
     }
 
     .transformation-card {
-      background: var(--card);
+      background:
+        linear-gradient(165deg, rgba(255, 255, 255, 0.035) 0%, transparent 60%),
+        var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-card);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), var(--shadow-card);
       overflow: hidden;
       position: relative;
+      transition:
+        transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+
+    .transformation-card:hover {
+      border-color: var(--green-border);
+      box-shadow: inset 0 1px 0 rgba(200, 255, 56, 0.2), 0 16px 36px -8px rgba(0, 0, 0, 0.55), 0 0 20px -6px var(--green-glow);
+      transform: translateY(-3px);
     }
 
     .transformation-card img {
       aspect-ratio: 4 / 5;
-      max-height: 360px;
+      height: 440px;
+      max-height: 460px;
       object-fit: cover;
+      object-position: top center;
       width: 100%;
+      display: block;
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .transformation-card:hover img {
+      transform: scale(1.025);
     }
 
     .transformation-card div {
-      padding: 18px 20px;
+      padding: 20px 22px;
+      background:
+        linear-gradient(180deg, rgba(16, 21, 17, 0.8) 0%, var(--card) 100%);
+      border-top: 1px solid var(--border-subtle);
     }
 
     .transformation-card span {
       color: var(--green);
-      font-size: 0.7rem;
+      font-size: 0.72rem;
       font-weight: 850;
       letter-spacing: 0.12em;
       text-transform: uppercase;
+      display: inline-block;
     }
 
     .transformation-card h3 {
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       font-weight: 750;
       margin-top: 4px;
+      letter-spacing: -0.015em;
     }
 
     .transformation-note {
       background:
-        radial-gradient(circle at 100% 100%, rgba(6, 8, 6, 0.08) 0%, transparent 60%),
+        radial-gradient(circle at 100% 100%, rgba(6, 8, 6, 0.12) 0%, transparent 65%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.15) 0%, transparent 100%),
         var(--green);
       border-radius: var(--radius-lg);
       color: #060806;
-      margin: 24px auto 0;
+      margin: 28px auto 0;
       max-width: 860px;
-      padding: 26px 30px;
-      box-shadow: 0 12px 28px -8px rgba(200, 255, 56, 0.32);
+      padding: 28px 32px;
+      box-shadow: 0 16px 36px -8px rgba(200, 255, 56, 0.35);
     }
 
     .transformation-note h3 {
@@ -1009,12 +1049,20 @@
 
     .pf-summary-item {
       align-items: center;
-      background: rgba(255, 255, 255, 0.02);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.025) 0%, transparent 100%),
+        var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
       display: flex;
       gap: 12px;
       padding: 14px 16px;
+      transition: border-color 0.2s ease;
+    }
+
+    .pf-summary-item:hover {
+      border-color: var(--border-strong);
     }
 
     .pf-summary-icon {
@@ -1038,26 +1086,29 @@
 
     .pf-qualification-grid {
       display: grid;
-      gap: 16px;
+      gap: 18px;
       grid-template-columns: repeat(3, 1fr);
       margin-top: 36px;
     }
 
     .pf-qualification-card {
-      background: var(--card);
+      background:
+        linear-gradient(165deg, rgba(255, 255, 255, 0.035) 0%, transparent 60%),
+        var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
-      box-shadow: var(--shadow-card);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), var(--shadow-card);
       display: flex;
       flex-direction: column;
       min-height: 220px;
-      padding: 22px;
+      padding: 24px 22px;
       transition: all 0.25s ease;
     }
 
     .pf-qualification-card:hover {
       border-color: var(--green-border);
-      transform: translateY(-2px);
+      box-shadow: inset 0 1px 0 rgba(200, 255, 56, 0.2), 0 14px 30px -8px rgba(0, 0, 0, 0.5), 0 0 20px -6px var(--green-glow);
+      transform: translateY(-3px);
     }
 
     .pf-qualification-card small {
@@ -1267,14 +1318,23 @@
     }
 
     .pf-testimonial-card {
-      background: var(--card);
+      background:
+        linear-gradient(165deg, rgba(255, 255, 255, 0.035) 0%, transparent 65%),
+        var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-card);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), var(--shadow-card);
       flex: 0 0 clamp(280px, 26vw, 330px);
       padding: 26px;
       display: flex;
       flex-direction: column;
+      transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .pf-testimonial-card:hover {
+      border-color: var(--green-border);
+      box-shadow: inset 0 1px 0 rgba(200, 255, 56, 0.15), 0 14px 30px -8px rgba(0, 0, 0, 0.5);
+      transform: translateY(-2px);
     }
 
     .pf-stars {
@@ -1318,20 +1378,23 @@
     }
 
     .pf-plan {
-      background: var(--card);
+      background:
+        linear-gradient(165deg, rgba(255, 255, 255, 0.03) 0%, transparent 60%),
+        var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-card);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), var(--shadow-card);
       display: flex;
       flex-direction: column;
       padding: 28px 24px;
       position: relative;
-      transition: transform 0.25s ease, border-color 0.25s ease;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
     }
 
     .pf-plan:hover {
       border-color: var(--border-strong);
       transform: translateY(-3px);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 16px 40px -8px rgba(0, 0, 0, 0.55);
     }
 
     .pf-plan-consultation,
@@ -1347,14 +1410,16 @@
 
     .pf-plan-featured {
       background:
-        radial-gradient(circle at 50% 0%, rgba(200, 255, 56, 0.08) 0%, transparent 60%),
+        radial-gradient(circle at 50% 0%, rgba(200, 255, 56, 0.1) 0%, transparent 65%),
+        linear-gradient(165deg, rgba(200, 255, 56, 0.04) 0%, transparent 50%),
         var(--card-strong);
       border-color: var(--green-border);
-      box-shadow: 0 16px 48px rgba(200, 255, 56, 0.08);
+      box-shadow: inset 0 1px 0 rgba(200, 255, 56, 0.25), 0 16px 48px rgba(200, 255, 56, 0.1);
     }
 
     .pf-plan-featured:hover {
       border-color: var(--green);
+      box-shadow: inset 0 1px 0 rgba(200, 255, 56, 0.35), 0 20px 52px rgba(200, 255, 56, 0.18);
     }
 
     .pf-plan-badge {
@@ -1519,10 +1584,12 @@
     }
 
     .pf-session-bar {
-      background: var(--card-strong);
+      background:
+        linear-gradient(165deg, rgba(255, 255, 255, 0.03) 0%, transparent 60%),
+        var(--card-strong);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-card);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), var(--shadow-card);
       display: grid;
       grid-template-columns: 1fr 1px 1fr;
       margin-top: 24px;
@@ -1632,16 +1699,18 @@
 
     .resource-card {
       background:
-        linear-gradient(145deg, rgba(255, 255, 255, 0.025) 0%, transparent 100%),
+        linear-gradient(165deg, rgba(255, 255, 255, 0.03) 0%, transparent 100%),
         var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
-      padding: 22px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), var(--shadow-card);
+      padding: 24px 22px;
       transition: all 0.25s ease;
     }
 
     .resource-card:hover {
       border-color: var(--green-border);
+      box-shadow: inset 0 1px 0 rgba(200, 255, 56, 0.18), 0 12px 28px -6px rgba(0, 0, 0, 0.45);
       transform: translateY(-2px);
     }
 
@@ -1674,10 +1743,12 @@
 
     .contact-card,
     .form-card {
-      background: var(--card);
+      background:
+        linear-gradient(165deg, rgba(255, 255, 255, 0.03) 0%, transparent 60%),
+        var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-card);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), var(--shadow-card);
       padding: 28px;
     }
 
@@ -2249,11 +2320,37 @@
 
       .story-image,
       .story-image img {
-        max-height: 320px;
+        max-height: 340px;
+      }
+
+      .transformation-grid {
+        max-width: 440px;
+        margin: 28px auto 0;
+        gap: 20px;
       }
 
       .transformation-card img {
-        max-height: 280px;
+        aspect-ratio: 4 / 5;
+        height: auto;
+        max-height: 440px;
+        object-fit: cover;
+        object-position: top center;
+      }
+
+      .pf-services-list {
+        padding: 6px 18px;
+      }
+
+      .pf-service-row {
+        gap: 12px;
+        grid-template-columns: 34px 1fr;
+        padding: 16px 0;
+      }
+
+      .pf-service-number {
+        height: 34px;
+        width: 34px;
+        font-size: 0.68rem;
       }
 
       .pf-pricing-benefit + .pf-pricing-benefit {
@@ -2277,7 +2374,7 @@
       }
 
       .pf-gallery-card {
-        flex-basis: 76vw;
+        flex-basis: clamp(220px, 66vw, 275px);
       }
 
       .pf-footer-bottom {

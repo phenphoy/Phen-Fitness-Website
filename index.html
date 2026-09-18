@@ -2757,6 +2757,347 @@
       }
     }
 
+  
+    /* =========================================================
+       REFACTORED GALLERY (FULL-BLEED HORIZONTAL SWIPE CAROUSEL)
+    ========================================================= */
+
+    .pf-gallery-section {
+      background: var(--bg-soft);
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+      overflow: hidden;
+      padding: clamp(60px, 8vh, 96px) 0;
+      position: relative;
+    }
+
+    .pf-gallery-container {
+      margin: 0 auto;
+      width: min(94%, var(--max-width));
+    }
+
+    .pf-gallery-header-row {
+      align-items: flex-end;
+      display: flex;
+      gap: 20px;
+      justify-content: space-between;
+      margin-bottom: 30px;
+    }
+
+    .pf-gallery-controls {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .pf-gallery-arrow {
+      align-items: center;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      height: 44px;
+      justify-content: center;
+      width: 44px;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .pf-gallery-arrow:hover {
+      background: var(--green);
+      border-color: var(--green);
+      color: #060806;
+      box-shadow: 0 4px 18px rgba(200, 255, 56, 0.35);
+      transform: scale(1.05);
+    }
+
+    .pf-gallery-arrow:active {
+      transform: scale(0.96);
+    }
+
+    /* Horizontal swipe carousel with native scroll-snap */
+    .pf-gallery-track {
+      display: flex;
+      gap: 18px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding-bottom: 16px;
+      padding-top: 4px;
+    }
+
+    .pf-gallery-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Fluid responsive cards with peek-ahead */
+    .pf-gallery-card {
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-lg);
+      cursor: zoom-in;
+      overflow: hidden;
+      padding: 0;
+      position: relative;
+      scroll-snap-align: start;
+      flex: 0 0 clamp(280px, 22vw, 350px);
+      aspect-ratio: 4 / 5;
+      box-shadow: var(--shadow-card);
+      transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+    }
+
+    .pf-gallery-card:hover {
+      border-color: var(--green-border);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.6), 0 0 20px rgba(200, 255, 56, 0.16);
+    }
+
+    .pf-gallery-card img {
+      display: block;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .pf-gallery-card:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Subtle progress bar showing scroll progress */
+    .pf-gallery-progress-track {
+      width: 100%;
+      max-width: 320px;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 999px;
+      margin: 24px auto 0;
+      overflow: hidden;
+    }
+
+    .pf-gallery-progress-bar {
+      height: 100%;
+      width: 25%;
+      background: var(--green);
+      border-radius: 999px;
+      transition: width 0.15s ease-out;
+      box-shadow: 0 0 10px var(--green);
+    }
+
+    @media (max-width: 1024px) {
+      .pf-gallery-card {
+        flex: 0 0 clamp(260px, 36vw, 320px);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .pf-gallery-card {
+        flex: 0 0 clamp(280px, 82vw, 340px);
+      }
+      .pf-gallery-controls {
+        display: none;
+      }
+    }
+
+    /* =========================================================
+       REFACTORED TRANSFORMATION (WIDESCREEN 4K INTEGRATION)
+    ========================================================= */
+
+    .transformation-section {
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: clamp(70px, 9vh, 110px) 0;
+    }
+
+    .transformation-ambient-glow {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at center, rgba(163, 230, 53, 0.06) 0%, transparent 70%);
+      z-index: 0;
+    }
+
+    .transformation-container {
+      position: relative;
+      z-index: 1;
+      width: min(94%, 1440px);
+      margin-inline: auto;
+    }
+
+    .transformation-header {
+      margin-bottom: 36px;
+      max-width: 720px;
+    }
+
+    .transformation-comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: clamp(24px, 3vw, 40px);
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .transformation-deck-card {
+      position: relative;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(16, 21, 17, 0.6);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      aspect-ratio: 4 / 5;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: clamp(22px, 3vw, 32px);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .transformation-deck-card:hover {
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-4px);
+    }
+
+    .transformation-deck-card-featured {
+      border-color: rgba(163, 230, 53, 0.3);
+    }
+
+    .transformation-deck-card-featured:hover {
+      border-color: rgba(163, 230, 53, 0.6);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), 0 0 30px rgba(163, 230, 53, 0.15);
+    }
+
+    .transformation-deck-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+      filter: brightness(0.96) contrast(1.04);
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .transformation-deck-card:hover .transformation-deck-img {
+      transform: scale(1.03);
+    }
+
+    .transformation-deck-scrim {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.35) 45%, transparent 75%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .transformation-deck-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .transformation-badge-phase1 {
+      align-self: flex-start;
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(16, 21, 17, 0.9);
+      color: var(--text-secondary);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(8px);
+    }
+
+    .transformation-badge-phase2 {
+      align-self: flex-start;
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(163, 230, 53, 0.18);
+      color: var(--green);
+      border: 1px solid rgba(163, 230, 53, 0.4);
+      backdrop-filter: blur(8px);
+    }
+
+    .transformation-deck-content h3 {
+      color: #ffffff;
+      font-size: clamp(1.2rem, 1.8vw, 1.55rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin: 0;
+    }
+
+    /* Takeaway Glassmorphic Banner */
+    .transformation-takeaway-bar {
+      max-width: 1180px;
+      margin: 32px auto 0;
+      padding: clamp(20px, 2.5vw, 28px);
+      border-radius: var(--radius-lg);
+      background: rgba(16, 21, 17, 0.75);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(163, 230, 53, 0.22);
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .transformation-takeaway-bar h4 {
+      color: #ffffff;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: -0.015em;
+      margin-bottom: 4px;
+    }
+
+    .transformation-takeaway-bar p {
+      color: var(--text-secondary);
+      font-size: 0.86rem;
+      line-height: 1.6;
+      max-width: 72ch;
+    }
+
+    .transformation-takeaway-btn {
+      flex-shrink: 0;
+      padding: 11px 22px;
+      font-size: 0.82rem;
+    }
+
+    @media (max-width: 860px) {
+      .transformation-comparison-grid {
+        grid-template-columns: 1fr;
+        max-width: 520px;
+      }
+      .transformation-takeaway-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .transformation-takeaway-btn {
+        align-self: flex-start;
+      }
+    }
+
   </style>
 </head>
 
@@ -3205,53 +3546,87 @@
     <!-- =========================================================
      06 — MY TRANSFORMATION
     ========================================================= -->
-    <section class="section section-soft" id="transformation">
+    <!-- Full-Width Responsive Section Wrapper -->
+<section id="transformation" class="section section-soft transformation-section relative w-full min-h-[85vh] flex items-center justify-center bg-[#0a0d0a] py-20 overflow-hidden border-t border-neutral-900">
+  
+  <!-- Subtle Ambient Glow to fill widescreen dead space -->
+  <div class="transformation-ambient-glow absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,_rgba(163,230,53,0.06)_0%,transparent_70%)]" aria-hidden="true"></div>
 
-      <div class="container">
+  <div class="container transformation-container relative w-full max-w-[1440px] mx-auto px-5 sm:px-8 md:px-12 lg:px-16">
+    
+    <!-- Section Header -->
+    <div class="transformation-header mb-12 max-w-2xl">
+      <span class="eyebrow inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#a3e635]">
+        • My Transformation
+      </span>
+      <h2 class="section-title text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight mt-2">
+        From a health scare to a stronger, healthier life.
+      </h2>
+      <p class="section-copy text-neutral-400 text-sm sm:text-base mt-3 leading-relaxed">
+        My personal journey shaped how I coach: with patience, discipline, and sincere respect for every client's unique starting line.
+      </p>
+    </div>
 
-        <p class="eyebrow">
-          My Transformation
-        </p>
+    <!-- Comparison Cards Grid (Auto-balances from mobile to widescreen) -->
+    <div class="transformation-comparison-grid grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-10 max-w-[1180px] mx-auto">
+      
+      <!-- Phase 1 Card: Starting Point -->
+      <article class="transformation-deck-card group relative rounded-3xl overflow-hidden border border-white/10 bg-neutral-900/60 shadow-2xl aspect-[4/5] flex flex-col justify-end p-6 sm:p-8 transition-all duration-300 hover:border-neutral-700">
+        <img 
+          src="images/phen-before.jpg" 
+          onerror="if(!this.dataset.tried){this.dataset.tried=1;this.src='images/transformation-before.jpg';}"
+          alt="Phen Phoy before beginning his fitness transformation" 
+          class="transformation-deck-img absolute inset-0 w-full h-full object-cover object-top filter brightness-95 contrast-105 transition-transform duration-500 group-hover:scale-[1.02]"
+          loading="lazy"
+        />
+        <!-- Inner Vignette / Scrim for Text Contrast -->
+        <div class="transformation-deck-scrim absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
 
-        <h2 class="section-title">
-          From a health scare to a stronger, healthier life.
-        </h2>
-
-        <p class="section-copy">
-          My personal journey shaped how I coach: with patience, discipline, and sincere respect for every client's unique starting line.
-        </p>
-
-        <div class="transformation-grid">
-
-          <article class="transformation-card">
-            <img src="images/transformation-before.jpg" alt="Phen Phoy before beginning his fitness transformation" loading="lazy" />
-            <div>
-              <span>Phase 1 · Starting Point</span>
-              <h3>Before the Transformation</h3>
-            </div>
-          </article>
-
-          <article class="transformation-card">
-            <img src="images/transformation-after.png" alt="Phen Phoy after developing strength and fitness" loading="lazy" />
-            <div>
-              <span>Phase 2 · Consistency</span>
-              <h3>Building Strength &amp; Confidence</h3>
-            </div>
-          </article>
-
+        <div class="transformation-deck-content relative z-10 space-y-2">
+          <span class="transformation-badge-phase1 inline-block px-3 py-1 rounded-full text-[11px] font-bold tracking-wider uppercase bg-neutral-900/90 text-neutral-300 border border-white/10 backdrop-blur-md">
+            Phase 1 · Starting Point
+          </span>
+          <h3 class="text-xl sm:text-2xl font-bold text-white tracking-tight">Before the Transformation</h3>
         </div>
+      </article>
 
-        <div class="transformation-note">
-          <h3>
-            Commitment + Discipline = Positive Results
-          </h3>
-          <p>
-            No two journeys are identical. Real progress happens when you execute the right plan with patience, review metrics honestly, and make steady adjustments over time.
-          </p>
+      <!-- Phase 2 Card: Consistency -->
+      <article class="transformation-deck-card transformation-deck-card-featured group relative rounded-3xl overflow-hidden border border-[#a3e635]/30 bg-neutral-900/60 shadow-2xl aspect-[4/5] flex flex-col justify-end p-6 sm:p-8 transition-all duration-300 hover:border-[#a3e635]/60 hover:shadow-[0_0_30px_rgba(163,230,53,0.12)]">
+        <img 
+          src="images/phen-after.jpg" 
+          onerror="if(!this.dataset.tried){this.dataset.tried=1;this.src='images/transformation-after.png';}"
+          alt="Phen Phoy after developing strength and fitness" 
+          class="transformation-deck-img absolute inset-0 w-full h-full object-cover object-center filter brightness-95 contrast-105 transition-transform duration-500 group-hover:scale-[1.02]"
+          loading="lazy"
+        />
+        <!-- Inner Vignette / Scrim for Text Contrast -->
+        <div class="transformation-deck-scrim absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+
+        <div class="transformation-deck-content relative z-10 space-y-2">
+          <span class="transformation-badge-phase2 inline-block px-3 py-1 rounded-full text-[11px] font-bold tracking-wider uppercase bg-[#a3e635]/20 text-[#a3e635] border border-[#a3e635]/40 backdrop-blur-md">
+            Phase 2 · Consistency
+          </span>
+          <h3 class="text-xl sm:text-2xl font-bold text-white tracking-tight">Building Strength & Confidence</h3>
         </div>
+      </article>
 
+    </div>
+
+    <!-- Takeaway Banner -->
+    <div class="transformation-takeaway-bar max-w-[1180px] mx-auto mt-8 p-6 sm:p-7 rounded-2xl bg-neutral-900/70 backdrop-blur-md border border-[#a3e635]/20 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div>
+        <h4 class="text-lg font-bold text-white">Commitment + Discipline = Positive Results</h4>
+        <p class="text-neutral-400 text-xs sm:text-sm mt-1 max-w-[75ch]">
+          No two journeys are identical. Real progress happens when you execute the right plan with patience, review metrics honestly, and make steady adjustments over time.
+        </p>
       </div>
-    </section>
+      <a href="#contact" class="transformation-takeaway-btn flex-shrink-0 px-6 py-3 rounded-full bg-[#a3e635] text-neutral-950 font-bold text-xs uppercase tracking-wider hover:bg-[#bef264] transition-colors self-start md:self-auto">
+        Start Your Journey
+      </a>
+    </div>
+
+  </div>
+</section>
 
 
     <!-- =========================================================
@@ -3470,23 +3845,17 @@
      09 — GALLERY
     ========================================================= -->
     <section class="pf-gallery-section" id="gallery">
-
       <div class="pf-gallery-container">
-
         <div class="pf-gallery-header-row">
-
           <div>
-            <p class="eyebrow">
-              Coaching in Action
-            </p>
-            <h2 class="section-title">
-              Real coaching. Real effort. Real progress.
-            </h2>
+            <p class="eyebrow">Coaching in Action</p>
+            <h2 class="section-title">Real coaching. Real effort. Real progress.</h2>
             <p class="section-copy">
               A look inside personal training and small-group sessions at Phen Fitness in Siem Reap.
             </p>
           </div>
 
+          <!-- Desktop & Touch Navigation Controls -->
           <div class="pf-gallery-controls">
             <button class="pf-gallery-arrow" id="galleryPrev" aria-label="Scroll gallery left" type="button">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
@@ -3495,93 +3864,76 @@
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
             </button>
           </div>
-
         </div>
 
+        <!-- Full-Bleed Horizontal Swipe Track with CSS Scroll-Snap -->
         <div class="pf-gallery-track" id="galleryTrack">
-
           <button class="pf-gallery-card" type="button">
             <img src="images/coaching-1.png" alt="Phen Fitness coaching session" loading="lazy" />
           </button>
-
           <button class="pf-gallery-card" type="button">
             <img src="images/coaching-2.png" alt="Personal training session" loading="lazy" />
           </button>
-
           <button class="pf-gallery-card" type="button">
             <img src="images/coaching-3.png" alt="Fitness coaching session" loading="lazy" />
           </button>
-
           <button class="pf-gallery-card" type="button">
             <img src="images/coaching-4.JPG" alt="Strength training session" loading="lazy" />
           </button>
-
           <button class="pf-gallery-card" type="button">
             <img src="images/coaching-5.jpg" alt="One-to-one coaching" loading="lazy" />
           </button>
-
           <button class="pf-gallery-card" type="button">
             <img src="images/coaching-6.jpg" alt="Gym training session" loading="lazy" />
           </button>
-
           <button class="pf-gallery-card" type="button">
             <img src="images/coaching-7.JPG" alt="Technique coaching" loading="lazy" />
           </button>
-
           <button class="pf-gallery-card" type="button">
             <img src="images/coaching-8.jpg" alt="Small group coaching" loading="lazy" />
           </button>
-
           <button class="pf-gallery-card" type="button">
             <img src="images/coaching-9.JPG" alt="Resistance training" loading="lazy" />
           </button>
-
           <button class="pf-gallery-card" type="button">
             <img src="images/coaching-10.JPG" alt="Phen Fitness training" loading="lazy" />
           </button>
-
           <button class="pf-gallery-card" type="button">
             <img src="images/coaching-11.jpg" alt="Resistance training" loading="lazy" />
           </button>
-
           <button class="pf-gallery-card" type="button">
             <img src="images/coaching-12.JPG" alt="Resistance training" loading="lazy" />
           </button>
-
           <button class="pf-gallery-card" type="button">
             <img src="images/coaching-13.JPG" alt="Resistance training" loading="lazy" />
           </button>
-
           <button class="pf-gallery-card" type="button">
             <img src="images/coaching-14.JPG" alt="Resistance training" loading="lazy" />
           </button>
-
           <button class="pf-gallery-card" type="button">
             <img src="images/coaching-15.jpg" alt="Resistance training" loading="lazy" />
           </button>
-
           <button class="pf-gallery-card" type="button">
             <img src="images/coaching-16.jpg" alt="Resistance training" loading="lazy" />
           </button>
-
           <button class="pf-gallery-card" type="button">
             <img src="images/coaching-17.JPG" alt="Resistance training" loading="lazy" />
           </button>
-
           <button class="pf-gallery-card" type="button">
-            <img src="images/coaching-18.JPG" alt="Resistance training" loading="lazy" />
+            <img src="images/coaching-18.jpg" alt="Resistance training" loading="lazy" />
           </button>
-
           <button class="pf-gallery-card" type="button">
-            <img src="images/coaching-19.JPG" alt="Resistance training" loading="lazy" />
+            <img src="images/coaching-19.jpg" alt="Resistance training" loading="lazy" />
           </button>
-
           <button class="pf-gallery-card" type="button">
             <img src="images/coaching-20.JPG" alt="Resistance training" loading="lazy" />
           </button>
-
         </div>
 
+        <!-- Subtle Swipe Progress Bar -->
+        <div class="pf-gallery-progress-track">
+          <div class="pf-gallery-progress-bar" id="galleryProgressBar"></div>
+        </div>
       </div>
     </section>
 
@@ -4303,27 +4655,39 @@
     ========================================================= */
 
     const galleryTrack = document.getElementById("galleryTrack");
+    const galleryProgressBar = document.getElementById("galleryProgressBar");
 
     const getGalleryScrollAmount = () => {
       const firstCard = galleryTrack?.querySelector(".pf-gallery-card");
-      const cardWidth = firstCard ? firstCard.getBoundingClientRect().width : 250;
-      const gap = 16; // 16px CSS flex gap
+      const cardWidth = firstCard ? firstCard.getBoundingClientRect().width : 320;
+      const gap = 18;
       return cardWidth + gap;
     };
 
     document.getElementById("galleryPrev")?.addEventListener("click", () => {
-      galleryTrack.scrollBy({
+      galleryTrack?.scrollBy({
         left: -getGalleryScrollAmount(),
         behavior: "smooth"
       });
     });
 
     document.getElementById("galleryNext")?.addEventListener("click", () => {
-      galleryTrack.scrollBy({
+      galleryTrack?.scrollBy({
         left: getGalleryScrollAmount(),
         behavior: "smooth"
       });
     });
+
+    // Update horizontal progress bar on swipe/scroll
+    galleryTrack?.addEventListener("scroll", () => {
+      if (!galleryProgressBar) return;
+      const maxScroll = galleryTrack.scrollWidth - galleryTrack.clientWidth;
+      if (maxScroll > 0) {
+        const progress = (galleryTrack.scrollLeft / maxScroll) * 100;
+        const barWidth = Math.max(15, Math.min(100, 20 + progress * 0.8));
+        galleryProgressBar.style.width = `${barWidth}%`;
+      }
+    }, { passive: true });
 
     const galleryLightbox = document.getElementById("galleryLightbox");
     const galleryLightboxImage = document.getElementById("galleryLightboxImage");

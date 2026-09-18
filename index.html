@@ -51,7 +51,7 @@
       --radius-md: 14px;
       --radius-lg: 20px;
       --radius-xl: 26px;
-      --max-width: 1720px;
+      --max-width: 1680px;
     }
 
     * {
@@ -3143,7 +3143,66 @@
       }
     }
 
+  
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Cohesive 4-Tier Horizontal Comparison Grid */
+    .pf-pricing-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: clamp(16px, 1.8vw, 24px);
+      align-items: stretch;
+    }
+
+    @media (max-width: 1200px) {
+      .pf-pricing-grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .pf-pricing-grid-4 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Balanced 2-Column Secondary Strip */
+    .pf-pricing-strip-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: clamp(16px, 2vw, 26px);
+      max-width: 920px;
+      margin: 36px auto 0;
+      align-items: stretch;
+    }
+
+    @media (max-width: 680px) {
+      .pf-pricing-strip-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
   </style>
+  <!-- Tailwind CSS CDN for instant utility styling -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#a3e635',
+            brandLight: '#c8ff38',
+          }
+        }
+      }
+    }
+  </script>
 </head>
 
 <body>
@@ -3191,7 +3250,7 @@
     ========================================================= -->
     <section class="hero" id="home">
 
-      <div class="container hero-grid">
+      <div class="container hero-grid w-full max-w-[1680px] mx-auto px-5 sm:px-8 md:px-12 lg:px-16 xl:px-20">
 
         <div class="reveal">
 
@@ -3325,49 +3384,85 @@
      03 — SERVICES
     ========================================================= -->
     <section class="pf-services section" id="services">
-      <div class="container">
+      <div class="container w-full max-w-[1680px] mx-auto px-5 sm:px-8 md:px-12 lg:px-16 xl:px-20">
         <p class="eyebrow">Services</p>
         <h2 class="section-title">How You Can Train With Me</h2>
-        <p class="section-copy">
+        <p class="section-copy max-w-[65ch]">
           Choose the level of support that fits your experience level, lifestyle, and schedule.
         </p>
 
-        <!-- Discovery & Diagnostic Banner -->
-        <div class="pf-services-discovery">
-          <article class="pf-discovery-card">
-            <div class="pf-service-number">01</div>
-            <div class="pf-discovery-body">
-              <div class="pf-service-header">
-                <h3>Initial Fitness Consultation</h3>
-                <span class="pf-service-badge">Best First Step</span>
+        <!-- Top Highlight Row (Diagnostic / Entry Points - 2 columns) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pf-services-discovery mb-8 items-stretch">
+          <!-- Card 01: Initial Fitness Consultation -->
+          <article class="pf-discovery-card h-full flex flex-col justify-between">
+            <div class="pf-discovery-body flex flex-col justify-between h-full">
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <div class="pf-service-number">01</div>
+                  <span class="pf-service-badge">Best First Step</span>
+                </div>
+                <div class="pf-service-header">
+                  <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">Initial Fitness Consultation</h3>
+                  <div class="text-[#a3e635] font-extrabold text-lg mb-3">FREE <span class="text-xs text-neutral-400 font-normal">/ 30 mins</span></div>
+                </div>
+                <p class="text-neutral-300 text-sm leading-relaxed mb-6">
+                  A focused conversation to understand your baseline, health history, lifestyle, and goals, then chart the most effective roadmap forward.
+                </p>
+                <ul class="pf-card-feature-list space-y-2.5 mb-6">
+                  <li class="flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
+                    <svg class="w-4 h-4 text-[#a3e635] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                    <span>Goal &amp; lifestyle audit</span>
+                  </li>
+                  <li class="flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
+                    <svg class="w-4 h-4 text-[#a3e635] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                    <span>Training history &amp; mobility review</span>
+                  </li>
+                  <li class="flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
+                    <svg class="w-4 h-4 text-[#a3e635] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                    <span>Personalized starting pathway</span>
+                  </li>
+                </ul>
               </div>
-              <p>
-                A focused conversation to understand your baseline, health history, lifestyle, and goals, then chart the most effective pathway forward.
-              </p>
-              <a class="pf-service-link" href="#contact">Book a Consultation →</a>
+              <div class="pt-4 border-t border-white/[0.08]">
+                <a class="button button-primary w-full text-center" href="#contact">Book Free Consultation</a>
+              </div>
             </div>
           </article>
 
-          <article class="pf-discovery-card">
-            <div class="pf-service-number">02</div>
-            <div class="pf-discovery-body">
-              <div class="pf-service-header">
-                <h3>Fitness Assessment</h3>
-                <span class="pf-service-badge">Available in Siem Reap</span>
-              </div>
-              <p>
-                A diagnostic assessment measuring precise body composition and cardiorespiratory fitness to benchmark your starting line.
-              </p>
-              <div class="pf-service-assessment">
-                <div class="pf-service-assessment-location">
-                  <strong>Location:</strong> Bulldogs Fitness Center — Siem Reap
+          <!-- Card 02: Fitness Assessment -->
+          <article class="pf-discovery-card h-full flex flex-col justify-between">
+            <div class="pf-discovery-body flex flex-col justify-between h-full">
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <div class="pf-service-number">02</div>
+                  <span class="pf-service-badge">Bulldogs Fitness Center</span>
                 </div>
-                <ul>
-                  <li>Body Composition Analysis — Visbody 3D Scan</li>
-                  <li>Cardiorespiratory Testing — YMCA 3-Minute Step Test</li>
+                <div class="pf-service-header">
+                  <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">Fitness Assessment</h3>
+                  <div class="text-[#a3e635] font-extrabold text-lg mb-3"> <span class="text-xs text-neutral-400 font-normal">/ assessment</span> <span class="inline-block ml-2 px-2 py-0.5 text-[11px] font-semibold bg-[#a3e635]/15 text-[#a3e635] rounded-full border border-[#a3e635]/30">🏷️ Gym Member: </span></div>
+                </div>
+                <p class="text-neutral-300 text-sm leading-relaxed mb-6">
+                  Comprehensive biometric diagnostic to assess your body composition and cardiorespiratory health at Bulldogs Fitness Center, Siem Reap.
+                </p>
+                <ul class="pf-card-feature-list space-y-2.5 mb-6">
+                  <li class="flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
+                    <svg class="w-4 h-4 text-[#a3e635] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                    <span>Visbody 3D Body Composition Scan</span>
+                  </li>
+                  <li class="flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
+                    <svg class="w-4 h-4 text-[#a3e635] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                    <span>YMCA 3-Minute Step Test (VO₂ Max Recovery)</span>
+                  </li>
+                  <li class="flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
+                    <svg class="w-4 h-4 text-[#a3e635] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                    <span>Posture &amp; mobility alignment baseline</span>
+                  </li>
                 </ul>
-                <button class="pf-assessment-details-button" id="assessmentDetailsBtn" type="button">
-                  <span>View Assessment Details</span>
+              </div>
+              <div class="pt-4 border-t border-white/[0.08] flex flex-col sm:flex-row gap-3">
+                <a class="button button-primary flex-1 text-center" href="#contact">Book Assessment</a>
+                <button class="pf-assessment-details-button flex items-center justify-center gap-1.5 px-4 py-3 text-xs font-semibold rounded-xl bg-white/[0.06] hover:bg-white/[0.12] text-neutral-200 border border-white/10 transition-colors" id="assessmentDetailsBtn" type="button">
+                  <span>Protocols</span>
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
                 </button>
               </div>
@@ -3375,80 +3470,119 @@
           </article>
         </div>
 
-        <!-- Expansive 3-Column Core Training Grid -->
-        <div class="pf-services-grid">
-          <article class="pf-service-col-card">
+        <!-- Core Coaching Deck (3 columns) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pf-services-grid items-stretch">
+          <!-- Card 03: 1-on-1 Personal Training -->
+          <article class="pf-service-col-card h-full flex flex-col justify-between">
             <div class="pf-service-card-top">
-              <div class="pf-service-card-meta">
+              <div class="pf-service-card-meta flex items-center justify-between mb-4">
                 <div class="pf-service-number">03</div>
                 <span class="pf-service-badge">Most Personalized</span>
               </div>
-              <h3>1-on-1 Personal Training</h3>
-              <p>
+              <h3 class="text-xl font-bold text-white mb-2">1-on-1 Personal Training</h3>
+              <p class="text-neutral-300 text-sm leading-relaxed mb-6">
                 Dedicated in-person coaching, real-time posture corrections, progressive workout programming, and weekly accountability built around your specific physique goals.
               </p>
-              <ul class="pf-card-feature-list">
-                <li>Personalized progressive resistance plan</li>
-                <li>Real-time biomechanics &amp; technique coaching</li>
-                <li>Monday to Friday 1-hour focused sessions</li>
-                <li>Continuous nutritional &amp; lifestyle tracking</li>
+              <ul class="pf-card-feature-list space-y-2 mb-6">
+                <li class="flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
+                  <svg class="w-4 h-4 text-[#a3e635] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                  <span>Personalized progressive resistance plan</span>
+                </li>
+                <li class="flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
+                  <svg class="w-4 h-4 text-[#a3e635] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                  <span>Real-time biomechanics &amp; technique coaching</span>
+                </li>
+                <li class="flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
+                  <svg class="w-4 h-4 text-[#a3e635] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                  <span>Monday to Friday 1-hour focused sessions</span>
+                </li>
+                <li class="flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
+                  <svg class="w-4 h-4 text-[#a3e635] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                  <span>Continuous nutritional &amp; lifestyle tracking</span>
+                </li>
               </ul>
             </div>
-            <div class="pf-service-card-bottom">
-              <div class="pf-service-card-price">
-                $200 <small>/ month</small>
+            <div class="pf-service-card-bottom pt-4 border-t border-white/[0.08]">
+              <div class="pf-service-card-price text-2xl font-extrabold text-[#a3e635] mb-3">
+                 <small class="text-xs text-neutral-400 font-normal">/ month</small>
               </div>
-              <a class="button button-primary" href="#contact">Choose 1-on-1 Training</a>
+              <a class="button button-primary w-full text-center" href="#contact">Choose 1-on-1 Training</a>
             </div>
           </article>
 
-          <article class="pf-service-col-card">
+          <!-- Card 04: Small-Group Training -->
+          <article class="pf-service-col-card h-full flex flex-col justify-between">
             <div class="pf-service-card-top">
-              <div class="pf-service-card-meta">
+              <div class="pf-service-card-meta flex items-center justify-between mb-4">
                 <div class="pf-service-number">04</div>
                 <span class="pf-service-badge">2–3 Members</span>
               </div>
-              <h3>Small-Group Training</h3>
-              <p>
+              <h3 class="text-xl font-bold text-white mb-2">Small-Group Training</h3>
+              <p class="text-neutral-300 text-sm leading-relaxed mb-6">
                 High-energy, focused coaching for small cohorts wanting professional guidance with shared motivation, team energy, and shared accountability.
               </p>
-              <ul class="pf-card-feature-list">
-                <li>Semi-private cohorts of 2–3 members</li>
-                <li>Structured progression &amp; form coaching</li>
-                <li>Dynamic team motivation &amp; camaraderie</li>
-                <li>Flexible group scheduling options</li>
+              <ul class="pf-card-feature-list space-y-2 mb-6">
+                <li class="flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
+                  <svg class="w-4 h-4 text-[#a3e635] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                  <span>Semi-private cohorts of 2–3 members</span>
+                </li>
+                <li class="flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
+                  <svg class="w-4 h-4 text-[#a3e635] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                  <span>Structured progression &amp; form coaching</span>
+                </li>
+                <li class="flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
+                  <svg class="w-4 h-4 text-[#a3e635] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                  <span>Dynamic team motivation &amp; camaraderie</span>
+                </li>
+                <li class="flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
+                  <svg class="w-4 h-4 text-[#a3e635] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                  <span>Flexible group scheduling options</span>
+                </li>
               </ul>
             </div>
-            <div class="pf-service-card-bottom">
-              <div class="pf-service-card-price">
-                $175 <small>/ person / month</small>
+            <div class="pf-service-card-bottom pt-4 border-t border-white/[0.08]">
+              <div class="pf-service-card-price text-2xl font-extrabold text-[#a3e635] mb-3">
+                 <small class="text-xs text-neutral-400 font-normal">/ person / month</small>
               </div>
-              <a class="button button-outline" href="#contact">Join a Small Group</a>
+              <a class="button button-outline w-full text-center" href="#contact">Join a Small Group</a>
             </div>
           </article>
 
-          <article class="pf-service-col-card">
+          <!-- Card 05: Online Coaching -->
+          <article class="pf-service-col-card h-full flex flex-col justify-between">
             <div class="pf-service-card-top">
-              <div class="pf-service-card-meta">
+              <div class="pf-service-card-meta flex items-center justify-between mb-4">
                 <div class="pf-service-number">05</div>
                 <span class="pf-service-badge">Remote Programming</span>
               </div>
-              <h3>Online Coaching</h3>
-              <p>
+              <h3 class="text-xl font-bold text-white mb-2">Online Coaching</h3>
+              <p class="text-neutral-300 text-sm leading-relaxed mb-6">
                 Structured remote workout programming, tailored nutrition guidelines, weekly check-in reviews, and direct messaging support wherever you train in the world.
               </p>
-              <ul class="pf-card-feature-list">
-                <li>Custom digital workout &amp; progression routines</li>
-                <li>Video technique review &amp; exercise feedback</li>
-                <li>Caloric &amp; macronutrient target planning</li>
-                <li>Direct Telegram &amp; WhatsApp coach access</li>
+              <ul class="pf-card-feature-list space-y-2 mb-6">
+                <li class="flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
+                  <svg class="w-4 h-4 text-[#a3e635] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                  <span>Custom digital workout &amp; progression routines</span>
+                </li>
+                <li class="flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
+                  <svg class="w-4 h-4 text-[#a3e635] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                  <span>Video technique review &amp; exercise feedback</span>
+                </li>
+                <li class="flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
+                  <svg class="w-4 h-4 text-[#a3e635] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                  <span>Caloric &amp; macronutrient target planning</span>
+                </li>
+                <li class="flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
+                  <svg class="w-4 h-4 text-[#a3e635] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                  <span>Direct Telegram &amp; WhatsApp coach access</span>
+                </li>
               </ul>
             </div>
-            <div class="pf-service-card-bottom">
-              <div class="pf-service-card-price">
-                Custom <small>/ flexible</small>
+            <div class="pf-service-card-bottom pt-4 border-t border-white/[0.08]">
+              <div class="pf-service-card-price text-2xl font-extrabold text-[#a3e635] mb-3">
+                Custom <small class="text-xs text-neutral-400 font-normal">/ flexible plan</small>
               </div>
-              <a class="button button-outline" href="#contact">Apply for Online Coaching</a>
+              <a class="button button-outline w-full text-center" href="#contact">Apply for Online Coaching</a>
             </div>
           </article>
         </div>
@@ -3460,13 +3594,9 @@
      04 — WHY CLIENTS CHOOSE PHEN FITNESS
     ========================================================= -->
     <section class="section section-soft">
-
-      <div class="container">
-
+      <div class="container w-full max-w-[1680px] mx-auto px-5 sm:px-8 md:px-12 lg:px-16 xl:px-20">
         <div class="pf-why-box">
-
-          <p class="eyebrow">
-            Why Clients Choose Phen Fitness
+          <p class="eyebrow">Why Clients Choose Phen Fitness
           </p>
 
           <h2 class="section-title">
@@ -3524,7 +3654,7 @@
     ========================================================= -->
     <section class="section" id="story">
 
-      <div class="container story-grid">
+      <div class="container story-grid w-full max-w-[1680px] mx-auto px-5 sm:px-8 md:px-12 lg:px-16 xl:px-20">
 
         <div class="story-image">
           <img src="images/phen-about.png" alt="Phen Phoy, certified fitness instructor" loading="lazy" />
@@ -3597,7 +3727,7 @@
   <!-- Subtle Ambient Glow to fill widescreen dead space -->
   <div class="transformation-ambient-glow absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,_rgba(163,230,53,0.06)_0%,transparent_70%)]" aria-hidden="true"></div>
 
-  <div class="container transformation-container relative w-full max-w-[1440px] mx-auto px-5 sm:px-8 md:px-12 lg:px-16">
+  <div class="container transformation-container relative w-full max-w-[1680px] mx-auto px-5 sm:px-8 md:px-12 lg:px-16 xl:px-20">
     
     <!-- Section Header -->
     <div class="transformation-header mb-12 max-w-2xl">
@@ -3679,7 +3809,7 @@
     ========================================================= -->
     <section class="section" id="qualifications">
 
-      <div class="container">
+      <div class="container w-full max-w-[1680px] mx-auto px-5 sm:px-8 md:px-12 lg:px-16 xl:px-20">
 
         <p class="eyebrow">
           Qualifications
@@ -3890,7 +4020,7 @@
      09 — GALLERY
     ========================================================= -->
     <section id="gallery" class="pf-gallery-section w-full py-20 bg-[#080a08] overflow-hidden border-t border-white/[0.06]">
-      <div class="container pf-gallery-container w-full max-w-[1720px] mx-auto px-5 sm:px-8 md:px-12 lg:px-16 xl:px-24 mb-10">
+      <div class="container pf-gallery-container w-full max-w-[1680px] mx-auto px-5 sm:px-8 md:px-12 lg:px-16 xl:px-20 mb-10">
         <div class="pf-gallery-header-row flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
             <span class="eyebrow text-xs uppercase font-bold tracking-widest text-[#a3e635]">• Coaching In Action</span>
@@ -3915,7 +4045,7 @@
       <!-- Horizontal Scroll Snap Track -->
       <div 
         id="gallery-track" 
-        class="pf-gallery-track flex gap-5 sm:gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth px-5 sm:px-8 md:px-12 lg:px-16 xl:px-24 pb-6"
+        class="pf-gallery-track flex gap-5 sm:gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar px-5 sm:px-8 md:px-12 lg:px-16 xl:px-20 pb-6"
         style="scrollbar-width: none; -ms-overflow-style: none;"
       >
         <!-- Slide 1 -->
@@ -4071,7 +4201,7 @@
     ========================================================= -->
     <section class="section" id="testimonials">
 
-      <div class="container">
+      <div class="container w-full max-w-[1680px] mx-auto px-5 sm:px-8 md:px-12 lg:px-16 xl:px-20">
 
         <div class="pf-testimonials-header">
 
@@ -4140,355 +4270,294 @@
      11 — PRICING & OPTIONS
     ========================================================= -->
     <section class="section section-soft pf-pricing-section" id="pricing">
-      <div class="container pf-pricing-wrapper">
-        <div class="pf-pricing-header">
+      <div class="container pf-pricing-wrapper w-full max-w-[1680px] mx-auto px-5 sm:px-8 md:px-12 lg:px-16 xl:px-20">
+        <div class="pf-pricing-header text-center mx-auto mb-12">
           <p class="eyebrow">Pricing &amp; Training Options</p>
-          <h2 class="section-title">Transparent options built for real commitment.</h2>
-          <p class="section-copy">
+          <h2 class="section-title text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mt-2">Transparent options built for real commitment.</h2>
+          <p class="section-copy text-neutral-400 text-sm sm:text-base mt-3 max-w-[65ch] mx-auto">
             From diagnostic consultations to intensive 1-on-1 coaching and flexible session packages, choose the structure that aligns with your goals.
           </p>
         </div>
 
         <!-- ===================================================
-             TIER 1: DIAGNOSTIC & BASELINE EVALUATION (2 CARDS)
+             COHESIVE 4-TIER HORIZONTAL COMPARISON DECK (DESKTOP)
         =================================================== -->
-        <div class="pf-pricing-tier">
-          <div class="pf-tier-header">
-            <span class="pf-tier-badge">
-              <svg class="w-3.5 h-3.5 text-[#a3e635]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-              Step 01 · Diagnostic &amp; Baseline
-            </span>
-            <div class="pf-tier-line"></div>
-          </div>
-
-          <div class="pf-pricing-grid-2">
-            <!-- 1. Initial Consultation -->
-            <article class="pf-pricing-card">
-              <div class="pf-card-top-row">
-                <span class="pf-card-category-label">Consultation</span>
-                <span class="pf-card-pill">No Obligation</span>
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 items-stretch pf-pricing-grid-4">
+          <!-- Tier 1: Initial Consultation -->
+          <article class="pf-pricing-card h-full flex flex-col justify-between">
+            <div>
+              <div class="pf-card-top-row flex items-center justify-between mb-3">
+                <span class="pf-card-category-label text-[#a3e635] text-xs font-bold uppercase tracking-wider">Consultation</span>
+                <span class="pf-card-pill px-2.5 py-1 text-xs rounded-full bg-white/[0.06] text-neutral-300 border border-white/10">No Obligation</span>
               </div>
-              <h3 class="pf-card-heading">Initial Consultation</h3>
-              <div class="pf-card-price-display">
-                <span class="pf-price-main">FREE</span>
-                <span class="pf-price-unit">/ 30 mins</span>
+              <h3 class="pf-card-heading text-xl font-bold text-white mb-2">Initial Consultation</h3>
+              <div class="pf-card-price-display my-4">
+                <span class="pf-price-main text-3xl font-extrabold text-[#a3e635]">FREE</span>
+                <span class="pf-price-unit text-xs text-neutral-400 ml-1">/ 30 mins</span>
               </div>
-              <p class="pf-card-copy">
+              <p class="pf-card-copy text-neutral-300 text-sm leading-relaxed mb-5">
                 A focused conversation to understand your current fitness baseline, discuss goals, and recommend your best starting path.
               </p>
-              <ul class="pf-card-list">
-                <li class="pf-card-list-item">
-                  <svg class="pf-card-check-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <ul class="pf-card-list space-y-2.5 mb-6">
+                <li class="pf-card-list-item flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
+                  <svg class="w-4 h-4 text-[#a3e635] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
                   <span>Goal &amp; lifestyle review</span>
                 </li>
-                <li class="pf-card-list-item">
-                  <svg class="pf-card-check-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <li class="pf-card-list-item flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
+                  <svg class="w-4 h-4 text-[#a3e635] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
                   <span>Training history audit</span>
                 </li>
-                <li class="pf-card-list-item">
-                  <svg class="pf-card-check-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <li class="pf-card-list-item flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
+                  <svg class="w-4 h-4 text-[#a3e635] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
                   <span>Personalized roadmap</span>
                 </li>
+                <li class="pf-card-list-item flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
+                  <svg class="w-4 h-4 text-[#a3e635] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                  <span>No pressure or commitment</span>
+                </li>
               </ul>
-              <div class="pf-card-button-area">
-                <a class="pf-action-btn pf-action-btn-ghost" href="#contact">Book Consultation</a>
-              </div>
-            </article>
+            </div>
+            <div class="pf-card-button-area pt-4 border-t border-white/[0.08]">
+              <a class="pf-action-btn pf-action-btn-ghost button button-outline w-full text-center" href="#contact">Book Consultation</a>
+            </div>
+          </article>
 
-            <!-- 2. Fitness Assessment -->
-            <article class="pf-pricing-card">
-              <div class="pf-card-top-row">
-                <span class="pf-card-category-label">Fitness Assessment</span>
-                <span class="pf-card-pill">Biometric Scan</span>
+          <!-- Tier 2: Fitness Assessment -->
+          <article class="pf-pricing-card h-full flex flex-col justify-between">
+            <div>
+              <div class="pf-card-top-row flex items-center justify-between mb-3">
+                <span class="pf-card-category-label text-[#a3e635] text-xs font-bold uppercase tracking-wider">Diagnostic</span>
+                <span class="pf-card-pill px-2.5 py-1 text-xs rounded-full bg-white/[0.06] text-neutral-300 border border-white/10">Biometric Scan</span>
               </div>
-              <h3 class="pf-card-heading">Fitness Assessment</h3>
-              <div class="pf-card-price-display">
-                <span class="pf-price-main">$20</span>
-                <span class="pf-price-unit">/ assessment</span>
+              <h3 class="pf-card-heading text-xl font-bold text-white mb-2">Fitness Assessment</h3>
+              <div class="pf-card-price-display my-4">
+                <span class="pf-price-main text-3xl font-extrabold text-[#a3e635]"></span>
+                <span class="pf-price-unit text-xs text-neutral-400 ml-1">/ assessment</span>
               </div>
-              <div class="pf-card-highlight-badge">🏷️ Gym Member Price: $5</div>
-              <p class="pf-card-copy">
+              <div class="pf-card-highlight-badge inline-block mb-3 px-2.5 py-1 text-xs font-semibold bg-[#a3e635]/15 text-[#a3e635] rounded-lg border border-[#a3e635]/30">🏷️ Gym Member Price: </div>
+              <p class="pf-card-copy text-neutral-300 text-sm leading-relaxed mb-4">
                 Comprehensive biometric diagnostic to assess your body composition and cardiorespiratory health.
               </p>
-              <div class="pf-card-location-chip">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              <div class="pf-card-location-chip flex items-center gap-1.5 text-xs text-neutral-300 mb-4 bg-white/[0.04] p-2 rounded-lg border border-white/5">
+                <svg class="w-3.5 h-3.5 text-[#a3e635] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                 <span><strong>Bulldogs Fitness Center</strong> · Siem Reap</span>
               </div>
-              <div class="pf-card-includes-sub">Includes Diagnostic Protocols:</div>
-              <ul class="pf-card-list">
-                <li class="pf-card-list-item">
-                  <svg class="pf-card-check-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <ul class="pf-card-list space-y-2.5 mb-6">
+                <li class="pf-card-list-item flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
+                  <svg class="w-4 h-4 text-[#a3e635] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
                   <span>Visbody 3D Body Composition Scan</span>
                 </li>
-                <li class="pf-card-list-item">
-                  <svg class="pf-card-check-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <li class="pf-card-list-item flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
+                  <svg class="w-4 h-4 text-[#a3e635] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
                   <span>VO₂ Max / Step Cardiorespiratory Test</span>
                 </li>
+                <li class="pf-card-list-item flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
+                  <svg class="w-4 h-4 text-[#a3e635] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                  <span>Posture &amp; mobility alignment</span>
+                </li>
               </ul>
-              <div class="pf-card-button-area">
-                <a class="pf-action-btn pf-action-btn-ghost" href="#contact">Book Assessment</a>
-                <button type="button" class="pf-action-btn pf-action-btn-secondary" onclick="document.getElementById('assessmentModal').classList.add('open'); document.body.classList.add('modal-open');">
-                  View Assessment Details &amp; Protocols →
-                </button>
-              </div>
-            </article>
-          </div>
-        </div>
+            </div>
+            <div class="pf-card-button-area pt-4 border-t border-white/[0.08] space-y-2">
+              <a class="pf-action-btn pf-action-btn-ghost button button-outline w-full text-center" href="#contact">Book Assessment</a>
+              <button type="button" class="w-full py-2 px-3 text-xs font-semibold text-[#a3e635] bg-transparent hover:bg-white/[0.04] rounded-lg transition-colors border border-[#a3e635]/30 text-center" onclick="document.getElementById('assessmentModal').classList.add('open'); document.body.classList.add('modal-open');">
+                View Assessment Details &amp; Protocols →
+              </button>
+            </div>
+          </article>
 
-        <!-- ===================================================
-             TIER 2: DEDICATED MONTHLY COACHING (2 FLAGSHIP CARDS)
-        =================================================== -->
-        <div class="pf-pricing-tier">
-          <div class="pf-tier-header">
-            <span class="pf-tier-badge">
-              <svg class="w-3.5 h-3.5 text-[#a3e635]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-              Step 02 · Dedicated In-Person Coaching
-            </span>
-            <div class="pf-tier-line"></div>
-          </div>
-
-          <div class="pf-pricing-grid-2">
-            <!-- 3. Personal Trainer Plan (Featured Crown Jewel) -->
-            <article class="pf-pricing-card pf-pricing-card-featured">
-              <div class="pf-card-top-row">
-                <span class="pf-card-category-label">Personal Coaching</span>
-                <span class="pf-card-pill pf-card-pill-lime">Most Popular</span>
+          <!-- Tier 3: Personal Trainer Plan (Featured Crown Jewel) -->
+          <article class="pf-pricing-card pf-pricing-card-featured border-2 border-[#a3e635] shadow-[0_0_35px_rgba(163,230,53,0.18)] relative h-full flex flex-col justify-between">
+            <div>
+              <div class="pf-card-top-row flex items-center justify-between mb-3">
+                <span class="pf-card-category-label text-[#a3e635] text-xs font-bold uppercase tracking-wider">1-on-1 Coaching</span>
+                <span class="pf-card-pill pf-card-pill-lime px-2.5 py-1 text-xs font-extrabold rounded-full bg-[#a3e635] text-black shadow-sm">Most Popular</span>
               </div>
-              <h3 class="pf-card-heading">Personal Trainer Plan</h3>
-              <div class="pf-card-price-display">
-                <span class="pf-price-main">$200</span>
-                <span class="pf-price-unit">/ month</span>
+              <h3 class="pf-card-heading text-xl font-bold text-white mb-2">Personal Trainer Plan</h3>
+              <div class="pf-card-price-display my-4">
+                <span class="pf-price-main text-3xl font-extrabold text-[#a3e635]"></span>
+                <span class="pf-price-unit text-xs text-neutral-400 ml-1">/ month</span>
               </div>
-              <div class="pf-card-highlight-badge">⚡ Monday to Friday · 1-on-1 Dedicated Coaching</div>
-              <p class="pf-card-copy">
+              <div class="pf-card-highlight-badge inline-block mb-3 px-2.5 py-1 text-xs font-semibold bg-[#a3e635]/15 text-[#a3e635] rounded-lg border border-[#a3e635]/30">⚡ Monday to Friday · 1-on-1 Dedicated</div>
+              <p class="pf-card-copy text-neutral-300 text-sm leading-relaxed mb-4">
                 Dedicated 1-on-1 in-person training with individualized programming, daily accountability, and weekly tracking.
               </p>
-              <ul class="pf-card-list">
-                <li class="pf-card-list-item">
-                  <svg class="pf-card-check-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                  <span>Goal-based personalized program</span>
-                </li>
-                <li class="pf-card-list-item">
-                  <svg class="pf-card-check-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <ul class="pf-card-list space-y-2.5 mb-6">
+                <li class="pf-card-list-item flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
+                  <svg class="w-4 h-4 text-[#a3e635] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
                   <span>1-on-1 dedicated coaching</span>
                 </li>
-                <li class="pf-card-list-item">
-                  <svg class="pf-card-check-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <li class="pf-card-list-item flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
+                  <svg class="w-4 h-4 text-[#a3e635] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
                   <span>Training Monday to Friday</span>
                 </li>
-                <li class="pf-card-list-item">
-                  <svg class="pf-card-check-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                  <span>1 hour focused session</span>
+                <li class="pf-card-list-item flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
+                  <svg class="w-4 h-4 text-[#a3e635] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                  <span>1 hour focused sessions</span>
                 </li>
-                <li class="pf-card-list-item">
-                  <svg class="pf-card-check-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                  <span>Weekly progress metrics</span>
-                </li>
-                <li class="pf-card-list-item">
-                  <svg class="pf-card-check-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                  <span>Practical nutrition guidance</span>
+                <li class="pf-card-list-item flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
+                  <svg class="w-4 h-4 text-[#a3e635] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                  <span>Continuous nutrition &amp; habit tracking</span>
                 </li>
               </ul>
-              <div class="pf-card-button-area">
-                <a class="pf-action-btn pf-action-btn-primary" href="#contact">Choose Personal Training</a>
-              </div>
-            </article>
+            </div>
+            <div class="pf-card-button-area pt-4 border-t border-white/[0.08]">
+              <a class="pf-action-btn pf-action-btn-primary button button-primary w-full text-center" href="#contact">Choose Personal Training</a>
+            </div>
+          </article>
 
-            <!-- 4. Small-Group Training -->
-            <article class="pf-pricing-card">
-              <div class="pf-card-top-row">
-                <span class="pf-card-category-label">Train Together</span>
-                <span class="pf-card-pill">2–3 Members</span>
+          <!-- Tier 4: Small-Group Training -->
+          <article class="pf-pricing-card h-full flex flex-col justify-between">
+            <div>
+              <div class="pf-card-top-row flex items-center justify-between mb-3">
+                <span class="pf-card-category-label text-[#a3e635] text-xs font-bold uppercase tracking-wider">Semi-Private</span>
+                <span class="pf-card-pill px-2.5 py-1 text-xs rounded-full bg-white/[0.06] text-neutral-300 border border-white/10">2–3 Members</span>
               </div>
-              <h3 class="pf-card-heading">Small-Group Training</h3>
-              <div class="pf-card-price-display">
-                <span class="pf-price-main">$175</span>
-                <span class="pf-price-unit">/ person / month</span>
+              <h3 class="pf-card-heading text-xl font-bold text-white mb-2">Small-Group Training</h3>
+              <div class="pf-card-price-display my-4">
+                <span class="pf-price-main text-3xl font-extrabold text-[#a3e635]"></span>
+                <span class="pf-price-unit text-xs text-neutral-400 ml-1">/ person / mo</span>
               </div>
-              <div class="pf-card-highlight-badge">👥 Small Group Dynamics · Shared Motivation</div>
-              <p class="pf-card-copy">
+              <div class="pf-card-highlight-badge inline-block mb-3 px-2.5 py-1 text-xs font-semibold bg-[#a3e635]/15 text-[#a3e635] rounded-lg border border-[#a3e635]/30">👥 Small Group Dynamics · Team Energy</div>
+              <p class="pf-card-copy text-neutral-300 text-sm leading-relaxed mb-4">
                 Train with 2–3 friends or colleagues in an energetic environment with professional coaching and shared accountability.
               </p>
-              <ul class="pf-card-list">
-                <li class="pf-card-list-item">
-                  <svg class="pf-card-check-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                  <span>Small group of 2–3 members</span>
+              <ul class="pf-card-list space-y-2.5 mb-6">
+                <li class="pf-card-list-item flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
+                  <svg class="w-4 h-4 text-[#a3e635] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                  <span>Small cohort of 2–3 members</span>
                 </li>
-                <li class="pf-card-list-item">
-                  <svg class="pf-card-check-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <li class="pf-card-list-item flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
+                  <svg class="w-4 h-4 text-[#a3e635] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
                   <span>Professional technique instruction</span>
                 </li>
-                <li class="pf-card-list-item">
-                  <svg class="pf-card-check-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                  <span>1 hour per session</span>
+                <li class="pf-card-list-item flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
+                  <svg class="w-4 h-4 text-[#a3e635] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                  <span>1 hour structured session</span>
                 </li>
-                <li class="pf-card-list-item">
-                  <svg class="pf-card-check-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                  <span>Shared team motivation</span>
-                </li>
-                <li class="pf-card-list-item">
-                  <svg class="pf-card-check-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                  <span>Structured progression</span>
+                <li class="pf-card-list-item flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
+                  <svg class="w-4 h-4 text-[#a3e635] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                  <span>Shared motivation &amp; camaraderie</span>
                 </li>
               </ul>
-              <div class="pf-card-button-area">
-                <a class="pf-action-btn pf-action-btn-ghost" href="#contact">Join a Group</a>
-              </div>
-            </article>
-          </div>
+            </div>
+            <div class="pf-card-button-area pt-4 border-t border-white/[0.08]">
+              <a class="pf-action-btn pf-action-btn-ghost button button-outline w-full text-center" href="#contact">Join a Group</a>
+            </div>
+          </article>
         </div>
 
         <!-- ===================================================
-             TIER 3: FLEXIBLE SESSIONS & ONLINE COACHING (3 CARDS)
+             BALANCED 2-COLUMN SECONDARY STRIP (FLEXIBLE PASSES)
         =================================================== -->
-        <div class="pf-pricing-tier">
-          <div class="pf-tier-header">
-            <span class="pf-tier-badge">
-              <svg class="w-3.5 h-3.5 text-[#a3e635]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-              Step 03 · Flexible Passes &amp; Remote Coaching
-            </span>
-            <div class="pf-tier-line"></div>
-          </div>
-
-          <div class="pf-pricing-grid-3">
-            <!-- 5. Single Session -->
-            <article class="pf-pricing-card">
-              <div class="pf-card-top-row">
-                <span class="pf-card-category-label">Single Session</span>
-                <span class="pf-card-pill">Pay-As-You-Go</span>
+        <div class="pf-pricing-strip-2 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mt-12 items-stretch">
+          <!-- Pass 1: Single Session -->
+          <article class="pf-pricing-card h-full flex flex-col justify-between">
+            <div>
+              <div class="pf-card-top-row flex items-center justify-between mb-3">
+                <span class="pf-card-category-label text-[#a3e635] text-xs font-bold uppercase tracking-wider">Single Session</span>
+                <span class="pf-card-pill px-2.5 py-1 text-xs rounded-full bg-white/[0.06] text-neutral-300 border border-white/10">Pay-As-You-Go</span>
               </div>
-              <h3 class="pf-card-heading">Flexible Personal Training</h3>
-              <div class="pf-card-price-display">
-                <span class="pf-price-main">$15</span>
-                <span class="pf-price-unit">/ session</span>
+              <h3 class="pf-card-heading text-lg font-bold text-white mb-2">Flexible Personal Training</h3>
+              <div class="pf-card-price-display my-3">
+                <span class="pf-price-main text-2xl font-extrabold text-[#a3e635]"></span>
+                <span class="pf-price-unit text-xs text-neutral-400 ml-1">/ session</span>
               </div>
-              <p class="pf-card-copy">
-                Ideal for travellers or clients wanting session-by-session flexibility without a recurring monthly commitment.
+              <p class="pf-card-copy text-neutral-300 text-sm leading-relaxed mb-4">
+                Ideal for travellers, visitors, or clients wanting session-by-session flexibility without a recurring monthly commitment.
               </p>
-              <ul class="pf-card-list">
-                <li class="pf-card-list-item">
-                  <svg class="pf-card-check-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <ul class="pf-card-list space-y-2 mb-6">
+                <li class="pf-card-list-item flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
+                  <svg class="w-4 h-4 text-[#a3e635] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
                   <span>1-hour dedicated coaching workout</span>
                 </li>
-                <li class="pf-card-list-item">
-                  <svg class="pf-card-check-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <li class="pf-card-list-item flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
+                  <svg class="w-4 h-4 text-[#a3e635] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
                   <span>Form correction &amp; lifting cues</span>
                 </li>
-                <li class="pf-card-list-item">
-                  <svg class="pf-card-check-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <li class="pf-card-list-item flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
+                  <svg class="w-4 h-4 text-[#a3e635] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
                   <span>No ongoing contract or recurring fee</span>
                 </li>
               </ul>
-              <div class="pf-card-button-area">
-                <a class="pf-action-btn pf-action-btn-ghost" href="#contact">Book a Session</a>
-              </div>
-            </article>
+            </div>
+            <div class="pf-card-button-area pt-4 border-t border-white/[0.08]">
+              <a class="pf-action-btn pf-action-btn-ghost button button-outline w-full text-center" href="#contact">Book a Session</a>
+            </div>
+          </article>
 
-            <!-- 6. 10-Session Package -->
-            <article class="pf-pricing-card">
-              <div class="pf-card-top-row">
-                <span class="pf-card-category-label">10-Session Package</span>
-                <span class="pf-card-pill pf-card-pill-lime">Save $10</span>
+          <!-- Pass 2: 10-Session Package -->
+          <article class="pf-pricing-card h-full flex flex-col justify-between">
+            <div>
+              <div class="pf-card-top-row flex items-center justify-between mb-3">
+                <span class="pf-card-category-label text-[#a3e635] text-xs font-bold uppercase tracking-wider">10-Session Package</span>
+                <span class="pf-card-pill pf-card-pill-lime px-2.5 py-1 text-xs font-bold rounded-full bg-[#a3e635] text-black">Save </span>
               </div>
-              <h3 class="pf-card-heading">Train More &amp; Save</h3>
-              <div class="pf-card-price-display">
-                <span class="pf-price-main">$140</span>
-                <span class="pf-price-unit">/ 10 sessions</span>
+              <h3 class="pf-card-heading text-lg font-bold text-white mb-2">Train More &amp; Save</h3>
+              <div class="pf-card-price-display my-3">
+                <span class="pf-price-main text-2xl font-extrabold text-[#a3e635]"></span>
+                <span class="pf-price-unit text-xs text-neutral-400 ml-1">/ 10 sessions</span>
               </div>
-              <div class="pf-card-highlight-badge">★ Save $10 compared to single sessions</div>
-              <p class="pf-card-copy">
+              <div class="pf-card-highlight-badge inline-block mb-3 px-2 py-0.5 text-xs font-semibold bg-[#a3e635]/15 text-[#a3e635] rounded-lg border border-[#a3e635]/30">★ Effective  per session rate</div>
+              <p class="pf-card-copy text-neutral-300 text-sm leading-relaxed mb-4">
                 Commit to 10 focused sessions with customized programming and flexible scheduling across 60 days.
               </p>
-              <ul class="pf-card-list">
-                <li class="pf-card-list-item">
-                  <svg class="pf-card-check-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                  <span>Effective $14 per session rate</span>
+              <ul class="pf-card-list space-y-2 mb-6">
+                <li class="pf-card-list-item flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
+                  <svg class="w-4 h-4 text-[#a3e635] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                  <span>Effective  per session rate</span>
                 </li>
-                <li class="pf-card-list-item">
-                  <svg class="pf-card-check-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <li class="pf-card-list-item flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
+                  <svg class="w-4 h-4 text-[#a3e635] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
                   <span>60-day flexible scheduling validity</span>
                 </li>
-                <li class="pf-card-list-item">
-                  <svg class="pf-card-check-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <li class="pf-card-list-item flex items-center gap-2 text-xs sm:text-sm text-neutral-300">
+                  <svg class="w-4 h-4 text-[#a3e635] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
                   <span>Customized programming &amp; tracking</span>
                 </li>
               </ul>
-              <div class="pf-card-button-area">
-                <a class="pf-action-btn pf-action-btn-ghost" href="#contact">Get 10 Sessions</a>
-              </div>
-            </article>
-
-            <!-- 7. Online Coaching -->
-            <article class="pf-pricing-card">
-              <div class="pf-card-top-row">
-                <span class="pf-card-category-label">Remote Coaching</span>
-                <span class="pf-card-pill">Worldwide</span>
-              </div>
-              <h3 class="pf-card-heading">Online Coaching</h3>
-              <div class="pf-card-price-display">
-                <span class="pf-price-main">Custom</span>
-                <span class="pf-price-unit">/ monthly plan</span>
-              </div>
-              <p class="pf-card-copy">
-                Personalized workout programming, video form check reviews, and weekly check-in accountability.
-              </p>
-              <ul class="pf-card-list">
-                <li class="pf-card-list-item">
-                  <svg class="pf-card-check-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                  <span>Personalized workout programming</span>
-                </li>
-                <li class="pf-card-list-item">
-                  <svg class="pf-card-check-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                  <span>Video form check &amp; lifting reviews</span>
-                </li>
-                <li class="pf-card-list-item">
-                  <svg class="pf-card-check-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                  <span>Weekly check-in accountability</span>
-                </li>
-              </ul>
-              <div class="pf-card-button-area">
-                <a class="pf-action-btn pf-action-btn-ghost" href="#contact">Enquire Online</a>
-              </div>
-            </article>
-          </div>
+            </div>
+            <div class="pf-card-button-area pt-4 border-t border-white/[0.08]">
+              <a class="pf-action-btn pf-action-btn-ghost button button-outline w-full text-center" href="#contact">Get 10 Sessions</a>
+            </div>
+          </article>
         </div>
 
         <!-- ===================================================
-             TIER 4: TRUST & VALUE GUARANTEES (4 COLUMNS)
+             TRUST & VALUE GUARANTEES (4 COLUMNS)
         =================================================== -->
-        <div class="pf-pricing-trust-deck">
-          <div class="pf-trust-point">
-            <strong>
-              <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+        <div class="pf-pricing-trust-deck grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-16 pt-12 border-t border-white/[0.08]">
+          <div class="pf-trust-point flex flex-col gap-1.5 p-4 rounded-xl bg-white/[0.02] border border-white/[0.05]">
+            <strong class="flex items-center gap-2 text-white font-bold text-sm">
+              <svg class="w-4 h-4 text-[#a3e635]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
               Clear, Direct Pricing
             </strong>
-            <span>No hidden enrollment fees or surprise billing.</span>
+            <span class="text-xs text-neutral-400">No hidden enrollment fees or surprise recurring charges.</span>
           </div>
-          <div class="pf-trust-point">
-            <strong>
-              <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          <div class="pf-trust-point flex flex-col gap-1.5 p-4 rounded-xl bg-white/[0.02] border border-white/[0.05]">
+            <strong class="flex items-center gap-2 text-white font-bold text-sm">
+              <svg class="w-4 h-4 text-[#a3e635]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
               Certified Coach Phen
             </strong>
-            <span>Direct instruction by an EREPS Level 3 personal trainer.</span>
+            <span class="text-xs text-neutral-400">Direct instruction by an EREPS Level 3 personal trainer.</span>
           </div>
-          <div class="pf-trust-point">
-            <strong>
-              <svg fill="currentColor" viewBox="0 0 20 20"><path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/></svg>
+          <div class="pf-trust-point flex flex-col gap-1.5 p-4 rounded-xl bg-white/[0.02] border border-white/[0.05]">
+            <strong class="flex items-center gap-2 text-white font-bold text-sm">
+              <svg class="w-4 h-4 text-[#a3e635]" fill="currentColor" viewBox="0 0 20 20"><path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/></svg>
               Progress Tracking
             </strong>
-            <span>Structured adjustments based on real strength and health data.</span>
+            <span class="text-xs text-neutral-400">Structured adjustments based on real strength and health data.</span>
           </div>
-          <div class="pf-trust-point">
-            <strong>
-              <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+          <div class="pf-trust-point flex flex-col gap-1.5 p-4 rounded-xl bg-white/[0.02] border border-white/[0.05]">
+            <strong class="flex items-center gap-2 text-white font-bold text-sm">
+              <svg class="w-4 h-4 text-[#a3e635]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
               Gym Facility
             </strong>
-            <span>Convenient Siem Reap location at Bulldogs Fitness Center.</span>
+            <span class="text-xs text-neutral-400">Convenient Siem Reap location at Bulldogs Fitness Center.</span>
           </div>
         </div>
 
-        <p class="pf-pricing-disclaimer">
-          * Gym membership fees at Bulldogs Fitness Center are paid separately to the facility. Assessment discount ($5) applies to current gym members.
+        <p class="pf-pricing-disclaimer text-center text-xs text-neutral-500 mt-8">
+          * Gym membership fees at Bulldogs Fitness Center are paid separately to the facility. Assessment discount () applies to current gym members.
         </p>
       </div>
     </section>
@@ -4499,7 +4568,7 @@
     ========================================================= -->
     <section class="section" id="resources">
 
-      <div class="container">
+      <div class="container w-full max-w-[1680px] mx-auto px-5 sm:px-8 md:px-12 lg:px-16 xl:px-20">
 
         <p class="eyebrow">
           Free Resources
@@ -4557,119 +4626,131 @@
      13 — CONTACT
     ========================================================= -->
     <section class="section section-soft" id="contact">
-
-      <div class="container">
-
-        <p class="eyebrow">
-          Contact
-        </p>
-
-        <h2 class="section-title">
-          Ready to Start?
-        </h2>
-
-        <p class="section-copy">
+      <div class="container w-full max-w-[1680px] mx-auto px-5 sm:px-8 md:px-12 lg:px-16 xl:px-20">
+        <p class="eyebrow">Contact</p>
+        <h2 class="section-title">Ready to Start?</h2>
+        <p class="section-copy max-w-[65ch]">
           Tell me about your fitness goals and I’ll help you select the most effective next step for your routine.
         </p>
 
-        <div class="contact-grid">
-
-          <div class="contact-card">
-
-            <h3>Contact Phen Fitness</h3>
-
-            <div class="contact-list">
-
-              <div class="contact-item">
-                <small>Trainer</small>
-                <strong>Phen Phoy</strong>
-              </div>
-
-              <div class="contact-item">
-                <small>Email</small>
-                <a href="mailto:phenphoy1@gmail.com">phenphoy1@gmail.com</a>
-              </div>
-
-              <div class="contact-item">
-                <small>Phone</small>
-                <a href="tel:+85577413470">+855 77 413 470</a>
-              </div>
-
-              <div class="contact-item">
-                <small>Location</small>
-                <strong>Siem Reap, Cambodia</strong>
-              </div>
-
-            </div>
-
-            <div class="contact-item telegram-contact">
-              <small>Telegram</small>
-              <strong>Prefer to chat directly?</strong>
-              <p>
-                Message Phen Fitness directly on Telegram to ask about consultation times, training slots, or pricing.
+        <div class="contact-grid grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch mt-10">
+          <!-- Left Column: Direct Trainer Contact Card (lg:col-span-5) -->
+          <div class="contact-card lg:col-span-5 h-full flex flex-col justify-between">
+            <div>
+              <h3>Direct Trainer Contact</h3>
+              <p class="text-xs sm:text-sm text-neutral-400 mt-1 mb-5">
+                Reach Coach Phen directly to check training slots, ask questions, or discuss your fitness goals.
               </p>
-              <a class="button button-primary" href="https://t.me/phenphoy" target="_blank" rel="noopener noreferrer">
-                <span>Message on Telegram</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m20.665 3.717-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701h-.002l-.313 4.674c.459 0 .661-.21.917-.46l2.203-2.14 4.58 3.385c.844.464 1.452.226 1.662-.782l3.003-14.156c.308-1.233-.472-1.793-1.288-1.528z"/></svg>
-              </a>
+
+              <div class="contact-list">
+                <div class="contact-item">
+                  <small>Trainer</small>
+                  <strong>Phen Phoy <span class="text-xs text-[#a3e635] font-normal">(EREPS Level 3 Certified)</span></strong>
+                </div>
+
+                <div class="contact-item">
+                  <small>Facility Base</small>
+                  <strong>Bulldogs Fitness Center · Siem Reap</strong>
+                </div>
+
+                <div class="contact-item">
+                  <small>Email</small>
+                  <a href="mailto:phenphoy1@gmail.com">phenphoy1@gmail.com</a>
+                </div>
+
+                <div class="contact-item">
+                  <small>Phone / WhatsApp</small>
+                  <a href="tel:+85577413470">+855 77 413 470</a>
+                </div>
+
+                <div class="contact-item">
+                  <small>Instagram</small>
+                  <a href="https://www.instagram.com/khunphen_p" target="_blank" rel="noopener noreferrer">@khunphen_p</a>
+                </div>
+              </div>
+
+              <!-- Telegram direct message box -->
+              <div class="contact-item telegram-contact mt-5">
+                <small>Telegram · Fastest Response</small>
+                <strong>Direct Coach Chat</strong>
+                <p>
+                  Message Coach Phen directly on Telegram for immediate consultation scheduling and live availability.
+                </p>
+                <a class="button button-primary flex items-center justify-center gap-2" href="https://t.me/phenphoy" target="_blank" rel="noopener noreferrer">
+                  <span>Message on Telegram</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m20.665 3.717-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701h-.002l-.313 4.674c.459 0 .661-.21.917-.46l2.203-2.14 4.58 3.385c.844.464 1.452.226 1.662-.782l3.003-14.156c.308-1.233-.472-1.793-1.288-1.528z"/></svg>
+                </a>
+              </div>
             </div>
 
+            <div class="mt-6 pt-4 border-t border-white/[0.08] flex items-center justify-between text-xs text-neutral-400">
+              <span class="flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-[#a3e635] inline-block animate-pulse"></span>
+                Accepting new clients
+              </span>
+              <span>⚡ Reply within 2 hours</span>
+            </div>
           </div>
 
-          <form id="contactForm" action="https://formspree.io/f/myegapqp" method="POST" class="form-card">
-            <h3>Send an Enquiry</h3>
+          <!-- Right Column: Enquiry Form Card (lg:col-span-7) -->
+          <form id="contactForm" action="https://formspree.io/f/myegapqp" method="POST" class="form-card lg:col-span-7 h-full flex flex-col justify-between">
+            <div>
+              <h3>Send an Enquiry</h3>
+              <p class="text-xs sm:text-sm text-neutral-400 mt-1 mb-5">
+                Tell me about your fitness background and goals, and I'll recommend the ideal starting structure.
+              </p>
 
-            <div class="form-row">
+              <div class="form-row">
+                <label>
+                  Name
+                  <input type="text" name="name" placeholder="Your Name" required />
+                </label>
+                <label>
+                  Email
+                  <input type="email" name="email" placeholder="your@email.com" required />
+                </label>
+              </div>
+
+              <div class="form-row">
+                <label>
+                  Service
+                  <select name="service" required>
+                    <option value="" disabled selected>Select a service</option>
+                    <option value="Initial Fitness Consultation">Initial Fitness Consultation (Free / 30 mins)</option>
+                    <option value="Fitness Assessment">Fitness Assessment ( /  Bulldogs Members)</option>
+                    <option value="1-on-1 Personal Training">1-on-1 Personal Training ( / mo)</option>
+                    <option value="Small-Group Training">Small-Group Training ( / person / mo)</option>
+                    <option value="Online Coaching">Online Coaching (Custom)</option>
+                    <option value="Single Personal Training Session">Single Session ( / session)</option>
+                    <option value="10-Session Package">10-Session Package ( / 10 sessions)</option>
+                  </select>
+                </label>
+                <label>
+                  Experience Level
+                  <select name="experience" required>
+                    <option value="" disabled selected>Select your level</option>
+                    <option value="Beginner">Beginner (New to strength training)</option>
+                    <option value="Intermediate">Intermediate (Trained 6+ months)</option>
+                    <option value="Advanced">Advanced (Multi-year lifting experience)</option>
+                  </select>
+                </label>
+              </div>
+
               <label>
-                Name
-                <input type="text" name="name" placeholder="Your Name" required />
-              </label>
-              <label>
-                Email
-                <input type="email" name="email" placeholder="your@email.com" required />
+                Fitness Goal &amp; Preferred Time
+                <textarea name="goal" rows="4" placeholder="Tell me what you would like to achieve (fat loss, muscle gain, posture, etc.) and your preferred training schedule..." required></textarea>
               </label>
             </div>
 
-            <div class="form-row">
-              <label>
-                Service
-                <select name="service" required>
-                  <option value="" disabled selected>Select a service</option>
-                  <option value="Initial Fitness Consultation">Initial Fitness Consultation</option>
-                  <option value="Fitness Assessment">Fitness Assessment</option>
-                  <option value="1-on-1 Personal Training">1-on-1 Personal Training</option>
-                  <option value="Small-Group Training">Small-Group Training</option>
-                  <option value="Online Coaching">Online Coaching</option>
-                  <option value="Single Personal Training Session">Single Personal Training Session</option>
-                  <option value="10-Session Package">10-Session Package</option>
-                </select>
-              </label>
-              <label>
-                Experience Level
-                <select name="experience" required>
-                  <option value="" disabled selected>Select your level</option>
-                  <option value="Beginner">Beginner</option>
-                  <option value="Intermediate">Intermediate</option>
-                  <option value="Advanced">Advanced</option>
-                </select>
-              </label>
+            <div class="mt-6">
+              <button type="submit" class="button button-primary w-full flex items-center justify-center gap-2">
+                <span>Send Message</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+              </button>
+              <div class="form-status" id="formStatus" role="status"></div>
             </div>
-
-            <label>
-              Fitness Goal
-              <textarea name="goal" placeholder="Tell me what you would like to achieve..." required></textarea>
-            </label>
-
-            <button type="submit" class="button button-primary" style="width: 100%; margin-top: 8px;">
-              <span>Send Message</span>
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-            </button>
-
-            <div class="form-status" id="formStatus" role="status"></div>
           </form>
-
         </div>
-
       </div>
     </section>
 
@@ -4746,7 +4827,7 @@
   ========================================================= -->
   <footer class="pf-footer">
 
-    <div class="container">
+    <div class="container w-full max-w-[1680px] mx-auto px-5 sm:px-8 md:px-12 lg:px-16 xl:px-20">
 
       <div class="pf-footer-grid">
 
@@ -4968,28 +5049,55 @@
        GALLERY SCROLLING (DYNAMIC CALCULATION)
     ========================================================= */
 
-    const galleryTrack = document.getElementById("galleryTrack");
-    const galleryProgressBar = document.getElementById("galleryProgressBar");
+    const galleryTrack = document.getElementById("gallery-track") || document.getElementById("galleryTrack");
+    const galleryPrev = document.getElementById("gallery-prev") || document.getElementById("galleryPrev");
+    const galleryNext = document.getElementById("gallery-next") || document.getElementById("galleryNext");
+    const galleryProgressBar = document.getElementById("galleryProgressBar") || document.getElementById("gallery-progress");
 
     const getGalleryScrollAmount = () => {
       const firstCard = galleryTrack?.querySelector(".pf-gallery-card");
-      const cardWidth = firstCard ? firstCard.getBoundingClientRect().width : 320;
-      const gap = 18;
+      const cardWidth = firstCard ? firstCard.getBoundingClientRect().width : 340;
+      const gap = 20;
       return cardWidth + gap;
     };
 
-    document.getElementById("galleryPrev")?.addEventListener("click", () => {
+    galleryPrev?.addEventListener("click", () => {
       galleryTrack?.scrollBy({
         left: -getGalleryScrollAmount(),
         behavior: "smooth"
       });
     });
 
-    document.getElementById("galleryNext")?.addEventListener("click", () => {
+    galleryNext?.addEventListener("click", () => {
       galleryTrack?.scrollBy({
         left: getGalleryScrollAmount(),
         behavior: "smooth"
       });
+    });
+
+    // Mouse drag-to-scroll support on desktop
+    let isGalleryDown = false;
+    let galleryStartX = 0;
+    let galleryScrollLeft = 0;
+
+    galleryTrack?.addEventListener("mousedown", (e) => {
+      isGalleryDown = true;
+      galleryStartX = e.pageX - galleryTrack.offsetLeft;
+      galleryScrollLeft = galleryTrack.scrollLeft;
+      galleryTrack.style.cursor = "grabbing";
+    });
+
+    window.addEventListener("mouseup", () => {
+      isGalleryDown = false;
+      if (galleryTrack) galleryTrack.style.cursor = "";
+    });
+
+    galleryTrack?.addEventListener("mousemove", (e) => {
+      if (!isGalleryDown) return;
+      e.preventDefault();
+      const x = e.pageX - galleryTrack.offsetLeft;
+      const walk = (x - galleryStartX) * 1.5;
+      galleryTrack.scrollLeft = galleryScrollLeft - walk;
     });
 
     // Update horizontal progress bar on swipe/scroll

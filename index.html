@@ -9,23 +9,23 @@
   <link rel="icon" type="image/png" href="images/phen-fitness-logo.png" />
 
   <meta name="description"
-    content="Phen Fitness provides certified personal training, small-group coaching, and online programming in Siem Reap, Cambodia. Build strength, lose body fat, and create sustainable fitness habits with Coach Phen Phoy." />
-  <meta name="keywords"
-    content="personal trainer siem reap, fitness coach siem reap, gym trainer cambodia, phen fitness, online fitness coaching cambodia" />
+    content="Phen Fitness provides certified 1-on-1 personal training, small-group coaching, fitness assessments, and online coaching in Siem Reap, Cambodia." />
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="website" />
+  <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="Phen Fitness | Personal Trainer in Siem Reap" />
   <meta property="og:description"
-    content="Transform your body, build strength, and gain confidence with certified personal trainer Phen Phoy in Siem Reap." />
+    content="Phen Fitness provides personal training, small-group coaching, fitness assessments, consultations, and online coaching in Siem Reap." />
   <meta property="og:image" content="images/phen-hero.JPG" />
-  <meta property="og:url" content="https://phenphoy.github.io/Phen-Fitness-Website/" />
+  <meta property="og:type" content="website" />
 
-  <!-- Google Fonts: Plus Jakarta Sans for premium legibility -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet">
+  <!-- 🛑 GOOGLE SEARCH CONSOLE VERIFICATION TAG 🛑 -->
+  <meta name="google-site-verification" content="dQoPTOwOV_amY7CFUuL5OqZQqz_odGGP4jASTnvwoAI" />
+
+  <!-- Google Fonts: Plus Jakarta Sans for crisp, athletic luxury typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+    rel="stylesheet" />
 
   <style>
     :root {
@@ -78,7 +78,6 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       text-rendering: optimizeLegibility;
-      width: 100%;
     }
 
     body.menu-open,
@@ -86,6 +85,7 @@
       overflow: hidden;
     }
 
+    /* Custom smooth scrollbar */
     ::-webkit-scrollbar {
       width: 7px;
       height: 7px;
@@ -157,6 +157,7 @@
       border-bottom: 1px solid var(--border-subtle);
     }
 
+    /* Refined, more compact typography */
     .eyebrow {
       align-items: center;
       color: var(--green);
@@ -164,38 +165,42 @@
       font-size: 0.72rem;
       font-weight: 800;
       gap: 8px;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.16em;
+      margin-bottom: 12px;
       text-transform: uppercase;
     }
 
     .eyebrow::before {
       background: var(--green);
-      border-radius: 50%;
+      border-radius: 999px;
       content: "";
       display: inline-block;
-      height: 6px;
-      width: 6px;
-      box-shadow: 0 0 10px var(--green);
+      height: 5px;
+      width: 5px;
     }
 
     .section-title {
       font-size: clamp(1.75rem, 3.2vw, 2.65rem);
       font-weight: 800;
-      letter-spacing: -0.035em;
+      letter-spacing: -0.03em;
       line-height: 1.15;
-      margin-top: 10px;
       max-width: 720px;
       text-wrap: balance;
     }
 
     .section-copy {
-      color: var(--text-secondary);
-      font-size: clamp(0.92rem, 1.2vw, 0.98rem);
-      line-height: 1.65;
-      margin-top: 12px;
+      color: var(--muted);
+      font-size: 0.96rem;
+      font-weight: 400;
+      line-height: 1.68;
+      margin-top: 14px;
       max-width: 620px;
       text-wrap: pretty;
     }
+
+    /* =========================================================
+       BUTTONS (Refined proportions)
+    ========================================================= */
 
     .button {
       align-items: center;
@@ -203,18 +208,19 @@
       border-radius: 999px;
       cursor: pointer;
       display: inline-flex;
-      font-size: 0.84rem;
+      font-size: 0.88rem;
       font-weight: 750;
       gap: 8px;
       justify-content: center;
       letter-spacing: -0.01em;
-      padding: 10px 20px;
-      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
-      white-space: nowrap;
+      min-height: 46px;
+      padding: 0 22px;
+      position: relative;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .button:hover {
-      transform: translateY(-1.5px);
+      transform: translateY(-2px);
     }
 
     .button:active {
@@ -223,97 +229,107 @@
 
     .button-primary {
       background: var(--green);
+      box-shadow: 0 6px 20px -5px rgba(200, 255, 56, 0.32);
       color: #060806;
-      box-shadow: 0 4px 18px rgba(200, 255, 56, 0.25);
     }
 
     .button-primary:hover {
       background: var(--green-hover);
-      box-shadow: 0 6px 22px rgba(200, 255, 56, 0.38);
+      box-shadow: 0 10px 24px -4px rgba(200, 255, 56, 0.45);
     }
 
     .button-outline {
-      background: rgba(255, 255, 255, 0.025);
+      background: rgba(255, 255, 255, 0.03);
       border-color: var(--border-strong);
       color: var(--text);
     }
 
     .button-outline:hover {
-      background: rgba(255, 255, 255, 0.06);
-      border-color: rgba(255, 255, 255, 0.25);
+      background: rgba(200, 255, 56, 0.05);
+      border-color: var(--green-border);
+      color: var(--green);
     }
 
-    .button-full {
-      width: 100%;
+    .button-header {
+      background: rgba(200, 255, 56, 0.08);
+      border: 1px solid var(--green-border);
+      color: var(--green);
+      font-size: 0.82rem;
+      font-weight: 750;
+      min-height: 38px;
+      padding: 0 16px;
     }
+
+    .button-header:hover {
+      background: var(--green);
+      border-color: var(--green);
+      color: #060806;
+      box-shadow: 0 4px 14px rgba(200, 255, 56, 0.28);
+    }
+
+    /* =========================================================
+       HEADER & NAVIGATION
+    ========================================================= */
 
     header {
-      background: rgba(10, 13, 10, 0.88);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      position: sticky;
+      backdrop-filter: blur(18px) saturate(170%);
+      -webkit-backdrop-filter: blur(18px) saturate(170%);
+      background: rgba(6, 8, 6, 0.88);
+      border-bottom: 1px solid var(--border);
+      left: 0;
+      position: fixed;
+      right: 0;
       top: 0;
-      z-index: 100;
+      transition: background 0.3s ease, border-color 0.3s ease;
+      z-index: 1000;
     }
 
-    .nav-container {
+    .navigation {
       align-items: center;
       display: flex;
       justify-content: space-between;
-      min-height: 68px;
+      min-height: 70px;
     }
 
-    .logo-group {
+    .logo {
       align-items: center;
       display: inline-flex;
       gap: 12px;
+      transition: opacity 0.2s ease;
+    }
+
+    .logo:hover {
+      opacity: 0.9;
     }
 
     .logo-icon {
-      border-radius: 50%;
-      overflow: hidden;
-      object-fit: cover;
-      aspect-ratio: 1 / 1;
-      height: 38px;
-      width: 38px;
-      flex-shrink: 0;
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      height: 36px;
+      object-fit: contain;
+      width: auto;
     }
 
-    .logo-text strong {
-      display: block;
-      font-size: 0.98rem;
-      font-weight: 800;
-      letter-spacing: -0.025em;
-      line-height: 1.15;
-    }
-
-    .logo-text span {
-      color: var(--muted);
-      display: block;
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
+    .logo-wordmark {
+      height: 25px;
+      object-fit: contain;
+      width: auto;
     }
 
     .nav-links {
       align-items: center;
       display: flex;
       gap: 22px;
-      list-style: none;
     }
 
     .nav-links a {
-      color: var(--muted);
-      font-size: 0.84rem;
-      font-weight: 650;
-      padding: 6px 0;
+      color: var(--text-secondary);
+      font-size: 0.86rem;
+      font-weight: 600;
       position: relative;
+      transition: color 0.2s ease;
     }
 
     .nav-links a:hover {
-      color: var(--text);
+      color: var(--green);
     }
 
     .nav-actions {
@@ -322,29 +338,29 @@
       gap: 10px;
     }
 
-    .header-cta {
-      display: inline-flex;
-      font-size: 0.8rem;
-      padding: 7px 15px;
-    }
-
     .menu-button {
       align-items: center;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border);
-      border-radius: 9px;
+      background: var(--card);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
       color: var(--text);
       cursor: pointer;
       display: none;
-      height: 36px;
+      height: 40px;
       justify-content: center;
-      padding: 0;
-      width: 36px;
+      width: 40px;
+      transition: all 0.2s ease;
     }
 
     .menu-button:hover {
-      background: rgba(255, 255, 255, 0.08);
+      background: var(--card-hover);
+      border-color: var(--green-border);
+      color: var(--green);
     }
+
+    /* =========================================================
+       HERO (Smaller visual, refined title)
+    ========================================================= */
 
     .hero {
       min-height: calc(100vh - 82px);
@@ -384,7 +400,7 @@
       font-size: clamp(0.96rem, 1.3vw, 1.04rem);
       line-height: 1.65;
       margin-top: 18px;
-      max-width: 62ch;
+      max-width: 520px;
       text-wrap: pretty;
     }
 
@@ -419,6 +435,7 @@
       font-weight: 750;
     }
 
+    /* Compact Hero Photo Frame */
     .hero-visual {
       background: var(--card);
       border: 1px solid var(--border-strong);
@@ -434,7 +451,7 @@
     .hero-visual>img {
       height: 100%;
       object-fit: cover;
-      object-position: center 20%;
+      object-position: center 22%;
       width: 100%;
       transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
@@ -445,10 +462,9 @@
 
     .hero-visual::after {
       background:
-        radial-gradient(circle at 50% 50%, transparent 40%, rgba(6, 8, 6, 0.55) 100%),
         linear-gradient(to top,
           rgba(6, 8, 6, 0.96) 0%,
-          rgba(6, 8, 6, 0.38) 45%,
+          rgba(6, 8, 6, 0.4) 45%,
           rgba(6, 8, 6, 0.04) 80%);
       content: "";
       inset: 0;
@@ -485,11 +501,12 @@
       border-radius: 999px;
       color: #060806;
       font-size: 0.68rem;
-      font-weight: 800;
-      letter-spacing: 0.03em;
+      font-weight: 850;
+      letter-spacing: 0.04em;
       padding: 5px 12px;
       text-transform: uppercase;
-      box-shadow: 0 4px 14px rgba(200, 255, 56, 0.3);
+      white-space: nowrap;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
     }
 
     .hero-visual-copy {
@@ -497,11 +514,11 @@
       left: 22px;
       position: absolute;
       right: 22px;
-      z-index: 2;
+      z-index: 3;
     }
 
     .hero-visual-copy h2 {
-      font-size: 1.15rem;
+      font-size: 1.25rem;
       font-weight: 750;
       letter-spacing: -0.02em;
       line-height: 1.25;
@@ -509,11 +526,14 @@
 
     .hero-visual-copy p {
       color: var(--text-secondary);
-      font-size: 0.84rem;
-      line-height: 1.5;
+      font-size: 0.88rem;
       margin-top: 6px;
-      text-wrap: pretty;
+      line-height: 1.5;
     }
+
+    /* =========================================================
+       HOW I HELP (OUTCOMES)
+    ========================================================= */
 
     .outcome-grid {
       display: grid;
@@ -522,79 +542,148 @@
       margin-top: 36px;
     }
 
-    .outcome-card {
+    .card {
       background:
-        linear-gradient(165deg, rgba(255, 255, 255, 0.025) 0%, transparent 60%),
+        linear-gradient(165deg, rgba(255, 255, 255, 0.035) 0%, rgba(255, 255, 255, 0.008) 50%, transparent 100%),
         var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), var(--shadow-card);
-      padding: 24px 20px;
-      transition: all 0.25s ease;
+      padding: 24px 22px;
+      transition:
+        border-color 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
     }
 
-    .outcome-card:hover {
+    .card:hover {
       border-color: var(--green-border);
+      box-shadow: inset 0 1px 0 rgba(200, 255, 56, 0.2), 0 14px 30px -8px rgba(0, 0, 0, 0.5), 0 0 20px -6px var(--green-glow);
       transform: translateY(-3px);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 16px 36px -8px rgba(0, 0, 0, 0.5), 0 0 24px -6px rgba(200, 255, 56, 0.16);
     }
 
-    .outcome-num {
+    .card-number {
+      align-items: center;
+      background: var(--green-soft);
+      border: 1px solid var(--green-border);
+      border-radius: 10px;
       color: var(--green);
+      display: flex;
       font-size: 0.72rem;
       font-weight: 850;
-      letter-spacing: 0.08em;
-      margin-bottom: 12px;
+      height: 36px;
+      justify-content: center;
+      margin-bottom: 16px;
+      width: 36px;
     }
 
-    .outcome-card h3 {
-      font-size: 1.05rem;
+    .card h3 {
+      font-size: 1.08rem;
       font-weight: 750;
       letter-spacing: -0.015em;
       line-height: 1.3;
+      margin-bottom: 8px;
     }
 
-    .outcome-card p {
+    .card p {
       color: var(--muted);
-      font-size: 0.86rem;
-      line-height: 1.55;
-      margin-top: 8px;
+      font-size: 0.88rem;
+      line-height: 1.6;
     }
 
-    .pf-services-discovery {
+    /* =========================================================
+       SERVICES
+    ========================================================= */
+
+    .pf-services-layout {
+      align-items: stretch;
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-      margin-top: 36px;
-      margin-bottom: 26px;
+      gap: 32px;
+      grid-template-columns: 0.9fr 1.1fr;
+      margin-top: 38px;
     }
 
-    .pf-discovery-card {
+    .pf-services-photo {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), var(--shadow-card);
+      height: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .pf-services-photo img {
+      position: absolute;
+      inset: 0;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      object-position: center 18%;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .pf-services-photo:hover img {
+      transform: scale(1.02);
+    }
+
+    .pf-services-photo::after {
       background:
-        linear-gradient(165deg, rgba(255, 255, 255, 0.03) 0%, transparent 60%),
+        linear-gradient(to top,
+          rgba(6, 8, 6, 0.96) 0%,
+          rgba(6, 8, 6, 0.45) 50%,
+          transparent 75%);
+      content: "";
+      inset: 0;
+      position: absolute;
+      z-index: 1;
+    }
+
+    .pf-services-photo-content {
+      bottom: 24px;
+      left: 24px;
+      position: absolute;
+      right: 24px;
+      z-index: 2;
+    }
+
+    .pf-services-photo-content span {
+      color: var(--green);
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 850;
+      letter-spacing: 0.14em;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    .pf-services-photo-content h3 {
+      font-size: clamp(1.5rem, 2.2vw, 2rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+    }
+
+    .pf-services-list {
+      background:
+        linear-gradient(165deg, rgba(255, 255, 255, 0.025) 0%, transparent 60%),
         var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), var(--shadow-card);
+      padding: 8px 24px;
+    }
+
+    .pf-service-row {
+      border-bottom: 1px solid var(--border);
       display: grid;
-      gap: 18px;
+      gap: 16px;
       grid-template-columns: 38px 1fr;
-      padding: 24px;
+      padding: 20px 0;
       align-items: start;
-      transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
     }
 
-    .pf-discovery-card:hover {
-      border-color: var(--green-border);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5), 0 0 20px rgba(200, 255, 56, 0.12);
-    }
-
-    .pf-discovery-body p {
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.6;
-      margin-top: 8px;
+    .pf-service-row:last-child {
+      border-bottom: 0;
     }
 
     .pf-service-number {
@@ -636,53 +725,62 @@
       text-transform: uppercase;
     }
 
+    .pf-service-row p {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.6;
+      margin-top: 6px;
+    }
+
     .pf-service-link {
+      align-items: center;
       color: var(--green);
-      display: inline-block;
-      font-size: 0.78rem;
-      font-weight: 750;
-      margin-top: 10px;
+      display: inline-flex;
+      font-size: 0.82rem;
+      font-weight: 800;
+      gap: 5px;
+      margin-top: 8px;
     }
 
     .pf-service-link:hover {
+      color: var(--green-hover);
       text-decoration: underline;
     }
 
     .pf-service-assessment {
-      background: rgba(200, 255, 56, 0.035);
+      background: rgba(200, 255, 56, 0.03);
       border: 1px solid var(--green-border);
-      border-radius: var(--radius-sm);
+      border-radius: var(--radius-md);
       margin-top: 12px;
-      padding: 14px;
+      padding: 14px 16px;
     }
 
     .pf-service-assessment-location {
+      font-size: 0.82rem;
       color: var(--text-secondary);
-      font-size: 0.78rem;
-      margin-bottom: 8px;
     }
 
     .pf-service-assessment-location strong {
-      color: var(--text);
+      color: var(--green);
     }
 
     .pf-service-assessment ul {
+      display: grid;
+      gap: 6px;
       list-style: none;
-      padding: 0;
-      margin: 0;
+      margin-top: 10px;
     }
 
     .pf-service-assessment li {
       color: var(--text-secondary);
-      font-size: 0.8rem;
-      line-height: 1.5;
-      padding-left: 14px;
+      font-size: 0.82rem;
+      padding-left: 18px;
       position: relative;
     }
 
     .pf-service-assessment li::before {
       color: var(--green);
-      content: "•";
+      content: "✓";
       font-weight: 800;
       left: 0;
       position: absolute;
@@ -691,23 +789,1762 @@
     .pf-assessment-details-button {
       align-items: center;
       background: transparent;
-      border: 1px solid var(--green-border);
+      border: 1px solid var(--green);
       border-radius: 999px;
       color: var(--green);
       cursor: pointer;
       display: inline-flex;
-      font-size: 0.75rem;
-      font-weight: 750;
+      font-size: 0.8rem;
+      font-weight: 800;
       gap: 6px;
-      margin-top: 10px;
-      padding: 6px 12px;
+      margin-top: 12px;
+      padding: 7px 14px;
       transition: all 0.2s ease;
     }
 
     .pf-assessment-details-button:hover {
       background: var(--green);
+      color: #060806;
+      box-shadow: 0 4px 14px rgba(200, 255, 56, 0.25);
+    }
+
+    /* =========================================================
+       WHY CHOOSE PHEN FITNESS
+    ========================================================= */
+
+    .pf-why-box {
+      background:
+        radial-gradient(circle at 100% 0%, rgba(200, 255, 56, 0.05) 0%, transparent 45%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.025) 0%, transparent 100%),
+        var(--card-strong);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), var(--shadow);
+      padding: 34px 32px;
+    }
+
+    .pf-why-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      margin-top: 26px;
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+    }
+
+    .pf-why-item {
+      padding: 12px 22px 12px 0;
+    }
+
+    .pf-why-item + .pf-why-item {
+      border-left: 1px solid var(--border);
+      padding-left: 22px;
+    }
+
+    .pf-why-number {
+      align-items: center;
+      background: var(--green-soft);
+      border: 1px solid var(--green-border);
+      border-radius: 8px;
+      color: var(--green);
+      display: flex;
+      font-size: 0.68rem;
+      font-weight: 850;
+      height: 32px;
+      justify-content: center;
+      margin-bottom: 12px;
+      width: 32px;
+    }
+
+    .pf-why-item h3 {
+      font-size: 1.02rem;
+      font-weight: 750;
+      margin-bottom: 6px;
+    }
+
+    .pf-why-item p {
+      color: var(--muted);
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+
+    /* =========================================================
+       MY STORY (Smaller photo frame)
+    ========================================================= */
+
+    .story-grid {
+      align-items: center;
+      display: grid;
+      gap: 48px;
+      grid-template-columns: 0.95fr 1.05fr;
+    }
+
+    .story-image {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), var(--shadow);
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      max-height: 560px;
+    }
+
+    .story-image img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 10%;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .story-image:hover img {
+      transform: scale(1.02);
+    }
+
+    .story-image::after {
+      background: linear-gradient(to top, rgba(6, 8, 6, 0.7) 0%, rgba(6, 8, 6, 0.15) 30%, transparent 60%);
+      content: "";
+      inset: 0;
+      pointer-events: none;
+      position: absolute;
+    }
+
+    .story-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .story-quote {
+      border-left: 3px solid var(--green);
+      color: #ebf2eb;
+      font-size: 1.05rem;
+      font-weight: 600;
+      line-height: 1.55;
+      margin-top: 18px;
+      padding-left: 18px;
+    }
+
+    .story-points {
+      display: grid;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .story-point {
+      align-items: flex-start;
+      background:
+        linear-gradient(165deg, rgba(255, 255, 255, 0.03) 0%, transparent 100%),
+        rgba(16, 21, 17, 0.6);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      display: flex;
+      gap: 14px;
+      padding: 14px 16px;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .story-point:hover {
+      border-color: var(--border-strong);
+      transform: translateY(-1px);
+    }
+
+    .story-point span {
+      align-items: center;
+      background: var(--green);
+      border-radius: 50%;
+      color: #060806;
+      display: flex;
+      flex: 0 0 24px;
+      font-weight: 850;
+      font-size: 0.74rem;
+      height: 24px;
+      justify-content: center;
+      margin-top: 2px;
+    }
+
+    .story-point strong {
+      display: block;
+      font-size: 0.94rem;
+      font-weight: 750;
+      margin-bottom: 2px;
+    }
+
+    .story-point p {
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* =========================================================
+       TRANSFORMATION (Curated, balanced photo frames & note)
+    ========================================================= */
+
+    .transformation-grid {
+      display: grid;
+      gap: 26px;
+      grid-template-columns: 1fr 1fr;
+      margin: 36px auto 0;
+      max-width: 900px;
+    }
+
+    .transformation-card {
+      background:
+        linear-gradient(165deg, rgba(255, 255, 255, 0.035) 0%, transparent 60%),
+        var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), var(--shadow-card);
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      transition:
+        transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+
+    .transformation-card:hover {
+      border-color: var(--green-border);
+      box-shadow: inset 0 1px 0 rgba(200, 255, 56, 0.2), 0 16px 36px -8px rgba(0, 0, 0, 0.55), 0 0 20px -6px var(--green-glow);
+      transform: translateY(-3px);
+    }
+
+    .transformation-card img {
+      aspect-ratio: 4 / 5;
+      height: 430px;
+      max-height: 450px;
+      object-fit: cover;
+      object-position: center 2.5%;
+      width: 100%;
+      display: block;
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .transformation-card:hover img {
+      transform: scale(1.025);
+    }
+
+    .transformation-card div {
+      padding: 16px 20px 18px;
+      background:
+        linear-gradient(180deg, rgba(16, 21, 17, 0.85) 0%, var(--card) 100%);
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .transformation-card span {
+      background: var(--green-soft);
+      border: 1px solid var(--green-border);
+      border-radius: 999px;
+      color: var(--green);
+      font-size: 0.66rem;
+      font-weight: 850;
+      letter-spacing: 0.08em;
+      padding: 3px 10px;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .transformation-card h3 {
+      color: #fff;
+      font-size: 1.12rem;
+      font-weight: 750;
+      margin: 0;
+      letter-spacing: -0.015em;
+    }
+
+    .transformation-note {
+      background:
+        radial-gradient(circle at 100% 0%, rgba(200, 255, 56, 0.05) 0%, transparent 60%),
+        linear-gradient(165deg, rgba(255, 255, 255, 0.03) 0%, transparent 100%),
+        var(--card);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--green);
+      border-radius: var(--radius-lg);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), var(--shadow-card);
+      margin: 26px auto 0;
+      max-width: 900px;
+      padding: 24px 28px;
+      position: relative;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+    }
+
+    .transformation-note:hover {
+      border-color: var(--border-strong);
+      box-shadow: inset 0 1px 0 rgba(200, 255, 56, 0.12), var(--shadow);
+      transform: translateY(-1px);
+    }
+
+    .transformation-note h3 {
+      color: #ffffff;
+      font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+      font-weight: 750;
+      letter-spacing: -0.015em;
+    }
+
+    .transformation-note p {
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      font-weight: 400;
+      line-height: 1.62;
+      margin-top: 8px;
+    }
+
+    /* =========================================================
+       QUALIFICATIONS
+    ========================================================= */
+
+    .pf-qualification-summary {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(4, 1fr);
+      margin-top: 32px;
+    }
+
+    .pf-summary-item {
+      align-items: center;
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.025) 0%, transparent 100%),
+        var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      display: flex;
+      gap: 12px;
+      padding: 14px 16px;
+      transition: border-color 0.2s ease;
+    }
+
+    .pf-summary-item:hover {
+      border-color: var(--border-strong);
+    }
+
+    .pf-summary-icon {
+      align-items: center;
+      background: var(--green-soft);
+      border: 1px solid var(--green-border);
+      border-radius: 50%;
+      color: var(--green);
+      display: flex;
+      flex: 0 0 32px;
+      font-size: 0.78rem;
+      font-weight: 850;
+      height: 32px;
+      justify-content: center;
+    }
+
+    .pf-summary-item strong {
+      font-size: 0.86rem;
+      font-weight: 750;
+    }
+
+    .pf-qualification-grid {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 36px;
+    }
+
+    .pf-qualification-card {
+      background:
+        linear-gradient(165deg, rgba(255, 255, 255, 0.035) 0%, transparent 60%),
+        var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      min-height: 220px;
+      padding: 24px 22px;
+      transition: all 0.25s ease;
+    }
+
+    .pf-qualification-card:hover {
+      border-color: var(--green-border);
+      box-shadow: inset 0 1px 0 rgba(200, 255, 56, 0.2), 0 14px 30px -8px rgba(0, 0, 0, 0.5), 0 0 20px -6px var(--green-glow);
+      transform: translateY(-3px);
+    }
+
+    .pf-qualification-card small {
+      color: var(--green);
+      font-size: 0.7rem;
+      font-weight: 850;
+      letter-spacing: 0.05em;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .pf-qualification-card h3 {
+      font-size: 1.06rem;
+      font-weight: 750;
+      line-height: 1.3;
+    }
+
+    .pf-qualification-card p {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin: 6px 0 16px;
+    }
+
+    .pf-certificate-button {
+      align-items: center;
+      background: transparent;
+      border: 0;
+      color: var(--green);
+      cursor: pointer;
+      display: inline-flex;
+      font-size: 0.82rem;
+      font-weight: 800;
+      gap: 5px;
+      margin-top: auto;
+      padding: 0;
+      text-align: left;
+      transition: color 0.2s ease;
+    }
+
+    .pf-certificate-button:hover {
+      color: var(--green-hover);
+      text-decoration: underline;
+    }
+
+    .pf-qualification-actions {
+      margin-top: 28px;
+    }
+
+    /* =========================================================
+       HOW IT WORKS
+    ========================================================= */
+
+    .steps {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(5, 1fr);
+      margin-top: 38px;
+    }
+
+    .step {
+      border-top: 2px solid var(--border);
+      padding: 18px 12px 16px 0;
+      transition: border-color 0.25s ease;
+    }
+
+    .step:hover {
+      border-top-color: var(--green);
+    }
+
+    .step strong {
+      color: var(--green);
+      display: block;
+      font-size: 1.5rem;
+      font-weight: 850;
+      margin-bottom: 8px;
+    }
+
+    .step h3 {
+      font-size: 1.05rem;
+      font-weight: 750;
+      margin-bottom: 6px;
+    }
+
+    .step p {
+      color: var(--muted);
+      font-size: 0.85rem;
+      line-height: 1.55;
+    }
+
+    /* =========================================================
+       GALLERY (Smaller, tight card frames)
+    ========================================================= */
+
+    .pf-gallery-section {
+      background: var(--bg-soft);
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+      overflow: hidden;
+      padding: 82px 0;
+    }
+
+    .pf-gallery-container {
+      margin: 0 auto;
+      width: min(94%, var(--max-width));
+    }
+
+    .pf-gallery-header-row {
+      align-items: flex-end;
+      display: flex;
+      gap: 20px;
+      justify-content: space-between;
+    }
+
+    .pf-gallery-controls {
+      display: flex;
+      gap: 10px;
+    }
+
+    .pf-gallery-arrow {
+      align-items: center;
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      height: 42px;
+      justify-content: center;
+      width: 42px;
+      transition: all 0.2s ease;
+    }
+
+    .pf-gallery-arrow:hover {
+      background: var(--green);
       border-color: var(--green);
       color: #060806;
+      box-shadow: 0 4px 14px rgba(200, 255, 56, 0.28);
+    }
+
+    .pf-gallery-track {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    @media (min-width: 680px) {
+      .pf-gallery-track {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .pf-gallery-track {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px;
+      }
+    }
+
+    @media (min-width: 1440px) {
+      .pf-gallery-track {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 20px;
+      }
+    }
+
+    .pf-gallery-controls {
+      display: none;
+    }
+
+    .pf-gallery-card {
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      cursor: zoom-in;
+      overflow: hidden;
+      padding: 0;
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      transition: border-color 0.25s ease, transform 0.3s ease;
+    }
+
+    .pf-gallery-card:hover {
+      border-color: var(--green-border);
+      transform: translateY(-2px);
+    }
+
+    .pf-gallery-card img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .pf-gallery-card:hover img {
+      transform: scale(1.03);
+    }
+
+    /* =========================================================
+       TESTIMONIALS
+    ========================================================= */
+
+    .pf-testimonials-header {
+      align-items: flex-end;
+      display: flex;
+      gap: 20px;
+      justify-content: space-between;
+      margin-bottom: 30px;
+    }
+
+    .pf-testimonial-track {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+    }
+
+    .pf-testimonial-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    .pf-testimonial-card {
+      background:
+        linear-gradient(165deg, rgba(255, 255, 255, 0.035) 0%, transparent 65%),
+        var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), var(--shadow-card);
+      flex: 0 0 clamp(280px, 26vw, 330px);
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .pf-testimonial-card:hover {
+      border-color: var(--green-border);
+      box-shadow: inset 0 1px 0 rgba(200, 255, 56, 0.15), 0 14px 30px -8px rgba(0, 0, 0, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .pf-stars {
+      color: var(--green);
+      font-size: 0.95rem;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    .pf-quote-mark {
+      color: rgba(200, 255, 56, 0.22);
+      font-family: Georgia, serif;
+      font-size: 2.8rem;
+      line-height: 0.8;
+      margin-bottom: 6px;
+    }
+
+    .pf-testimonial-text {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.65;
+      margin-bottom: 18px;
+      flex-grow: 1;
+    }
+
+    .pf-testimonial-card strong {
+      color: var(--text);
+      font-size: 0.98rem;
+      font-weight: 750;
+    }
+
+    /* =========================================================
+       PRICING
+    ========================================================= */
+
+    .pf-pricing-grid {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(6, 1fr);
+      margin-top: 38px;
+    }
+
+    .pf-plan {
+      background:
+        linear-gradient(165deg, rgba(255, 255, 255, 0.03) 0%, transparent 60%),
+        var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      padding: 28px 24px;
+      position: relative;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .pf-plan:hover {
+      border-color: var(--border-strong);
+      transform: translateY(-3px);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 16px 40px -8px rgba(0, 0, 0, 0.55);
+    }
+
+    .pf-plan-consultation,
+    .pf-plan-assessment,
+    .pf-plan-personal {
+      grid-column: span 2;
+    }
+
+    .pf-plan-small-group,
+    .pf-plan-online {
+      grid-column: span 3;
+    }
+
+    .pf-plan-featured {
+      background:
+        radial-gradient(circle at 50% 0%, rgba(200, 255, 56, 0.1) 0%, transparent 65%),
+        linear-gradient(165deg, rgba(200, 255, 56, 0.04) 0%, transparent 50%),
+        var(--card-strong);
+      border-color: var(--green-border);
+      box-shadow: inset 0 1px 0 rgba(200, 255, 56, 0.25), 0 16px 48px rgba(200, 255, 56, 0.1);
+    }
+
+    .pf-plan-featured:hover {
+      border-color: var(--green);
+      box-shadow: inset 0 1px 0 rgba(200, 255, 56, 0.35), 0 20px 52px rgba(200, 255, 56, 0.18);
+    }
+
+    .pf-plan-badge {
+      background: var(--green);
+      border-radius: 999px;
+      color: #060806;
+      font-size: 0.62rem;
+      font-weight: 850;
+      letter-spacing: 0.05em;
+      padding: 5px 12px;
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      text-transform: uppercase;
+    }
+
+    .pf-plan-label {
+      color: var(--green);
+      font-size: 0.7rem;
+      font-weight: 850;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .pf-plan h3 {
+      font-size: 1.28rem;
+      font-weight: 800;
+      letter-spacing: -0.015em;
+      margin-top: 10px;
+    }
+
+    .pf-plan-price {
+      font-size: 2.1rem;
+      font-weight: 850;
+      letter-spacing: -0.03em;
+      margin: 12px 0;
+    }
+
+    .pf-plan-price small {
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .pf-plan-price-note {
+      color: var(--green);
+      font-size: 0.78rem;
+      font-weight: 750;
+      margin-top: 3px;
+    }
+
+    .pf-plan-price .contact-label {
+      display: block;
+      font-size: 1.15rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 2px;
+    }
+
+    .pf-plan-description {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.55;
+      margin-bottom: 18px;
+    }
+
+    .pf-plan-features {
+      display: grid;
+      gap: 10px;
+      list-style: none;
+      margin-bottom: 24px;
+    }
+
+    .pf-plan-features li {
+      color: var(--text-secondary);
+      font-size: 0.86rem;
+      padding-left: 18px;
+      position: relative;
+    }
+
+    .pf-plan-features li::before {
+      color: var(--green);
+      content: "✓";
+      font-weight: 850;
+      left: 0;
+      position: absolute;
+    }
+
+    .pf-plan-button {
+      align-items: center;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-strong);
+      border-radius: 999px;
+      color: var(--text);
+      display: inline-flex;
+      font-size: 0.85rem;
+      font-weight: 750;
+      justify-content: center;
+      margin-top: auto;
+      min-height: 44px;
+      padding: 0 18px;
+      transition: all 0.25s ease;
+    }
+
+    .pf-plan-button:hover {
+      border-color: var(--green-border);
+      color: var(--green);
+    }
+
+    .pf-plan-button-primary {
+      background: var(--green);
+      border-color: var(--green);
+      color: #060806;
+      box-shadow: 0 6px 18px -4px rgba(200, 255, 56, 0.35);
+    }
+
+    .pf-plan-button-primary:hover {
+      background: var(--green-hover);
+      color: #060806;
+      box-shadow: 0 10px 22px -3px rgba(200, 255, 56, 0.45);
+    }
+
+    .pf-assessment-location {
+      background: var(--green-soft);
+      border: 1px solid var(--green-border);
+      border-radius: var(--radius-sm);
+      margin-bottom: 14px;
+      padding: 12px 14px;
+    }
+
+    .pf-assessment-location small {
+      color: var(--muted);
+      display: block;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .pf-assessment-location strong {
+      color: var(--text);
+      font-size: 0.85rem;
+    }
+
+    .pf-assessment-includes {
+      color: var(--green);
+      font-size: 0.7rem;
+      font-weight: 850;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .pf-wide-card-layout {
+      display: grid;
+      gap: 24px;
+      grid-template-columns: 0.9fr 1.1fr;
+    }
+
+    .pf-wide-card-details {
+      border-left: 1px solid var(--border);
+      padding-left: 24px;
+    }
+
+    .pf-session-bar {
+      background:
+        linear-gradient(165deg, rgba(255, 255, 255, 0.03) 0%, transparent 60%),
+        var(--card-strong);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), var(--shadow-card);
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr;
+      margin-top: 24px;
+      padding: 28px 30px;
+    }
+
+    .pf-session-option {
+      padding: 4px 26px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pf-session-divider {
+      background: var(--border);
+      width: 1px;
+    }
+
+    .pf-session-tag {
+      background: var(--green-soft);
+      border: 1px solid var(--green-border);
+      border-radius: 999px;
+      color: var(--green);
+      display: inline-block;
+      font-size: 0.66rem;
+      font-weight: 850;
+      letter-spacing: 0.06em;
+      margin-bottom: 10px;
+      padding: 4px 12px;
+      text-transform: uppercase;
+      width: fit-content;
+    }
+
+    .pf-session-price {
+      font-size: 2.2rem;
+      font-weight: 850;
+      letter-spacing: -0.03em;
+      margin: 8px 0;
+    }
+
+    .pf-session-price small {
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .pf-session-saving {
+      color: var(--green);
+      font-size: 0.82rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .pf-session-option p {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.55;
+      margin-bottom: 18px;
+    }
+
+    .pf-pricing-benefits {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      margin-top: 22px;
+      overflow: hidden;
+    }
+
+    .pf-pricing-benefit {
+      background: rgba(255, 255, 255, 0.018);
+      padding: 18px 14px;
+      text-align: center;
+    }
+
+    .pf-pricing-benefit + .pf-pricing-benefit {
+      border-left: 1px solid var(--border);
+    }
+
+    .pf-pricing-benefit strong {
+      color: var(--green);
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 800;
+      margin-bottom: 3px;
+    }
+
+    .pf-pricing-benefit span,
+    .pf-pricing-note {
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .pf-pricing-note {
+      margin-top: 18px;
+      text-align: center;
+    }
+
+    /* =========================================================
+       RESOURCES
+    ========================================================= */
+
+    .resource-grid {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(4, 1fr);
+      margin-top: 36px;
+    }
+
+    .resource-card {
+      background:
+        linear-gradient(165deg, rgba(255, 255, 255, 0.03) 0%, transparent 100%),
+        var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), var(--shadow-card);
+      padding: 24px 22px;
+      transition: all 0.25s ease;
+    }
+
+    .resource-card:hover {
+      border-color: var(--green-border);
+      box-shadow: inset 0 1px 0 rgba(200, 255, 56, 0.18), 0 12px 28px -6px rgba(0, 0, 0, 0.45);
+      transform: translateY(-2px);
+    }
+
+    .resource-card h3 {
+      font-size: 1.08rem;
+      font-weight: 750;
+      margin-bottom: 6px;
+    }
+
+    .resource-card p {
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.55;
+    }
+
+    .resource-actions {
+      margin-top: 28px;
+    }
+
+    /* =========================================================
+       CONTACT SECTION
+    ========================================================= */
+
+    .contact-grid {
+      display: grid;
+      gap: 28px;
+      grid-template-columns: 0.88fr 1.12fr;
+      margin-top: 38px;
+    }
+
+    .contact-card,
+    .form-card {
+      background:
+        linear-gradient(165deg, rgba(255, 255, 255, 0.03) 0%, transparent 60%),
+        var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), var(--shadow-card);
+      padding: 28px;
+    }
+
+    .contact-card h3,
+    .form-card h3 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.015em;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .contact-item {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 13px 15px;
+      transition: border-color 0.2s ease;
+    }
+
+    .contact-item:hover {
+      border-color: var(--border-strong);
+    }
+
+    .contact-item small {
+      color: var(--muted);
+      display: block;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 2px;
+    }
+
+    .contact-item strong,
+    .contact-item a {
+      color: var(--text);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .contact-item a:hover {
+      color: var(--green);
+    }
+
+    .telegram-contact {
+      background:
+        radial-gradient(circle at 100% 0%, rgba(34, 158, 217, 0.12) 0%, transparent 60%),
+        rgba(34, 158, 217, 0.05);
+      border-color: rgba(34, 158, 217, 0.3);
+      margin-top: 18px;
+    }
+
+    .telegram-contact small {
+      color: #5bbde8;
+    }
+
+    .telegram-contact strong {
+      color: #ffffff;
+      font-size: 0.98rem;
+    }
+
+    .telegram-contact p {
+      color: var(--text-secondary);
+      font-size: 0.86rem;
+      line-height: 1.5;
+      margin: 6px 0 14px;
+    }
+
+    .telegram-contact .button.button-primary {
+      background: #229ed9;
+      box-shadow: 0 6px 18px -4px rgba(34, 158, 217, 0.4);
+      color: #ffffff;
+      display: flex;
+      width: 100%;
+    }
+
+    .telegram-contact .button.button-primary:hover {
+      background: #2ab2f3;
+      box-shadow: 0 8px 22px -3px rgba(34, 158, 217, 0.55);
+    }
+
+    /* FORM STYLING */
+    form {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .form-row {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    label {
+      color: var(--text-secondary);
+      display: grid;
+      font-size: 0.82rem;
+      font-weight: 600;
+      gap: 6px;
+    }
+
+    input,
+    select,
+    textarea {
+      background: #080c09;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      color: var(--text);
+      font-size: 0.88rem;
+      padding: 11px 13px;
+      transition: all 0.2s ease;
+      width: 100%;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #556256;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      background: #0b110c;
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(200, 255, 56, 0.16);
+      outline: none;
+    }
+
+    select {
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23c8ff38' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 36px;
+    }
+
+    select option {
+      background: #111612;
+      color: #f5f8f5;
+    }
+
+    textarea {
+      min-height: 105px;
+      resize: vertical;
+    }
+
+    .form-status {
+      background: rgba(200, 255, 56, 0.08);
+      border: 1px solid var(--green-border);
+      border-radius: var(--radius-sm);
+      color: var(--green);
+      display: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      line-height: 1.45;
+      margin-top: 8px;
+      padding: 10px 14px;
+    }
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+
+    .pf-footer {
+      background: #050705;
+      border-top: 1px solid var(--border);
+      padding: 64px 0 24px;
+    }
+
+    .pf-footer-grid {
+      display: grid;
+      gap: 48px;
+      grid-template-columns: 1.4fr 0.8fr 0.8fr;
+    }
+
+    .pf-footer-branding {
+      align-items: center;
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .pf-footer-logo {
+      height: 34px;
+      width: auto;
+    }
+
+    .pf-footer-wordmark {
+      height: 24px;
+      width: auto;
+    }
+
+    .pf-footer-brand-copy {
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-top: 10px;
+      max-width: 360px;
+    }
+
+    .pf-footer-column h3 {
+      color: var(--green);
+      font-size: 0.74rem;
+      font-weight: 850;
+      letter-spacing: 0.14em;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+
+    .pf-footer-links {
+      display: grid;
+      gap: 10px;
+    }
+
+    .pf-footer-links a {
+      color: var(--text-secondary);
+      font-size: 0.86rem;
+    }
+
+    .pf-footer-links a:hover {
+      color: var(--green);
+    }
+
+    .pf-footer-bottom {
+      border-top: 1px solid var(--border-subtle);
+      color: var(--muted);
+      display: flex;
+      font-size: 0.82rem;
+      justify-content: space-between;
+      margin-top: 44px;
+      padding-top: 20px;
+    }
+
+    /* =========================================================
+       MODALS
+    ========================================================= */
+
+    .pf-modal,
+    .pf-gallery-lightbox,
+    .pf-assessment-modal {
+      align-items: center;
+      display: none;
+      inset: 0;
+      justify-content: center;
+      padding: 20px;
+      position: fixed;
+      z-index: 5000;
+    }
+
+    .pf-modal.open,
+    .pf-gallery-lightbox.open,
+    .pf-assessment-modal.open {
+      display: flex;
+    }
+
+    .modal-backdrop,
+    .assessment-modal-backdrop {
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      background: rgba(4, 6, 4, 0.85);
+      inset: 0;
+      position: absolute;
+    }
+
+    .modal-dialog,
+    .assessment-modal-dialog {
+      background:
+        radial-gradient(circle at 50% 0%, rgba(200, 255, 56, 0.04) 0%, transparent 50%),
+        #0e130f;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.8);
+      max-height: 88vh;
+      overflow-y: auto;
+      padding: 30px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .modal-dialog {
+      max-width: 900px;
+      width: min(94vw, 900px);
+    }
+
+    .assessment-modal-dialog {
+      max-width: 980px;
+      width: min(95vw, 980px);
+    }
+
+    .modal-close,
+    .assessment-modal-close {
+      align-items: center;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-strong);
+      border-radius: 50%;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      font-size: 1.2rem;
+      height: 36px;
+      justify-content: center;
+      position: absolute;
+      right: 18px;
+      top: 18px;
+      width: 36px;
+      transition: all 0.2s ease;
+    }
+
+    .modal-close:hover,
+    .assessment-modal-close:hover {
+      background: var(--green);
+      border-color: var(--green);
+      color: #060806;
+      box-shadow: 0 0 14px rgba(200, 255, 56, 0.4);
+    }
+
+    .modal-image {
+      border-radius: var(--radius-sm);
+      max-height: 74vh;
+      object-fit: contain;
+      width: 100%;
+    }
+
+    .assessment-modal-header {
+      margin-bottom: 26px;
+      text-align: center;
+    }
+
+    .assessment-modal-header h2 {
+      font-size: 1.7rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .assessment-modal-header p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 4px;
+    }
+
+    .assessment-modal-grid {
+      display: grid;
+      gap: 22px;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .assessment-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 22px;
+    }
+
+    .assessment-card h3 {
+      color: var(--green);
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .assessment-card h4 {
+      color: var(--text);
+      font-size: 0.88rem;
+      font-weight: 750;
+      margin: 16px 0 10px;
+    }
+
+    .assessment-card h4:first-of-type {
+      margin-top: 10px;
+    }
+
+    .assessment-card ul {
+      list-style: none;
+      display: grid;
+      gap: 6px;
+    }
+
+    .assessment-card li {
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+      padding-left: 18px;
+      position: relative;
+    }
+
+    .assessment-card li::before {
+      color: var(--green);
+      content: "✓";
+      font-weight: 850;
+      left: 0;
+      position: absolute;
+    }
+
+    /* =========================================================
+       REVEAL ON SCROLL
+    ========================================================= */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition:
+        opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================================================
+       RESPONSIVE DESIGN & BEST FIT BREAKPOINTS
+    ========================================================= */
+
+    @media (max-width: 1020px) {
+      .hero-grid,
+      .story-grid,
+      .contact-grid,
+      .pf-services-layout {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+
+      .hero-visual {
+        height: 380px;
+        min-height: unset;
+      }
+
+      .pf-services-photo {
+        height: 380px;
+        min-height: unset;
+      }
+
+      .story-image {
+        aspect-ratio: 4 / 5;
+        height: auto;
+        min-height: unset;
+        max-height: 460px;
+        max-width: 440px;
+        margin: 0 auto;
+        width: 100%;
+        position: relative;
+      }
+
+      .story-image img {
+        display: block;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: center 10%;
+      }
+
+      .outcome-grid,
+      .resource-grid,
+      .pf-qualification-summary,
+      .pf-qualification-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .steps {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .pf-pricing-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .pf-plan-consultation,
+      .pf-plan-assessment,
+      .pf-plan-personal,
+      .pf-plan-small-group,
+      .pf-plan-online {
+        grid-column: auto;
+      }
+
+      .pf-wide-card-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .pf-wide-card-details {
+        border-left: 0;
+        border-top: 1px solid var(--border);
+        padding-left: 0;
+        padding-top: 18px;
+      }
+
+      .pf-why-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .pf-why-item {
+        padding: 12px 0;
+      }
+
+      .pf-why-item + .pf-why-item {
+        border-left: 0;
+        padding-left: 0;
+      }
+
+      .pf-pricing-benefits {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .pf-pricing-benefit:nth-child(2n) {
+        border-left: 1px solid var(--border);
+      }
+
+      .pf-pricing-benefit:nth-child(n+3) {
+        border-top: 1px solid var(--border);
+      }
+    }
+
+    @media (max-width: 800px) {
+      .menu-button {
+        display: flex;
+      }
+
+      .nav-links {
+        background: rgba(6, 8, 6, 0.98);
+        border: 1px solid var(--border-strong);
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow);
+        display: none;
+        flex-direction: column;
+        left: 4%;
+        padding: 20px;
+        position: absolute;
+        right: 4%;
+        top: calc(100% + 10px);
+        align-items: flex-start;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .section {
+        padding: 68px 0;
+      }
+
+      .hero {
+        padding: 98px 0 46px;
+      }
+
+      .pf-footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .assessment-modal-dialog {
+        padding: 20px;
+      }
+
+      .assessment-modal-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .outcome-grid,
+      .resource-grid,
+      .pf-qualification-summary,
+      .pf-qualification-grid,
+      .steps,
+      .transformation-grid,
+      .form-row,
+      .pf-pricing-grid,
+      .pf-why-grid,
+      .pf-pricing-benefits {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual {
+        height: 320px;
+        min-height: unset;
+      }
+
+      .pf-services-photo {
+        height: 320px;
+        min-height: unset;
+      }
+
+      .story-image {
+        aspect-ratio: 4 / 5;
+        height: auto;
+        min-height: unset;
+        max-height: 380px;
+        max-width: 100%;
+        margin: 0 auto;
+        width: 100%;
+        position: relative;
+      }
+
+      .story-image img {
+        display: block;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: center 10%;
+      }
+
+      .transformation-grid {
+        max-width: 420px;
+        margin: 28px auto 0;
+        gap: 20px;
+      }
+
+      .transformation-card img {
+        aspect-ratio: 4 / 5;
+        height: 390px;
+        max-height: 420px;
+        object-fit: cover;
+        object-position: center 2.5%;
+      }
+
+      .pf-services-list {
+        padding: 6px 18px;
+      }
+
+      .pf-service-row {
+        gap: 12px;
+        grid-template-columns: 34px 1fr;
+        padding: 16px 0;
+      }
+
+      .pf-service-number {
+        height: 34px;
+        width: 34px;
+        font-size: 0.68rem;
+      }
+
+      .pf-pricing-benefit + .pf-pricing-benefit {
+        border-left: 0;
+        border-top: 1px solid var(--border);
+      }
+
+      .pf-session-bar {
+        grid-template-columns: 1fr;
+        padding: 20px 16px;
+      }
+
+      .pf-session-divider {
+        height: 1px;
+        width: 100%;
+        margin: 16px 0;
+      }
+
+      .pf-session-option {
+        padding: 6px 0;
+      }
+
+      .pf-gallery-card {
+        flex-basis: clamp(220px, 66vw, 275px);
+      }
+
+      .pf-footer-bottom {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .contact-card,
+      .form-card {
+        padding: 20px;
+      }
+
+      .pf-why-box {
+        padding: 20px;
+      }
+
+      .transformation-note {
+        max-width: 420px;
+        padding: 20px 22px;
+      }
+    }
+  
+    /* =========================================================
+       EXPANSIVE FLUID SERVICES & PRICING GRID ADDITIONS
+    ========================================================= */
+
+    .pf-services-discovery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 36px;
+      margin-bottom: 26px;
+    }
+
+    .pf-discovery-card {
+      background:
+        linear-gradient(165deg, rgba(255, 255, 255, 0.03) 0%, transparent 60%),
+        var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), var(--shadow-card);
+      display: grid;
+      gap: 18px;
+      grid-template-columns: 38px 1fr;
+      padding: 24px;
+      align-items: start;
+      transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .pf-discovery-card:hover {
+      border-color: var(--green-border);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5), 0 0 20px rgba(200, 255, 56, 0.12);
+    }
+
+    .pf-discovery-body p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-top: 8px;
     }
 
     .pf-services-grid {
@@ -806,646 +2643,12 @@
       font-weight: 600;
     }
 
-    .pf-why-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      margin-top: 26px;
-      border-top: 1px solid var(--border);
-    }
-
-    .pf-why-col {
-      border-right: 1px solid var(--border);
-      padding: 32px 24px 10px;
-      position: relative;
-    }
-
-    .pf-why-col:last-child {
-      border-right: none;
-    }
-
-    .pf-why-icon {
-      align-items: center;
-      background: rgba(200, 255, 56, 0.08);
-      border: 1px solid var(--green-border);
-      border-radius: var(--radius-sm);
-      color: var(--green);
-      display: flex;
-      height: 44px;
-      justify-content: center;
-      margin-bottom: 20px;
-      width: 44px;
-      box-shadow: 0 4px 14px rgba(200, 255, 56, 0.15);
-    }
-
-    .pf-why-col h3 {
-      font-size: 1.15rem;
-      font-weight: 800;
-      letter-spacing: -0.015em;
-      line-height: 1.25;
-      margin-bottom: 10px;
-    }
-
-    .pf-why-col p {
-      color: var(--muted);
-      font-size: 0.86rem;
-      line-height: 1.6;
-    }
-
-    .story-grid {
-      align-items: center;
-      display: grid;
-      gap: 48px;
-      grid-template-columns: 0.95fr 1.05fr;
-      margin-top: 36px;
-    }
-
-    .story-image {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), var(--shadow);
-      max-height: 560px;
-      aspect-ratio: 4 / 5;
-      overflow: hidden;
-      position: relative;
-      width: 100%;
-    }
-
-    .story-image img {
-      display: block;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 10%;
-      width: 100%;
-      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .story-image:hover img {
-      transform: scale(1.02);
-    }
-
-    .story-image::after {
-      background:
-        linear-gradient(to top,
-          rgba(6, 8, 6, 0.7) 0%,
-          rgba(6, 8, 6, 0.15) 30%,
-          transparent 60%);
-      content: "";
-      inset: 0;
-      position: absolute;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .story-quote {
-      border-left: 2px solid var(--green);
-      font-size: 1.02rem;
-      font-style: italic;
-      font-weight: 500;
-      line-height: 1.6;
-      margin-top: 18px;
-      padding-left: 18px;
-      color: var(--text);
-    }
-
-    .story-points {
-      display: grid;
-      gap: 14px;
-      margin-top: 24px;
-    }
-
-    .story-point {
-      background:
-        linear-gradient(165deg, rgba(255, 255, 255, 0.02) 0%, transparent 60%),
-        var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
-      padding: 14px 16px;
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-      transition: border-color 0.2s ease;
-    }
-
-    .story-point:hover {
-      border-color: var(--border-strong);
-    }
-
-    .story-point-icon {
-      background: rgba(200, 255, 56, 0.08);
-      border-radius: 8px;
-      color: var(--green);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 28px;
-      height: 28px;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    .story-point h4 {
-      font-size: 0.92rem;
-      font-weight: 750;
-      letter-spacing: -0.01em;
-    }
-
-    .story-point p {
-      color: var(--muted);
-      font-size: 0.82rem;
-      line-height: 1.5;
-      margin-top: 3px;
-    }
-
-    .transformation-grid {
-      display: grid;
-      gap: 26px;
-      grid-template-columns: 1fr 1fr;
-      margin: 36px auto 0;
-      max-width: 900px;
-    }
-
-    .transformation-card {
-      background:
-        linear-gradient(165deg, rgba(255, 255, 255, 0.03) 0%, transparent 60%),
-        var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), var(--shadow);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      transition: transform 0.3s ease, border-color 0.3s ease;
-    }
-
-    .transformation-card:hover {
-      border-color: var(--green-border);
-      transform: translateY(-3px);
-    }
-
-    .transformation-card img {
-      aspect-ratio: 4 / 5;
-      height: 430px;
-      max-height: 450px;
-      object-fit: cover;
-      object-position: center 2.5%;
-      width: 100%;
-      background: #090c0a;
-    }
-
-    .transformation-card-body {
-      padding: 16px 20px 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .transformation-phase-tag {
-      background: var(--green-soft);
-      border: 1px solid var(--green-border);
-      border-radius: 999px;
-      color: var(--green);
-      display: inline-flex;
-      align-items: center;
-      font-size: 0.64rem;
-      font-weight: 850;
-      letter-spacing: 0.08em;
-      padding: 3px 9px;
-      text-transform: uppercase;
-      align-self: flex-start;
-      margin-bottom: 2px;
-    }
-
-    .transformation-card-body h3 {
-      font-size: 1.05rem;
-      font-weight: 750;
-      letter-spacing: -0.015em;
-    }
-
-    .transformation-card-body p {
-      color: var(--muted);
-      font-size: 0.82rem;
-      line-height: 1.5;
-    }
-
-    .transformation-note {
-      background:
-        radial-gradient(circle at top right, rgba(200, 255, 56, 0.04), transparent 50%),
-        linear-gradient(165deg, rgba(255, 255, 255, 0.02) 0%, transparent 60%),
-        var(--card);
-      border: 1px solid var(--border);
-      border-left: 3px solid var(--green);
-      border-radius: var(--radius-md);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), var(--shadow-card);
-      margin: 28px auto 0;
-      max-width: 900px;
-      padding: 20px 24px;
-    }
-
-    .transformation-note h3 {
-      color: #ffffff;
-      font-size: 0.98rem;
-      font-weight: 800;
-      letter-spacing: -0.01em;
-      margin-bottom: 6px;
-    }
-
-    .transformation-note p {
-      color: var(--text-secondary);
-      font-size: 0.85rem;
-      line-height: 1.6;
-    }
-
-    .pf-qualification-grid {
-      display: grid;
-      gap: 18px;
-      grid-template-columns: repeat(3, 1fr);
-      margin-top: 36px;
-    }
-
-    .pf-cert-card {
-      background:
-        linear-gradient(165deg, rgba(255, 255, 255, 0.025) 0%, transparent 60%),
-        var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), var(--shadow-card);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 24px;
-      transition: all 0.25s ease;
-    }
-
-    .pf-cert-card:hover {
-      border-color: var(--green-border);
-      transform: translateY(-2px);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 14px 34px -8px rgba(0, 0, 0, 0.5);
-    }
-
-    .pf-cert-badge {
-      background: var(--green-soft);
-      border: 1px solid var(--green-border);
-      border-radius: 999px;
-      color: var(--green);
-      display: inline-block;
-      font-size: 0.64rem;
-      font-weight: 850;
-      letter-spacing: 0.06em;
-      margin-bottom: 12px;
-      padding: 3px 9px;
-      text-transform: uppercase;
-      align-self: flex-start;
-    }
-
-    .pf-cert-card h3 {
-      font-size: 1.08rem;
-      font-weight: 750;
-      letter-spacing: -0.015em;
-      line-height: 1.3;
-    }
-
-    .pf-cert-card p {
-      color: var(--muted);
-      font-size: 0.84rem;
-      line-height: 1.55;
-      margin-top: 6px;
-    }
-
-    .pf-cert-footer {
-      border-top: 1px solid var(--border-subtle);
-      margin-top: 16px;
-      padding-top: 14px;
-    }
-
-    .pf-certificate-button {
-      align-items: center;
-      background: transparent;
-      border: 1px solid var(--border-strong);
-      border-radius: 999px;
-      color: var(--text-secondary);
-      cursor: pointer;
-      display: inline-flex;
-      font-size: 0.76rem;
-      font-weight: 700;
-      gap: 6px;
-      padding: 6px 14px;
-      transition: all 0.2s ease;
-    }
-
-    .pf-certificate-button:hover {
-      background: rgba(255, 255, 255, 0.06);
-      border-color: var(--green);
-      color: var(--green);
-    }
-
-    .pf-gallery-section {
-      background: var(--bg-soft);
-      border-top: 1px solid var(--border-subtle);
-      border-bottom: 1px solid var(--border-subtle);
-      padding: 82px 0;
-    }
-
-    .pf-gallery-container {
-      margin: 0 auto;
-      width: min(94%, var(--max-width));
-    }
-
-    .pf-gallery-header-row {
-      align-items: flex-end;
-      display: flex;
-      gap: 20px;
-      justify-content: space-between;
-    }
-
-    .pf-gallery-controls {
-      display: none;
-    }
-
-    .pf-gallery-track {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-top: 34px;
-    }
-
-    @media (min-width: 680px) {
-      .pf-gallery-track {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 16px;
-      }
-    }
-
-    @media (min-width: 1024px) {
-      .pf-gallery-track {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 18px;
-      }
-    }
-
-    @media (min-width: 1440px) {
-      .pf-gallery-track {
-        grid-template-columns: repeat(5, 1fr);
-        gap: 20px;
-      }
-    }
-
-    .pf-gallery-card {
-      background: transparent;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      cursor: zoom-in;
-      overflow: hidden;
-      padding: 0;
-      position: relative;
-      width: 100%;
-      aspect-ratio: 4 / 5;
-      transition: border-color 0.25s ease, transform 0.3s ease;
-    }
-
-    .pf-gallery-card:hover {
-      border-color: var(--green-border);
-      transform: translateY(-2px);
-    }
-
-    .pf-gallery-card img {
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .pf-gallery-card:hover img {
-      transform: scale(1.03);
-    }
-
-    .pf-testimonials-header {
-      align-items: flex-end;
-      display: flex;
-      gap: 20px;
-      justify-content: space-between;
-    }
-
-    .pf-testimonials-track {
-      display: flex;
-      gap: 16px;
-      margin-top: 34px;
-      overflow-x: auto;
-      padding-bottom: 12px;
-      scroll-behavior: smooth;
-      scrollbar-width: none;
-      scroll-snap-type: x mandatory;
-    }
-
-    .pf-testimonials-track::-webkit-scrollbar {
-      display: none;
-    }
-
-    .pf-testimonial-card {
-      background:
-        linear-gradient(165deg, rgba(255, 255, 255, 0.025) 0%, transparent 60%),
-        var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), var(--shadow-card);
-      display: flex;
-      flex-direction: column;
-      flex: 0 0 clamp(280px, 32vw, 360px);
-      justify-content: space-between;
-      padding: 24px;
-      scroll-snap-align: start;
-    }
-
-    .pf-stars {
-      color: var(--green);
-      font-size: 0.85rem;
-      letter-spacing: 2px;
-      margin-bottom: 14px;
-    }
-
-    .pf-testimonial-card p {
-      color: var(--text-secondary);
-      font-size: 0.88rem;
-      line-height: 1.6;
-    }
-
-    .pf-client-info {
-      border-top: 1px solid var(--border-subtle);
-      margin-top: 18px;
-      padding-top: 14px;
-    }
-
-    .pf-client-info strong {
-      display: block;
-      font-size: 0.88rem;
-      font-weight: 750;
-    }
-
-    .pf-client-info span {
-      color: var(--muted);
-      font-size: 0.74rem;
-    }
-
+    /* 4-Column Horizontal Desktop Comparison Tier */
     .pf-pricing-grid-4 {
       display: grid;
       gap: 20px;
       grid-template-columns: repeat(4, 1fr);
       margin-top: 38px;
-    }
-
-    .pf-plan {
-      background:
-        linear-gradient(165deg, rgba(255, 255, 255, 0.03) 0%, transparent 60%),
-        var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), var(--shadow-card);
-      display: flex;
-      flex-direction: column;
-      padding: 28px 24px;
-      position: relative;
-      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .pf-plan:hover {
-      border-color: var(--border-strong);
-      transform: translateY(-3px);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 16px 40px -8px rgba(0, 0, 0, 0.55);
-    }
-
-    .pf-plan-featured {
-      background:
-        radial-gradient(circle at 50% 0%, rgba(200, 255, 56, 0.1) 0%, transparent 65%),
-        linear-gradient(165deg, rgba(200, 255, 56, 0.04) 0%, transparent 50%),
-        var(--card-strong);
-      border-color: var(--green-border);
-      box-shadow: inset 0 1px 0 rgba(200, 255, 56, 0.25), 0 16px 48px rgba(200, 255, 56, 0.1);
-    }
-
-    .pf-plan-featured:hover {
-      border-color: var(--green);
-      box-shadow: inset 0 1px 0 rgba(200, 255, 56, 0.35), 0 20px 52px rgba(200, 255, 56, 0.18);
-    }
-
-    .pf-plan-badge {
-      background: var(--green);
-      border-radius: 999px;
-      color: #060806;
-      font-size: 0.62rem;
-      font-weight: 850;
-      letter-spacing: 0.05em;
-      padding: 5px 12px;
-      position: absolute;
-      right: 20px;
-      top: 20px;
-      text-transform: uppercase;
-    }
-
-    .pf-plan-label {
-      color: var(--green);
-      font-size: 0.7rem;
-      font-weight: 850;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    .pf-plan h3 {
-      font-size: 1.28rem;
-      font-weight: 800;
-      letter-spacing: -0.015em;
-      margin-top: 10px;
-    }
-
-    .pf-plan-price {
-      font-size: 2.1rem;
-      font-weight: 850;
-      letter-spacing: -0.03em;
-      margin: 12px 0;
-    }
-
-    .pf-plan-price small {
-      color: var(--muted);
-      font-size: 0.88rem;
-      font-weight: 600;
-    }
-
-    .pf-plan-price-note {
-      color: var(--green);
-      font-size: 0.78rem;
-      font-weight: 750;
-      margin-top: 3px;
-    }
-
-    .pf-plan-description {
-      color: var(--muted);
-      font-size: 0.86rem;
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-
-    .pf-plan-features {
-      border-top: 1px solid var(--border-subtle);
-      list-style: none;
-      margin-bottom: 24px;
-      padding: 18px 0 0;
-    }
-
-    .pf-plan-features li {
-      align-items: flex-start;
-      color: var(--text-secondary);
-      display: flex;
-      font-size: 0.84rem;
-      gap: 9px;
-      line-height: 1.45;
-      margin-bottom: 11px;
-    }
-
-    .pf-plan-features li::before {
-      background: var(--green);
-      border-radius: 50%;
-      content: "";
-      flex-shrink: 0;
-      height: 5px;
-      margin-top: 7px;
-      width: 5px;
-      box-shadow: 0 0 6px var(--green);
-    }
-
-    .pf-plan-button {
-      align-items: center;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border-strong);
-      border-radius: 999px;
-      color: var(--text);
-      display: flex;
-      font-size: 0.82rem;
-      font-weight: 750;
-      justify-content: center;
-      margin-top: auto;
-      padding: 10px;
-      text-align: center;
-      transition: all 0.2s ease;
-    }
-
-    .pf-plan-button:hover {
-      background: rgba(255, 255, 255, 0.09);
-      border-color: var(--green);
-      color: var(--green);
-    }
-
-    .pf-plan-button-primary {
-      background: var(--green);
-      border-color: var(--green);
-      color: #060806;
-      box-shadow: 0 4px 16px rgba(200, 255, 56, 0.25);
-    }
-
-    .pf-plan-button-primary:hover {
-      background: var(--green-hover);
-      border-color: var(--green-hover);
-      color: #060806;
-      box-shadow: 0 6px 22px rgba(200, 255, 56, 0.35);
     }
 
     .pf-session-bar-3 {
@@ -1462,429 +2665,7 @@
       padding: 28px;
     }
 
-    .pf-session-option {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .pf-session-tag {
-      color: var(--green);
-      font-size: 0.68rem;
-      font-weight: 850;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .pf-session-option h3 {
-      font-size: 1.15rem;
-      font-weight: 800;
-      letter-spacing: -0.015em;
-      margin-top: 4px;
-    }
-
-    .pf-session-price {
-      font-size: 1.8rem;
-      font-weight: 850;
-      letter-spacing: -0.03em;
-      margin: 8px 0;
-    }
-
-    .pf-session-price small {
-      color: var(--muted);
-      font-size: 0.82rem;
-      font-weight: 600;
-    }
-
-    .pf-session-saving {
-      color: var(--green);
-      font-size: 0.74rem;
-      font-weight: 750;
-      margin-bottom: 6px;
-    }
-
-    .pf-session-option p {
-      color: var(--muted);
-      font-size: 0.82rem;
-      line-height: 1.55;
-      margin-bottom: 16px;
-    }
-
-    .pf-pricing-benefits {
-      display: grid;
-      gap: 16px;
-      grid-template-columns: repeat(4, 1fr);
-      margin-top: 32px;
-    }
-
-    .pf-pricing-benefit {
-      background: rgba(255, 255, 255, 0.015);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-sm);
-      padding: 16px;
-    }
-
-    .pf-pricing-benefit strong {
-      color: var(--text);
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 750;
-      margin-bottom: 4px;
-    }
-
-    .pf-pricing-benefit span {
-      color: var(--muted);
-      font-size: 0.78rem;
-      line-height: 1.45;
-    }
-
-    .pf-pricing-note {
-      color: var(--muted);
-      font-size: 0.76rem;
-      line-height: 1.55;
-      margin-top: 20px;
-      text-align: center;
-    }
-
-    .resource-grid {
-      display: grid;
-      gap: 16px;
-      grid-template-columns: repeat(4, 1fr);
-      margin-top: 36px;
-    }
-
-    .resource-card {
-      background:
-        linear-gradient(165deg, rgba(255, 255, 255, 0.025) 0%, transparent 60%),
-        var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), var(--shadow-card);
-      display: flex;
-      flex-direction: column;
-      padding: 22px 18px;
-      transition: all 0.25s ease;
-    }
-
-    .resource-card:hover {
-      border-color: var(--border-strong);
-      transform: translateY(-2px);
-    }
-
-    .resource-card-tag {
-      color: var(--green);
-      font-size: 0.65rem;
-      font-weight: 850;
-      letter-spacing: 0.08em;
-      margin-bottom: 8px;
-      text-transform: uppercase;
-    }
-
-    .resource-card h3 {
-      font-size: 0.98rem;
-      font-weight: 750;
-      letter-spacing: -0.015em;
-      line-height: 1.35;
-    }
-
-    .resource-card p {
-      color: var(--muted);
-      font-size: 0.82rem;
-      line-height: 1.55;
-      margin-top: 8px;
-    }
-
-    .faq-section-title {
-      margin-top: 64px;
-    }
-
-    .faq-grid {
-      display: grid;
-      gap: 14px;
-      grid-template-columns: repeat(2, 1fr);
-      margin-top: 24px;
-    }
-
-    .faq-card {
-      background:
-        linear-gradient(165deg, rgba(255, 255, 255, 0.02) 0%, transparent 60%),
-        var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
-      padding: 20px;
-    }
-
-    .faq-card h3 {
-      font-size: 0.96rem;
-      font-weight: 750;
-      letter-spacing: -0.01em;
-      line-height: 1.35;
-    }
-
-    .faq-card p {
-      color: var(--muted);
-      font-size: 0.84rem;
-      line-height: 1.6;
-      margin-top: 8px;
-    }
-
-    .contact-grid {
-      display: grid;
-      gap: 28px;
-      grid-template-columns: 0.88fr 1.12fr;
-      margin-top: 38px;
-    }
-
-    .contact-card,
-    .form-card {
-      background:
-        linear-gradient(165deg, rgba(255, 255, 255, 0.03) 0%, transparent 60%),
-        var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), var(--shadow);
-      padding: 32px 28px;
-    }
-
-    .contact-card h3,
-    .form-card h3 {
-      font-size: 1.25rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-    }
-
-    .contact-card>p,
-    .form-card>p {
-      color: var(--muted);
-      font-size: 0.86rem;
-      line-height: 1.6;
-      margin-top: 6px;
-    }
-
-    .contact-methods {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-top: 24px;
-    }
-
-    .contact-item {
-      align-items: center;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      display: flex;
-      gap: 14px;
-      padding: 12px 14px;
-      transition: all 0.2s ease;
-    }
-
-    .contact-item:hover {
-      background: rgba(255, 255, 255, 0.04);
-      border-color: var(--border-strong);
-    }
-
-    .contact-item-telegram {
-      background:
-        radial-gradient(circle at 90% 10%, rgba(36, 161, 222, 0.12), transparent 45%),
-        rgba(36, 161, 222, 0.03);
-      border-color: rgba(36, 161, 222, 0.25);
-    }
-
-    .contact-item-telegram:hover {
-      border-color: #24a1de;
-      box-shadow: 0 4px 18px rgba(36, 161, 222, 0.2);
-    }
-
-    .contact-icon {
-      align-items: center;
-      background: rgba(200, 255, 56, 0.08);
-      border-radius: 8px;
-      color: var(--green);
-      display: flex;
-      height: 36px;
-      justify-content: center;
-      width: 36px;
-      flex-shrink: 0;
-    }
-
-    .contact-icon-telegram {
-      background: rgba(36, 161, 222, 0.12);
-      color: #24a1de;
-    }
-
-    .contact-text strong {
-      display: block;
-      font-size: 0.75rem;
-      font-weight: 750;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    .contact-text span {
-      color: var(--text-secondary);
-      font-size: 0.84rem;
-    }
-
-    .form-grid {
-      display: grid;
-      gap: 16px;
-      grid-template-columns: 1fr 1fr;
-      margin-top: 24px;
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .form-group-full {
-      grid-column: span 2;
-    }
-
-    .form-group label {
-      color: var(--text-secondary);
-      font-size: 0.78rem;
-      font-weight: 700;
-    }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--border-strong);
-      border-radius: var(--radius-sm);
-      color: var(--text);
-      font-size: 0.86rem;
-      padding: 10px 14px;
-      transition: all 0.2s ease;
-      width: 100%;
-    }
-
-    .form-group input:hover,
-    .form-group select:hover,
-    .form-group textarea:hover {
-      border-color: rgba(255, 255, 255, 0.22);
-    }
-
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      background: rgba(255, 255, 255, 0.05);
-      border-color: var(--green);
-      box-shadow: 0 0 0 3px rgba(200, 255, 56, 0.18);
-    }
-
-    .form-group textarea {
-      min-height: 100px;
-      resize: vertical;
-    }
-
-    .form-group select {
-      appearance: none;
-      -webkit-appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238d9a8e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 14px center;
-      padding-right: 36px;
-    }
-
-    .form-group select option {
-      background: #0b0f0c;
-      color: var(--text);
-    }
-
-    .form-status {
-      border-radius: var(--radius-sm);
-      display: none;
-      font-size: 0.82rem;
-      font-weight: 600;
-      line-height: 1.5;
-      margin-top: 14px;
-      padding: 10px 14px;
-      border: 1px solid transparent;
-    }
-
-    .pf-footer {
-      background: #040504;
-      border-top: 1px solid var(--border);
-      padding: 64px 0 32px;
-    }
-
-    .pf-footer-grid {
-      display: grid;
-      gap: 48px;
-      grid-template-columns: 1.4fr 0.8fr 0.8fr;
-    }
-
-    .pf-footer-brand {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .pf-footer-logo-row {
-      align-items: center;
-      display: flex;
-      gap: 10px;
-    }
-
-    .pf-footer-logo {
-      border-radius: 50%;
-      overflow: hidden;
-      object-fit: cover;
-      aspect-ratio: 1 / 1;
-      height: 36px;
-      width: 36px;
-      flex-shrink: 0;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-    }
-
-    .pf-footer-brand p {
-      color: var(--muted);
-      font-size: 0.84rem;
-      line-height: 1.6;
-      max-width: 360px;
-    }
-
-    .pf-footer-col h4 {
-      font-size: 0.84rem;
-      font-weight: 800;
-      letter-spacing: 0.06em;
-      margin-bottom: 16px;
-      text-transform: uppercase;
-    }
-
-    .pf-footer-col ul {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      list-style: none;
-    }
-
-    .pf-footer-col a {
-      color: var(--muted);
-      font-size: 0.84rem;
-    }
-
-    .pf-footer-col a:hover {
-      color: var(--text);
-    }
-
-    .pf-footer-bottom {
-      align-items: center;
-      border-top: 1px solid var(--border-subtle);
-      color: var(--muted);
-      display: flex;
-      flex-wrap: wrap;
-      font-size: 0.76rem;
-      gap: 16px;
-      justify-content: space-between;
-      margin-top: 48px;
-      padding-top: 24px;
-    }
-
+    /* Floating Quick Action CTA */
     .pf-floating-cta {
       position: fixed;
       bottom: 24px;
@@ -1940,145 +2721,6 @@
       100% { box-shadow: 0 0 0 0 rgba(200, 255, 56, 0); }
     }
 
-    .pf-modal,
-    .pf-assessment-modal,
-    .pf-gallery-lightbox {
-      align-items: center;
-      background: rgba(0, 0, 0, 0.82);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      display: none;
-      inset: 0;
-      justify-content: center;
-      padding: 20px;
-      position: fixed;
-      z-index: 200;
-    }
-
-    .pf-modal.open,
-    .pf-assessment-modal.open,
-    .pf-gallery-lightbox.open {
-      display: flex;
-    }
-
-    .pf-modal-box {
-      background: var(--card);
-      border: 1px solid var(--border-strong);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow);
-      max-height: 90vh;
-      max-width: 600px;
-      overflow-y: auto;
-      padding: 28px;
-      position: relative;
-      width: 100%;
-    }
-
-    .pf-modal-close {
-      align-items: center;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border);
-      border-radius: 50%;
-      color: var(--text);
-      cursor: pointer;
-      display: flex;
-      height: 34px;
-      justify-content: center;
-      position: absolute;
-      right: 18px;
-      top: 18px;
-      width: 34px;
-      z-index: 10;
-    }
-
-    .pf-modal-close:hover {
-      background: rgba(255, 255, 255, 0.12);
-    }
-
-    .pf-modal-box img {
-      border-radius: var(--radius-md);
-      margin-top: 14px;
-      max-height: 65vh;
-      object-fit: contain;
-      width: 100%;
-    }
-
-    .assessment-modal-box {
-      max-width: 740px;
-    }
-
-    .assessment-modal-grid {
-      display: grid;
-      gap: 16px;
-      grid-template-columns: 1fr 1fr;
-      margin-top: 20px;
-    }
-
-    .assessment-modal-card {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 18px;
-    }
-
-    .assessment-modal-card h4 {
-      color: var(--green);
-      font-size: 0.92rem;
-      font-weight: 750;
-      margin-bottom: 8px;
-    }
-
-    .assessment-modal-card p {
-      color: var(--text-secondary);
-      font-size: 0.82rem;
-      line-height: 1.5;
-    }
-
-    .assessment-modal-card ul {
-      list-style: none;
-      margin-top: 8px;
-      padding: 0;
-    }
-
-    .assessment-modal-card li {
-      color: var(--muted);
-      font-size: 0.78rem;
-      line-height: 1.45;
-      padding-left: 12px;
-      position: relative;
-    }
-
-    .assessment-modal-card li::before {
-      color: var(--green);
-      content: "•";
-      left: 0;
-      position: absolute;
-    }
-
-    .pf-gallery-lightbox-box {
-      max-height: 90vh;
-      max-width: 90vw;
-      position: relative;
-    }
-
-    .pf-gallery-lightbox-box img {
-      border-radius: var(--radius-md);
-      max-height: 85vh;
-      max-width: 90vw;
-      object-fit: contain;
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
     @media (max-width: 1180px) {
       .pf-pricing-grid-4 {
         grid-template-columns: repeat(2, 1fr);
@@ -2088,73 +2730,6 @@
       }
       .pf-session-bar-3 {
         grid-template-columns: repeat(2, 1fr);
-      }
-      .outcome-grid,
-      .pf-why-grid,
-      .resource-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .pf-why-col:nth-child(2) {
-        border-right: none;
-      }
-    }
-
-    @media (max-width: 1020px) {
-      .hero-grid,
-      .story-grid,
-      .contact-grid {
-        grid-template-columns: 1fr;
-        gap: 36px;
-      }
-
-      .hero-visual {
-        height: 380px;
-      }
-
-      .story-image {
-        aspect-ratio: 4 / 5;
-        max-height: 460px;
-        max-width: 440px;
-        margin: 0 auto;
-      }
-
-      .pf-qualification-grid,
-      .pf-footer-grid {
-        grid-template-columns: 1fr;
-        gap: 28px;
-      }
-
-      .nav-links {
-        background: #0b0f0c;
-        border-bottom: 1px solid var(--border);
-        display: none;
-        flex-direction: column;
-        gap: 0;
-        inset: 68px 0 auto 0;
-        padding: 16px 24px;
-        position: absolute;
-      }
-
-      .nav-links.open {
-        display: flex;
-      }
-
-      .nav-links li {
-        width: 100%;
-      }
-
-      .nav-links a {
-        display: block;
-        padding: 12px 0;
-        border-bottom: 1px solid var(--border-subtle);
-      }
-
-      .menu-button {
-        display: flex;
-      }
-
-      .header-cta {
-        display: none;
       }
     }
 
@@ -2177,44 +2752,11 @@
     }
 
     @media (max-width: 640px) {
-      .section {
-        padding: 60px 0;
-      }
-
-      .hero-visual {
-        height: 320px;
-      }
-
-      .story-image {
-        max-height: 380px;
-      }
-
-      .transformation-grid,
-      .form-grid,
-      .faq-grid,
-      .assessment-modal-grid,
-      .outcome-grid,
-      .pf-why-grid,
-      .resource-grid,
-      .pf-pricing-benefits,
       .pf-pricing-grid-4 {
         grid-template-columns: 1fr;
       }
-
-      .transformation-card img {
-        height: 380px;
-      }
-
-      .pf-why-col {
-        border-right: none;
-        border-bottom: 1px solid var(--border);
-        padding: 24px 0;
-      }
-
-      .pf-why-col:last-child {
-        border-bottom: none;
-      }
     }
+
   </style>
 </head>
 
@@ -2224,135 +2766,177 @@
        HEADER
   ========================================================= -->
   <header>
-    <div class="container nav-container">
-      <a class="logo-group" href="#home" aria-label="Phen Fitness Homepage">
-        <img class="logo-icon" src="images/phen-fitness-logo.png" alt="Phen Fitness Logo" />
-        <div class="logo-text">
-          <strong>Phen Fitness</strong>
-          <span>Personal Training · Siem Reap</span>
-        </div>
+    <div class="container navigation">
+
+      <a class="logo" href="#home" aria-label="Phen Fitness home">
+        <img src="images/phen-fitness-logo.png" alt="Phen Fitness logo" class="logo-icon" />
+        <img src="images/phen-fitness-wordmark.png" alt="Phen Fitness" class="logo-wordmark" />
       </a>
 
-      <nav aria-label="Primary Navigation">
-        <ul class="nav-links" id="siteNav">
-          <li><a href="#services">Services</a></li>
-          <li><a href="#story">My Story</a></li>
-          <li><a href="#transformation">Transformations</a></li>
-          <li><a href="#qualifications">Qualifications</a></li>
-          <li><a href="#gallery">Gallery</a></li>
-          <li><a href="#testimonials">Reviews</a></li>
-          <li><a href="#pricing">Pricing</a></li>
-          <li><a href="#resources">Guidance</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
+      <nav class="nav-links" id="siteNav">
+        <a href="#services">Services</a>
+        <a href="#story">My Story</a>
+        <a href="#qualifications">Qualifications</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#resources">Resources</a>
+        <a href="#contact">Contact</a>
       </nav>
 
       <div class="nav-actions">
-        <a class="button button-primary header-cta" href="#contact">Book Consult</a>
-        <button class="menu-button" id="menuButton" aria-label="Toggle navigation menu" aria-expanded="false"
-          type="button">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-            stroke-linecap="round" stroke-linejoin="round">
+        <a class="button button-header" href="#contact">Book Consult</a>
+        <button class="menu-button" id="menuButton" type="button" aria-label="Open navigation menu" aria-expanded="false">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="3" y1="6" x2="21" y2="6"></line>
             <line x1="3" y1="12" x2="21" y2="12"></line>
             <line x1="3" y1="18" x2="21" y2="18"></line>
           </svg>
         </button>
       </div>
+
     </div>
   </header>
 
 
-  <!-- =========================================================
-       01 — HERO
-  ========================================================= -->
   <main>
+
+    <!-- =========================================================
+     01 — HERO
+    ========================================================= -->
     <section class="hero" id="home">
+
       <div class="container hero-grid">
+
         <div class="reveal">
-          <p class="eyebrow">Certified Personal Trainer · Siem Reap</p>
-          <h1>Transform Your Body. <span>Build Confidence.</span></h1>
+
+          <p class="eyebrow">
+            Certified Personal Trainer · Siem Reap
+          </p>
+
+          <h1>
+            Transform Your Body.
+            <span>Build Confidence.</span>
+          </h1>
+
           <p class="hero-copy">
             Personalized coaching for beginners and busy professionals who want
             to lose fat, build lean muscle, increase energy, and train with lasting confidence.
           </p>
+
           <div class="hero-actions">
-            <a class="button button-primary" href="#contact">Book a Consultation</a>
-            <a class="button button-outline" href="#services">Explore Services</a>
+            <a class="button button-primary" href="#contact">
+              Book a Consultation
+            </a>
+            <a class="button button-outline" href="#services">
+              Explore Services
+            </a>
           </div>
+
           <div class="hero-proof-chips">
             <div class="proof-chip">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c8ff38" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c8ff38" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
               <span><strong>EREPS Level 3</strong> Registered</span>
             </div>
             <div class="proof-chip">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c8ff38" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c8ff38" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
               <span><strong>Siem Reap</strong>, Cambodia</span>
             </div>
             <div class="proof-chip">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c8ff38" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c8ff38" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
               <span><strong>Science-Based</strong> Methods</span>
             </div>
           </div>
+
         </div>
 
         <div class="hero-visual reveal">
+
           <img src="images/phen-hero.JPG" alt="Phen Phoy coaching in a gym" />
+
           <div class="ereps-badge-group">
             <img src="images/ereps-logo.png" alt="EREPS logo" class="ereps-logo" />
-            <span class="hero-badge">EREPS Registered</span>
+            <span class="hero-badge">
+              EREPS Registered
+            </span>
           </div>
+
           <div class="hero-visual-copy">
-            <h2>Coaching built around your real life</h2>
-            <p>Clear instruction, practical nutrition guidance, and a structured plan focused on sustainable results.</p>
+            <h2>
+              Coaching built around your real life
+            </h2>
+            <p>
+              Clear instruction, practical nutrition guidance, and a structured plan focused on sustainable results.
+            </p>
           </div>
+
         </div>
+
       </div>
     </section>
 
 
     <!-- =========================================================
-         02 — HOW I HELP
+     02 — HOW I HELP
     ========================================================= -->
     <section class="section section-soft">
+
       <div class="container">
-        <p class="eyebrow">Client Outcomes</p>
-        <h2 class="section-title">What We Can Achieve Together</h2>
+
+        <p class="eyebrow">
+          How I Help
+        </p>
+
+        <h2 class="section-title">
+          Build a healthier, stronger, and more capable body.
+        </h2>
+
         <p class="section-copy">
-          Whether stepping into a gym for the first time or breaking through a plateau, training is tailored directly to your lifestyle.
+          Coaching is designed to improve both physical results and daily confidence
+          without extreme crash dieting or unnecessary complexity.
         </p>
 
         <div class="outcome-grid">
-          <article class="outcome-card">
-            <div class="outcome-num">01</div>
-            <h3>Fat Loss &amp; Body Recomposition</h3>
-            <p>Sustainable nutritional principles and progressive resistance workouts designed to shed fat while preserving lean muscle.</p>
+
+          <article class="card">
+            <span class="card-number">01</span>
+            <h3>Burn Fat &amp; Get Lean</h3>
+            <p>
+              Develop sustainable training and nutritional habits that drive long-term body recomposition.
+            </p>
           </article>
-          <article class="outcome-card">
-            <div class="outcome-num">02</div>
-            <h3>Strength &amp; Muscle Building</h3>
-            <p>Master compound barbell and dumbbell movements safely with structured progressive overload and technique coaching.</p>
+
+          <article class="card">
+            <span class="card-number">02</span>
+            <h3>Build Muscle &amp; Strength</h3>
+            <p>
+              Master resistance training with hands-on technique coaching and progressive overload programming.
+            </p>
           </article>
-          <article class="outcome-card">
-            <div class="outcome-num">03</div>
-            <h3>Mobility, Core &amp; Posture</h3>
-            <p>Target desk-worker tightness, correct muscular imbalances, and eliminate lower back discomfort through functional core work.</p>
+
+          <article class="card">
+            <span class="card-number">03</span>
+            <h3>Increase Power &amp; Movement</h3>
+            <p>
+              Improve joint mobility, movement quality, coordination, and athletic performance.
+            </p>
           </article>
-          <article class="outcome-card">
-            <div class="outcome-num">04</div>
-            <h3>Confidence &amp; Energy</h3>
-            <p>Develop self-assurance inside the gym and lasting daily physical vitality through consistent, guided execution.</p>
+
+          <article class="card">
+            <span class="card-number">04</span>
+            <h3>Improve Endurance &amp; Energy</h3>
+            <p>
+              Boost cardiovascular capacity and stamina to sustain high energy levels throughout your workday.
+            </p>
           </article>
+
         </div>
+
       </div>
     </section>
 
 
     <!-- =========================================================
-         03 — SERVICES
+     03 — SERVICES
     ========================================================= -->
     <section class="pf-services section" id="services">
       <div class="container">
@@ -2487,224 +3071,422 @@
 
 
     <!-- =========================================================
-         04 — WHY CHOOSE PHEN FITNESS
+     04 — WHY CLIENTS CHOOSE PHEN FITNESS
     ========================================================= -->
     <section class="section section-soft">
-      <div class="container">
-        <p class="eyebrow">Why Choose Phen Fitness</p>
-        <h2 class="section-title">Coaching Grounded in Principles, Not Fads</h2>
-        <p class="section-copy">
-          No generic workout templates or extreme starvation diets. Just structured, evidence-grounded coaching that prioritizes your longevity and sanity.
-        </p>
 
-        <div class="pf-why-grid">
-          <div class="pf-why-col">
-            <div class="pf-why-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </div>
-            <h3>Certified &amp; Registered</h3>
-            <p>Holding EREPS Level 3 registration and CPR/AED certifications, guaranteeing professional standard adherence.</p>
+      <div class="container">
+
+        <div class="pf-why-box">
+
+          <p class="eyebrow">
+            Why Clients Choose Phen Fitness
+          </p>
+
+          <h2 class="section-title">
+            What You Can Expect
+          </h2>
+
+          <p class="section-copy">
+            Professional instruction, science-grounded programming, and respectful coaching designed to help you train with confidence and consistency.
+          </p>
+
+          <div class="pf-why-grid">
+
+            <article class="pf-why-item">
+              <div class="pf-why-number">01</div>
+              <h3>Goal-Based Training</h3>
+              <p>
+                Every session is structured around your specific priorities, experience, and mobility needs.
+              </p>
+            </article>
+
+            <article class="pf-why-item">
+              <div class="pf-why-number">02</div>
+              <h3>Professional Guidance</h3>
+              <p>
+                Constructive feedback, movement corrections, and steady encouragement through each phase.
+              </p>
+            </article>
+
+            <article class="pf-why-item">
+              <div class="pf-why-number">03</div>
+              <h3>Progress Tracking</h3>
+              <p>
+                Regular objective reviews ensure you see tangible improvements in strength and composition.
+              </p>
+            </article>
+
+            <article class="pf-why-item">
+              <div class="pf-why-number">04</div>
+              <h3>Accountability &amp; Habit</h3>
+              <p>
+                Continuous guidance to help you build sustainable routines that last well beyond the gym.
+              </p>
+            </article>
+
           </div>
-          <div class="pf-why-col">
-            <div class="pf-why-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-            </div>
-            <h3>Form-First Philosophy</h3>
-            <p>Every rep is coached with precision to build foundational strength while keeping joints, spine, and shoulders protected.</p>
-          </div>
-          <div class="pf-why-col">
-            <div class="pf-why-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
-            </div>
-            <h3>Measurable Progression</h3>
-            <p>Track metrics with biometric 3D scans and progressive logbooks so that tangible improvement is always visible.</p>
-          </div>
-          <div class="pf-why-col">
-            <div class="pf-why-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
-            </div>
-            <h3>Sustainable Habits</h3>
-            <p>Guidance engineered around your real work schedule, local dining habits, and energy levels for permanent results.</p>
-          </div>
+
         </div>
+
       </div>
     </section>
 
 
     <!-- =========================================================
-         05 — MY STORY
+     05 — MY STORY
     ========================================================= -->
     <section class="section" id="story">
+
       <div class="container story-grid">
-        <div class="story-image reveal">
-          <img src="images/phen-story.JPG" alt="Coach Phen Phoy training at the gym" loading="lazy" />
+
+        <div class="story-image">
+          <img src="images/phen-about.png" alt="Phen Phoy, certified fitness instructor" loading="lazy" />
         </div>
 
-        <div class="reveal">
-          <p class="eyebrow">My Story</p>
-          <h2 class="section-title">Coaching Born from Personal Experience</h2>
-          <p class="story-quote">
-            "I didn't start with perfect genetics or flawless gym knowledge. I built my strength step by step through trial, education, and relentless consistency."
+        <div class="story-content">
+
+          <p class="eyebrow">
+            My Story
           </p>
+
+          <h2 class="section-title">
+            Fitness gave me strength, confidence, and purpose.
+          </h2>
+
           <p class="section-copy">
-            Like many people beginning their fitness journey, I once felt uncertain in the weight room. I learned firsthand the confusion of conflicting diet advice and the frustration of spinning wheels without progress.
+            My journey began in 2016 after a health crisis changed my outlook entirely. Structured training helped me rebuild physical strength, conquer fatigue, and find clarity of purpose.
           </p>
-          <p class="section-copy" style="margin-top: 10px;">
-            That journey motivated me to earn international certifications, understand the science of biomechanics, and help people in Siem Reap avoid the common mistakes that hold them back.
+
+          <p class="story-quote">
+            “Today, I help others transform their bodies through clear, effective, and sustainable coaching.”
           </p>
 
           <div class="story-points">
+
             <div class="story-point">
-              <div class="story-point-icon">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              </div>
+              <span>✓</span>
               <div>
-                <h4>Certified Expertise</h4>
-                <p>Formally educated through recognized international standards rather than unverified fitness trends.</p>
+                <strong>Personal Empathy</strong>
+                <p>
+                  I know how intimidating starting can feel. I meet every client right where they are.
+                </p>
               </div>
             </div>
+
             <div class="story-point">
-              <div class="story-point-icon">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              </div>
+              <span>✓</span>
               <div>
-                <h4>Compassionate Coaching</h4>
-                <p>Support that recognizes individual challenges and meets you wherever your current fitness level starts.</p>
+                <strong>Certified Expertise</strong>
+                <p>
+                  Accredited by EREPS and NASM with continuing education in exercise physiology.
+                </p>
               </div>
             </div>
+
             <div class="story-point">
-              <div class="story-point-icon">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              </div>
+              <span>✓</span>
               <div>
-                <h4>Long-Term Habit Shift</h4>
-                <p>Focusing on foundational habits that maintain your physical vitality long after initial goals are achieved.</p>
+                <strong>Sustainable Long-Term Vision</strong>
+                <p>
+                  We build lifelong capabilities, not short-lived unsustainable crash routines.
+                </p>
               </div>
             </div>
+
           </div>
+
         </div>
+
       </div>
     </section>
 
 
     <!-- =========================================================
-         06 — TRANSFORMATION
+     06 — MY TRANSFORMATION
     ========================================================= -->
     <section class="section section-soft" id="transformation">
+
       <div class="container">
-        <p class="eyebrow">Transformation Proof</p>
-        <h2 class="section-title">Discipline, Progression, and Time</h2>
+
+        <p class="eyebrow">
+          My Transformation
+        </p>
+
+        <h2 class="section-title">
+          From a health scare to a stronger, healthier life.
+        </h2>
+
         <p class="section-copy">
-          Real physique transformation isn't an overnight shortcut. It is the visible compounding result of intelligent training and nutritional discipline.
+          My personal journey shaped how I coach: with patience, discipline, and sincere respect for every client's unique starting line.
         </p>
 
         <div class="transformation-grid">
+
           <article class="transformation-card">
-            <img src="images/transformation-1.JPG" alt="Coach Phen Phoy starting point" loading="lazy" />
-            <div class="transformation-card-body">
-              <span class="transformation-phase-tag">Phase 1 · Starting Point</span>
-              <h3>The Beginning of the Journey</h3>
-              <p>Underweight, uncertain of gym mechanics, and learning the fundamentals of nutrition.</p>
+            <img src="images/transformation-before.jpg" alt="Phen Phoy before beginning his fitness transformation" loading="lazy" />
+            <div>
+              <span>Phase 1 · Starting Point</span>
+              <h3>Before the Transformation</h3>
             </div>
           </article>
 
           <article class="transformation-card">
-            <img src="images/transformation-2.JPG" alt="Coach Phen Phoy current lean muscular physique" loading="lazy" />
-            <div class="transformation-card-body">
-              <span class="transformation-phase-tag">Phase 2 · Consistency</span>
-              <h3>The Compounding Result</h3>
-              <p>Lean muscle development, functional mobility, and a deep understanding of body composition.</p>
+            <img src="images/transformation-after.png" alt="Phen Phoy after developing strength and fitness" loading="lazy" />
+            <div>
+              <span>Phase 2 · Consistency</span>
+              <h3>Building Strength &amp; Confidence</h3>
             </div>
           </article>
+
         </div>
 
         <div class="transformation-note">
-          <h3>The Process Works for Anyone</h3>
+          <h3>
+            Commitment + Discipline = Positive Results
+          </h3>
           <p>
-            The exact training methodology that transformed my physique is what I use to guide every client: progressive resistance, sustainable caloric balance, and structured weekly progression.
+            No two journeys are identical. Real progress happens when you execute the right plan with patience, review metrics honestly, and make steady adjustments over time.
           </p>
         </div>
+
       </div>
     </section>
 
 
     <!-- =========================================================
-         07 — QUALIFICATIONS
+     07 — QUALIFICATIONS
     ========================================================= -->
     <section class="section" id="qualifications">
+
       <div class="container">
-        <p class="eyebrow">Credentials &amp; Standards</p>
-        <h2 class="section-title">Verified Qualifications You Can Trust</h2>
-        <p class="section-copy">
-          Your health and safety in the gym deserve professional standard verification. View all official certifications below.
+
+        <p class="eyebrow">
+          Qualifications
         </p>
 
-        <div class="pf-qualification-grid">
-          <article class="pf-cert-card">
-            <div>
-              <span class="pf-cert-badge">Verified Credential</span>
-              <h3>EREPS Level 3 Fitness Instructor</h3>
-              <p>European Register of Exercise Professionals certified, confirming evidence-grounded competence in exercise prescription.</p>
-            </div>
-            <div class="pf-cert-footer">
-              <button class="pf-certificate-button" type="button"
-                data-certificate="images/certificate-fitness-instructor.png"
-                data-title="EREPS Level 3 Fitness Instructor Certificate">
-                <span>View Certificate</span>
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-              </button>
-            </div>
-          </article>
+        <h2 class="section-title">
+          Professional education supporting safe, science-based coaching.
+        </h2>
 
-          <article class="pf-cert-card">
-            <div>
-              <span class="pf-cert-badge">Safety Standard</span>
-              <h3>CPR &amp; AED First Aid Certified</h3>
-              <p>Certified in cardiopulmonary resuscitation and automated external defibrillator operation for gym floor safety.</p>
-            </div>
-            <div class="pf-cert-footer">
-              <button class="pf-certificate-button" type="button"
-                data-certificate="images/certificate-cpr-aed.png"
-                data-title="CPR &amp; AED First Aid Certification">
-                <span>View Certificate</span>
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-              </button>
-            </div>
-          </article>
+        <p class="section-copy">
+          Tap any certification below to view the official verified credential. You can also verify my registry live on EREPS.
+        </p>
 
-          <article class="pf-cert-card">
-            <div>
-              <span class="pf-cert-badge">Specialization</span>
-              <h3>Posture &amp; Core Correction</h3>
-              <p>Advanced practical training in joint mobility, thoracic extension, and anterior pelvic tilt management.</p>
-            </div>
-            <div class="pf-cert-footer">
-              <button class="pf-certificate-button" type="button"
-                data-certificate="images/certificate-core-correction.png"
-                data-title="Posture &amp; Core Correction Specialization">
-                <span>View Certificate</span>
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-              </button>
-            </div>
-          </article>
+        <div class="pf-qualification-summary">
+
+          <div class="pf-summary-item">
+            <span class="pf-summary-icon">✓</span>
+            <strong>EREPS Registered</strong>
+          </div>
+
+          <div class="pf-summary-item">
+            <span class="pf-summary-icon">9</span>
+            <strong>Certificates &amp; Courses</strong>
+          </div>
+
+          <div class="pf-summary-item">
+            <span class="pf-summary-icon">✓</span>
+            <strong>CPR &amp; AED Training</strong>
+          </div>
+
+          <div class="pf-summary-item">
+            <span class="pf-summary-icon">✓</span>
+            <strong>Continuing Education</strong>
+          </div>
+
         </div>
+
+        <div class="pf-qualification-grid">
+
+          <article class="pf-qualification-card">
+            <small>EREPS Registered · Fitness Edutraining Asia</small>
+            <h3>Certified Fitness Instructor</h3>
+            <p>EQF Level 3 Accredited</p>
+            <button class="pf-certificate-button" data-certificate="images/Certificates/eqf-level-3.JPG"
+              data-title="Certified Fitness Instructor — EQF Level 3">
+              View Certificate ↗
+            </button>
+          </article>
+
+          <article class="pf-qualification-card">
+            <small>Fitness Edutraining Asia</small>
+            <h3>Certified Fitness Instructor</h3>
+            <p>Module 1 Foundation</p>
+            <button class="pf-certificate-button" data-certificate="images/Certificates/module-1.jpg"
+              data-title="Certified Fitness Instructor — Module 1">
+              View Certificate ↗
+            </button>
+          </article>
+
+          <article class="pf-qualification-card">
+            <small>Fitness Edutraining Asia</small>
+            <h3>CPR &amp; AED</h3>
+            <p>Basic Life Support Certified</p>
+            <button class="pf-certificate-button" data-certificate="images/Certificates/cpr-aed.jpg"
+              data-title="CPR & AED — Basic Life Support">
+              View Certificate ↗
+            </button>
+          </article>
+
+          <article class="pf-qualification-card">
+            <small>Fitness Edutraining Asia</small>
+            <h3>Bootylicious Training Techniques</h3>
+            <p>Lower Body &amp; Glute Specialization</p>
+            <button class="pf-certificate-button" data-certificate="images/Certificates/bootylicious-training.jpg"
+              data-title="Bootylicious Training Techniques">
+              View Certificate ↗
+            </button>
+          </article>
+
+          <article class="pf-qualification-card">
+            <small>The CPD Group</small>
+            <h3>Fitness Trainer</h3>
+            <p>Professional Fitness Certification</p>
+            <button class="pf-certificate-button" data-certificate="images/Certificates/fitness-trainer.JPG"
+              data-title="Fitness Trainer — The CPD Group">
+              View Certificate ↗
+            </button>
+          </article>
+
+          <article class="pf-qualification-card">
+            <small>The CPD Group</small>
+            <h3>Diet &amp; Nutrition Coach</h3>
+            <p>Evidence-Based Nutrition Principles</p>
+            <button class="pf-certificate-button" data-certificate="images/Certificates/diet-nutrition-coach.JPG"
+              data-title="Diet & Nutrition Coach — The CPD Group">
+              View Certificate ↗
+            </button>
+          </article>
+
+          <article class="pf-qualification-card">
+            <small>Cambodia Fitness Academy</small>
+            <h3>Exercise Mentoring Program</h3>
+            <p>Advanced Practical Coaching</p>
+            <button class="pf-certificate-button" data-certificate="images/Certificates/exercise-mentoring.jpg"
+              data-title="Exercise Mentoring Program">
+              View Certificate ↗
+            </button>
+          </article>
+
+          <article class="pf-qualification-card">
+            <small>National Academy of Sports Medicine</small>
+            <h3>Personal Fitness Trainer</h3>
+            <p>NASM Continuing Education</p>
+            <button class="pf-certificate-button" data-certificate="images/Certificates/nasm-personal-trainer.jpg"
+              data-title="Getting Started as a Personal Fitness Trainer">
+              View Certificate ↗
+            </button>
+          </article>
+
+          <article class="pf-qualification-card">
+            <small>National Academy of Sports Medicine</small>
+            <h3>Coaching Strategies for Weight Loss</h3>
+            <p>NASM Weight Management Specialist</p>
+            <button class="pf-certificate-button" data-certificate="images/Certificates/nasm-weight-loss.jpg"
+              data-title="Fitness Coaching Strategies for Weight Loss">
+              View Certificate ↗
+            </button>
+          </article>
+
+        </div>
+
+        <div class="pf-qualification-actions">
+          <a class="button button-primary" href="https://www.ereps.eu/member-profile/147076" target="_blank"
+            rel="noopener noreferrer">
+            <span>Verify Live on EREPS Registry</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </a>
+        </div>
+
       </div>
     </section>
 
 
     <!-- =========================================================
-         08 — GALLERY
+     08 — HOW IT WORKS
+    ========================================================= -->
+    <section class="section section-soft">
+
+      <div class="container">
+
+        <p class="eyebrow">
+          How It Works
+        </p>
+
+        <h2 class="section-title">
+          A clear process from your first conversation to continued progress.
+        </h2>
+
+        <div class="steps">
+
+          <article class="step">
+            <strong>01</strong>
+            <h3>Consultation</h3>
+            <p>
+              Discuss your history, priorities, schedule, and goals in detail.
+            </p>
+          </article>
+
+          <article class="step">
+            <strong>02</strong>
+            <h3>Assessment</h3>
+            <p>
+              Establish your starting baseline with Visbody scan and cardio tests.
+            </p>
+          </article>
+
+          <article class="step">
+            <strong>03</strong>
+            <h3>Your Custom Plan</h3>
+            <p>
+              Receive a structured program tailored precisely to your targets.
+            </p>
+          </article>
+
+          <article class="step">
+            <strong>04</strong>
+            <h3>Guided Coaching</h3>
+            <p>
+              Train with direct form feedback, accountability, and technique support.
+            </p>
+          </article>
+
+          <article class="step">
+            <strong>05</strong>
+            <h3>Review &amp; Adapt</h3>
+            <p>
+              Track weekly progress and fine-tune your programming as you adapt.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =========================================================
+     09 — GALLERY
     ========================================================= -->
     <section class="pf-gallery-section" id="gallery">
+
       <div class="pf-gallery-container">
+
         <div class="pf-gallery-header-row">
+
           <div>
-            <p class="eyebrow">Coaching in Action</p>
-            <h2 class="section-title">Real coaching. Real effort. Real progress.</h2>
+            <p class="eyebrow">
+              Coaching in Action
+            </p>
+            <h2 class="section-title">
+              Real coaching. Real effort. Real progress.
+            </h2>
             <p class="section-copy">
               A look inside personal training and small-group sessions at Phen Fitness in Siem Reap.
             </p>
           </div>
+
           <div class="pf-gallery-controls">
             <button class="pf-gallery-arrow" id="galleryPrev" aria-label="Scroll gallery left" type="button">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
@@ -2713,85 +3495,119 @@
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
             </button>
           </div>
+
         </div>
 
         <div class="pf-gallery-track" id="galleryTrack">
+
           <button class="pf-gallery-card" type="button">
             <img src="images/coaching-1.png" alt="Phen Fitness coaching session" loading="lazy" />
           </button>
+
           <button class="pf-gallery-card" type="button">
             <img src="images/coaching-2.png" alt="Personal training session" loading="lazy" />
           </button>
+
           <button class="pf-gallery-card" type="button">
             <img src="images/coaching-3.png" alt="Fitness coaching session" loading="lazy" />
           </button>
+
           <button class="pf-gallery-card" type="button">
             <img src="images/coaching-4.JPG" alt="Strength training session" loading="lazy" />
           </button>
+
           <button class="pf-gallery-card" type="button">
             <img src="images/coaching-5.jpg" alt="One-to-one coaching" loading="lazy" />
           </button>
+
           <button class="pf-gallery-card" type="button">
             <img src="images/coaching-6.jpg" alt="Gym training session" loading="lazy" />
           </button>
+
           <button class="pf-gallery-card" type="button">
             <img src="images/coaching-7.JPG" alt="Technique coaching" loading="lazy" />
           </button>
+
           <button class="pf-gallery-card" type="button">
             <img src="images/coaching-8.jpg" alt="Small group coaching" loading="lazy" />
           </button>
+
           <button class="pf-gallery-card" type="button">
             <img src="images/coaching-9.JPG" alt="Resistance training" loading="lazy" />
           </button>
+
           <button class="pf-gallery-card" type="button">
             <img src="images/coaching-10.JPG" alt="Phen Fitness training" loading="lazy" />
           </button>
+
           <button class="pf-gallery-card" type="button">
             <img src="images/coaching-11.jpg" alt="Resistance training" loading="lazy" />
           </button>
+
           <button class="pf-gallery-card" type="button">
             <img src="images/coaching-12.JPG" alt="Resistance training" loading="lazy" />
           </button>
+
           <button class="pf-gallery-card" type="button">
             <img src="images/coaching-13.JPG" alt="Resistance training" loading="lazy" />
           </button>
+
           <button class="pf-gallery-card" type="button">
             <img src="images/coaching-14.JPG" alt="Resistance training" loading="lazy" />
           </button>
+
           <button class="pf-gallery-card" type="button">
             <img src="images/coaching-15.jpg" alt="Resistance training" loading="lazy" />
           </button>
+
           <button class="pf-gallery-card" type="button">
             <img src="images/coaching-16.jpg" alt="Resistance training" loading="lazy" />
           </button>
+
           <button class="pf-gallery-card" type="button">
             <img src="images/coaching-17.JPG" alt="Resistance training" loading="lazy" />
           </button>
+
           <button class="pf-gallery-card" type="button">
-            <img src="images/coaching-18.jpg" alt="Resistance training" loading="lazy" />
+            <img src="images/coaching-18.JPG" alt="Resistance training" loading="lazy" />
           </button>
+
           <button class="pf-gallery-card" type="button">
-            <img src="images/coaching-19.jpg" alt="Resistance training" loading="lazy" />
+            <img src="images/coaching-19.JPG" alt="Resistance training" loading="lazy" />
           </button>
+
           <button class="pf-gallery-card" type="button">
             <img src="images/coaching-20.JPG" alt="Resistance training" loading="lazy" />
           </button>
+
         </div>
+
       </div>
     </section>
 
 
     <!-- =========================================================
-         09 — TESTIMONIALS
+     10 — TESTIMONIALS
     ========================================================= -->
     <section class="section" id="testimonials">
+
       <div class="container">
+
         <div class="pf-testimonials-header">
+
           <div>
-            <p class="eyebrow">Client Feedback</p>
-            <h2 class="section-title">Words from Clients Who Committed</h2>
+            <p class="eyebrow">
+              Client Testimonials
+            </p>
+            <h2 class="section-title">
+              Real experiences. Real progress.
+            </h2>
+            <p class="section-copy">
+              Hear directly from clients on their consistency, personal progress, and results.
+            </p>
           </div>
-          <div class="pf-gallery-controls" style="display:flex;">
+
+          <div class="pf-gallery-controls">
             <button class="pf-gallery-arrow" id="testimonialPrev" aria-label="Previous testimonial" type="button">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
             </button>
@@ -2799,66 +3615,49 @@
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
             </button>
           </div>
+
         </div>
 
-        <div class="pf-testimonials-track" id="testimonialTrack">
+        <div class="pf-testimonial-track" id="testimonialTrack">
+
           <article class="pf-testimonial-card">
-            <div>
-              <div class="pf-stars">★★★★★</div>
-              <p>"Phen is patient, knowledgeable, and genuinely invested in your progress. My back pain has vanished and my strength has doubled."</p>
-            </div>
-            <div class="pf-client-info">
-              <strong>Sophea K.</strong>
-              <span>Hospitality Manager · Siem Reap</span>
-            </div>
+            <div class="pf-stars">★★★★★</div>
+            <div class="pf-quote-mark">“</div>
+            <p class="pf-testimonial-text">
+              Working with Phen completely reshaped my relationship with fitness. I lost body fat, built real strength, and now walk into the gym with full confidence.
+            </p>
+            <strong>Srey Rath</strong>
+            <small style="color: var(--muted); margin-top: 3px; font-size: 0.8rem;">Personal Training Client</small>
           </article>
+
           <article class="pf-testimonial-card">
-            <div>
-              <div class="pf-stars">★★★★★</div>
-              <p>"I was intimidated by gyms until I started training with Phen. He breaks down movements clearly and keeps workouts motivating."</p>
-            </div>
-            <div class="pf-client-info">
-              <strong>David M.</strong>
-              <span>Digital Nomad &amp; Remote Developer</span>
-            </div>
+            <div class="pf-stars">★★★★★</div>
+            <div class="pf-quote-mark">“</div>
+            <p class="pf-testimonial-text">
+              As a busy professional, I needed a workout routine that accommodated my demanding schedule. Phen’s structure gave me consistency and energy I haven’t had in years.
+            </p>
+            <strong>Dara Vicheka</strong>
+            <small style="color: var(--muted); margin-top: 3px; font-size: 0.8rem;">1-on-1 Client</small>
           </article>
+
           <article class="pf-testimonial-card">
-            <div>
-              <div class="pf-stars">★★★★★</div>
-              <p>"The body composition assessment was eye-opening. We set clear numbers and hit every single metric within our 3-month block."</p>
-            </div>
-            <div class="pf-client-info">
-              <strong>Channary T.</strong>
-              <span>Business Owner · Siem Reap</span>
-            </div>
+            <div class="pf-stars">★★★★★</div>
+            <div class="pf-quote-mark">“</div>
+            <p class="pf-testimonial-text">
+              The individual attention to proper posture and lifting technique made all the difference. I feel stronger, leaner, and healthier than ever before.
+            </p>
+            <strong>Chan Reach</strong>
+            <small style="color: var(--muted); margin-top: 3px; font-size: 0.8rem;">Small-Group Training</small>
           </article>
-          <article class="pf-testimonial-card">
-            <div>
-              <div class="pf-stars">★★★★★</div>
-              <p>"Small-group sessions with my colleague have been the best fitness decision. We stay accountable and look forward to every session."</p>
-            </div>
-            <div class="pf-client-info">
-              <strong>Elena V.</strong>
-              <span>NGO Coordinator</span>
-            </div>
-          </article>
-          <article class="pf-testimonial-card">
-            <div>
-              <div class="pf-stars">★★★★★</div>
-              <p>"True professional. No time-wasting or gimmicks. Just solid progressive resistance that delivers real body changes."</p>
-            </div>
-            <div class="pf-client-info">
-              <strong>Sokha L.</strong>
-              <span>Bank Executive · Siem Reap</span>
-            </div>
-          </article>
+
         </div>
+
       </div>
     </section>
 
 
     <!-- =========================================================
-         10 — PRICING & OPTIONS
+     11 — PRICING & OPTIONS
     ========================================================= -->
     <section class="section section-soft" id="pricing">
       <div class="container">
@@ -3030,286 +3829,342 @@
 
 
     <!-- =========================================================
-         11 — RESOURCES & FAQS
+     12 — FREE RESOURCES
     ========================================================= -->
     <section class="section" id="resources">
+
       <div class="container">
-        <p class="eyebrow">Practical Knowledge</p>
-        <h2 class="section-title">Evidence-Based Fitness Guidance</h2>
-        <p class="section-copy">
-          Clear answers to common client questions about nutrition, strength, recovery, and gym habits.
+
+        <p class="eyebrow">
+          Free Resources
         </p>
 
+        <h2 class="section-title">
+          Practical tools to support your fitness journey.
+        </h2>
+
         <div class="resource-grid">
+
           <article class="resource-card">
-            <span class="resource-card-tag">Nutrition</span>
-            <h3>Protein Intake for Fat Loss</h3>
-            <p>Why sufficient daily protein preserves metabolic rate and prevents muscle wasting during a calorie deficit.</p>
+            <h3>Workout Plans</h3>
+            <p>
+              Targeted routines for upper body, lower body, and balanced weekly workout splits.
+            </p>
           </article>
+
           <article class="resource-card">
-            <span class="resource-card-tag">Strength</span>
-            <h3>Progressive Overload Simplified</h3>
-            <p>How small systematic increments in weight, reps, or control create continuous muscular development.</p>
+            <h3>Weight-Loss Tracker</h3>
+            <p>
+              A straightforward template to log workout consistency and track your weekly trends.
+            </p>
           </article>
+
           <article class="resource-card">
-            <span class="resource-card-tag">Recovery</span>
-            <h3>Sleep &amp; Hormonal Balance</h3>
-            <p>Why 7–8 hours of consistent restorative rest is the most overlooked variable in physique transformation.</p>
+            <h3>Calorie Calculator</h3>
+            <p>
+              Estimate a realistic starting baseline for your daily maintenance and deficit targets.
+            </p>
           </article>
+
           <article class="resource-card">
-            <span class="resource-card-tag">Mindset</span>
-            <h3>Consistency Over Intensity</h3>
-            <p>Why sustainable 3–4 day routines will always outperform unsustainable 6-day burnout cycles.</p>
+            <h3>Protein Calculator</h3>
+            <p>
+              Calculate daily protein targets tailored to your muscle building and recovery needs.
+            </p>
           </article>
+
         </div>
 
-        <div class="faq-section-title">
-          <p class="eyebrow">Frequently Asked Questions</p>
-          <h2 class="section-title">Everything You Need to Know Before Starting</h2>
+        <div class="resource-actions">
+          <a class="button button-primary" href="https://linktr.ee/phenfitness" target="_blank"
+            rel="noopener noreferrer">
+            <span>Explore All Fitness Resources</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </a>
         </div>
 
-        <div class="faq-grid">
-          <div class="faq-card">
-            <h3>I've never worked out in a gym before. Is this suitable?</h3>
-            <p>Absolutely. Over 60% of clients begin with zero gym experience. Every session starts with movement assessment, fundamental technique calibration, and weights calibrated specifically for your comfort level.</p>
-          </div>
-          <div class="faq-card">
-            <h3>Where do the training sessions take place?</h3>
-            <p>In-person sessions take place at Bulldogs Fitness Center in Siem Reap, Cambodia, equipped with professional barbells, dumbbells, cables, and the Visbody 3D diagnostic scanner.</p>
-          </div>
-          <div class="faq-card">
-            <h3>Do I need to follow an extreme or restrictive diet?</h3>
-            <p>No. Extreme diets invariably fail long-term. We establish practical macronutrient and calorie targets that work with Khmer, Western, or vegetarian dining habits.</p>
-          </div>
-          <div class="faq-card">
-            <h3>What should I bring to my first session?</h3>
-            <p>Bring comfortable athletic wear, flat training shoes or runners, a water bottle, and a sweat towel. All training equipment is provided at the gym.</p>
-          </div>
-        </div>
       </div>
     </section>
 
 
     <!-- =========================================================
-         12 — CONTACT
+     13 — CONTACT
     ========================================================= -->
     <section class="section section-soft" id="contact">
+
       <div class="container">
-        <p class="eyebrow">Start Today</p>
-        <h2 class="section-title">Ready to Take Control of Your Fitness?</h2>
+
+        <p class="eyebrow">
+          Contact
+        </p>
+
+        <h2 class="section-title">
+          Ready to Start?
+        </h2>
+
         <p class="section-copy">
-          Fill out the form below to book your consultation or message Coach Phen directly on Telegram for immediate answers.
+          Tell me about your fitness goals and I’ll help you select the most effective next step for your routine.
         </p>
 
         <div class="contact-grid">
+
           <div class="contact-card">
-            <h3>Direct Contact</h3>
-            <p>Reach out directly via your preferred channel. Expect a response within a few hours.</p>
 
-            <div class="contact-methods">
-              <a class="contact-item contact-item-telegram" href="https://t.me/phenphoy" target="_blank" rel="noopener noreferrer">
-                <div class="contact-icon contact-icon-telegram">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.52 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
-                </div>
-                <div class="contact-text">
-                  <strong>Telegram (Fastest)</strong>
-                  <span>@phenphoy</span>
-                </div>
-              </a>
+            <h3>Contact Phen Fitness</h3>
+
+            <div class="contact-list">
 
               <div class="contact-item">
-                <div class="contact-icon">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                </div>
-                <div class="contact-text">
-                  <strong>Phone / WhatsApp</strong>
-                  <span>+855 (0) 93 723 378</span>
-                </div>
+                <small>Trainer</small>
+                <strong>Phen Phoy</strong>
               </div>
 
               <div class="contact-item">
-                <div class="contact-icon">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-                </div>
-                <div class="contact-text">
-                  <strong>Gym Location</strong>
-                  <span>Bulldogs Fitness Center · Siem Reap</span>
-                </div>
+                <small>Email</small>
+                <a href="mailto:phenphoy1@gmail.com">phenphoy1@gmail.com</a>
               </div>
+
+              <div class="contact-item">
+                <small>Phone</small>
+                <a href="tel:+85577413470">+855 77 413 470</a>
+              </div>
+
+              <div class="contact-item">
+                <small>Location</small>
+                <strong>Siem Reap, Cambodia</strong>
+              </div>
+
             </div>
+
+            <div class="contact-item telegram-contact">
+              <small>Telegram</small>
+              <strong>Prefer to chat directly?</strong>
+              <p>
+                Message Phen Fitness directly on Telegram to ask about consultation times, training slots, or pricing.
+              </p>
+              <a class="button button-primary" href="https://t.me/phenphoy" target="_blank" rel="noopener noreferrer">
+                <span>Message on Telegram</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m20.665 3.717-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701h-.002l-.313 4.674c.459 0 .661-.21.917-.46l2.203-2.14 4.58 3.385c.844.464 1.452.226 1.662-.782l3.003-14.156c.308-1.233-.472-1.793-1.288-1.528z"/></svg>
+              </a>
+            </div>
+
           </div>
 
-          <div class="form-card">
-            <h3>Send a Message</h3>
-            <p>Tell Coach Phen about your fitness baseline and what you want to accomplish.</p>
+          <form id="contactForm" action="https://formspree.io/f/myegapqp" method="POST" class="form-card">
+            <h3>Send an Enquiry</h3>
 
-            <form action="https://formspree.io/f/myegapqp" method="POST" id="contactForm">
-              <div class="form-grid">
-                <div class="form-group">
-                  <label for="fullName">Your Full Name *</label>
-                  <input type="text" id="fullName" name="name" required placeholder="e.g. John Smith" />
-                </div>
-                <div class="form-group">
-                  <label for="emailAddr">Email Address *</label>
-                  <input type="email" id="emailAddr" name="email" required placeholder="e.g. john@example.com" />
-                </div>
-                <div class="form-group">
-                  <label for="phoneNum">Phone or Telegram *</label>
-                  <input type="tel" id="phoneNum" name="phone" required placeholder="e.g. +855 12 345 678" />
-                </div>
-                <div class="form-group">
-                  <label for="trainingGoal">Primary Goal *</label>
-                  <select id="trainingGoal" name="goal" required>
-                    <option value="" disabled selected>Select your primary goal</option>
-                    <option value="Fat Loss & Toning">Fat Loss &amp; Toning</option>
-                    <option value="Muscle & Strength Building">Muscle &amp; Strength Building</option>
-                    <option value="Posture & Core Correction">Posture &amp; Core Correction</option>
-                    <option value="General Health & Energy">General Health &amp; Energy</option>
-                    <option value="Online Coaching">Online Coaching</option>
-                  </select>
-                </div>
-                <div class="form-group form-group-full">
-                  <label for="userMessage">Message / Questions (Optional)</label>
-                  <textarea id="userMessage" name="message" placeholder="Tell me about your fitness background, injuries, or preferred schedule..."></textarea>
-                </div>
-              </div>
-              <button class="button button-primary button-full" type="submit" style="margin-top: 18px;">
-                Send Message &amp; Book Consultation
-              </button>
-              <div class="form-status" id="formStatus"></div>
-            </form>
-          </div>
+            <div class="form-row">
+              <label>
+                Name
+                <input type="text" name="name" placeholder="Your Name" required />
+              </label>
+              <label>
+                Email
+                <input type="email" name="email" placeholder="your@email.com" required />
+              </label>
+            </div>
+
+            <div class="form-row">
+              <label>
+                Service
+                <select name="service" required>
+                  <option value="" disabled selected>Select a service</option>
+                  <option value="Initial Fitness Consultation">Initial Fitness Consultation</option>
+                  <option value="Fitness Assessment">Fitness Assessment</option>
+                  <option value="1-on-1 Personal Training">1-on-1 Personal Training</option>
+                  <option value="Small-Group Training">Small-Group Training</option>
+                  <option value="Online Coaching">Online Coaching</option>
+                  <option value="Single Personal Training Session">Single Personal Training Session</option>
+                  <option value="10-Session Package">10-Session Package</option>
+                </select>
+              </label>
+              <label>
+                Experience Level
+                <select name="experience" required>
+                  <option value="" disabled selected>Select your level</option>
+                  <option value="Beginner">Beginner</option>
+                  <option value="Intermediate">Intermediate</option>
+                  <option value="Advanced">Advanced</option>
+                </select>
+              </label>
+            </div>
+
+            <label>
+              Fitness Goal
+              <textarea name="goal" placeholder="Tell me what you would like to achieve..." required></textarea>
+            </label>
+
+            <button type="submit" class="button button-primary" style="width: 100%; margin-top: 8px;">
+              <span>Send Message</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </button>
+
+            <div class="form-status" id="formStatus" role="status"></div>
+          </form>
+
         </div>
+
       </div>
     </section>
+
+
+    <!-- =========================================================
+     ASSESSMENT DETAILS MODAL
+    ========================================================= -->
+    <div class="pf-assessment-modal" id="assessmentModal" role="dialog" aria-modal="true" aria-labelledby="assessmentModalTitle">
+      <div class="assessment-modal-backdrop" id="assessmentBackdrop"></div>
+      <div class="assessment-modal-dialog">
+        <button class="assessment-modal-close" id="assessmentModalClose" type="button" aria-label="Close modal">×</button>
+
+        <div class="assessment-modal-header">
+          <h2 id="assessmentModalTitle">Fitness Assessment Details</h2>
+          <p>Comprehensive evaluation available at Bulldogs Fitness Center — Siem Reap</p>
+        </div>
+
+        <div class="assessment-modal-grid">
+
+          <!-- Body Composition Analysis -->
+          <div class="assessment-card">
+            <h3>Body Composition Analysis</h3>
+            <p style="color: var(--green); font-weight: 750; font-size: 0.88rem; margin-bottom: 10px;">Visbody 3D Scan</p>
+            <p style="color: var(--muted); font-size: 0.88rem; line-height: 1.55; margin-bottom: 16px;">
+              A high-precision 3D scan giving a clear physical baseline and recording detailed body metrics to track progress over time.
+            </p>
+
+            <h4>Assessment Includes:</h4>
+            <ul>
+              <li>Body Weight &amp; Body Mass Index (BMI)</li>
+              <li>Body Fat Percentage (BFP) &amp; Body Fat Mass</li>
+              <li>Lean Body Mass &amp; Skeletal Muscle Mass (SMM)</li>
+              <li>Body Water &amp; Visceral Fat Rating</li>
+              <li>Waist-to-Hip Ratio (WHR)</li>
+              <li>Basal Metabolic Rate (BMR) &amp; Metabolic Age</li>
+              <li>Overall Body Composition Score</li>
+            </ul>
+
+            <h4>Additional Structural Assessments:</h4>
+            <ul>
+              <li>Circumference measurements: chest, arms, waist, hips, thighs</li>
+              <li>Posture alignment &amp; pelvic tilt evaluation</li>
+              <li>Shoulder range of motion assessment</li>
+            </ul>
+          </div>
+
+          <!-- Cardiorespiratory Assessment -->
+          <div class="assessment-card">
+            <h3>Cardiorespiratory Assessment</h3>
+            <p style="color: var(--green); font-weight: 750; font-size: 0.88rem; margin-bottom: 10px;">YMCA 3-Minute Step Test</p>
+            <p style="color: var(--muted); font-size: 0.88rem; line-height: 1.55; margin-bottom: 16px;">
+              Evaluates aerobic cardiovascular fitness by tracking recovery heart rates following three minutes of steady stepping.
+            </p>
+
+            <h4>Assessment Includes:</h4>
+            <ul>
+              <li>Resting Heart Rate</li>
+              <li>Heart Rate Recovery Kinetics</li>
+              <li>Estimated VO₂ Max Output</li>
+              <li>Cardiorespiratory Fitness Tier Rating</li>
+              <li>Personalized Aerobic Training Baseline</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
   </main>
 
 
   <!-- =========================================================
-       FOOTER
+     14 — FOOTER
   ========================================================= -->
   <footer class="pf-footer">
+
     <div class="container">
+
       <div class="pf-footer-grid">
+
         <div class="pf-footer-brand">
-          <div class="pf-footer-logo-row">
-            <img class="pf-footer-logo" src="images/phen-fitness-logo.png" alt="Phen Fitness Logo" />
-            <strong>Phen Fitness</strong>
-          </div>
-          <p>
-            Certified personal training and small-group coaching in Siem Reap, Cambodia. Evidence-based methods, sustainable nutrition, and permanent habits.
+          <a href="#home" class="pf-footer-branding" aria-label="Phen Fitness home">
+            <img src="images/phen-fitness-logo.png" alt="Phen Fitness logo" class="pf-footer-logo" loading="lazy" />
+            <img src="images/phen-fitness-wordmark.png" alt="Phen Fitness" class="pf-footer-wordmark" loading="lazy" />
+          </a>
+
+          <strong style="color: var(--text); font-size: 0.9rem;">
+            Certified Personal Trainer · Siem Reap
+          </strong>
+
+          <p class="pf-footer-brand-copy">
+            Personalized coaching for strength, confidence, and sustainable fitness progress.
           </p>
         </div>
 
-        <div class="pf-footer-col">
-          <h4>Navigation</h4>
-          <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#story">My Story</a></li>
-            <li><a href="#transformation">Transformations</a></li>
-            <li><a href="#qualifications">Qualifications</a></li>
-          </ul>
+        <div class="pf-footer-column">
+          <h3>Quick Links</h3>
+          <nav class="pf-footer-links">
+            <a href="#services">Services</a>
+            <a href="#story">My Story</a>
+            <a href="#qualifications">Qualifications</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#contact">Contact</a>
+          </nav>
         </div>
 
-        <div class="pf-footer-col">
-          <h4>Support &amp; Contact</h4>
-          <ul>
-            <li><a href="#pricing">Pricing &amp; Packages</a></li>
-            <li><a href="#gallery">Training Gallery</a></li>
-            <li><a href="#resources">Fitness FAQs</a></li>
-            <li><a href="https://t.me/phenphoy" target="_blank" rel="noopener noreferrer">Telegram (@phenphoy)</a></li>
-            <li><a href="#contact">Contact Coach Phen</a></li>
-          </ul>
+        <div class="pf-footer-column">
+          <h3>Follow</h3>
+          <div class="pf-footer-links">
+            <a href="https://www.instagram.com/khunphen_p" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://www.facebook.com/passporttoyourhealthylifestyle" target="_blank" rel="noopener noreferrer">Facebook</a>
+            <a href="https://tiktok.com/@phen_fitness" target="_blank" rel="noopener noreferrer">TikTok</a>
+            <a href="https://www.youtube.com/@phenfitness" target="_blank" rel="noopener noreferrer">YouTube</a>
+            <a href="https://linktr.ee/phenfitness" target="_blank" rel="noopener noreferrer">All Links (Linktree)</a>
+          </div>
         </div>
+
       </div>
 
       <div class="pf-footer-bottom">
-        <p>© <span id="currentYear"></span> Phen Fitness. All rights reserved. EREPS Level 3 Registered Fitness Instructor.</p>
-        <p>Siem Reap, Cambodia</p>
+        <span>© <span id="currentYear"></span> Phen Fitness. All rights reserved.</span>
+        <span>Personal Training · Siem Reap, Cambodia</span>
       </div>
+
     </div>
   </footer>
 
 
   <!-- =========================================================
-       MODALS
+     CERTIFICATE MODAL
   ========================================================= -->
-  <!-- Assessment Modal -->
-  <div class="pf-assessment-modal" id="assessmentModal" role="dialog" aria-modal="true" aria-labelledby="assessmentModalTitle">
-    <div class="pf-modal-box assessment-modal-box">
-      <button class="pf-modal-close" id="assessmentModalClose" aria-label="Close modal" type="button">✕</button>
-      <h3 id="assessmentModalTitle" style="font-size: 1.35rem; font-weight: 800; letter-spacing: -0.02em;">
-        Biometric Fitness Assessment Breakdown
-      </h3>
-      <p style="color: var(--muted); font-size: 0.86rem; margin-top: 6px;">
-        Conducted on-site at Bulldogs Fitness Center, Siem Reap.
-      </p>
-
-      <div class="assessment-modal-grid">
-        <div class="assessment-modal-card">
-          <h4>1. Visbody 3D Body Composition Scan</h4>
-          <p>Optical 3D surface scanning providing precise, medical-grade body measurements without pinching or guesswork:</p>
-          <ul>
-            <li>Skeletal muscle mass per limb</li>
-            <li>Visceral fat area &amp; body fat %</li>
-            <li>Segmental circumference tracking</li>
-            <li>Spine alignment &amp; pelvic tilt metrics</li>
-          </ul>
-        </div>
-
-        <div class="assessment-modal-card">
-          <h4>2. YMCA 3-Minute Step Test</h4>
-          <p>Standardized cardiorespiratory diagnostic measuring heart rate recovery efficiency:</p>
-          <ul>
-            <li>Aerobic baseline measurement</li>
-            <li>Post-exercise heart rate recovery</li>
-            <li>Cardiovascular health rating</li>
-            <li>Safe training zone benchmarks</li>
-          </ul>
-        </div>
-      </div>
-
-      <a class="button button-primary button-full" href="#contact"
-        onclick="document.getElementById('assessmentModal').classList.remove('open'); document.body.classList.remove('modal-open');"
-        style="margin-top: 20px;">
-        Book Your Fitness Assessment ($20)
-      </a>
+  <div class="pf-modal" id="certificateModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="certificateTitle">
+    <div class="modal-backdrop" data-close-certificate></div>
+    <div class="modal-dialog">
+      <button class="modal-close" data-close-certificate aria-label="Close certificate">×</button>
+      <h2 id="certificateTitle" style="font-size: 1.3rem; font-weight: 800; margin-bottom: 18px;">
+        Certificate
+      </h2>
+      <img class="modal-image" id="certificateImage" src="" alt="" />
     </div>
   </div>
-
-  <!-- Certificate Modal -->
-  <div class="pf-modal" id="certificateModal" role="dialog" aria-modal="true" aria-labelledby="certificateTitle">
-    <div class="pf-modal-box">
-      <button class="pf-modal-close" data-close-certificate aria-label="Close certificate" type="button">✕</button>
-      <h3 id="certificateTitle" style="font-size: 1.15rem; font-weight: 800;">Certificate Preview</h3>
-      <img id="certificateImage" src="" alt="Certificate" />
-    </div>
-  </div>
-
-  <!-- Gallery Lightbox Modal -->
-  <div class="pf-gallery-lightbox" id="galleryLightbox" role="dialog" aria-modal="true" aria-label="Image Preview">
-    <div class="pf-gallery-lightbox-box">
-      <button class="pf-modal-close" data-close-gallery aria-label="Close image preview" type="button">✕</button>
-      <img id="galleryLightboxImage" src="" alt="Gallery Image" />
-    </div>
-  </div>
-
-  <!-- Floating Quick-Action Trigger (Telegram) -->
-  <a href="https://t.me/phenphoy" target="_blank" rel="noopener noreferrer" class="pf-floating-cta" aria-label="Chat with Coach Phen on Telegram">
-    <span class="pf-floating-pulse"></span>
-    <svg class="pf-floating-icon" viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
-      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.52 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
-    </svg>
-    <span class="pf-floating-label">Chat with Coach Phen</span>
-  </a>
 
 
   <!-- =========================================================
-       JAVASCRIPT
+     GALLERY LIGHTBOX
   ========================================================= -->
+  <div class="pf-gallery-lightbox" id="galleryLightbox" role="dialog" aria-modal="true" aria-label="Image gallery lightbox">
+    <div class="modal-backdrop" data-close-gallery></div>
+    <div class="modal-dialog">
+      <button class="modal-close" data-close-gallery aria-label="Close image">×</button>
+      <img class="modal-image" id="galleryLightboxImage" src="" alt="" />
+    </div>
+  </div>
+
+
   <script>
-    /* Mobile Navigation */
+    /* =========================================================
+       MOBILE NAVIGATION
+    ========================================================= */
+
     const menuButton = document.getElementById("menuButton");
     const siteNav = document.getElementById("siteNav");
 
@@ -3331,7 +4186,11 @@
       });
     });
 
-    /* Reveal Animation */
+
+    /* =========================================================
+       REVEAL ANIMATION (INTERSECTION OBSERVER)
+    ========================================================= */
+
     const revealObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -3343,16 +4202,22 @@
       },
       { threshold: 0.1 }
     );
+
     document.querySelectorAll(".reveal").forEach((element) => {
       revealObserver.observe(element);
     });
 
-    /* Contact Form (Formspree AJAX) */
+
+    /* =========================================================
+       CONTACT FORM (Formspree AJAX)
+    ========================================================= */
+
     const contactForm = document.getElementById("contactForm");
     const formStatus = document.getElementById("formStatus");
 
     contactForm?.addEventListener("submit", async (event) => {
       event.preventDefault();
+
       const submitButton = contactForm.querySelector('button[type="submit"]');
 
       if (submitButton) {
@@ -3367,16 +4232,21 @@
         formStatus.style.borderColor = "var(--border)";
       }
 
+      const formData = new FormData(contactForm);
+
       try {
         const response = await fetch(contactForm.action, {
           method: "POST",
-          body: new FormData(contactForm),
-          headers: { "Accept": "application/json" }
+          body: formData,
+          headers: {
+            "Accept": "application/json"
+          }
         });
 
         if (response.ok) {
           if (formStatus) {
-            formStatus.textContent = "Thank you! Your message has been sent successfully. Phen will contact you shortly.";
+            formStatus.textContent =
+              "Thank you! Your message has been sent successfully. Phen will contact you shortly.";
             formStatus.style.color = "var(--green)";
             formStatus.style.borderColor = "var(--green-border)";
           }
@@ -3386,7 +4256,8 @@
         }
       } catch (error) {
         if (formStatus) {
-          formStatus.textContent = "Sorry, something went wrong. Please try again or message Phen directly on Telegram.";
+          formStatus.textContent =
+            "Sorry, something went wrong. Please try again or message Phen directly on Telegram.";
           formStatus.style.color = "#ff6b6b";
           formStatus.style.borderColor = "rgba(255, 107, 107, 0.4)";
         }
@@ -3398,7 +4269,11 @@
       }
     });
 
-    /* Certificate Modal */
+
+    /* =========================================================
+       CERTIFICATE MODAL
+    ========================================================= */
+
     const certificateModal = document.getElementById("certificateModal");
     const certificateImage = document.getElementById("certificateImage");
     const certificateTitle = document.getElementById("certificateTitle");
@@ -3422,7 +4297,34 @@
       });
     });
 
-    /* Gallery Lightbox */
+
+    /* =========================================================
+       GALLERY SCROLLING (DYNAMIC CALCULATION)
+    ========================================================= */
+
+    const galleryTrack = document.getElementById("galleryTrack");
+
+    const getGalleryScrollAmount = () => {
+      const firstCard = galleryTrack?.querySelector(".pf-gallery-card");
+      const cardWidth = firstCard ? firstCard.getBoundingClientRect().width : 250;
+      const gap = 16; // 16px CSS flex gap
+      return cardWidth + gap;
+    };
+
+    document.getElementById("galleryPrev")?.addEventListener("click", () => {
+      galleryTrack.scrollBy({
+        left: -getGalleryScrollAmount(),
+        behavior: "smooth"
+      });
+    });
+
+    document.getElementById("galleryNext")?.addEventListener("click", () => {
+      galleryTrack.scrollBy({
+        left: getGalleryScrollAmount(),
+        behavior: "smooth"
+      });
+    });
+
     const galleryLightbox = document.getElementById("galleryLightbox");
     const galleryLightboxImage = document.getElementById("galleryLightboxImage");
 
@@ -3445,8 +4347,13 @@
       });
     });
 
-    /* Testimonials Slider */
+
+    /* =========================================================
+       TESTIMONIALS SLIDER
+    ========================================================= */
+
     const testimonialTrack = document.getElementById("testimonialTrack");
+
     const getTestimonialScrollAmount = () => {
       const card = testimonialTrack?.querySelector(".pf-testimonial-card");
       const cardWidth = card ? card.getBoundingClientRect().width : 300;
@@ -3454,39 +4361,86 @@
     };
 
     document.getElementById("testimonialPrev")?.addEventListener("click", () => {
-      testimonialTrack.scrollBy({ left: -getTestimonialScrollAmount(), behavior: "smooth" });
-    });
-    document.getElementById("testimonialNext")?.addEventListener("click", () => {
-      testimonialTrack.scrollBy({ left: getTestimonialScrollAmount(), behavior: "smooth" });
+      testimonialTrack.scrollBy({
+        left: -getTestimonialScrollAmount(),
+        behavior: "smooth"
+      });
     });
 
-    /* Assessment Modal */
+    document.getElementById("testimonialNext")?.addEventListener("click", () => {
+      testimonialTrack.scrollBy({
+        left: getTestimonialScrollAmount(),
+        behavior: "smooth"
+      });
+    });
+
+
+    /* =========================================================
+       ASSESSMENT MODAL
+    ========================================================= */
+
     const assessmentModal = document.getElementById("assessmentModal");
     const assessmentDetailsBtn = document.getElementById("assessmentDetailsBtn");
     const assessmentModalClose = document.getElementById("assessmentModalClose");
+    const assessmentBackdrop = document.getElementById("assessmentBackdrop");
 
-    assessmentDetailsBtn?.addEventListener("click", () => {
-      assessmentModal.classList.add("open");
-      document.body.classList.add("modal-open");
-    });
-    assessmentModalClose?.addEventListener("click", () => {
-      assessmentModal.classList.remove("open");
-      document.body.classList.remove("modal-open");
-    });
+    if (assessmentDetailsBtn) {
+      assessmentDetailsBtn.addEventListener("click", () => {
+        assessmentModal.classList.add("open");
+        document.body.classList.add("modal-open");
+      });
+    }
 
-    /* Escape Key Handler */
+    if (assessmentModalClose) {
+      assessmentModalClose.addEventListener("click", () => {
+        assessmentModal.classList.remove("open");
+        document.body.classList.remove("modal-open");
+      });
+    }
+
+    if (assessmentBackdrop) {
+      assessmentBackdrop.addEventListener("click", () => {
+        assessmentModal.classList.remove("open");
+        document.body.classList.remove("modal-open");
+      });
+    }
+
+
+    /* =========================================================
+       ESCAPE KEY HANDLER FOR ALL MODALS
+    ========================================================= */
+
     document.addEventListener("keydown", (event) => {
       if (event.key !== "Escape") return;
+
       certificateModal?.classList.remove("open");
+      certificateModal?.setAttribute("aria-hidden", "true");
       galleryLightbox?.classList.remove("open");
       assessmentModal?.classList.remove("open");
       document.body.classList.remove("modal-open");
     });
 
-    /* Current Year */
+
+    /* =========================================================
+       COPYRIGHT YEAR
+    ========================================================= */
+
     const yearEl = document.getElementById("currentYear");
-    if (yearEl) yearEl.textContent = new Date().getFullYear();
+    if (yearEl) {
+      yearEl.textContent = new Date().getFullYear();
+    }
   </script>
 
+
+  <!-- Floating Quick-Action Trigger (Telegram) -->
+  <a href="https://t.me/phenphoy" target="_blank" rel="noopener noreferrer" class="pf-floating-cta" aria-label="Chat with Coach Phen on Telegram">
+    <span class="pf-floating-pulse"></span>
+    <svg class="pf-floating-icon" viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.52 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+    </svg>
+    <span class="pf-floating-label">Chat with Coach Phen</span>
+  </a>
+
 </body>
+
 </html>

@@ -91,20 +91,20 @@ h1, h2, h3 { font-family: var(--display); font-weight: 900; line-height: 0.9; le
 
 /* Hero */
 .hero { position: relative; padding-top: 130px; padding-bottom: 56px; }
-.hero-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: clamp(24px, 4vw, 64px); align-items: end; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: clamp(24px, 4vw, 64px); align-items: stretch; }
 .hero h1 { font-size: clamp(56px, 9.2vw, 150px); overflow-wrap: anywhere; }
 .hero h1 .accent { color: var(--lime); }
 .line { display: block; overflow: hidden; padding-bottom: 0.04em; }
 .line > span { display: inline-block; will-change: transform; }
 .hero-copy { display: grid; gap: 28px; min-width: 0; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
-.hero-media { position: relative; aspect-ratio: 4 / 5; border-radius: 6px; overflow: hidden; background: var(--panel); max-width: 100%; }
+.hero-media { position: relative; min-height: 420px; border-radius: 6px; overflow: hidden; background: var(--panel); max-width: 100%; }
 .hero-media img { position: absolute; inset: -12% 0; width: 100%; height: 124%; object-fit: cover; object-position: 50% 30%; }
 .hero-meta { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; }
 @media (max-width: 860px) {
   .hero { padding-top: 100px; }
   .hero-grid { grid-template-columns: minmax(0, 1fr); }
-  .hero-media { aspect-ratio: 4 / 4.2; }
+  .hero-media { aspect-ratio: 4 / 4.2; min-height: 0; }
 }
 
 /* Ticker */

@@ -313,20 +313,52 @@
     gSkew.style.transform = "skewY(" + skew.toFixed(2) + "deg)";
   });
 
-  /* ---------- Services: pinned sideways scroll on wide screens ---------- */
+  /* ---------- Services: pinned sideways scroll on wide screens ----------
+     Scrolling down moves the cards sideways. Sideways trackpad swipes and
+     the arrow buttons move them too (by scrolling the page the same amount). */
   const mm = gsap.matchMedia();
   mm.add("(min-width: 900px)", () => {
-    const track = $("#hTrack");
-    const dist = () => track.scrollWidth - window.innerWidth;
+    const track = $("#hTrack"), prev = $("#hPrev"), next = $("#hNext");
+    const dist = () => Math.max(0, track.scrollWidth - window.innerWidth);
     const tween = gsap.to(track, {
       x: () => -dist(), ease: "none",
       scrollTrigger: {
         trigger: "#hPin", start: "center center", end: () => "+=" + dist(), pin: "#services", scrub: 0.8, invalidateOnRefresh: true, anticipatePin: 1,
-        onUpdate: s => { $("#hProgress").style.transform = "scaleX(" + s.progress + ")"; }
+        onUpdate: s => {
+          $("#hProgress").style.transform = "scaleX(" + s.progress + ")";
+          prev.disabled = s.progress <= 0.01;
+          next.disabled = s.progress >= 0.99;
+        }
       }
     });
+    const st = tween.scrollTrigger;
+    prev.disabled = true;
+    const scrollTo = y => { if (lenis) lenis.scrollTo(y, { duration: 0.9 }); else window.scrollTo({ top: y, behavior: "smooth" }); };
+    const step = () => { const c = track.querySelector(".card"); return c.offsetWidth + parseFloat(getComputedStyle(track).columnGap || 20); };
+    function go(dir) {
+      const s = step(), x = st.progress * dist();
+      const idx = Math.max(0, Math.round(x / s) + dir);
+      scrollTo(Math.min(st.end, st.start + idx * s));
+    }
+    const onPrev = () => go(-1), onNext = () => go(1);
+    prev.addEventListener("click", onPrev);
+    next.addEventListener("click", onNext);
+    // sideways trackpad swipe while the row is on screen
+    const onWheel = e => {
+      if (Math.abs(e.deltaX) <= Math.abs(e.deltaY) || !st.isActive) return;
+      e.preventDefault();
+      const y = Math.min(st.end, Math.max(st.start, (lenis ? lenis.targetScroll : window.scrollY) + e.deltaX));
+      if (lenis) lenis.scrollTo(y, { immediate: true }); else window.scrollTo(0, y);
+    };
+    const pin = $("#hPin");
+    pin.addEventListener("wheel", onWheel, { passive: false });
     gsap.from(".card", { y: 80, opacity: 0, rotate: 3, duration: 1, stagger: 0.08, ease: "expo.out", scrollTrigger: { trigger: "#hPin", start: "top 85%" } });
-    return () => tween.kill();
+    return () => {
+      tween.kill();
+      prev.removeEventListener("click", onPrev);
+      next.removeEventListener("click", onNext);
+      pin.removeEventListener("wheel", onWheel);
+    };
   });
 
   /* ---------- Before / after hint sweep ---------- */

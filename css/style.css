@@ -133,7 +133,7 @@ section { position: relative; }
 /* Services horizontal */
 .services { overflow: hidden; }
 .h-track { display: flex; gap: 20px; width: max-content; padding-inline: var(--gutter); will-change: transform; }
-.card { width: min(400px, 82vw); flex: none; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 28px; display: grid; grid-template-rows: auto auto 1fr auto; gap: 18px; transform-style: preserve-3d; transition: border-color .4s; position: relative; min-height: 460px; }
+.card { width: max(330px, 27vw); flex: none; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 28px; display: grid; grid-template-rows: auto auto 1fr auto; gap: 18px; transform-style: preserve-3d; transition: border-color .4s; position: relative; min-height: 460px; }
 .card::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 0%), rgba(163,230,53,.13), transparent 45%); opacity: 0; transition: opacity .4s; }
 .card:hover { border-color: rgba(163,230,53,.45); }
 .card:hover::after { opacity: 1; }
@@ -152,12 +152,15 @@ section { position: relative; }
 .card.featured li::before { background: var(--on-lime); }
 .card.featured .price { border-color: rgba(10,13,6,.2); }
 .card.featured::after { background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 0%), rgba(255,255,255,.35), transparent 45%); }
-.h-progress { margin: 36px var(--gutter) 0; height: 2px; background: var(--line); }
+.h-bar { display: flex; align-items: center; gap: 20px; margin: 36px var(--gutter) 0; }
+.h-progress { flex: 1; height: 2px; background: var(--line); }
+.h-controls { display: flex; gap: 8px; }
+.h-controls .icon-btn:disabled { opacity: .35; cursor: default; background: var(--panel); color: var(--fg); }
 .h-progress span { display: block; height: 100%; background: var(--lime); transform-origin: left; transform: scaleX(0); }
 @media (max-width: 899px) {
   .h-track { width: auto; flex-direction: column; }
   .card { width: 100%; min-height: 0; }
-  .h-progress { display: none; }
+  .h-bar { display: none; }
 }
 
 /* Before / after */
@@ -522,4 +525,4 @@ body.cursor-on .cursor, body.cursor-on .cursor-ring { opacity: 1; }
 /* Without the animation library, services wrap into a grid instead of the pinned sideways row */
 .no-motion .h-track { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); width: auto; }
 .no-motion .card { width: auto; min-height: 0; }
-.no-motion .h-progress { display: none; }
+.no-motion .h-bar { display: none; }

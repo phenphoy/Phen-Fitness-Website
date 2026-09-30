@@ -99,7 +99,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 900; line-height: 0.9; le
 .hero-copy { display: grid; gap: 28px; min-width: 0; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 .hero-media { position: relative; min-height: 420px; border-radius: 6px; overflow: hidden; background: var(--panel); max-width: 100%; }
-.hero-media img { position: absolute; inset: -12% 0; width: 100%; height: 124%; object-fit: cover; object-position: 50% 30%; }
+.hero-media > img { position: absolute; inset: -12% 0; width: 100%; height: 124%; object-fit: cover; object-position: 50% 30%; }
 .hero-meta { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; }
 @media (max-width: 860px) {
   .hero { padding-top: 100px; }

@@ -39,7 +39,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 900; line-height: 0.9; le
 .loader-count { font-family: var(--mono); color: var(--lime); font-size: 14px; font-variant-numeric: tabular-nums; }
 .loader-bar { width: min(300px, 60vw); height: 2px; background: var(--line); overflow: hidden; }
 .loader-bar span { display: block; height: 100%; width: 100%; background: var(--lime); transform-origin: left; transform: scaleX(0); }
-.no-motion .loader, .no-js .loader, .returning .loader { display: none; }
+.no-motion .loader, .no-js .loader { display: none; }
 @media (prefers-reduced-motion: reduce) { .loader { display: none; } }
 
 /* Nav */

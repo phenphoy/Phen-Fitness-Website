@@ -12,10 +12,6 @@
   let lenis = null;
   const $ = s => document.querySelector(s);
   const $$ = s => Array.from(document.querySelectorAll(s));
-  const storage = {
-    get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
-    set(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* private mode */ } }
-  };
 
   $("#year").textContent = new Date().getFullYear();
 
@@ -208,58 +204,59 @@
     requestAnimationFrame(() => lenis.scrollTo(target, { offset: -70, duration: 1.4 }));
   }));
 
-  /* ---------- Opening: full sequence on a first visit, quick one after ---------- */
+  /* ---------- Opening: heartbeat intro on every visit ----------
+     Visitors can skip it with a tap, click, scroll or key press. */
   const heroLines = $$(".hero .line > span");
-  const firstVisit = !storage.get("pf-visited");
-  storage.set("pf-visited", "1");
   const loader = $("#loader");
   const tl = gsap.timeline();
   gsap.set("#nav .brand-icon", { scale: 0, rotate: -180 });
   gsap.set("#nav .wm-l", { yPercent: 100, opacity: 0 });
   gsap.set("#heroSeal", { opacity: 0, y: 30, scale: 0.8 });
-  let t0 = 0.1;
-  if (firstVisit) {
-    gsap.set(heroLines, { yPercent: 110 });
-    gsap.set(".hero-fade", { opacity: 0, y: 24 });
-    gsap.set("#heroMedia", { clipPath: "inset(100% 0 0 0)" });
-    gsap.set("#heroImg", { scale: 1.25 });
-    const ecg = $("#ecgPath"), len = ecg.getTotalLength(), counter = { v: 0 };
-    gsap.set("#ldIcon", { scale: 0, rotate: -140 });
-    gsap.set(ecg, { strokeDasharray: len, strokeDashoffset: len });
-    gsap.set(".wm-loader .wm-l", { yPercent: 120, opacity: 0 });
-    // badge spins in, heartbeat line draws, badge pulses on the spike, letters rise
-    tl.to("#ldIcon", { scale: 1, rotate: 0, duration: 0.8, ease: "back.out(1.6)" })
-      .to(counter, { v: 100, duration: 1.7, ease: "power1.inOut", onUpdate: () => {
-          $("#loaderNum").textContent = Math.round(counter.v);
-          $("#loaderBar").style.transform = "scaleX(" + counter.v / 100 + ")";
-        } }, 0)
-      .to(ecg, { strokeDashoffset: 0, duration: 1, ease: "power1.inOut" }, 0.45)
-      .to("#ldIcon", { keyframes: [
-          { scale: 1.14, boxShadow: "0 0 0 14px rgba(255,22,22,.25)", duration: 0.12 },
-          { scale: 1, boxShadow: "0 0 0 24px rgba(255,22,22,0)", duration: 0.2 },
-          { scale: 1.08, duration: 0.1 },
-          { scale: 1, duration: 0.25 }
-        ] }, 0.9)
-      .to(".wm-loader .wm-l", { yPercent: 0, opacity: 1, duration: 0.6, ease: "expo.out", stagger: 0.04 }, 0.95)
-      .to(loader, { yPercent: -100, duration: 0.9, ease: "expo.inOut" }, 1.9)
-      .set(loader, { display: "none" });
-    t0 = 2.35;
-    tl.to(heroLines, { yPercent: 0, duration: 1.1, ease: "expo.out", stagger: 0.09 }, t0 + 0.1)
-      .to("#heroMedia", { clipPath: "inset(0% 0 0 0)", duration: 1.3, ease: "expo.inOut" }, t0 + 0.1)
-      .to("#heroImg", { scale: 1, duration: 1.8, ease: "expo.out" }, t0 + 0.1)
-      .to(".hero-fade", { opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: "power3.out" }, t0 + 0.55);
-  } else {
-    // returning visitor: skip the loader, keep the hero as it is, just bring in the logo and seal
-    loader.style.display = "none";
-    t0 = 0.05;
-  }
-  tl.to("#nav .brand-icon", { scale: 1, rotate: 0, duration: 0.9, ease: "back.out(1.7)" }, t0)
+  gsap.set(heroLines, { yPercent: 110 });
+  gsap.set(".hero-fade", { opacity: 0, y: 24 });
+  gsap.set("#heroMedia", { clipPath: "inset(100% 0 0 0)" });
+  gsap.set("#heroImg", { scale: 1.25 });
+  const ecg = $("#ecgPath"), len = ecg.getTotalLength(), counter = { v: 0 };
+  gsap.set("#ldIcon", { scale: 0, rotate: -140 });
+  gsap.set(ecg, { strokeDasharray: len, strokeDashoffset: len });
+  gsap.set(".wm-loader .wm-l", { yPercent: 120, opacity: 0 });
+  // badge spins in, heartbeat line draws, badge pulses on the spike, letters rise
+  tl.to("#ldIcon", { scale: 1, rotate: 0, duration: 0.8, ease: "back.out(1.6)" })
+    .to(counter, { v: 100, duration: 1.7, ease: "power1.inOut", onUpdate: () => {
+        $("#loaderNum").textContent = Math.round(counter.v);
+        $("#loaderBar").style.transform = "scaleX(" + counter.v / 100 + ")";
+      } }, 0)
+    .to(ecg, { strokeDashoffset: 0, duration: 1, ease: "power1.inOut" }, 0.45)
+    .to("#ldIcon", { keyframes: [
+        { scale: 1.14, boxShadow: "0 0 0 14px rgba(255,22,22,.25)", duration: 0.12 },
+        { scale: 1, boxShadow: "0 0 0 24px rgba(255,22,22,0)", duration: 0.2 },
+        { scale: 1.08, duration: 0.1 },
+        { scale: 1, duration: 0.25 }
+      ] }, 0.9)
+    .to(".wm-loader .wm-l", { yPercent: 0, opacity: 1, duration: 0.6, ease: "expo.out", stagger: 0.04 }, 0.95)
+    .addLabel("lift", 1.9)
+    .to(loader, { yPercent: -100, duration: 0.9, ease: "expo.inOut" }, "lift")
+    .set(loader, { display: "none" });
+  const t0 = 2.35;
+  tl.to(heroLines, { yPercent: 0, duration: 1.1, ease: "expo.out", stagger: 0.09 }, t0 + 0.1)
+    .to("#heroMedia", { clipPath: "inset(0% 0 0 0)", duration: 1.3, ease: "expo.inOut" }, t0 + 0.1)
+    .to("#heroImg", { scale: 1, duration: 1.8, ease: "expo.out" }, t0 + 0.1)
+    .to(".hero-fade", { opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: "power3.out" }, t0 + 0.55)
+    .to("#nav .brand-icon", { scale: 1, rotate: 0, duration: 0.9, ease: "back.out(1.7)" }, t0)
     .to("#nav .wm-l", { yPercent: 0, opacity: 1, duration: 0.7, ease: "expo.out", stagger: 0.035 }, t0 + 0.1)
     // EREPS coin drops in and flips
-    .to("#heroSeal", { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "back.out(1.8)" }, firstVisit ? t0 + 0.85 : t0 + 0.2)
+    .to("#heroSeal", { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "back.out(1.8)" }, t0 + 0.85)
     .fromTo("#heroSeal .seal-coin", { rotateY: -720, scale: 0.4 }, { rotateY: 0, scale: 1, duration: 1.4, ease: "expo.out", clearProps: "transform" }, "<0.1")
     .fromTo("#heroSeal .seal-shock", { opacity: 0.9, scale: 0.9 }, { opacity: 0, scale: 1.9, duration: 0.9, ease: "power2.out" }, "<0.8")
     .set("#nav .wm-l, #nav .brand-icon", { clearProps: "transform,opacity" });
+
+  // skip: jump straight to the curtain lifting
+  const skipEvents = ["pointerdown", "keydown", "wheel", "touchstart"];
+  function skipIntro() {
+    if (tl.time() < tl.labels.lift) tl.seek("lift");
+    skipEvents.forEach(ev => window.removeEventListener(ev, skipIntro));
+  }
+  skipEvents.forEach(ev => window.addEventListener(ev, skipIntro, { passive: true }));
 
   /* ---------- Parallax ---------- */
   gsap.to("#heroImg", { yPercent: 12, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });

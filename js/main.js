@@ -285,7 +285,7 @@
   ScrollTrigger.batch(".reveal", {
     start: "top 88%",
     once: true,
-    onEnter: els => gsap.from(els, { opacity: 0, y: 40, duration: 0.9, ease: "power3.out", stagger: 0.08 })
+    onEnter: els => gsap.from(els, { opacity: 0, y: 40, duration: 0.9, ease: "power3.out", stagger: 0.08, clearProps: "transform,opacity" })
   });
   $$(".reveal-img").forEach(el => {
     gsap.from(el, { clipPath: "inset(0 0 100% 0)", duration: 1.3, ease: "expo.inOut", scrollTrigger: { trigger: el, start: "top 80%" } });

@@ -513,16 +513,16 @@ body.cursor-on .cursor, body.cursor-on .cursor-ring { opacity: 1; }
 @media (max-width: 520px) { .res { grid-template-columns: minmax(0, 1fr); } }
 
 /* Contact */
-.channels { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 48px; }
-.channel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 26px; display: grid; gap: 12px; align-content: start; transition: border-color .4s, transform .4s cubic-bezier(.2,.7,.2,1); }
-.channel:hover { border-color: rgba(163,230,53,.4); transform: translateY(-4px); }
+.channels { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 48px; margin-bottom: 24px; }
+.channel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 26px; display: grid; gap: 12px; align-content: start; transition: border-color .4s, translate .4s cubic-bezier(.2,.7,.2,1); }
+.channel:hover { border-color: rgba(163,230,53,.4); translate: 0 -4px; } /* 'translate', not 'transform', so the scroll-reveal animation and the hover lift never fight */
 .channel-tag { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--lime); }
 .channel h3 { font-size: 34px; }
 .channel .handle { font-family: var(--mono); font-size: 15px; user-select: all; }
 .channel p { margin: 0; color: var(--muted); font-size: 14.5px; }
 .channel .row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
 @media (max-width: 900px) { .channels { grid-template-columns: minmax(0, 1fr); } }
-.contact-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 16px; margin-top: 16px; }
+.contact-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 16px; margin-top: 0; }
 .start-box, .info-box { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: clamp(20px, 2.4vw, 30px); min-width: 0; }
 .start-box h3, .info-box h3 { font-size: 30px; margin-bottom: 20px; }
 .start { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; counter-reset: s; }

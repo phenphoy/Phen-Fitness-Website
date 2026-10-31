@@ -198,12 +198,18 @@ section { position: relative; }
 .formula { font-family: var(--mono); font-size: 13px; color: var(--fg); border-left: 2px solid var(--lime); padding: 4px 0 4px 14px; }
 .ba { position: relative; aspect-ratio: 4 / 5; border-radius: 8px; overflow: hidden; background: var(--panel); user-select: none; touch-action: pan-y; max-width: 100%; --pos: 50%; }
 .ba img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
-.ba .before { clip-path: inset(0 calc(100% - var(--pos)) 0 0); filter: saturate(.85); }
+.ba .before { clip-path: inset(0 calc(100% - var(--pos)) 0 0); } /* tone is matched in the image files now */
 .ba-handle { position: absolute; top: 0; bottom: 0; left: var(--pos); width: 2px; background: var(--lime); transform: translateX(-1px); pointer-events: none; }
 .ba-handle::after { content: "⟷"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 52px; height: 52px; border-radius: 50%; background: var(--lime); color: var(--on-lime); display: grid; place-items: center; font-size: 22px; font-weight: 700; box-shadow: 0 0 0 8px rgba(163,230,53,.18); }
 .ba-label { position: absolute; bottom: 16px; font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; background: rgba(7,9,7,.78); padding: 6px 10px; border-radius: 4px; pointer-events: none; }
 .ba-label.l { left: 16px; }
 .ba-label.r { right: 16px; color: var(--lime); }
+@media (max-width: 480px) {
+  /* two labels no longer fit on one line side by side: let each wrap in its own half */
+  .ba-label { bottom: 10px; font-size: 10px; letter-spacing: .06em; line-height: 1.35; padding: 5px 8px; max-width: calc(50% - 14px); }
+  .ba-label.l { left: 10px; }
+  .ba-label.r { right: 10px; text-align: right; }
+}
 .ba input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: ew-resize; margin: 0; }
 .ba:has(input:focus-visible) { outline: 2px solid var(--lime); outline-offset: 4px; }
 @media (max-width: 860px) { .ba-grid { grid-template-columns: minmax(0, 1fr); } }

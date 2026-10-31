@@ -209,44 +209,48 @@
   const heroLines = $$(".hero .line > span");
   const loader = $("#loader");
   const tl = gsap.timeline();
-  gsap.set("#nav .brand-icon", { scale: 0, rotate: -180 });
+  gsap.set("#nav .brand-icon", { scale: 0.6, opacity: 0 });
   gsap.set("#nav .wm-l", { yPercent: 100, opacity: 0 });
-  gsap.set("#heroSeal", { opacity: 0, y: 30, scale: 0.8 });
+  gsap.set("#heroSeal", { opacity: 0, y: 20, scale: 0.92 });
   gsap.set(heroLines, { yPercent: 110 });
   gsap.set(".hero-fade", { opacity: 0, y: 24 });
   gsap.set("#heroMedia", { clipPath: "inset(100% 0 0 0)" });
-  gsap.set("#heroImg", { scale: 1.25 });
+  gsap.set("#heroImg", { scale: 1.18 });
   const ecg = $("#ecgPath"), len = ecg.getTotalLength(), counter = { v: 0 };
-  gsap.set("#ldIcon", { scale: 0, rotate: -140 });
+  const arc = $("#ldArc"), arcLen = 2 * Math.PI * 65;
+  gsap.set(arc, { strokeDasharray: arcLen, strokeDashoffset: arcLen });
+  gsap.set("#ldIcon", { scale: 0.88, opacity: 0 });
   gsap.set(ecg, { strokeDasharray: len, strokeDashoffset: len });
-  gsap.set(".wm-loader .wm-l", { yPercent: 120, opacity: 0 });
-  // badge spins in, heartbeat line draws, badge pulses on the spike, letters rise
-  tl.to("#ldIcon", { scale: 1, rotate: 0, duration: 0.8, ease: "back.out(1.6)" })
-    .to(counter, { v: 100, duration: 1.7, ease: "power1.inOut", onUpdate: () => {
-        $("#loaderNum").textContent = Math.round(counter.v);
+  gsap.set(".wm-loader .wm-l", { yPercent: 110, opacity: 0 });
+  // logo eases in, a hairline ring draws round it, the heartbeat line traces once, the name rises letter by letter
+  tl.to("#ldIcon", { scale: 1, opacity: 1, duration: 0.9, ease: "power3.out" })
+    .to(counter, { v: 100, duration: 1.7, ease: "power2.inOut", onUpdate: () => {
+        $("#loaderNum").textContent = String(Math.round(counter.v)).padStart(3, "0");
         $("#loaderBar").style.transform = "scaleX(" + counter.v / 100 + ")";
       } }, 0)
-    .to(ecg, { strokeDashoffset: 0, duration: 1, ease: "power1.inOut" }, 0.45)
+    .to(arc, { strokeDashoffset: 0, duration: 1.7, ease: "power2.inOut" }, 0)
+    .to(ecg, { strokeDashoffset: 0, duration: 1.1, ease: "power2.inOut" }, 0.5)
     .to("#ldIcon", { keyframes: [
-        { scale: 1.14, boxShadow: "0 0 0 14px rgba(255,22,22,.25)", duration: 0.12 },
-        { scale: 1, boxShadow: "0 0 0 24px rgba(255,22,22,0)", duration: 0.2 },
-        { scale: 1.08, duration: 0.1 },
-        { scale: 1, duration: 0.25 }
-      ] }, 0.9)
-    .to(".wm-loader .wm-l", { yPercent: 0, opacity: 1, duration: 0.6, ease: "expo.out", stagger: 0.04 }, 0.95)
-    .addLabel("lift", 1.9)
-    .to(loader, { yPercent: -100, duration: 0.9, ease: "expo.inOut" }, "lift")
+        { scale: 1.05, duration: 0.14, ease: "power2.out" },
+        { scale: 1, duration: 0.3, ease: "power2.inOut" },
+        { scale: 1.03, duration: 0.12, ease: "power2.out" },
+        { scale: 1, duration: 0.4, ease: "power2.inOut" }
+      ] }, 1.0)
+    .to(".wm-loader .wm-l", { yPercent: 0, opacity: 1, duration: 0.8, ease: "power4.out", stagger: 0.035 }, 1.0)
+    .addLabel("lift", 1.95)
+    .to(".loader-inner, .loader-count", { opacity: 0, y: -14, duration: 0.45, ease: "power2.in" }, "lift")
+    .to(loader, { yPercent: -100, duration: 1, ease: "expo.inOut" }, "lift+=0.15")
     .set(loader, { display: "none" });
   const t0 = 2.35;
   tl.to(heroLines, { yPercent: 0, duration: 1.1, ease: "expo.out", stagger: 0.09 }, t0 + 0.1)
     .to("#heroMedia", { clipPath: "inset(0% 0 0 0)", duration: 1.3, ease: "expo.inOut" }, t0 + 0.1)
-    .to("#heroImg", { scale: 1, duration: 1.8, ease: "expo.out" }, t0 + 0.1)
+    .to("#heroImg", { scale: 1, duration: 2.2, ease: "power3.out" }, t0 + 0.1)
     .to(".hero-fade", { opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: "power3.out" }, t0 + 0.55)
-    .to("#nav .brand-icon", { scale: 1, rotate: 0, duration: 0.9, ease: "back.out(1.7)" }, t0)
+    .to("#nav .brand-icon", { scale: 1, opacity: 1, duration: 0.9, ease: "power3.out" }, t0)
     .to("#nav .wm-l", { yPercent: 0, opacity: 1, duration: 0.7, ease: "expo.out", stagger: 0.035 }, t0 + 0.1)
     // EREPS coin drops in and flips
-    .to("#heroSeal", { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "back.out(1.8)" }, t0 + 0.85)
-    .fromTo("#heroSeal .seal-coin", { rotateY: -720, scale: 0.4 }, { rotateY: 0, scale: 1, duration: 1.4, ease: "expo.out", clearProps: "transform" }, "<0.1")
+    .to("#heroSeal", { opacity: 1, y: 0, scale: 1, duration: 0.9, ease: "power3.out" }, t0 + 0.85)
+    .fromTo("#heroSeal .seal-coin", { rotateY: -270, scale: 0.7 }, { rotateY: 0, scale: 1, duration: 1.5, ease: "expo.out", clearProps: "transform" }, "<0.1")
     .fromTo("#heroSeal .seal-shock", { opacity: 0.9, scale: 0.9 }, { opacity: 0, scale: 1.9, duration: 0.9, ease: "power2.out" }, "<0.8")
     .set("#nav .wm-l, #nav .brand-icon", { clearProps: "transform,opacity" });
 

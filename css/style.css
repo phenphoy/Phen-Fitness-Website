@@ -234,7 +234,7 @@ section { position: relative; }
 .g-skew { will-change: transform; }
 
 /* Quote */
-.quote { font-family: var(--display); font-weight: 700; text-transform: uppercase; font-size: clamp(30px, 4vw, 58px); line-height: 1.08; max-width: 26ch; margin: 0; text-wrap: balance; }
+.quote { font-family: var(--display); font-weight: 700; text-transform: uppercase; font-size: clamp(30px, 3.6vw, 54px); line-height: 1.08; max-width: 28ch; margin: 0; text-wrap: balance; }
 .quote .w { opacity: .5; transition: none; } /* words light up to full as you scroll; unlit words stay readable */
 .quote-by { display: flex; align-items: center; gap: 14px; margin-top: 32px; }
 .avatar { width: 44px; height: 44px; flex: none; display: grid; place-items: center; border-radius: 50%; background: rgba(163,230,53,.14); color: var(--lime); font-family: var(--mono); font-size: 13px; letter-spacing: .04em; border: 1px solid rgba(163,230,53,.35); }
@@ -489,13 +489,15 @@ body.cursor-on .cursor, body.cursor-on .cursor-ring { opacity: 1; }
 }
 
 /* Testimonials */
-.t-more { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 48px; }
+.t-grid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, .8fr); gap: clamp(32px, 5vw, 88px); align-items: center; }
+.t-main { min-width: 0; padding-left: clamp(0px, 1.6vw, 24px); border-left: 2px solid var(--lime); }
+.t-more { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
 .t-card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 26px; display: grid; gap: 18px; align-content: space-between; margin: 0; }
 .t-card blockquote { margin: 0; font-size: 17px; line-height: 1.55; }
 .t-card figcaption { display: flex; align-items: center; gap: 12px; }
 .t-card .stars { color: var(--lime); letter-spacing: 3px; font-size: 13px; }
 .t-card small { color: var(--muted); display: block; }
-@media (max-width: 760px) { .t-more { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 960px) { .t-grid { grid-template-columns: minmax(0, 1fr); gap: 40px; } .t-main { border-left: 0; padding-left: 0; } }
 
 /* Resources */
 .res { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }

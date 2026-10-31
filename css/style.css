@@ -307,14 +307,14 @@ section { position: relative; }
 }
 
 /* Certificate viewer */
-.lb { position: fixed; inset: 0; z-index: 95; display: grid; grid-template-rows: auto 1fr auto; gap: 12px; padding: calc(16px + env(safe-area-inset-top, 0px)) 16px calc(16px + env(safe-area-inset-bottom, 0px)); background: rgba(4,6,4,.92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.lb { position: fixed; inset: 0; z-index: 95; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; gap: 12px; overflow: hidden; padding: calc(16px + env(safe-area-inset-top, 0px)) 16px calc(16px + env(safe-area-inset-bottom, 0px)); background: rgba(4,6,4,.92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
 .lb[hidden] { display: none; }
 .lb-top { display: flex; justify-content: space-between; align-items: center; gap: 16px; max-width: 1100px; width: 100%; margin-inline: auto; }
 .lb-top div { display: grid; min-width: 0; }
 .lb-top small { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--lime); }
 .lb-top b { font-size: 17px; overflow-wrap: anywhere; }
-.lb-stage { display: grid; place-items: center; min-height: 0; }
-.lb-stage img { max-width: min(1100px, 100%); max-height: 100%; object-fit: contain; border-radius: 6px; box-shadow: 0 30px 80px rgba(0,0,0,.6); }
+.lb-stage { display: grid; place-items: center; min-height: 0; min-width: 0; overflow: hidden; }
+.lb-stage img { max-width: min(1100px, 100%); max-height: calc(100vh - 170px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)); max-height: calc(100dvh - 170px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)); width: auto; height: auto; object-fit: contain; border-radius: 6px; box-shadow: 0 30px 80px rgba(0,0,0,.6); }
 .lb-nav { display: flex; justify-content: center; align-items: center; gap: 12px; font-family: var(--mono); font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
 .icon-btn { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; border: 1px solid var(--line); background: var(--panel); color: var(--fg); font: inherit; font-size: 18px; cursor: pointer; transition: background .25s, color .25s; }
 .icon-btn:hover { background: var(--lime); color: var(--on-lime); }

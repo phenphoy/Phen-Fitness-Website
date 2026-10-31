@@ -262,6 +262,17 @@
   }
   skipEvents.forEach(ev => window.addEventListener(ev, skipIntro, { passive: true }));
 
+  /* ---------- Chat button steps aside where booking and contact are already on screen ---------- */
+  const fab = document.querySelector(".float-chat");
+  if (fab && "IntersectionObserver" in window) {
+    const live = new Set();
+    const io = new IntersectionObserver(es => {
+      es.forEach(e => e.isIntersecting ? live.add(e.target) : live.delete(e.target));
+      fab.classList.toggle("is-hidden", live.size > 0);
+    }, { threshold: 0.15 });
+    ["#book", "#contact"].forEach(s => { const el = document.querySelector(s); if (el) io.observe(el); });
+  }
+
   /* ---------- Parallax ---------- */
   gsap.to("#heroImg", { yPercent: 12, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
   gsap.fromTo("#storyImg", { yPercent: -3 }, { yPercent: 3, ease: "none", scrollTrigger: { trigger: "#story", start: "top bottom", end: "bottom top", scrub: true } });
@@ -327,6 +338,8 @@
         trigger: "#hPin", start: "center center", end: () => "+=" + dist(), pin: "#services", scrub: 0.8, invalidateOnRefresh: true, anticipatePin: 1,
         onUpdate: s => {
           $("#hProgress").style.transform = "scaleX(" + s.progress + ")";
+          const cards = track.querySelectorAll(".card").length;
+          $("#hCount").textContent = (Math.min(cards, Math.round(s.progress * (cards - 1)) + 1)) + " / " + cards + " plans";
           prev.disabled = s.progress <= 0.01;
           next.disabled = s.progress >= 0.99;
         }

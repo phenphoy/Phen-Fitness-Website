@@ -19,7 +19,7 @@
 }
 * { box-sizing: border-box; }
 html { background: var(--ink); overflow-x: clip; }
-body { background: var(--ink); color: var(--fg); font-family: var(--body); font-size: 16px; line-height: 1.6; overflow-x: clip; }
+body { margin: 0; background: var(--ink); color: var(--fg); font-family: var(--body); font-size: 16px; line-height: 1.6; overflow-x: clip; }
 img { display: block; max-width: 100%; }
 a { color: inherit; }
 :focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }
@@ -102,9 +102,37 @@ h1, h2, h3 { font-family: var(--display); font-weight: 900; line-height: 0.9; le
 .hero-media > img { position: absolute; inset: -12% 0; width: 100%; height: 124%; object-fit: cover; object-position: 50% 30%; }
 .hero-meta { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; }
 @media (max-width: 860px) {
-  .hero { padding-top: 100px; }
-  .hero-grid { grid-template-columns: minmax(0, 1fr); }
-  .hero-media { aspect-ratio: 4 / 4.2; min-height: 0; }
+  /* Mobile hero: full-bleed photo behind the copy, copy anchored to the bottom */
+  .hero {
+    min-height: 100vh; min-height: 100svh;
+    display: flex; align-items: flex-end;
+    padding-top: 96px;
+    padding-bottom: calc(112px + env(safe-area-inset-bottom, 0px)); /* room for the EREPS seal */
+  }
+  .hero-grid { grid-template-columns: minmax(0, 1fr); width: 100%; }
+  .hero-copy { position: relative; z-index: 2; gap: 16px; }
+  .hero-media { position: absolute; inset: 0; z-index: 0; min-height: 0; aspect-ratio: auto; border-radius: 0; }
+  .hero-media > img { object-position: 43% 50%; } /* keep Phen centered in a portrait crop */
+  /* Scrim: dark at the top for the nav, clear around his face, solid ink behind the text */
+  .hero-media::after {
+    content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: linear-gradient(to bottom,
+      rgba(7, 9, 7, .78) 0%, rgba(7, 9, 7, 0) 20%,
+      rgba(7, 9, 7, .30) 38%, rgba(7, 9, 7, .86) 62%, var(--ink) 88%);
+  }
+  .hero-media .hero-seal { right: auto; left: var(--gutter); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); width: fit-content; }
+
+  /* Smaller, tighter type */
+  .hero h1 { font-size: clamp(38px, 11vw, 56px); line-height: .92; text-shadow: 0 2px 18px rgba(0, 0, 0, .55); }
+  .hero .eyebrow { font-size: 11px; letter-spacing: .1em; }
+  .hero .lead { font-size: 15px; line-height: 1.5; max-width: 36ch; color: #d3dbd0; }
+  .hero-actions { display: grid; gap: 10px; }
+  .hero-actions .btn { justify-content: center; min-height: 48px; padding: 12px 22px; }
+  .hero-actions .btn:not(.btn-primary) { background: rgba(7, 9, 7, .45); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+}
+/* The hero already has a primary CTA: keep the header uncluttered until the page scrolls */
+@media (max-width: 560px) {
+  .nav:not(.scrolled) .nav-right .btn-sm { display: none; }
 }
 
 /* Ticker */

@@ -217,13 +217,16 @@
   gsap.set("#heroMedia", { clipPath: "inset(100% 0 0 0)" });
   gsap.set("#heroImg", { scale: 1.18 });
   const ecg = $("#ecgPath"), len = ecg.getTotalLength(), counter = { v: 0 };
-  const arc = $("#ldArc"), arcLen = 2 * Math.PI * 65;
+  const arc = $("#ldArc"), arcLen = arc.getTotalLength();
   gsap.set(arc, { strokeDasharray: arcLen, strokeDashoffset: arcLen });
-  gsap.set("#ldIcon", { scale: 0.88, opacity: 0 });
+  gsap.set("#ldIcon", { scale: 0.84, opacity: 0, rotateX: 18, y: 10, filter: "blur(14px)", transformOrigin: "50% 60%" });
+  gsap.set(".ld-glow", { opacity: 0, scale: 0.6 });
   gsap.set(ecg, { strokeDasharray: len, strokeDashoffset: len });
   gsap.set(".wm-loader .wm-l", { yPercent: 110, opacity: 0 });
   // logo eases in, a hairline ring draws round it, the heartbeat line traces once, the name rises letter by letter
-  tl.to("#ldIcon", { scale: 1, opacity: 1, duration: 0.9, ease: "power3.out" })
+  tl.to("#ldIcon", { scale: 1, opacity: 1, rotateX: 0, y: 0, filter: "blur(0px)", duration: 1.1, ease: "expo.out" })
+    .to(".ld-glow", { opacity: 1, scale: 1, duration: 1.4, ease: "power2.out" }, 0.1)
+    .call(() => { const s = $("#ldIcon .shine"); if (s) s.classList.add("go"); }, null, 0.85)
     .to(counter, { v: 100, duration: 1.7, ease: "power2.inOut", onUpdate: () => {
         $("#loaderNum").textContent = String(Math.round(counter.v)).padStart(3, "0");
         $("#loaderBar").style.transform = "scaleX(" + counter.v / 100 + ")";
@@ -235,6 +238,12 @@
         { scale: 1, duration: 0.3, ease: "power2.inOut" },
         { scale: 1.03, duration: 0.12, ease: "power2.out" },
         { scale: 1, duration: 0.4, ease: "power2.inOut" }
+      ] }, 1.0)
+    .to(".ld-glow", { keyframes: [
+        { scale: 1.12, opacity: 1, duration: 0.14, ease: "power2.out" },
+        { scale: 1, opacity: 0.8, duration: 0.3, ease: "power2.inOut" },
+        { scale: 1.07, opacity: 1, duration: 0.12, ease: "power2.out" },
+        { scale: 1, opacity: 0.8, duration: 0.4, ease: "power2.inOut" }
       ] }, 1.0)
     .to(".wm-loader .wm-l", { yPercent: 0, opacity: 1, duration: 0.8, ease: "power4.out", stagger: 0.035 }, 1.0)
     .addLabel("lift", 1.95)
@@ -252,7 +261,29 @@
     .to("#heroSeal", { opacity: 1, y: 0, scale: 1, duration: 0.9, ease: "power3.out" }, t0 + 0.85)
     .fromTo("#heroSeal .seal-coin", { rotateY: -270, scale: 0.7 }, { rotateY: 0, scale: 1, duration: 1.5, ease: "expo.out", clearProps: "transform" }, "<0.1")
     .fromTo("#heroSeal .seal-shock", { opacity: 0.9, scale: 0.9 }, { opacity: 0, scale: 1.9, duration: 0.9, ease: "power2.out" }, "<0.8")
-    .set("#nav .wm-l, #nav .brand-icon", { clearProps: "transform,opacity" });
+    .set("#nav .wm-l, #nav .brand-icon", { clearProps: "transform,opacity" })
+    .call(() => glint(), null, t0 + 1.0);
+
+  /* ---------- Logo life: a glint now and then, and a gentle 3D tilt that follows the pointer ---------- */
+  const navShine = $("#nav .brand-icon .shine");
+  function glint() {
+    if (!navShine) return;
+    navShine.classList.remove("go"); void navShine.offsetWidth; navShine.classList.add("go");
+  }
+  setInterval(() => { if (!document.hidden && window.scrollY < 80) glint(); }, 9000);
+  if (fine) {
+    $$(".brand").forEach(brand => {
+      const icon = brand.querySelector(".brand-icon");
+      if (!icon) return;
+      brand.addEventListener("pointermove", e => {
+        const r = icon.getBoundingClientRect();
+        const x = Math.max(-1, Math.min(1, (e.clientX - (r.left + r.width / 2)) / 60));
+        const y = Math.max(-1, Math.min(1, (e.clientY - (r.top + r.height / 2)) / 40));
+        gsap.to(icon, { rotateY: x * 18, rotateX: -y * 18, scale: 1.08, duration: 0.45, ease: "power3.out", overwrite: "auto" });
+      });
+      brand.addEventListener("pointerleave", () => gsap.to(icon, { rotateY: 0, rotateX: 0, scale: 1, duration: 0.8, ease: "elastic.out(1,.55)", overwrite: "auto" }));
+    });
+  }
 
   // skip: jump straight to the curtain lifting
   const skipEvents = ["pointerdown", "keydown", "wheel", "touchstart"];

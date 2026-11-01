@@ -219,14 +219,23 @@
   const ecg = $("#ecgPath"), len = ecg.getTotalLength(), counter = { v: 0 };
   const arc = $("#ldArc"), arcLen = arc.getTotalLength();
   gsap.set(arc, { strokeDasharray: arcLen, strokeDashoffset: arcLen });
-  gsap.set("#ldIcon", { scale: 0.84, opacity: 0, rotateX: 18, y: 10, filter: "blur(14px)", transformOrigin: "50% 60%" });
+  gsap.set("#ldIcon", { opacity: 0, scale: 0.94, y: 8 });
   gsap.set(".ld-glow", { opacity: 0, scale: 0.6 });
+  // the logo draws itself: border sweeps round, lettering wipes up out of a blur, the heartbeat traces left to right
+  const sweep = { v: 0 }, lmBorder = $("#ldIcon .lm-border");
+  const setSweep = v => { const m = "conic-gradient(from 0deg, #000 " + Math.max(0, v - 5) + "deg, transparent " + v + "deg)"; lmBorder.style.webkitMaskImage = m; lmBorder.style.maskImage = m; };
+  setSweep(0);
+  gsap.set("#ldIcon .lm-ink", { clipPath: "inset(100% 0 0 0)", filter: "blur(8px)", opacity: 0 });
+  gsap.set("#ldIcon .lm-red", { clipPath: "inset(0 100% 0 0)" });
   gsap.set(ecg, { strokeDasharray: len, strokeDashoffset: len });
   gsap.set(".wm-loader .wm-l", { yPercent: 110, opacity: 0 });
   // logo eases in, a hairline ring draws round it, the heartbeat line traces once, the name rises letter by letter
-  tl.to("#ldIcon", { scale: 1, opacity: 1, rotateX: 0, y: 0, filter: "blur(0px)", duration: 1.1, ease: "expo.out" })
+  tl.to("#ldIcon", { opacity: 1, scale: 1, y: 0, duration: 0.7, ease: "expo.out" })
+    .to(sweep, { v: 365, duration: 1.15, ease: "power2.inOut", onUpdate: () => setSweep(sweep.v), onComplete: () => { lmBorder.style.webkitMaskImage = lmBorder.style.maskImage = "none"; } }, 0.05)
+    .to("#ldIcon .lm-ink", { clipPath: "inset(0% 0 0 0)", filter: "blur(0px)", opacity: 1, duration: 0.9, ease: "expo.out" }, 0.45)
+    .to("#ldIcon .lm-red", { clipPath: "inset(0 0% 0 0)", duration: 0.7, ease: "power2.inOut" }, 0.95)
     .to(".ld-glow", { opacity: 1, scale: 1, duration: 1.4, ease: "power2.out" }, 0.1)
-    .call(() => { const s = $("#ldIcon .shine"); if (s) s.classList.add("go"); }, null, 0.85)
+    .call(() => { const s = $("#ldIcon .shine"); if (s) s.classList.add("go"); }, null, 1.6)
     .to(counter, { v: 100, duration: 1.7, ease: "power2.inOut", onUpdate: () => {
         $("#loaderNum").textContent = String(Math.round(counter.v)).padStart(3, "0");
         $("#loaderBar").style.transform = "scaleX(" + counter.v / 100 + ")";
@@ -238,13 +247,13 @@
         { scale: 1, duration: 0.3, ease: "power2.inOut" },
         { scale: 1.03, duration: 0.12, ease: "power2.out" },
         { scale: 1, duration: 0.4, ease: "power2.inOut" }
-      ] }, 1.0)
+      ] }, 1.6)
     .to(".ld-glow", { keyframes: [
         { scale: 1.12, opacity: 1, duration: 0.14, ease: "power2.out" },
         { scale: 1, opacity: 0.8, duration: 0.3, ease: "power2.inOut" },
         { scale: 1.07, opacity: 1, duration: 0.12, ease: "power2.out" },
         { scale: 1, opacity: 0.8, duration: 0.4, ease: "power2.inOut" }
-      ] }, 1.0)
+      ] }, 1.6)
     .to(".wm-loader .wm-l", { yPercent: 0, opacity: 1, duration: 0.8, ease: "power4.out", stagger: 0.035 }, 1.0)
     .addLabel("lift", 1.95)
     .to(".loader-inner, .loader-count", { opacity: 0, y: -14, duration: 0.45, ease: "power2.in" }, "lift")

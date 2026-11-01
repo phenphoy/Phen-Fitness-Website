@@ -11,6 +11,8 @@
   --lime-hi: #c8ff38;
   --beat: #ff1616; /* heartbeat red from the logo */
   --on-lime: #0a0d06;
+  --logo-ink: var(--fg); /* lettering colour of the logo; follows the theme */
+  --logo-orange: #ff751f;
   --display: "Big Shoulders Display", "Oswald", "Arial Narrow", Impact, sans-serif;
   --body: "Plus Jakarta Sans", -apple-system, "Segoe UI", Roboto, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
@@ -32,17 +34,21 @@ h1, h2, h3 { font-family: var(--display); font-weight: 900; line-height: 0.9; le
 .loader { position: fixed; inset: 0; z-index: 100; background: var(--ink); display: grid; place-items: center; overflow: hidden; }
 .loader::before { content: ""; position: absolute; left: 50%; top: 50%; width: min(90vw, 760px); aspect-ratio: 1; transform: translate(-50%, -54%); background: radial-gradient(closest-side, rgba(163,230,53,.10), rgba(163,230,53,0) 70%); pointer-events: none; }
 .loader-inner { display: grid; justify-items: center; gap: 26px; }
-.ld-mark { position: relative; width: 168px; height: 168px; display: grid; place-items: center; perspective: 700px; }
-.ld-glow { position: absolute; inset: -42%; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,22,22,.30), rgba(163,230,53,.10) 55%, rgba(0,0,0,0) 75%); opacity: 0; pointer-events: none; will-change: transform, opacity; }
+.ld-mark { position: relative; width: 176px; height: 176px; display: grid; place-items: center; perspective: 700px; }
+.ld-glow { position: absolute; inset: -42%; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,90,20,.16), rgba(163,230,53,.08) 55%, rgba(0,0,0,0) 75%); opacity: 0; pointer-events: none; will-change: transform, opacity; }
 .ld-ring { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-.ld-ring circle { fill: none; stroke-width: 1; }
+.ld-ring circle, .ld-ring rect { fill: none; stroke-width: 1; }
 .ld-ring .track { stroke: rgba(255,255,255,.08); }
 .ld-ring .arc { stroke: var(--lime); stroke-linecap: round; filter: drop-shadow(0 0 4px rgba(163,230,53,.55)); }
-.ld-icon { position: relative; width: 138px; height: 138px; border-radius: 13%; will-change: transform, filter; box-shadow: 0 18px 50px rgba(0,0,0,.55); }
-.ld-icon img { width: 100%; height: 100%; display: block; }
+/* The logo is built from three layers so it can follow the theme: the border and heartbeat keep their colours, the lettering takes the page's text colour. */
+.ld-icon { position: relative; width: 138px; height: 138px; will-change: transform, filter; }
+.logo-mark { position: relative; display: block; width: 100%; height: 100%; }
+.logo-mark > * { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.lm-ink { background: var(--logo-ink, var(--fg)); -webkit-mask: url(../images/logo/ink.png?v=3) center / 100% 100% no-repeat; mask: url(../images/logo/ink.png?v=3) center / 100% 100% no-repeat; }
 /* light that glides across a logo tile (used by loader, header and footer) */
-.shine { position: absolute; inset: 0; border-radius: 13%; overflow: hidden; pointer-events: none; }
-.shine::after { content: ""; position: absolute; top: -20%; bottom: -20%; left: 0; width: 55%; background: linear-gradient(105deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.55) 50%, rgba(255,255,255,0) 100%); transform: translateX(-130%) skewX(-18deg); opacity: 0; }
+/* a light that glides across the logo's own shapes (used by loader, header and footer) */
+.shine { pointer-events: none; -webkit-mask: url(../images/logo/shape.png?v=3) center / 100% 100% no-repeat; mask: url(../images/logo/shape.png?v=3) center / 100% 100% no-repeat; overflow: hidden; }
+.shine::after { content: ""; position: absolute; top: -20%; bottom: -20%; left: 0; width: 55%; background: linear-gradient(105deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.95) 50%, rgba(255,255,255,0) 100%); transform: translateX(-130%) skewX(-18deg); opacity: 0; }
 .shine.go::after { animation: shine-pass 1.1s cubic-bezier(.4,.1,.2,1) both; }
 @keyframes shine-hover { 0% { transform: translateX(-130%) skewX(-18deg); opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translateX(260%) skewX(-18deg); opacity: 0; } }
 @keyframes shine-pass { 0% { transform: translateX(-130%) skewX(-18deg); opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translateX(260%) skewX(-18deg); opacity: 0; } }
@@ -64,16 +70,14 @@ h1, h2, h3 { font-family: var(--display); font-weight: 900; line-height: 0.9; le
 /* Logo: icon + wordmark, same order and sizes as the live site header */
 .brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; flex: none; }
 .brand { perspective: 500px; }
-.brand-icon { position: relative; width: 38px; height: 38px; flex: none; border-radius: 13%; transform-style: preserve-3d; transition: filter .5s ease; }
-.brand-icon img { width: 100%; height: 100%; display: block; }
-.brand-icon .shine { border-radius: 13%; }
+.brand-icon { position: relative; width: 38px; height: 38px; flex: none; transform-style: preserve-3d; transition: filter .5s ease; }
 .brand-ring { position: absolute; inset: 0; border-radius: 22%; border: 1.5px solid var(--beat); opacity: 0; pointer-events: none; }
-.brand:hover .brand-icon, .brand:focus-visible .brand-icon { filter: drop-shadow(0 0 12px rgba(255,22,22,.5)); }
+.brand:hover .brand-icon, .brand:focus-visible .brand-icon { filter: drop-shadow(0 0 10px rgba(255,117,31,.55)); }
 .brand:hover .brand-icon .shine::after, .brand:focus-visible .brand-icon .shine::after { animation: shine-hover .9s cubic-bezier(.4,.1,.2,1) both; }
 .wm { height: 25px; width: auto; display: block; overflow: visible; }
 .wm path { fill: var(--fg); }
 .wm-l { display: inline-block; transform-box: fill-box; transform-origin: 50% 100%; }
-.brand:hover .brand-icon img, .brand:focus-visible .brand-icon img { animation: beat 1s ease-in-out; }
+.brand:hover .brand-icon .logo-mark, .brand:focus-visible .brand-icon .logo-mark { animation: beat 1s ease-in-out; }
 .brand:hover .brand-ring, .brand:focus-visible .brand-ring { animation: ripple 1s ease-out; }
 .brand:hover .wm-l, .brand:focus-visible .wm-l { animation: wave .7s cubic-bezier(.3,.7,.3,1) calc(var(--i) * 35ms); }
 .brand:hover .wm-l path { fill: var(--fg); }
@@ -269,7 +273,7 @@ section { position: relative; }
 .seal { position: relative; display: grid; place-items: center; width: var(--seal, 112px); aspect-ratio: 1; flex: none; perspective: 700px; text-decoration: none; }
 .seal-coin { position: relative; width: 64%; aspect-ratio: 1; border-radius: 50%; transform-style: preserve-3d; will-change: transform; }
 .seal-coin img { width: 100%; height: 100%; border-radius: 50%; display: block; box-shadow: 0 10px 30px rgba(0,0,0,.45), 0 0 0 3px rgba(7,9,7,.6); }
-.seal-coin::after { content: ""; position: absolute; inset: 0; border-radius: 50%; pointer-events: none; background: linear-gradient(115deg, transparent 38%, rgba(255,255,255,.55) 50%, transparent 62%); background-size: 300% 100%; background-position: 150% 0; mix-blend-mode: overlay; animation: glint 4.5s ease-in-out infinite 3.5s; }
+.seal-coin::after { content: ""; position: absolute; inset: 0; border-radius: 50%; pointer-events: none; background: linear-gradient(115deg, transparent 38%, rgba(255,255,255,.95) 50%, transparent 62%); background-size: 300% 100%; background-position: 150% 0; mix-blend-mode: overlay; animation: glint 4.5s ease-in-out infinite 3.5s; }
 @keyframes glint { 0%, 70% { background-position: 150% 0; } 100% { background-position: -50% 0; } }
 .seal-ring { position: absolute; inset: 0; width: 100%; height: 100%; animation: spin 16s linear infinite; overflow: visible; }
 .seal-ring text { font-family: var(--mono); font-size: 8.6px; letter-spacing: 2.1px; text-transform: uppercase; fill: var(--fg); }

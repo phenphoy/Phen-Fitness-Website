@@ -18,8 +18,19 @@
   <!-- Open Graph -->
   <meta property="og:title" content="Phen Fitness | Personal Trainer in Siem Reap">
   <meta property="og:description" content="Phen Fitness provides personal training, small-group coaching, fitness assessments, consultations, and online coaching in Siem Reap.">
-  <meta property="og:image" content="images/web/og-image.jpg">
+  <meta property="og:image" content="https://phenfitness.fit/images/web/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Phen, certified personal trainer in Siem Reap, coaching a client at Bulldogs Fitness Center">
+  <meta property="og:url" content="https://phenfitness.fit/">
+  <meta property="og:site_name" content="Phen Fitness">
+  <meta property="og:locale" content="en_US">
   <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Phen Fitness | Personal Trainer in Siem Reap">
+  <meta name="twitter:description" content="Certified 1-on-1 training, small-group coaching, fitness assessments and online coaching in Siem Reap. First consultation free.">
+  <meta name="twitter:image" content="https://phenfitness.fit/images/web/og-image.jpg">
+  <link rel="canonical" href="https://phenfitness.fit/">
 
   <!-- Google Search Console verification -->
   <meta name="google-site-verification" content="dQoPTOwOV_amY7CFUuL5OqZQqz_odGGP4jASTnvwoAI">
@@ -30,7 +41,14 @@
     "@type": "HealthClub",
     "name": "Phen Fitness",
     "description": "Certified personal trainer in Siem Reap offering 1-on-1 training, small-group training, fitness assessments and online coaching.",
-    "image": "images/web/og-image.jpg",
+    "url": "https://phenfitness.fit/",
+    "image": "https://phenfitness.fit/images/web/og-image.jpg",
+    "priceRange": "$$",
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday"], "opens": "06:00", "closes": "20:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "06:00", "closes": "19:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "14:00" }
+    ],
     "telephone": "+85577413470",
     "email": "phenphoy1@gmail.com",
     "address": { "@type": "PostalAddress", "streetAddress": "Bulldogs Fitness Center", "addressLocality": "Siem Reap", "addressCountry": "KH" },
@@ -38,11 +56,15 @@
   }
   </script>
 
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is the first consultation really free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The initial consultation is free and takes 30 minutes. We talk through your goals, lifestyle, injuries, exercise background and schedule, and I recommend a starting pathway. There is no sales pressure."}}, {"@type": "Question", "name": "How much does training cost?", "acceptedAnswer": {"@type": "Answer", "text": "Initial consultation: free. Fitness assessment: $20 ($5 for gym members). 1-on-1 personal training: $200 per month, Monday to Friday, 1-hour sessions. Small-group training for 2–3 people: $175 per person per month. Online coaching is a custom, flexible plan, so message me for a quote. There are no hidden registration fees or locked contracts."}}, {"@type": "Question", "name": "Where and when do you train people?", "acceptedAnswer": {"@type": "Answer", "text": "At Bulldogs Fitness Center in Siem Reap. Hours are Monday to Thursday 6:00 AM – 8:00 PM, Friday 6:00 AM – 7:00 PM and Saturday 8:00 AM – 2:00 PM."}}, {"@type": "Question", "name": "I am a beginner. Can I still start?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. My coaching is built for beginners and busy professionals who want to lose fat, build lean muscle, increase energy and train with lasting confidence. Every plan starts from where you are today, with your injuries and mobility in mind."}}, {"@type": "Question", "name": "What happens in the fitness assessment?", "acceptedAnswer": {"@type": "Answer", "text": "It includes a Visbody 3D body composition scan, a YMCA 3-minute step test (VO₂ max recovery) and a posture and mobility baseline, so we start from real numbers."}}, {"@type": "Question", "name": "How do I book, and how fast do you reply?", "acceptedAnswer": {"@type": "Answer", "text": "Message me on Telegram or WhatsApp, or use the booking section on this page. I usually reply within 1–2 hours."}}, {"@type": "Question", "name": "What are your qualifications?", "acceptedAnswer": {"@type": "Answer", "text": "I am EREPS Level 3 registered, CPR & AED certified, and I continue my education through NASM. Open the Qualifications section to see each certificate, or check my registration live on EREPS."}}]}
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap">
   <link rel="preload" as="image" href="images/web/phen-hero.webp">
-  <link rel="stylesheet" href="css/style.css?v=17">
+  <link rel="stylesheet" href="css/style.css?v=18">
   <script>document.documentElement.classList.remove("no-js");</script>
 </head>
 <body>
@@ -450,6 +472,11 @@
           <article class="rc"><span class="rc-k">Resting burn (BMR)</span><b class="rc-v" id="oBmr">–</b><small>Calories your body uses at complete rest.</small></article>
           <article class="rc" id="rcFat"><span class="rc-k">Body fat</span><b class="rc-v" id="oFat">–</b><em class="rc-tag" id="oFatTag"></em><small id="oFatNote">Add waist and neck measurements to estimate this.</small></article>
         </div>
+        <div class="calc-share" id="cShare" hidden>
+          <a class="btn" id="sTg" href="https://t.me/phenphoy" target="_blank" rel="noopener">Send my results on Telegram <span class="arrow">→</span></a>
+          <a class="btn-ghost" id="sWa" href="https://wa.me/85577413470" target="_blank" rel="noopener">WhatsApp</a>
+          <small>Opens a message with your numbers ready. You choose whether to send it.</small>
+        </div>
         <p class="calc-disc" id="cDisc" hidden>These are estimates to guide your planning, not medical advice. Real needs vary with your body, sleep, stress and training. <a href="#book">Book a free consult</a> and I will turn them into a plan that fits you.</p>
       </div>
     </div>
@@ -511,6 +538,25 @@
   </section>
 
   <!-- CONTACT -->
+  <section class="pad wrap" id="faq" aria-label="Frequently asked questions">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Questions</span>
+        <h2 class="split"><span class="line"><span>Before you message me</span></span></h2>
+      </div>
+      <p class="lead">The things people ask most. Anything else, send me a message.</p>
+    </div>
+    <div class="faq reveal">
+      <details class="faq-i"><summary>Is the first consultation really free?</summary><p>Yes. The initial consultation is free and takes 30 minutes. We talk through your goals, lifestyle, injuries, exercise background and schedule, and I recommend a starting pathway. There is no sales pressure.</p></details>
+      <details class="faq-i"><summary>How much does training cost?</summary><p>Initial consultation: free. Fitness assessment: $20 ($5 for gym members). 1-on-1 personal training: $200 per month, Monday to Friday, 1-hour sessions. Small-group training for 2–3 people: $175 per person per month. Online coaching is a custom, flexible plan, so message me for a quote. There are no hidden registration fees or locked contracts.</p></details>
+      <details class="faq-i"><summary>Where and when do you train people?</summary><p>At Bulldogs Fitness Center in Siem Reap. Hours are Monday to Thursday 6:00 AM – 8:00 PM, Friday 6:00 AM – 7:00 PM and Saturday 8:00 AM – 2:00 PM.</p></details>
+      <details class="faq-i"><summary>I am a beginner. Can I still start?</summary><p>Yes. My coaching is built for beginners and busy professionals who want to lose fat, build lean muscle, increase energy and train with lasting confidence. Every plan starts from where you are today, with your injuries and mobility in mind.</p></details>
+      <details class="faq-i"><summary>What happens in the fitness assessment?</summary><p>It includes a Visbody 3D body composition scan, a YMCA 3-minute step test (VO₂ max recovery) and a posture and mobility baseline, so we start from real numbers.</p></details>
+      <details class="faq-i"><summary>How do I book, and how fast do you reply?</summary><p>Message me on Telegram or WhatsApp, or use the booking section on this page. I usually reply within 1–2 hours.</p></details>
+      <details class="faq-i"><summary>What are your qualifications?</summary><p>I am EREPS Level 3 registered, CPR & AED certified, and I continue my education through NASM. Open the Qualifications section to see each certificate, or check my registration live on EREPS.</p></details>
+    </div>
+  </section>
+
   <section class="cta pad" id="contact">
     <div class="wrap">
       <span class="eyebrow">Direct booking &amp; contact</span>
@@ -657,6 +703,6 @@
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
 <script src="js/availability.js?v=4" defer></script>
 <script src="js/main.js?v=11" defer></script>
-<script src="js/calculators.js?v=1" defer></script>
+<script src="js/calculators.js?v=2" defer></script>
 </body>
 </html>

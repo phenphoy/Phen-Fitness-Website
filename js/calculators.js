@@ -74,15 +74,15 @@
   function render() {
     const p = read();
     const ok = p.age >= 18 && p.age <= 99 && p.h >= 120 && p.h <= 230 && p.w >= 30 && p.w <= 300;
-    const empty = $("#cEmpty"), cards = $("#cCards"), disc = $("#cDisc");
+    const empty = $("#cEmpty"), cards = $("#cCards"), disc = $("#cDisc"), share = $("#cShare");
     if (!ok) {
-      cards.hidden = disc.hidden = true; empty.hidden = false;
+      cards.hidden = disc.hidden = share.hidden = true; empty.hidden = false;
       const started = [el.age, el.cm, el.ft, el.wt].some(i => i.value.trim());
       empty.textContent = p.age < 18 && p.age > 0 ? "These calculators are for adults (18+). Message me and I can help with a plan for younger athletes."
         : started ? "Check your age, height and weight. They look outside the usual range." : "Add your age, height and weight to see your results.";
       return;
     }
-    empty.hidden = true; cards.hidden = disc.hidden = false;
+    empty.hidden = true; cards.hidden = disc.hidden = share.hidden = false;
     const us = p.us;
     const wShow = kg => us ? fmt(kg * LB) + " lb" : fmt(kg) + " kg";
 
@@ -122,6 +122,16 @@
     } else {
       set("oFat", "–"); set("oFatTag", ""); set("oFatNote", "Add waist and neck measurements" + (p.sex === "female" ? " and hips" : "") + " to estimate this.");
     }
+    // a ready-written message, so a result can turn into a conversation
+    const goalTxt = { lose: "lose fat", maintain: "maintain my weight", gain: "build muscle" }[p.goal];
+    const body = us ? (Math.floor(Math.round(p.h / IN) / 12) + " ft " + (Math.round(p.h / IN) % 12) + " in, " + fmt(p.w * LB) + " lb") : (fmt(p.h) + " cm, " + fmt(p.w) + " kg");
+    const msg = "Hi Phen, I used the calculator on your website.\n" +
+      "Age " + fmt(p.age) + ", " + body + ". Goal: " + goalTxt + ".\n" +
+      "BMI " + round(bmi, 1).toFixed(1) + " · about " + fmt(target) + " kcal a day · protein " + fmt(p.w * pr[0]) + "–" + fmt(p.w * pr[1]) + " g a day" +
+      (bf ? " · body fat " + round(bf, 1).toFixed(1) + "%" : "") + ".\n" +
+      "I would like to book a free consultation.";
+    $("#sTg").href = "https://t.me/phenphoy?text=" + encodeURIComponent(msg);
+    $("#sWa").href = "https://wa.me/85577413470?text=" + encodeURIComponent(msg);
     save();
   }
 

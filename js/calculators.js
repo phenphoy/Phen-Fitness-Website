@@ -11,7 +11,7 @@
   const KEY = "pf-calc-v1";
   const el = {
     age: $("#cAge"), cm: $("#cCm"), ft: $("#cFt"), inch: $("#cIn"), wt: $("#cWt"), act: $("#cAct"),
-    waist: $("#cWaist"), neck: $("#cNeck"), hip: $("#cHip"), more: $("#cMore")
+    waist: $("#cWaist"), neck: $("#cNeck"), hip: $("#cHip"), more: $("#cMore"), rhr: $("#cRhr"), more2: $("#cMore2")
   };
   const radio = n => (form.querySelector('input[name="' + n + '"]:checked') || {}).value;
   const setRadio = (n, v) => { const r = form.querySelector('input[name="' + n + '"][value="' + v + '"]'); if (r) r.checked = true; };
@@ -122,6 +122,21 @@
     } else {
       set("oFat", "–"); set("oFatTag", ""); set("oFatNote", "Add waist and neck measurements" + (p.sex === "female" ? " and hips" : "") + " to estimate this.");
     }
+    // Macros: protein first, then fat at about 28% of calories, carbs take the rest
+    const protG = p.w * (pr[0] + pr[1]) / 2, protK = protG * 4;
+    const left = Math.max(0, target - protK), fatK = Math.min(0.28 * target, left), carbK = Math.max(0, left - fatK);
+    const mp = [protK, carbK, fatK].map(k => Math.round(k / target * 100));
+    set("mP", fmt(protG) + " g"); set("mC", fmt(carbK / 4) + " g"); set("mF", fmt(fatK / 9) + " g");
+    set("mPp", mp[0] + "% of calories"); set("mCp", mp[1] + "% of calories"); set("mFp", mp[2] + "% of calories");
+    $("#mbP").style.flexGrow = protK; $("#mbC").style.flexGrow = carbK; $("#mbF").style.flexGrow = fatK;
+
+    // Heart-rate zones: Tanaka max (208 - 0.7 x age); Karvonen when a resting rate is given
+    const hrMax = 208 - 0.7 * p.age, rest = num(el.rhr.value), useRest = rest >= 35 && rest <= 110 && rest < hrMax - 20;
+    const at = f => Math.round(useRest ? rest + f * (hrMax - rest) : f * hrMax);
+    const Z = [[0.5, 0.6, "Easy", "Warm-up, recovery, easy walking"], [0.6, 0.7, "Base", "Steady cardio you can talk through"], [0.7, 0.8, "Aerobic", "Builds stamina; talking in short sentences"], [0.8, 0.9, "Hard", "Intervals; only a few words at a time"], [0.9, 1.0, "Max effort", "Short all-out bursts"]];
+    $("#zones").innerHTML = Z.map((z, i) => '<li class="z' + (i + 1) + '"><i></i><b>' + z[2] + '</b><span>' + z[3] + '</span><em>' + at(z[0]) + "–" + at(z[1]) + ' bpm</em></li>').join("");
+    set("zNote", "Estimated max " + Math.round(hrMax) + " bpm. " + (useRest ? "Based on your resting rate of " + Math.round(rest) + " bpm (Karvonen method)." : "Add your resting heart rate for zones that fit you better."));
+
     // a ready-written message, so a result can turn into a conversation
     const goalTxt = { lose: "lose fat", maintain: "maintain my weight", gain: "build muscle" }[p.goal];
     const body = us ? (Math.floor(Math.round(p.h / IN) / 12) + " ft " + (Math.round(p.h / IN) % 12) + " in, " + fmt(p.w * LB) + " lb") : (fmt(p.h) + " cm, " + fmt(p.w) + " kg");
@@ -169,7 +184,7 @@
       localStorage.setItem(KEY, JSON.stringify({
         units: radio("units"), sex: radio("sex"), goal: radio("goal"), act: el.act.value,
         age: el.age.value, cm: el.cm.value, ft: el.ft.value, inch: el.inch.value, wt: el.wt.value,
-        waist: el.waist.value, neck: el.neck.value, hip: el.hip.value
+        waist: el.waist.value, neck: el.neck.value, hip: el.hip.value, rhr: el.rhr.value
       }));
     } catch (e) { /* private mode: the calculator still works */ }
   }
@@ -177,10 +192,11 @@
     try {
       const s = JSON.parse(localStorage.getItem(KEY) || "null"); if (!s) return;
       setRadio("units", s.units); setRadio("sex", s.sex); setRadio("goal", s.goal);
-      ["age", "cm", "ft", "inch", "wt", "waist", "neck", "hip"].forEach(k => { if (s[k] != null) el[k].value = s[k]; });
+      ["age", "cm", "ft", "inch", "wt", "waist", "neck", "hip", "rhr"].forEach(k => { if (s[k] != null) el[k].value = s[k]; });
       if (s.act) el.act.value = s.act;
       lastUnits = radio("units");
       if (s.waist || s.neck || s.hip) el.more.open = true;
+      if (s.rhr) el.more2.open = true;
     } catch (e) { /* ignore */ }
   }
 
@@ -194,10 +210,31 @@
   });
   form.addEventListener("submit", e => e.preventDefault());
   $("#cReset").addEventListener("click", () => {
-    form.reset(); lastUnits = "metric"; syncLayout();
+    form.reset(); lastUnits = "metric"; syncLayout(); $("#liftForm").reset();
     try { localStorage.removeItem(KEY); } catch (e) {}
     render();
   });
 
-  load(); syncLayout(); render();
+  /* ---------- one-rep max ---------- */
+  const lW = $("#lW"), lR = $("#lR");
+  function renderLift() {
+    const us = radio("units") === "us";
+    $("#lUnit").textContent = us ? "lb" : "kg"; lW.placeholder = us ? "135" : "60";
+    const w = num(lW.value), r = Math.round(num(lR.value));
+    const ok = w > 0 && w < 1500 && r >= 1 && r <= 30;
+    $("#lEmpty").hidden = ok; $("#lOut").hidden = !ok;
+    if (!ok) { $("#lEmpty").textContent = r > 30 ? "Use 30 reps or fewer. Estimates get unreliable with very high reps." : "Add the weight and reps to see your estimated one-rep max."; return; }
+    const epley = w * (1 + r / 30), brzycki = r < 37 ? w * 36 / (37 - r) : epley;
+    const max = r === 1 ? w : (epley + brzycki) / 2;
+    const step = us ? 5 : 2.5, snap = v => Math.round(v / step) * step, u = us ? " lb" : " kg";
+    set("lMax", fmt(max) + u);
+    set("lNote", r === 1 ? "A single rep is your max." : (r > 10 ? "Over 10 reps the estimate is rougher. Treat it as a guide. " : "") + "Average of the Epley and Brzycki formulas.");
+    const rows = [[95, 2], [90, 4], [85, 6], [80, 8], [75, 10], [70, 12], [65, 15], [60, 20]];
+    $("#lRows").innerHTML = rows.map(x => "<tr><td>" + x[0] + "%</td><td>" + snap(max * x[0] / 100) + u + "</td><td>about " + x[1] + "</td></tr>").join("");
+  }
+  $("#liftForm").addEventListener("input", e => { if (e.target.matches('input[type="text"]')) e.target.value = e.target.value.replace(/[^0-9.,]/g, ""); renderLift(); });
+  $("#liftForm").addEventListener("submit", e => e.preventDefault());
+  form.addEventListener("change", e => { if (e.target.name === "units") { const v = num(lW.value); if (v > 0) lW.value = round(radio("units") === "us" ? v * LB : v / LB, 1); renderLift(); } });
+
+  load(); syncLayout(); render(); renderLift();
 })();

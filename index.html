@@ -64,7 +64,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap">
   <link rel="preload" as="image" href="images/web/phen-hero.webp">
-  <link rel="stylesheet" href="css/style.css?v=18">
+  <link rel="stylesheet" href="css/style.css?v=19">
   <script>document.documentElement.classList.remove("no-js");</script>
 </head>
 <body>
@@ -457,6 +457,14 @@
           </div>
         </details>
 
+        <details class="calc-more" id="cMore2">
+          <summary>Add resting heart rate for sharper zones</summary>
+          <p>Count your pulse for 30 seconds first thing in the morning, then double it. Leave it empty and I will use your age.</p>
+          <div class="calc-row two">
+            <label class="cf"><span>Resting heart rate</span><div class="unit"><input class="field" id="cRhr" inputmode="numeric" type="text" placeholder="60" maxlength="3"><i>bpm</i></div></label>
+          </div>
+        </details>
+
         <div class="calc-actions"><button class="btn-ghost" type="button" id="cReset">Clear</button><small>Calculated on your device. Nothing you type is sent anywhere.</small></div>
       </form>
 
@@ -471,6 +479,17 @@
           <article class="rc"><span class="rc-k">Healthy weight range</span><b class="rc-v" id="oIdeal">–</b><small id="oIdealNote"></small></article>
           <article class="rc"><span class="rc-k">Resting burn (BMR)</span><b class="rc-v" id="oBmr">–</b><small>Calories your body uses at complete rest.</small></article>
           <article class="rc" id="rcFat"><span class="rc-k">Body fat</span><b class="rc-v" id="oFat">–</b><em class="rc-tag" id="oFatTag"></em><small id="oFatNote">Add waist and neck measurements to estimate this.</small></article>
+          <article class="rc rc-wide"><span class="rc-k">Daily macros for your goal</span>
+            <div class="macros">
+              <div><b id="mP">–</b><span>Protein</span><small id="mPp"></small></div>
+              <div><b id="mC">–</b><span>Carbs</span><small id="mCp"></small></div>
+              <div><b id="mF">–</b><span>Fat</span><small id="mFp"></small></div>
+            </div>
+            <div class="mbar" aria-hidden="true"><i id="mbP"></i><i id="mbC"></i><i id="mbF"></i></div>
+            <small id="mNote">Protein first, fat for hormones and fullness, carbs fill the rest for training energy.</small></article>
+          <article class="rc rc-wide"><span class="rc-k">Heart-rate zones</span>
+            <ol class="zones" id="zones"></ol>
+            <small id="zNote"></small></article>
         </div>
         <div class="calc-share" id="cShare" hidden>
           <a class="btn" id="sTg" href="https://t.me/phenphoy" target="_blank" rel="noopener">Send my results on Telegram <span class="arrow">→</span></a>
@@ -478,6 +497,24 @@
           <small>Opens a message with your numbers ready. You choose whether to send it.</small>
         </div>
         <p class="calc-disc" id="cDisc" hidden>These are estimates to guide your planning, not medical advice. Real needs vary with your body, sleep, stress and training. <a href="#book">Book a free consult</a> and I will turn them into a plan that fits you.</p>
+      </div>
+    </div>
+
+    <div class="calc calc-lift reveal" id="lift">
+      <form class="calc-form" id="liftForm" autocomplete="off" novalidate>
+        <div class="calc-title"><b>One-rep max</b><span>Lift a weight for a few reps (not to failure) and see your estimated max.</span></div>
+        <div class="calc-row two">
+          <label class="cf"><span>Weight lifted</span><div class="unit"><input class="field" id="lW" inputmode="decimal" type="text" placeholder="60"><i id="lUnit">kg</i></div></label>
+          <label class="cf"><span>Reps completed</span><div class="unit"><input class="field" id="lR" inputmode="numeric" type="text" placeholder="8" maxlength="2"><i>reps</i></div></label>
+        </div>
+        <p class="calc-note">Most accurate for 1–10 reps. Uses your unit choice above. Warm up well and use a spotter for heavy lifts.</p>
+      </form>
+      <div class="calc-out" aria-live="polite">
+        <p class="calc-empty" id="lEmpty">Add the weight and reps to see your estimated one-rep max.</p>
+        <div id="lOut" hidden>
+          <article class="rc rc-main"><span class="rc-k">Estimated one-rep max</span><b class="rc-v" id="lMax">–</b><small id="lNote"></small></article>
+          <table class="ltable"><caption>Training weights from your max</caption><thead><tr><th>Intensity</th><th>Weight</th><th>Typical reps</th></tr></thead><tbody id="lRows"></tbody></table>
+        </div>
       </div>
     </div>
 
@@ -703,6 +740,6 @@
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
 <script src="js/availability.js?v=4" defer></script>
 <script src="js/main.js?v=11" defer></script>
-<script src="js/calculators.js?v=2" defer></script>
+<script src="js/calculators.js?v=3" defer></script>
 </body>
 </html>

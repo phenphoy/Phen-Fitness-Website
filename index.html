@@ -42,7 +42,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap">
   <link rel="preload" as="image" href="images/web/phen-hero.webp">
-  <link rel="stylesheet" href="css/style.css?v=16">
+  <link rel="stylesheet" href="css/style.css?v=17">
   <script>document.documentElement.classList.remove("no-js");</script>
 </head>
 <body>
@@ -382,13 +382,82 @@
         <span class="eyebrow">Free resources</span>
         <h2 class="split"><span class="line"><span>Tools for your fitness journey</span>
       </div>
-      <p class="lead">Practical, free tools to support your training between sessions.</p>
+      <p class="lead">Free calculators and tools to support your training between sessions.</p>
     </div>
+    <div class="calc reveal" id="calculators">
+      <form class="calc-form" id="calcForm" autocomplete="off" novalidate>
+        <div class="calc-title"><b>Your numbers</b><span>Enter them once. Every result updates as you type.</span></div>
+
+        <div class="calc-row two">
+          <fieldset class="seg" aria-label="Units">
+            <legend>Units</legend>
+            <label><input type="radio" name="units" value="metric" checked><span>Metric</span></label>
+            <label><input type="radio" name="units" value="us"><span>US</span></label>
+          </fieldset>
+          <fieldset class="seg" aria-label="Sex">
+            <legend>Sex</legend>
+            <label><input type="radio" name="sex" value="male" checked><span>Male</span></label>
+            <label><input type="radio" name="sex" value="female"><span>Female</span></label>
+          </fieldset>
+        </div>
+
+        <div class="calc-row three">
+          <label class="cf"><span>Age</span><div class="unit"><input class="field" id="cAge" inputmode="numeric" type="text" placeholder="30" maxlength="2"><i>years</i></div></label>
+          <div class="cf" id="hMetric"><span>Height</span><div class="unit"><input class="field" id="cCm" inputmode="decimal" type="text" placeholder="170" aria-label="Height in centimetres"><i>cm</i></div></div>
+          <div class="cf" id="hUs" hidden><span>Height</span><div class="unit two"><input class="field" id="cFt" inputmode="numeric" type="text" placeholder="5" aria-label="Height, feet"><i>ft</i><input class="field" id="cIn" inputmode="decimal" type="text" placeholder="7" aria-label="Height, inches"><i>in</i></div></div>
+          <label class="cf"><span>Weight</span><div class="unit"><input class="field" id="cWt" inputmode="decimal" type="text" placeholder="70"><i id="wUnit">kg</i></div></label>
+        </div>
+
+        <label class="cf"><span>How active are you?</span>
+          <select class="field" id="cAct">
+            <option value="1.2">Mostly sitting: desk job, little exercise</option>
+            <option value="1.375" selected>Light: 1–3 workouts a week</option>
+            <option value="1.55">Moderate: 3–5 workouts a week</option>
+            <option value="1.725">Very active: 6–7 workouts a week</option>
+            <option value="1.9">Athlete or physical job: training twice a day</option>
+          </select>
+        </label>
+
+        <fieldset class="seg wide" aria-label="Your goal">
+          <legend>Your goal</legend>
+          <label><input type="radio" name="goal" value="lose"><span>Lose fat</span></label>
+          <label><input type="radio" name="goal" value="maintain" checked><span>Maintain</span></label>
+          <label><input type="radio" name="goal" value="gain"><span>Build muscle</span></label>
+        </fieldset>
+
+        <details class="calc-more" id="cMore">
+          <summary>Add tape measurements for body fat %</summary>
+          <p>Measure round the narrowest part of your waist (at the navel for men), your neck below the voice box<span id="hipNote"></span>. Keep the tape snug, not tight.</p>
+          <div class="calc-row three">
+            <label class="cf"><span>Waist</span><div class="unit"><input class="field" id="cWaist" inputmode="decimal" type="text" placeholder="85"><i class="lenU">cm</i></div></label>
+            <label class="cf"><span>Neck</span><div class="unit"><input class="field" id="cNeck" inputmode="decimal" type="text" placeholder="38"><i class="lenU">cm</i></div></label>
+            <label class="cf" id="hipWrap" hidden><span>Hips</span><div class="unit"><input class="field" id="cHip" inputmode="decimal" type="text" placeholder="98"><i class="lenU">cm</i></div></label>
+          </div>
+        </details>
+
+        <div class="calc-actions"><button class="btn-ghost" type="button" id="cReset">Clear</button><small>Calculated on your device. Nothing you type is sent anywhere.</small></div>
+      </form>
+
+      <div class="calc-out" id="calcOut" aria-live="polite">
+        <p class="calc-empty" id="cEmpty">Add your age, height and weight to see your results.</p>
+        <div class="calc-cards" id="cCards" hidden>
+          <article class="rc rc-bmi"><span class="rc-k">Body mass index</span><b class="rc-v" id="oBmi">–</b><em class="rc-tag" id="oBmiTag"></em>
+            <div class="bar" aria-hidden="true"><i style="--c:#6aa8ff"></i><i style="--c:#a3e635"></i><i style="--c:#ffc247"></i><i style="--c:#ff7a59"></i><s id="oBmiDot"></s></div>
+            <small id="oBmiNote"></small></article>
+          <article class="rc rc-main"><span class="rc-k">Daily calories for your goal</span><b class="rc-v" id="oTarget">–</b><em class="rc-tag" id="oGoalTag"></em><small id="oTdee"></small></article>
+          <article class="rc"><span class="rc-k">Protein per day</span><b class="rc-v" id="oProt">–</b><small id="oProtNote"></small></article>
+          <article class="rc"><span class="rc-k">Healthy weight range</span><b class="rc-v" id="oIdeal">–</b><small id="oIdealNote"></small></article>
+          <article class="rc"><span class="rc-k">Resting burn (BMR)</span><b class="rc-v" id="oBmr">–</b><small>Calories your body uses at complete rest.</small></article>
+          <article class="rc" id="rcFat"><span class="rc-k">Body fat</span><b class="rc-v" id="oFat">–</b><em class="rc-tag" id="oFatTag"></em><small id="oFatNote">Add waist and neck measurements to estimate this.</small></article>
+        </div>
+        <p class="calc-disc" id="cDisc" hidden>These are estimates to guide your planning, not medical advice. Real needs vary with your body, sleep, stress and training. <a href="#book">Book a free consult</a> and I will turn them into a plan that fits you.</p>
+      </div>
+    </div>
+
+    <h3 class="res-h">More resources</h3>
     <div class="res">
       <a class="reveal" href="https://linktr.ee/phenfitness" target="_blank" rel="noopener"><span class="res-kind">Plans</span><b>Workout plans</b><span>Targeted routines for upper body, lower body, and balanced weekly splits.</span></a>
       <a class="reveal" href="https://linktr.ee/phenfitness" target="_blank" rel="noopener"><span class="res-kind">Template</span><b>Weight-loss tracker</b><span>A simple template to log workout consistency and track weekly trends.</span></a>
-      <a class="reveal" href="https://linktr.ee/phenfitness" target="_blank" rel="noopener"><span class="res-kind">Calculator</span><b>Calorie calculator</b><span>Estimate a realistic baseline for daily maintenance and deficit targets.</span></a>
-      <a class="reveal" href="https://linktr.ee/phenfitness" target="_blank" rel="noopener"><span class="res-kind">Calculator</span><b>Protein calculator</b><span>Daily protein targets for your muscle building and recovery needs.</span></a>
     </div>
     <div class="res-foot"><a class="btn" href="https://linktr.ee/phenfitness" target="_blank" rel="noopener">Explore all fitness resources <span class="arrow">↗</span></a></div>
   </section>
@@ -588,5 +657,6 @@
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
 <script src="js/availability.js?v=4" defer></script>
 <script src="js/main.js?v=11" defer></script>
+<script src="js/calculators.js?v=1" defer></script>
 </body>
 </html>

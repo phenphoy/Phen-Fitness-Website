@@ -19,7 +19,7 @@
   --display: "Big Shoulders Display", "Oswald", "Arial Narrow", Impact, sans-serif;
   --body: "Plus Jakarta Sans", -apple-system, "Segoe UI", Roboto, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
-  --gutter: clamp(16px, 4vw, 56px);
+  --gutter: clamp(16px, 4vw, 96px); --maxw: 2200px;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
@@ -28,7 +28,7 @@ body { margin: 0; background: var(--ink); color: var(--fg); font-family: var(--b
 img { display: block; max-width: 100%; }
 a { color: inherit; }
 :focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }
-.wrap { padding-inline: var(--gutter); max-width: 1440px; margin-inline: auto; }
+.wrap { padding-inline: var(--gutter); max-width: var(--maxw); margin-inline: auto; }
 h1, h2, h3 { font-family: var(--display); font-weight: 900; line-height: 1; letter-spacing: 0.01em; text-transform: uppercase; margin: 0; text-wrap: balance; }
 p, li { text-wrap: pretty; }
 .eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--lime); }
@@ -767,7 +767,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 .nav-links a[aria-current]::after { transform: scaleX(1); transform-origin: left; background: var(--fg); }
 
 /* services: all plans on screen, no sideways scroll */
-.h-track { width: auto; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; padding-inline: var(--gutter); max-width: 1440px; margin-inline: auto; transform: none !important; }
+.h-track { width: auto; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; padding-inline: var(--gutter); max-width: var(--maxw); margin-inline: auto; transform: none !important; }
 .card { width: auto; }
 .card h3 { font-size: clamp(30px, 2.8vw, 40px); }
 .card-help { background: transparent; border-style: dashed; border-color: rgba(255,255,255,.2); align-content: start; grid-template-rows: auto auto 1fr auto; }

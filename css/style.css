@@ -844,7 +844,10 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 .vcard { display: grid; align-content: start; gap: 12px; text-align: left; font: inherit; color: var(--fg); background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 10px 10px 16px; cursor: pointer; transition: border-color .25s, background .25s; }
 .vcard:hover, .vcard:focus-visible { border-color: rgba(163,230,53,.45); background: var(--panel-2); }
 .vthumb { position: relative; display: grid; place-items: center; aspect-ratio: 16 / 9; border-radius: 8px; overflow: hidden; background: var(--ink); }
-.vcard-tiktok .vthumb { background: linear-gradient(160deg, #101512, #0a0c0a); }
+.vcard-tiktok .vthumb { aspect-ratio: 4 / 5; background: linear-gradient(160deg, #101512, #0a0c0a); }
+.vcard-tiktok .vthumb img { object-position: 50% 28%; }
+.vcard-tiktok .vt-tk { position: absolute; top: 10px; left: 12px; color: #fff; text-shadow: 0 1px 8px rgba(0,0,0,.7); }
+.vmore[hidden] { display: none; }
 .vmore { margin-top: 20px; }
 .vthumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .vt-tk { font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
@@ -908,3 +911,5 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 .ss-actions .is-off { opacity: .45; }
 @media (max-width: 900px) { .share-story { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 520px) { .ss-form { grid-template-columns: minmax(0, 1fr); } .ss-actions .btn { width: 100%; justify-content: center; } }
+.vcard-tiktok .vplay { position: absolute; right: 12px; bottom: 12px; width: 44px; height: 44px; }
+.vcard-tiktok .vplay svg { width: 20px; height: 20px; }

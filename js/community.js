@@ -31,7 +31,7 @@
       (cut ? shown.slice(0, LIMIT) : shown).forEach(function (v) {
         var b = document.createElement("button"); b.type = "button"; b.className = "vcard vcard-" + v.p;
         b.setAttribute("aria-label", "Play: " + v.title);
-        var thumb = v.p === "youtube" ? '<img src="https://i.ytimg.com/vi/' + v.id + '/hqdefault.jpg" alt="" loading="lazy">' : '<span class="vt-tk" aria-hidden="true">TikTok</span>';
+        var thumb = v.p === "youtube" ? '<img src="https://i.ytimg.com/vi/' + v.id + '/hqdefault.jpg" alt="" loading="lazy">' : '<img src="images/tiktok/' + v.id + '.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="vt-tk" aria-hidden="true">TikTok</span>';
         b.innerHTML = '<span class="vthumb">' + thumb + '<span class="vplay" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></span><span class="vmeta"><small>' + (v.p === "youtube" ? "YouTube" : "TikTok") + " · " + v.tag + "</small><b></b></span>";
         b.querySelector("b").textContent = v.title;
         b.addEventListener("click", function () {

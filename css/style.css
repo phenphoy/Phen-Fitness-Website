@@ -913,3 +913,11 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 @media (max-width: 520px) { .ss-form { grid-template-columns: minmax(0, 1fr); } .ss-actions .btn { width: 100%; justify-content: center; } }
 .vcard-tiktok .vplay { position: absolute; right: 12px; bottom: 12px; width: 44px; height: 44px; }
 .vcard-tiktok .vplay svg { width: 20px; height: 20px; }
+
+/* Hero statement */
+.hero h1 em { font-style: normal; }
+.hero h1 .dim { color: var(--fg); opacity: .42; }
+.hero h1 .line.has-bar { padding-bottom: .16em; }
+.hero h1 .stronger { position: relative; background: linear-gradient(100deg, var(--lime) 0 42%, #f3ffc9 50%, var(--lime) 58% 100%); background-size: 260% 100%; background-position: -20% 0; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
+.hero h1 .stronger .bar { position: absolute; left: 0; right: 0; bottom: -.1em; height: .07em; border-radius: 99px; background: var(--lime); transform-origin: left center; }
+@media (max-width: 860px) { .hero h1 .stronger .bar { bottom: -.12em; } }

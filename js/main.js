@@ -271,7 +271,11 @@
     .fromTo("#heroSeal .seal-coin", { rotateY: -270, scale: 0.7 }, { rotateY: 0, scale: 1, duration: 1.5, ease: "expo.out", clearProps: "transform" }, "<0.1")
     .fromTo("#heroSeal .seal-shock", { opacity: 0.9, scale: 0.9 }, { opacity: 0, scale: 1.9, duration: 0.9, ease: "power2.out" }, "<0.8")
     .set("#nav .wm-l, #nav .brand-icon", { clearProps: "transform,opacity" })
-    .call(() => glint(), null, t0 + 1.0);
+    .call(() => glint(), null, t0 + 1.0)
+    // The statement lands: "easier" fades back, "stronger" gets a light sweep and a line drawn under it
+    .fromTo(".hero h1 .dim", { opacity: 1 }, { opacity: 0.42, duration: 0.9, ease: "power2.out" }, t0 + 1.05)
+    .fromTo(".hero h1 .stronger .bar", { scaleX: 0 }, { scaleX: 1, duration: 1.1, ease: "expo.out" }, t0 + 1.0)
+    .fromTo(".hero h1 .stronger", { backgroundPosition: "115% 0" }, { backgroundPosition: "-15% 0", duration: 1.5, ease: "power2.inOut" }, t0 + 1.1);
 
   /* ---------- Logo life: a glint now and then, and a gentle 3D tilt that follows the pointer ---------- */
   const navShine = $("#nav .brand-icon .shine");

@@ -313,6 +313,30 @@
     ["#book", "#contact"].forEach(s => { const el = document.querySelector(s); if (el) io.observe(el); });
   }
 
+  /* ---------- Nav shows where you are; the phone booking bar appears after the hero ---------- */
+  if ("IntersectionObserver" in window) {
+    const links = [...document.querySelectorAll(".nav-links a")];
+    const map = new Map(links.map(a => [a.getAttribute("href"), a]));
+    const spy = new IntersectionObserver(es => es.forEach(e => {
+      const a = map.get("#" + e.target.id); if (!a) return;
+      if (e.isIntersecting) { links.forEach(l => l.removeAttribute("aria-current")); a.setAttribute("aria-current", "true"); }
+    }), { rootMargin: "-45% 0px -50% 0px" });
+    ["services", "story", "transformation", "qualifications", "gallery", "resources", "book", "contact"].forEach(id => {
+      const el = document.getElementById(id); if (!el) return;
+      // transformation and story both belong to "My Story"
+      if (id === "transformation" && !map.has("#transformation")) map.set("#transformation", map.get("#story"));
+      spy.observe(el);
+    });
+    const dock = document.getElementById("dock");
+    if (dock) {
+      const hide = new Set(); let heroOn = true;
+      const upd = () => dock.classList.toggle("on", !heroOn && hide.size === 0);
+      new IntersectionObserver(es => { heroOn = es[0].isIntersecting; upd(); }, { threshold: 0.35 }).observe(document.getElementById("home"));
+      const io2 = new IntersectionObserver(es => { es.forEach(e => e.isIntersecting ? hide.add(e.target) : hide.delete(e.target)); upd(); }, { threshold: 0.15 });
+      ["#book", "#contact"].forEach(s => { const el = document.querySelector(s); if (el) io2.observe(el); });
+    }
+  }
+
   /* ---------- Parallax ---------- */
   gsap.to("#heroImg", { yPercent: 12, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
   gsap.fromTo("#storyImg", { yPercent: -3 }, { yPercent: 3, ease: "none", scrollTrigger: { trigger: "#story", start: "top bottom", end: "bottom top", scrub: true } });
@@ -365,55 +389,8 @@
     gSkew.style.transform = "skewY(" + skew.toFixed(2) + "deg)";
   });
 
-  /* ---------- Services: pinned sideways scroll on wide screens ----------
-     Scrolling down moves the cards sideways. Sideways trackpad swipes and
-     the arrow buttons move them too (by scrolling the page the same amount). */
-  const mm = gsap.matchMedia();
-  mm.add("(min-width: 900px)", () => {
-    const track = $("#hTrack"), prev = $("#hPrev"), next = $("#hNext");
-    const dist = () => Math.max(0, track.scrollWidth - window.innerWidth);
-    const tween = gsap.to(track, {
-      x: () => -dist(), ease: "none",
-      scrollTrigger: {
-        trigger: "#hPin", start: "center center", end: () => "+=" + dist(), pin: "#services", scrub: 0.8, invalidateOnRefresh: true, anticipatePin: 1,
-        onUpdate: s => {
-          $("#hProgress").style.transform = "scaleX(" + s.progress + ")";
-          const cards = track.querySelectorAll(".card").length;
-          $("#hCount").textContent = (Math.min(cards, Math.round(s.progress * (cards - 1)) + 1)) + " / " + cards + " plans";
-          prev.disabled = s.progress <= 0.01;
-          next.disabled = s.progress >= 0.99;
-        }
-      }
-    });
-    const st = tween.scrollTrigger;
-    prev.disabled = true;
-    const scrollTo = y => { if (lenis) lenis.scrollTo(y, { duration: 0.9 }); else window.scrollTo({ top: y, behavior: "smooth" }); };
-    const step = () => { const c = track.querySelector(".card"); return c.offsetWidth + parseFloat(getComputedStyle(track).columnGap || 20); };
-    function go(dir) {
-      const s = step(), x = st.progress * dist();
-      const idx = Math.max(0, Math.round(x / s) + dir);
-      scrollTo(Math.min(st.end, st.start + idx * s));
-    }
-    const onPrev = () => go(-1), onNext = () => go(1);
-    prev.addEventListener("click", onPrev);
-    next.addEventListener("click", onNext);
-    // sideways trackpad swipe while the row is on screen
-    const onWheel = e => {
-      if (Math.abs(e.deltaX) <= Math.abs(e.deltaY) || !st.isActive) return;
-      e.preventDefault();
-      const y = Math.min(st.end, Math.max(st.start, (lenis ? lenis.targetScroll : window.scrollY) + e.deltaX));
-      if (lenis) lenis.scrollTo(y, { immediate: true }); else window.scrollTo(0, y);
-    };
-    const pin = $("#hPin");
-    pin.addEventListener("wheel", onWheel, { passive: false });
-    gsap.from(".card", { y: 80, opacity: 0, rotate: 3, duration: 1, stagger: 0.08, ease: "expo.out", scrollTrigger: { trigger: "#hPin", start: "top 85%" } });
-    return () => {
-      tween.kill();
-      prev.removeEventListener("click", onPrev);
-      next.removeEventListener("click", onNext);
-      pin.removeEventListener("wheel", onWheel);
-    };
-  });
+  /* ---------- Services: every plan is visible; the cards rise in once ---------- */
+  gsap.from(".card", { y: 36, opacity: 0, duration: 0.9, stagger: 0.07, ease: "expo.out", clearProps: "transform,opacity", scrollTrigger: { trigger: "#hTrack", start: "top 88%", once: true } });
 
   /* ---------- Before / after hint sweep ---------- */
   ScrollTrigger.create({ trigger: ba, start: "top 60%", once: true, onEnter: () => {

@@ -17,7 +17,6 @@ window.PHEN_VIDEOS = [
   { url: "https://www.tiktok.com/@phen_fitness/video/7638128853994687764", title: "Track your weight and health the right way", tag: "Nutrition and fat loss" },
   { url: "https://www.tiktok.com/@phen_fitness/video/7622000446793682196", title: "Can too much protein hurt your kidneys?", tag: "Nutrition and fat loss" },
   { url: "https://www.tiktok.com/@phen_fitness/video/7521261187770617106", title: "Build glutes without big thighs", tag: "Women's fitness" },
-  { url: "https://www.tiktok.com/@phen_fitness/video/7703246181526392084", title: "Glute medius", tag: "Women's fitness" },
   { url: "https://www.tiktok.com/@phen_fitness/video/7622705351644679445", title: "Can women lift heavy and build muscle?", tag: "Women's fitness" }
 ];
 

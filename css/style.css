@@ -801,3 +801,37 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 @media (prefers-reduced-transparency: reduce) { .dock { background: var(--panel); -webkit-backdrop-filter: none; backdrop-filter: none; } }
 .card.featured .card-tag, .card.featured .card-n { color: var(--on-lime) !important; }
 .card.featured .card-n { opacity: .7; }
+
+/* Resources: tracker feature + plan list */
+.res-sub { font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--soft); font-weight: 500; margin: 40px 0 14px; }
+.tracker { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 64px); align-items: center; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: clamp(22px, 3.2vw, 44px); }
+.tracker-copy { display: grid; gap: 14px; justify-items: start; }
+.tracker h4 { margin: 0; font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: clamp(30px, 3.2vw, 48px); line-height: 1; }
+.tracker p { margin: 0; color: var(--muted); font-size: 16px; line-height: 1.6; max-width: 56ch; }
+.tracker-feats { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 9px; }
+.tracker-feats li { position: relative; padding-left: 22px; color: var(--fg); font-size: 15px; line-height: 1.45; }
+.tracker-feats li::before { content: ""; position: absolute; left: 3px; top: .5em; width: 6px; height: 6px; border-radius: 50%; background: var(--soft); }
+.tracker-cta { display: grid; gap: 10px; justify-items: start; margin-top: 10px; }
+.tracker-cta small { color: var(--muted); font-size: 13.5px; max-width: 46ch; line-height: 1.5; }
+.tracker-vis { background: var(--ink); border: 1px solid var(--line); border-radius: 10px; padding: clamp(18px, 2.4vw, 30px); display: grid; gap: 22px; }
+.tv-label { font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.tv-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.tv-grid small { display: block; color: var(--muted); font-size: 13px; margin-bottom: 4px; }
+.tv-grid b { font-family: var(--display); font-weight: 800; font-size: clamp(30px, 3.4vw, 52px); line-height: 1; font-variant-numeric: tabular-nums; }
+.tv-grid i { font-style: normal; font-family: var(--body, inherit); font-weight: 500; font-size: 14px; color: var(--muted); margin-left: 4px; }
+.tv-bar { height: 8px; border-radius: 999px; background: rgba(255,255,255,.1); overflow: hidden; }
+.tv-bar span { display: block; height: 100%; width: var(--p); border-radius: inherit; background: var(--fg); }
+.tv-foot { display: flex; justify-content: space-between; gap: 12px; color: var(--muted); font-size: 14px; }
+.tv-foot b { color: var(--fg); font-weight: 600; }
+.rlist { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.rlist a { display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; align-items: center; gap: 16px; min-height: 72px; padding: 14px 18px; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; text-decoration: none; color: var(--fg); transition: border-color .25s, background .25s; }
+.rl-ic { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 10px; background: rgba(255,255,255,.06); color: var(--soft); }
+.rl-ic svg { width: 22px; height: 22px; }
+.rl-t { display: grid; gap: 2px; min-width: 0; }
+.rl-t b { font-size: 16px; font-weight: 600; line-height: 1.3; }
+.rl-t small { color: var(--muted); font-size: 13.5px; }
+.rl-go { color: var(--muted); font-size: 18px; transition: transform .3s cubic-bezier(.2,.7,.2,1), color .25s; }
+.rlist a:hover, .rlist a:focus-visible { border-color: rgba(163,230,53,.45); background: var(--panel-2); }
+.rlist a:hover .rl-go, .rlist a:focus-visible .rl-go { color: var(--lime); transform: translate(3px, -3px); }
+@media (max-width: 900px) { .tracker { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 720px) { .rlist { grid-template-columns: minmax(0, 1fr); } .tracker-cta .btn { width: 100%; justify-content: center; } }

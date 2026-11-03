@@ -20,9 +20,15 @@
     var list = (window.PHEN_VIDEOS || []).map(function (v) { var p = parseVideo(v); return p && { p: p.p, id: p.id, url: v.url, title: v.title || "Watch", tag: v.tag || "Videos" }; }).filter(Boolean);
     if (!list.length) { $("#watch").classList.add("is-empty"); grid.hidden = true; return; }
     var tags = ["All"]; list.forEach(function (v) { if (tags.indexOf(v.tag) < 0) tags.push(v.tag); });
+    var LIMIT = 8, expanded = false, curTag = "All", more = document.createElement("button");
+    more.type = "button"; more.className = "btn vmore"; more.hidden = true; grid.after(more);
+    more.addEventListener("click", function () { expanded = true; draw(curTag); });
     function draw(tag) {
-      grid.innerHTML = "";
-      list.filter(function (v) { return tag === "All" || v.tag === tag; }).forEach(function (v) {
+      curTag = tag; grid.innerHTML = "";
+      var shown = list.filter(function (v) { return tag === "All" || v.tag === tag; });
+      var cut = !expanded && shown.length > LIMIT;
+      more.hidden = !cut; if (cut) more.textContent = "Show all " + shown.length + " tips";
+      (cut ? shown.slice(0, LIMIT) : shown).forEach(function (v) {
         var b = document.createElement("button"); b.type = "button"; b.className = "vcard vcard-" + v.p;
         b.setAttribute("aria-label", "Play: " + v.title);
         var thumb = v.p === "youtube" ? '<img src="https://i.ytimg.com/vi/' + v.id + '/hqdefault.jpg" alt="" loading="lazy">' : '<span class="vt-tk" aria-hidden="true">TikTok</span>';

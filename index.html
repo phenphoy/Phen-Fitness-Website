@@ -64,7 +64,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap">
   <link rel="preload" as="image" href="images/web/phen-hero.webp">
-  <link rel="stylesheet" href="css/style.css?v=23">
+  <link rel="stylesheet" href="css/style.css?v=24">
   <script>document.documentElement.classList.remove("no-js");</script>
 </head>
 <body>
@@ -90,6 +90,7 @@
       <a href="#story">My Story</a>
       <a href="#qualifications">Qualifications</a>
       <a href="#gallery">Gallery</a>
+      <a href="#challenge">Challenge</a>
       <a href="#resources">Resources</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -106,6 +107,7 @@
     <a href="#story" style="--i:1">My Story</a>
     <a href="#qualifications" style="--i:2">Qualifications</a>
     <a href="#gallery" style="--i:3">Gallery</a>
+    <a href="#challenge" style="--i:4">Challenge</a>
     <a href="#resources" style="--i:4">Resources</a>
     <a href="#book" style="--i:5">Book</a>
     <a href="#contact" style="--i:6">Contact</a>
@@ -394,6 +396,70 @@
         <figcaption><span class="avatar" aria-hidden="true">CR</span><div><span class="stars" aria-label="5 out of 5 stars">★★★★★</span><br><b>Chan Reach</b><small>Small-group training</small></div></figcaption>
       </figure>
     </div>
+    </div>
+    <div class="share-story reveal" id="shareStory">
+      <div class="ss-copy">
+        <span class="res-kind">Share your story</span>
+        <h3>Trained with me? Tell it your way.</h3>
+        <p>Write a few lines here, or send a short video on Telegram. I only feature your words, first name and photo with your OK.</p>
+      </div>
+      <form class="ss-form" id="ssForm" autocomplete="off" novalidate>
+        <label class="cf"><span>First name</span><input class="field" id="ssName" type="text" placeholder="e.g. Sokha" maxlength="40"></label>
+        <label class="cf"><span>Your goal</span><select class="field" id="ssGoal"><option>Lose fat</option><option>Build muscle</option><option>Get stronger</option><option>More energy</option><option>Other</option></select></label>
+        <label class="cf ss-wide"><span>Your story</span><textarea class="field" id="ssText" rows="4" maxlength="600" placeholder="Where you started, what changed, how you feel now"></textarea></label>
+        <label class="ss-ok ss-wide"><input type="checkbox" id="ssOk"> <span>I'm happy for Phen to share my words and first name on the website and social media.</span></label>
+        <div class="ss-actions ss-wide">
+          <a class="btn btn-primary" id="ssWa" href="https://wa.me/85577413470" target="_blank" rel="noopener" aria-disabled="true">Send on WhatsApp <span class="arrow">→</span></a>
+          <a class="btn" href="https://t.me/phenphoy" target="_blank" rel="noopener">Send a video on Telegram</a>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- WATCH -->
+  <section class="pad wrap" id="watch" aria-label="Videos">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Watch</span>
+        <h2>Train with me on video.</h2>
+        <p class="lead">Short workouts, form fixes and gym life from my TikTok and YouTube. Tap a clip to play it right here.</p>
+      </div>
+    </div>
+    <div class="vchips" id="vChips" role="group" aria-label="Filter videos" hidden></div>
+    <div class="vgrid" id="vGrid"></div>
+    <div class="vfollow">
+      <a class="vf" href="https://www.youtube.com/@phenfitness" target="_blank" rel="noopener"><span class="vf-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2a2.6 2.6 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.6 2.6 0 0 0 2.4 7.2C2 8.8 2 12 2 12s0 3.2.4 4.8a2.6 2.6 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.6 2.6 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8zM10 15V9l5.2 3L10 15z"/></svg></span><span><b>YouTube</b><small>Subscribe for full workouts</small></span><i aria-hidden="true">↗</i></a>
+      <a class="vf" href="https://tiktok.com/@phen_fitness" target="_blank" rel="noopener"><span class="vf-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 3c.3 2.4 1.7 3.9 4 4.1v3a7 7 0 0 1-4-1.3v6.1A5.9 5.9 0 1 1 10.7 9v3.1a2.9 2.9 0 1 0 2.1 2.8V3h3.8z"/></svg></span><span><b>TikTok</b><small>Follow for daily tips</small></span><i aria-hidden="true">↗</i></a>
+    </div>
+  </section>
+
+  <!-- CHALLENGE -->
+  <section class="pad wrap" id="challenge" aria-label="Monthly challenge">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Monthly challenge · Free</span>
+        <h2 id="chName">30-Day Glutes &amp; Core</h2>
+        <p class="lead">Thirty days, no gym needed, about 20 to 30 minutes a day. Join free, tick off each day, and message me when you finish. A new theme starts each month.</p>
+      </div>
+    </div>
+    <div class="ch">
+      <div class="ch-main">
+        <div class="ch-status" id="chStatus" aria-live="polite"></div>
+        <div class="ch-prog"><div class="tv-bar" aria-hidden="true"><span id="chBar" style="--p:0%"></span></div><small id="chCount">0 of 30 days done</small></div>
+        <ol class="ch-days" id="chDays" aria-label="Challenge days"></ol>
+        <div class="ch-cta">
+          <a class="btn btn-primary" id="chJoin" href="https://t.me/phenphoy" target="_blank" rel="noopener">Join free on Telegram <span class="arrow">↗</span></a>
+          <a class="btn" id="chJoinWa" href="https://wa.me/85577413470" target="_blank" rel="noopener">Join on WhatsApp</a>
+        </div>
+        <p class="ch-note">Joining just sends me a message so I can add you to the group and send reminders. Your ticks are saved on this device only.</p>
+      </div>
+      <aside class="ch-side" aria-live="polite">
+        <div class="ch-day-h"><small id="chDayK">Day 1 · Week 1</small><h3 id="chDayT">Foundation</h3></div>
+        <ul class="ch-ex" id="chEx"></ul>
+        <button class="btn btn-primary ch-done" id="chDone" type="button">Mark day done</button>
+        <button class="btn-ghost ch-share" id="chShare" type="button" hidden>Share my progress</button>
+        <p class="ch-note">Warm up for 3 minutes first. Stop if anything hurts, and check with your doctor before starting if you have an injury or health condition. This is general guidance, not medical advice.</p>
+      </aside>
     </div>
   </section>
 
@@ -779,5 +845,7 @@
 <script src="js/availability.js?v=4" defer></script>
 <script src="js/main.js?v=12" defer></script>
 <script src="js/calculators.js?v=3" defer></script>
+<script src="js/content.js?v=1" defer></script>
+<script src="js/community.js?v=1" defer></script>
 </body>
 </html>

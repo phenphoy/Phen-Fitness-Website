@@ -921,3 +921,15 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 .hero h1 .stronger { position: relative; background: linear-gradient(100deg, var(--lime) 0 42%, #f3ffc9 50%, var(--lime) 58% 100%); background-size: 260% 100%; background-position: -20% 0; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
 .hero h1 .stronger .bar { position: absolute; left: 0; right: 0; bottom: -.1em; height: .07em; border-radius: 99px; background: var(--lime); transform-origin: left center; }
 @media (max-width: 860px) { .hero h1 .stronger .bar { bottom: -.12em; } }
+
+/* Coaching app section + Log in button */
+.app-btns { display: flex; flex-wrap: wrap; gap: 12px; }
+.app-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; counter-reset: app; }
+.app-steps li { counter-increment: app; display: grid; grid-template-columns: 40px minmax(0, 1fr); column-gap: 14px; row-gap: 2px; align-items: start; }
+.app-steps li::before { content: counter(app); grid-row: 1 / span 2; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); color: var(--soft); font-family: var(--display); font-weight: 800; font-size: 20px; }
+.app-steps b { font-size: 16px; font-weight: 600; line-height: 1.35; align-self: end; }
+.app-steps span { color: var(--muted); font-size: 14px; line-height: 1.5; }
+.app-privacy { color: var(--muted); font-size: 14px; text-decoration: none; justify-self: start; border-bottom: 1px solid var(--line); padding-bottom: 2px; transition: color .25s, border-color .25s; }
+.app-privacy:hover, .app-privacy:focus-visible { color: var(--lime); border-bottom-color: var(--lime); }
+@media (max-width: 720px) { .app-btns .btn { width: 100%; justify-content: center; text-align: center; } }
+@media (min-width: 981px) and (max-width: 1179px) { .nav-login { display: none; } }

@@ -37,7 +37,7 @@
         b.querySelector("b").textContent = v.title;
         b.addEventListener("click", function () {
           var f = document.createElement("iframe"); f.className = "vframe"; f.title = v.title; f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen"; f.allowFullscreen = true;
-          f.src = v.p === "youtube" ? "https://www.youtube-nocookie.com/embed/" + v.id + "?autoplay=1&rel=0" : "https://www.tiktok.com/embed/v2/" + v.id;
+          f.src = v.p === "youtube" ? "https://www.youtube-nocookie.com/embed/" + v.id + "?autoplay=1&rel=0" : "https://www.tiktok.com/player/v1/" + v.id + "?autoplay=1&loop=0&music_info=0&description=0";
           if (playing) { playing.box.replaceWith(playing.card); playing = null; }
           var box = document.createElement("div"); box.className = "vcard vplaying"; b.replaceWith(box); box.appendChild(f);
           if (v.p === "tiktok") { var a = document.createElement("a"); a.className = "vopen"; a.href = v.url; a.target = "_blank"; a.rel = "noopener"; a.textContent = "Not playing? Open on TikTok ↗"; box.appendChild(a); }

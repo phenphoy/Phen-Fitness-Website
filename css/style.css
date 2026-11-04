@@ -69,6 +69,18 @@ p, li { text-wrap: pretty; }
 .pl-go .pl-s2 .pl-shine     { animation: pl-shine .6s cubic-bezier(.4,0,.2,1) 1.68s both; }
 .pl-go .pl-w1 .pl-shine     { animation: pl-shine .6s cubic-bezier(.4,0,.2,1) 1.78s both; }
 .pl-go .pl-w2 .pl-shine     { animation: pl-shine .6s cubic-bezier(.4,0,.2,1) 1.86s both; }
+/* TRAIN / BUILD / PERFORM under the logo: the two hairlines draw outward, then each word rises in, the red slashes after it. */
+.pl-tag { display: inline-flex; align-items: center; gap: .9em; margin-top: 4px; color: #fff; font-family: var(--body); font-size: clamp(11px, 2.9vw, 14px); font-weight: 500; letter-spacing: .42em; text-transform: uppercase; line-height: 1; white-space: nowrap; padding-left: .42em; }
+.pl-tag b { color: #E10613; font-weight: 500; }
+.pl-tline { display: block; height: 1px; width: 2.6em; background: rgba(255,255,255,.75); }
+.pl-tl { transform-origin: right center; }
+.pl-tr { transform-origin: left center; }
+@keyframes pl-line { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes pl-word { from { opacity: 0; transform: translateY(.6em); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pl-slashin { from { opacity: 0; } to { opacity: 1; } }
+.pl-go .pl-tline { animation: pl-line .6s cubic-bezier(.22,1,.36,1) 1.75s both; }
+.pl-go .pl-tw { animation: pl-word .5s cubic-bezier(.22,1,.36,1) calc(1.8s + var(--i) * .15s) both; }
+.pl-go .pl-ts { animation: pl-slashin .4s ease-out calc(1.9s + var(--i) * .15s) both; }
 /* A light that glides across the symbol's own shapes (header and footer) */
 .shine { position: absolute; inset: 0; pointer-events: none; -webkit-mask: url(../images/brand/phen-symbol.svg?v=6) center / 100% 100% no-repeat; mask: url(../images/brand/phen-symbol.svg?v=6) center / 100% 100% no-repeat; overflow: hidden; }
 .shine::after { content: ""; position: absolute; top: -20%; bottom: -20%; left: 0; width: 55%; background: linear-gradient(105deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.95) 50%, rgba(255,255,255,0) 100%); transform: translateX(-130%) skewX(-18deg); opacity: 0; }

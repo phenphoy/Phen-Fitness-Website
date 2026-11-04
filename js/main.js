@@ -217,16 +217,16 @@
   gsap.set("#heroMedia", { clipPath: "inset(100% 0 0 0)" });
   gsap.set("#heroImg", { scale: 1.18 });
   const counter = { v: 0 };
-  // The logo builds itself in CSS (.pl-go in style.css, about 2.4 s). The timeline only runs the counter and bar, then lifts the curtain.
-  tl.to(counter, { v: 100, duration: 2.4, ease: "power2.inOut", onUpdate: () => {
+  // The logo builds itself in CSS (.pl-go in style.css, about 2.4 s, then the tagline). The timeline only runs the counter and bar, then lifts the curtain.
+  tl.to(counter, { v: 100, duration: 2.8, ease: "power2.inOut", onUpdate: () => {
         $("#loaderNum").textContent = String(Math.round(counter.v)).padStart(3, "0");
         $("#loaderBar").style.transform = "scaleX(" + counter.v / 100 + ")";
       } }, 0)
-    .addLabel("lift", 2.55)
+    .addLabel("lift", 2.95)
     .to(".loader-inner, .loader-count", { opacity: 0, y: -14, duration: 0.45, ease: "power2.in" }, "lift")
     .to(loader, { yPercent: -100, duration: 1, ease: "expo.inOut" }, "lift+=0.15")
     .set(loader, { display: "none" });
-  const t0 = 2.95;
+  const t0 = 3.35;
   tl.to(heroLines, { yPercent: 0, duration: 1.1, ease: "expo.out", stagger: 0.09 }, t0 + 0.1)
     .to("#heroMedia", { clipPath: "inset(0% 0 0 0)", duration: 1.3, ease: "expo.inOut" }, t0 + 0.1)
     .to("#heroImg", { scale: 1, duration: 2.2, ease: "power3.out" }, t0 + 0.1)

@@ -304,7 +304,7 @@
   }
 
   /* ---------- Parallax ---------- */
-  gsap.to("#heroImg", { yPercent: 12, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
+  gsap.to("#heroImg", { yPercent: 4, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
   gsap.fromTo("#storyImg", { yPercent: -3 }, { yPercent: 3, ease: "none", scrollTrigger: { trigger: "#story", start: "top bottom", end: "bottom top", scrub: true } });
 
   /* ---------- Reveals ---------- */

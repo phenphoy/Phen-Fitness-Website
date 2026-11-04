@@ -20,11 +20,12 @@
     var list = (window.PHEN_VIDEOS || []).map(function (v) { var p = parseVideo(v); return p && { p: p.p, id: p.id, url: v.url, title: v.title || "Watch", tag: v.tag || "Videos" }; }).filter(Boolean);
     if (!list.length) { $("#watch").classList.add("is-empty"); grid.hidden = true; return; }
     var tags = ["All"]; list.forEach(function (v) { if (tags.indexOf(v.tag) < 0) tags.push(v.tag); });
+    var playing = null; /* only one embed at a time: TikTok refuses several at once ("overload-protect") */
     var LIMIT = 8, expanded = false, curTag = "All", more = document.createElement("button");
     more.type = "button"; more.className = "btn vmore"; more.hidden = true; grid.after(more);
     more.addEventListener("click", function () { expanded = true; draw(curTag); });
     function draw(tag) {
-      curTag = tag; grid.innerHTML = "";
+      curTag = tag; grid.innerHTML = ""; playing = null;
       var shown = list.filter(function (v) { return tag === "All" || v.tag === tag; });
       var cut = !expanded && shown.length > LIMIT;
       more.hidden = !cut; if (cut) more.textContent = "Show all " + shown.length + " tips";
@@ -37,7 +38,10 @@
         b.addEventListener("click", function () {
           var f = document.createElement("iframe"); f.className = "vframe"; f.title = v.title; f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen"; f.allowFullscreen = true;
           f.src = v.p === "youtube" ? "https://www.youtube-nocookie.com/embed/" + v.id + "?autoplay=1&rel=0" : "https://www.tiktok.com/embed/v2/" + v.id;
+          if (playing) { playing.box.replaceWith(playing.card); playing = null; }
           var box = document.createElement("div"); box.className = "vcard vplaying"; b.replaceWith(box); box.appendChild(f);
+          if (v.p === "tiktok") { var a = document.createElement("a"); a.className = "vopen"; a.href = v.url; a.target = "_blank"; a.rel = "noopener"; a.textContent = "Not playing? Open on TikTok ↗"; box.appendChild(a); }
+          playing = { box: box, card: b };
         });
         grid.appendChild(b);
       });

@@ -139,8 +139,10 @@ p, li { text-wrap: pretty; }
 .line > span { display: inline-block; will-change: transform; }
 .hero-copy { display: grid; gap: 28px; min-width: 0; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
-.hero-media { position: relative; min-height: 420px; border-radius: 6px; overflow: hidden; background: var(--panel); max-width: 100%; }
-.hero-media > img { position: absolute; inset: -12% 0; width: 100%; height: 124%; object-fit: cover; object-position: 50% 30%; }
+.hero-media { position: relative; width: 100%; max-width: 560px; justify-self: end; align-self: center; aspect-ratio: 4 / 5; border-radius: 10px; overflow: hidden; background: var(--ink); box-shadow: 0 0 0 1px var(--line), 0 44px 90px -40px rgba(0, 0, 0, .85); }
+.hero-media > img { position: absolute; inset: -5% 0; width: 100%; height: 110%; object-fit: cover; object-position: 50% 12%; }
+/* Soft ink fade at the foot of the photo so the EREPS seal always reads */
+.hero-media::after { content: ""; position: absolute; inset: auto 0 0 0; height: 34%; z-index: 1; pointer-events: none; background: linear-gradient(to bottom, rgba(7, 9, 7, 0), rgba(7, 9, 7, .78)); }
 .hero-meta { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; }
 @media (max-width: 860px) {
   /* Mobile hero: full-bleed photo behind the copy, copy anchored to the bottom */
@@ -152,14 +154,15 @@ p, li { text-wrap: pretty; }
   }
   .hero-grid { grid-template-columns: minmax(0, 1fr); width: 100%; }
   .hero-copy { position: relative; z-index: 2; gap: 16px; }
-  .hero-media { position: absolute; inset: 0; z-index: 0; min-height: 0; aspect-ratio: auto; border-radius: 0; }
-  .hero-media > img { object-position: 43% 50%; } /* keep Phen centered in a portrait crop */
+  .hero-media { position: absolute; inset: 0; z-index: 0; width: auto; max-width: none; justify-self: auto; align-self: auto; aspect-ratio: auto; border-radius: 0; box-shadow: none; }
+  /* Portrait photo sits in the upper part of the screen, clear of the nav and the copy */
+  .hero-media > img { inset: 0 0 auto 0; height: 66vh; height: 66svh; object-position: 50% 0; }
   /* Scrim: dark at the top for the nav, clear around his face, solid ink behind the text */
   .hero-media::after {
-    content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    content: ""; position: absolute; inset: 0; height: auto; z-index: 1; pointer-events: none;
     background: linear-gradient(to bottom,
-      rgba(7, 9, 7, .78) 0%, rgba(7, 9, 7, 0) 18%,
-      rgba(7, 9, 7, .45) 32%, rgba(7, 9, 7, .80) 46%, rgba(7, 9, 7, .92) 66%, var(--ink) 90%);
+      rgba(7, 9, 7, .7) 0%, rgba(7, 9, 7, 0) 12%,
+      rgba(7, 9, 7, 0) 22%, rgba(7, 9, 7, .72) 34%, rgba(7, 9, 7, .93) 46%, var(--ink) 60%);
   }
   .hero-media .hero-seal { right: auto; left: var(--gutter); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); width: fit-content; }
 
@@ -872,6 +875,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 .vmeta small { color: var(--muted); font-size: 13px; }
 .vmeta b { font-size: 16px; font-weight: 600; line-height: 1.35; }
 .vplaying { padding: 0; cursor: default; overflow: hidden; }
+.vopen { display: block; padding: 10px 14px 14px; font-size: 13px; color: var(--soft); text-decoration: underline; text-underline-offset: 3px; }
 .vframe { width: 100%; aspect-ratio: 16 / 9; min-height: 220px; border: 0; display: block; }
 .vplaying:has(.vframe[src*="tiktok"]) .vframe { aspect-ratio: 9 / 16; min-height: 560px; }
 .vfollow { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 20px; }

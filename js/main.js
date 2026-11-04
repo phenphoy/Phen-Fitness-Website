@@ -204,73 +204,40 @@
     requestAnimationFrame(() => lenis.scrollTo(target, { offset: -70, duration: 1.4 }));
   }));
 
-  /* ---------- Opening: heartbeat intro on every visit ----------
+  /* ---------- Opening: the logo builds on, on every visit ----------
      Visitors can skip it with a tap, click, scroll or key press. */
   const heroLines = $$(".hero .line > span");
   const loader = $("#loader");
   const tl = gsap.timeline();
   gsap.set("#nav .brand-icon", { scale: 0.6, opacity: 0 });
-  gsap.set("#nav .wm-l", { yPercent: 100, opacity: 0 });
+  gsap.set("#nav .wm", { y: 10, opacity: 0 });
   gsap.set("#heroSeal", { opacity: 0, y: 20, scale: 0.92 });
   gsap.set(heroLines, { yPercent: 110 });
   gsap.set(".hero-fade", { opacity: 0, y: 24 });
   gsap.set("#heroMedia", { clipPath: "inset(100% 0 0 0)" });
   gsap.set("#heroImg", { scale: 1.18 });
-  const ecg = $("#ecgPath"), len = ecg.getTotalLength(), counter = { v: 0 };
-  const arc = $("#ldArc"), arcLen = arc.getTotalLength();
-  gsap.set(arc, { strokeDasharray: arcLen, strokeDashoffset: arcLen });
-  gsap.set("#ldIcon", { opacity: 0, scale: 0.94, y: 8 });
-  gsap.set(".ld-glow", { opacity: 0, scale: 0.6 });
-  // the logo draws itself: border sweeps round, lettering wipes up out of a blur, the heartbeat traces left to right
-  const sweep = { v: 0 }, lmBorder = $("#ldIcon .lm-border");
-  const setSweep = v => { const m = "conic-gradient(from 0deg, #000 " + Math.max(0, v - 5) + "deg, transparent " + v + "deg)"; lmBorder.style.webkitMaskImage = m; lmBorder.style.maskImage = m; };
-  setSweep(0);
-  gsap.set("#ldIcon .lm-ink", { clipPath: "inset(100% 0 0 0)", filter: "blur(8px)", opacity: 0 });
-  gsap.set("#ldIcon .lm-red", { clipPath: "inset(0 100% 0 0)" });
-  gsap.set(ecg, { strokeDasharray: len, strokeDashoffset: len });
-  gsap.set(".wm-loader .wm-l", { yPercent: 110, opacity: 0 });
-  // logo eases in, a hairline ring draws round it, the heartbeat line traces once, the name rises letter by letter
-  tl.to("#ldIcon", { opacity: 1, scale: 1, y: 0, duration: 0.7, ease: "expo.out" })
-    .to(sweep, { v: 365, duration: 1.15, ease: "power2.inOut", onUpdate: () => setSweep(sweep.v), onComplete: () => { lmBorder.style.webkitMaskImage = lmBorder.style.maskImage = "none"; } }, 0.05)
-    .to("#ldIcon .lm-ink", { clipPath: "inset(0% 0 0 0)", filter: "blur(0px)", opacity: 1, duration: 0.9, ease: "expo.out" }, 0.45)
-    .to("#ldIcon .lm-red", { clipPath: "inset(0 0% 0 0)", duration: 0.7, ease: "power2.inOut" }, 0.95)
-    .to(".ld-glow", { opacity: 1, scale: 1, duration: 1.4, ease: "power2.out" }, 0.1)
-    .call(() => { const s = $("#ldIcon .shine"); if (s) s.classList.add("go"); }, null, 1.6)
-    .to(counter, { v: 100, duration: 1.7, ease: "power2.inOut", onUpdate: () => {
+  const counter = { v: 0 };
+  // The logo builds itself in CSS (.pl-go in style.css, about 2.4 s). The timeline only runs the counter and bar, then lifts the curtain.
+  tl.to(counter, { v: 100, duration: 2.4, ease: "power2.inOut", onUpdate: () => {
         $("#loaderNum").textContent = String(Math.round(counter.v)).padStart(3, "0");
         $("#loaderBar").style.transform = "scaleX(" + counter.v / 100 + ")";
       } }, 0)
-    .to(arc, { strokeDashoffset: 0, duration: 1.7, ease: "power2.inOut" }, 0)
-    .to(ecg, { strokeDashoffset: 0, duration: 1.1, ease: "power2.inOut" }, 0.5)
-    .to("#ldIcon", { keyframes: [
-        { scale: 1.05, duration: 0.14, ease: "power2.out" },
-        { scale: 1, duration: 0.3, ease: "power2.inOut" },
-        { scale: 1.03, duration: 0.12, ease: "power2.out" },
-        { scale: 1, duration: 0.4, ease: "power2.inOut" }
-      ] }, 1.6)
-    .to(".ld-glow", { keyframes: [
-        { scale: 1.12, opacity: 1, duration: 0.14, ease: "power2.out" },
-        { scale: 1, opacity: 0.8, duration: 0.3, ease: "power2.inOut" },
-        { scale: 1.07, opacity: 1, duration: 0.12, ease: "power2.out" },
-        { scale: 1, opacity: 0.8, duration: 0.4, ease: "power2.inOut" }
-      ] }, 1.6)
-    .to(".wm-loader .wm-l", { yPercent: 0, opacity: 1, duration: 0.8, ease: "power4.out", stagger: 0.035 }, 1.0)
-    .addLabel("lift", 1.95)
+    .addLabel("lift", 2.55)
     .to(".loader-inner, .loader-count", { opacity: 0, y: -14, duration: 0.45, ease: "power2.in" }, "lift")
     .to(loader, { yPercent: -100, duration: 1, ease: "expo.inOut" }, "lift+=0.15")
     .set(loader, { display: "none" });
-  const t0 = 2.35;
+  const t0 = 2.95;
   tl.to(heroLines, { yPercent: 0, duration: 1.1, ease: "expo.out", stagger: 0.09 }, t0 + 0.1)
     .to("#heroMedia", { clipPath: "inset(0% 0 0 0)", duration: 1.3, ease: "expo.inOut" }, t0 + 0.1)
     .to("#heroImg", { scale: 1, duration: 2.2, ease: "power3.out" }, t0 + 0.1)
     .to(".hero-fade", { opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: "power3.out" }, t0 + 0.55)
     .to("#nav .brand-icon", { scale: 1, opacity: 1, duration: 0.9, ease: "power3.out" }, t0)
-    .to("#nav .wm-l", { yPercent: 0, opacity: 1, duration: 0.7, ease: "expo.out", stagger: 0.035 }, t0 + 0.1)
+    .to("#nav .wm", { y: 0, opacity: 1, duration: 0.8, ease: "expo.out" }, t0 + 0.1)
     // EREPS coin drops in and flips
     .to("#heroSeal", { opacity: 1, y: 0, scale: 1, duration: 0.9, ease: "power3.out" }, t0 + 0.85)
     .fromTo("#heroSeal .seal-coin", { rotateY: -270, scale: 0.7 }, { rotateY: 0, scale: 1, duration: 1.5, ease: "expo.out", clearProps: "transform" }, "<0.1")
     .fromTo("#heroSeal .seal-shock", { opacity: 0.9, scale: 0.9 }, { opacity: 0, scale: 1.9, duration: 0.9, ease: "power2.out" }, "<0.8")
-    .set("#nav .wm-l, #nav .brand-icon", { clearProps: "transform,opacity" })
+    .set("#nav .wm, #nav .brand-icon", { clearProps: "transform,opacity" })
     .call(() => glint(), null, t0 + 1.0)
     // The statement lands: "easier" fades back, "stronger" gets a light sweep and a line drawn under it
     .fromTo(".hero h1 .dim", { opacity: 1 }, { opacity: 0.42, duration: 0.9, ease: "power2.out" }, t0 + 1.05)

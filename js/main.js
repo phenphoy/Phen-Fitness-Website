@@ -216,13 +216,9 @@
   gsap.set(".hero-fade", { opacity: 0, y: 24 });
   gsap.set("#heroMedia", { clipPath: "inset(100% 0 0 0)" });
   gsap.set("#heroImg", { scale: 1.18 });
-  const counter = { v: 0 };
-  // The logo builds itself in CSS (.pl-go in style.css, about 2.4 s, then the tagline). The timeline only runs the counter, then lifts the curtain.
-  tl.to(counter, { v: 100, duration: 2.8, ease: "power2.inOut", onUpdate: () => {
-        $("#loaderNum").textContent = String(Math.round(counter.v)).padStart(3, "0");
-      } }, 0)
-    .addLabel("lift", 2.95)
-    .to(".loader-inner, .loader-count", { opacity: 0, y: -14, duration: 0.45, ease: "power2.in" }, "lift")
+  // The logo builds itself in CSS (.pl-go in style.css, about 2.4 s, then the tagline). The timeline waits for it (same timing as before), then lifts the curtain.
+  tl.addLabel("lift", 2.95)
+    .to(".loader-inner", { opacity: 0, y: -14, duration: 0.45, ease: "power2.in" }, "lift")
     .to(loader, { yPercent: -100, duration: 1, ease: "expo.inOut" }, "lift+=0.15")
     .set(loader, { display: "none" });
   const t0 = 3.35;

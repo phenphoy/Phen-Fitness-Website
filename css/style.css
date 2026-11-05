@@ -951,5 +951,26 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 .app-privacy { color: var(--muted); font-size: 14px; text-decoration: none; justify-self: start; border-bottom: 1px solid var(--line); padding-bottom: 2px; transition: color .25s, border-color .25s; }
 .app-privacy:hover, .app-privacy:focus-visible { color: var(--lime); border-bottom-color: var(--lime); }
 @media (max-width: 720px) { .app-btns .btn { width: 100%; justify-content: center; text-align: center; } }
-/* Tablet-width nav: keep Log in visible by tightening the links and dropping Contact (Book Consult covers it) */
-@media (min-width: 981px) and (max-width: 1179px) { .nav-links { gap: 12px; font-size: 13px; white-space: nowrap; } .nav-links a[href="#contact"], .nav-links a[href="#gallery"] { display: none; } .nav-right { gap: 8px; } }
+
+/* ---------- Top navigation redesign ---------- */
+.nav-in { padding-block: 18px; }
+.nav.scrolled .nav-in { padding-block: 10px; }
+.nav-links { gap: 2px; padding: 5px; font-size: 13.5px; white-space: nowrap; border-radius: 999px; border: 1px solid var(--line); background: rgba(14, 19, 15, .72); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+.nav-links a { padding: 9px 14px; border-radius: 999px; transition: background .25s, color .25s; }
+.nav-links a::after { display: none; }
+.nav-links a:hover, .nav-links a:focus-visible, .nav-links a[aria-current] { background: var(--panel-2); color: var(--fg); }
+.nav-right { gap: 10px; }
+/* Links collapse into the menu before they can crowd the buttons; tablets keep Log in + Book visible */
+@media (max-width: 1279px) { .nav-links { display: none; } .menu-btn { display: grid; } }
+@media (max-width: 560px) { .nav-right .btn-sm { display: none; } }
+
+/* Full-screen menu: numbered rows, big type, actions pinned under the list */
+.mobile-menu { align-content: start; justify-items: stretch; gap: 22px; overflow-y: auto; overscroll-behavior: contain; padding-top: calc(92px + env(safe-area-inset-top, 0px)); }
+.mobile-menu nav, .mobile-menu-foot { width: 100%; max-width: 720px; }
+.mobile-menu nav { counter-reset: m; gap: 0; }
+.mobile-menu nav a { counter-increment: m; display: flex; align-items: baseline; gap: 14px; font-weight: 800; font-size: clamp(30px, 8.4vw, 52px); line-height: 1.12; padding: 7px 0; color: var(--soft); border-bottom: 1px solid var(--line); }
+.mobile-menu nav a::before { content: counter(m, decimal-leading-zero); font: 500 11px/1 var(--mono); letter-spacing: .08em; color: var(--muted); }
+.mobile-menu nav a:hover, .mobile-menu nav a:focus-visible { color: var(--fg); }
+.mobile-menu-foot { display: grid; gap: 10px; }
+.mobile-menu-foot .btn { justify-content: center; min-height: 52px; }
+@media (max-height: 640px) { .mobile-menu { gap: 16px; padding-top: calc(80px + env(safe-area-inset-top, 0px)); } .mobile-menu nav a { font-size: 26px; padding: 4px 0; } .mobile-menu-foot .btn { min-height: 46px; } }

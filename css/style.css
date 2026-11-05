@@ -951,4 +951,5 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
 .app-privacy { color: var(--muted); font-size: 14px; text-decoration: none; justify-self: start; border-bottom: 1px solid var(--line); padding-bottom: 2px; transition: color .25s, border-color .25s; }
 .app-privacy:hover, .app-privacy:focus-visible { color: var(--lime); border-bottom-color: var(--lime); }
 @media (max-width: 720px) { .app-btns .btn { width: 100%; justify-content: center; text-align: center; } }
-@media (min-width: 981px) and (max-width: 1179px) { .nav-login { display: none; } }
+/* Tablet-width nav: keep Log in visible by tightening the links and dropping Contact (Book Consult covers it) */
+@media (min-width: 981px) and (max-width: 1179px) { .nav-links { gap: 12px; font-size: 13px; white-space: nowrap; } .nav-links a[href="#contact"], .nav-links a[href="#gallery"] { display: none; } .nav-right { gap: 8px; } }

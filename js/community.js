@@ -121,12 +121,12 @@
   /* ---------- SHARE YOUR STORY ---------- */
   function initStory() {
     var f = $("#ssForm"); if (!f) return;
-    var name = $("#ssName"), goal = $("#ssGoal"), text = $("#ssText"), ok = $("#ssOk"), wa = $("#ssWa");
+    var name = $("#ssName"), goal = $("#ssGoal"), text = $("#ssText"), ok = $("#ssOk"), wa = $("#ssTg");
     function upd() {
       var ready = text.value.trim().length > 10 && ok.checked;
       wa.setAttribute("aria-disabled", ready ? "false" : "true"); wa.classList.toggle("is-off", !ready);
       var m = "Hi Phen, here is my story.\nName: " + (name.value.trim() || "(first name)") + "\nGoal: " + goal.value + "\n\n" + text.value.trim() + "\n\nI'm happy for you to share my words and first name.";
-      wa.href = WA + "?text=" + encodeURIComponent(m);
+      wa.href = TG + "?text=" + encodeURIComponent(m);
     }
     f.addEventListener("input", upd); f.addEventListener("change", upd);
     wa.addEventListener("click", function (e) { if (wa.getAttribute("aria-disabled") === "true") { e.preventDefault(); (text.value.trim().length <= 10 ? text : ok).focus(); } });

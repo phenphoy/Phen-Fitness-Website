@@ -146,7 +146,6 @@
       (bf ? " · body fat " + round(bf, 1).toFixed(1) + "%" : "") + ".\n" +
       "I would like to book a free consultation.";
     $("#sTg").href = "https://t.me/phenphoy?text=" + encodeURIComponent(msg);
-    $("#sWa").href = "https://wa.me/85577413470?text=" + encodeURIComponent(msg);
     save();
   }
 

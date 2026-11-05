@@ -18,7 +18,6 @@ const AVAILABILITY = {
   },
   minNoticeHours: 3,   // earliest a client can book from now
   daysAhead: 14,       // how far ahead clients can book
-  whatsapp: "85577413470",
   telegram: "phenphoy",
   services: [
     { name: "Free Consultation", minutes: 30 },
@@ -75,7 +74,7 @@ const AVAILABILITY = {
   const state = { svc: 0, day: null, slot: null };
   const svcChips = document.getElementById("svcChips"), dayStrip = document.getElementById("dayStrip"), slotGrid = document.getElementById("slotGrid");
   const nameInput = document.getElementById("bookName"), preview = document.getElementById("msgPreview");
-  const waBtn = document.getElementById("sendWa"), tgBtn = document.getElementById("sendTg"), note = document.getElementById("sendNote");
+  const tgLink = document.getElementById("sendTg"), copyBtn = document.getElementById("sendCopy"), note = document.getElementById("sendNote");
 
   function slotsFor(dayOffset) {
     const now = nowSR();
@@ -123,9 +122,9 @@ const AVAILABILITY = {
     const msg = message();
     preview.textContent = msg || "Pick a start time to see your message.";
     preview.classList.toggle("muted", !msg);
-    waBtn.setAttribute("aria-disabled", String(!msg));
-    tgBtn.setAttribute("aria-disabled", String(!msg));
-    waBtn.href = "https://wa.me/" + A.whatsapp + (msg ? "?text=" + encodeURIComponent(msg) : "");
+    tgLink.setAttribute("aria-disabled", String(!msg));
+    copyBtn.setAttribute("aria-disabled", String(!msg));
+    tgLink.href = "https://t.me/" + A.telegram + (msg ? "?text=" + encodeURIComponent(msg) : "");
     note.textContent = "";
   }
   function firstOpenDay() { for (let i = 0; i < A.daysAhead; i++) if (slotsFor(i).length) return i; return null; }
@@ -145,7 +144,7 @@ const AVAILABILITY = {
   });
   nameInput.addEventListener("input", renderMessage);
   document.getElementById("bookForm").addEventListener("submit", e => e.preventDefault());
-  tgBtn.addEventListener("click", () => {
+  copyBtn.addEventListener("click", () => {
     const msg = message(); if (!msg) return;
     const opened = () => { note.innerHTML = 'Message copied. Paste it into your chat with <a href="https://t.me/' + A.telegram + '" target="_blank" rel="noopener">@' + A.telegram + "</a>."; };
     const fallback = () => {

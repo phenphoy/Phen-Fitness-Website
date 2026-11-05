@@ -2,7 +2,7 @@
 (function () {
   "use strict";
   var $ = function (s, r) { return (r || document).querySelector(s); };
-  var WA = "https://wa.me/85577413470", TG = "https://t.me/phenphoy";
+  var TG = "https://t.me/phenphoy";
   var store = {
     get: function (k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } },
     set: function (k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
@@ -85,7 +85,7 @@
     else if (today <= C.days) { st.innerHTML = "<b>Live now</b> · today is day " + today + " of " + C.days; sel = today; }
     else st.innerHTML = "<b>This challenge has finished</b> · the next theme starts soon";
     var msg = encodeURIComponent("Hi Phen, I'd like to join the " + C.name + " challenge (starts " + nice + "). My name is ");
-    $("#chJoin").href = TG; $("#chJoinWa").href = WA + "?text=" + msg;
+    $("#chJoin").href = TG + "?text=" + msg;
     days.innerHTML = "";
     for (var d = 1; d <= C.days; d++) {
       var li = document.createElement("li"), b = document.createElement("button"); b.type = "button"; b.dataset.d = d; b.textContent = d;

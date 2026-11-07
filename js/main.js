@@ -54,6 +54,7 @@
     document.body.classList.toggle("menu-open", open);
     menuBtn.setAttribute("aria-expanded", String(open));
     menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    const lbl = menuBtn.querySelector(".menu-label"); if (lbl) lbl.textContent = open ? "Close" : "Menu";
     if (lenis) open ? lenis.stop() : lenis.start();
   }
   menuBtn.addEventListener("click", () => setMenu(!document.body.classList.contains("menu-open")));

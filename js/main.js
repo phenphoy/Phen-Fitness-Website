@@ -212,7 +212,7 @@
     if (target === null || !lenis) return;
     e.preventDefault();
     // wait a frame so a closing menu or dialog has released the scroll lock
-    requestAnimationFrame(() => lenis.scrollTo(target, { offset: window.innerWidth <= 600 ? -118 : -70, duration: 1.4 }));
+    requestAnimationFrame(() => lenis.scrollTo(target, { offset: -70, duration: 1.4 }));
   }));
 
   /* ---------- Opening: the logo builds on, on every visit ----------

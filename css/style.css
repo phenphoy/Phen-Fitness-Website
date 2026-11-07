@@ -999,3 +999,12 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
   .menu-btn { -webkit-appearance: none; appearance: none; color: var(--fg); }
   html { scroll-padding-top: 118px; }
 }
+
+/* Smartphones only: keep logo compact so the Menu button can never be pushed off-screen */
+@media (max-width: 600px) {
+  .nav .nav-in { gap: 10px; }
+  .nav .brand { flex: 0 1 auto; min-width: 0; gap: 9px; }
+  .nav .wm { width: 107px; height: 13px; flex: none; }
+  .nav .nav-right { flex: none; margin-left: auto; }
+  .nav .menu-btn { flex: none; position: relative; z-index: 71; }
+}

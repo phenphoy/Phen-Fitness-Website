@@ -1,3 +1,13 @@
+/* Phone quick bar: always start (and return to the top) with "Log in" in view */
+(function(){
+  const qb = document.getElementById("quickbar");
+  if (!qb) return;
+  const home = () => { if (window.scrollY < 80) qb.scrollLeft = 0; };
+  home();
+  window.addEventListener("load", home);
+  window.addEventListener("pageshow", home);
+  window.addEventListener("scroll", home, { passive: true });
+})();
 /* Phen Fitness — page behaviour and motion.
    Everything on the page works without this file's animations: if the
    animation libraries fail to load, or the visitor has "reduce motion"
@@ -290,7 +300,7 @@
       if (e.isIntersecting) {
         links.forEach(l => l.removeAttribute("aria-current")); as.forEach(a => a.setAttribute("aria-current", "true"));
         const q = as.find(a => qbar && qbar.contains(a));
-        if (q && qbar.scrollWidth > qbar.clientWidth) qbar.scrollTo({ left: q.offsetLeft - (qbar.clientWidth - q.offsetWidth) / 2, behavior: "smooth" });
+        if (q && window.scrollY > 120 && qbar.scrollWidth > qbar.clientWidth) qbar.scrollTo({ left: q.offsetLeft - (qbar.clientWidth - q.offsetWidth) / 2, behavior: "smooth" });
       }
     }), { rootMargin: "-45% 0px -50% 0px" });
     ["services", "story", "transformation", "qualifications", "gallery", "watch", "challenge", "resources", "book", "contact"].forEach(id => {

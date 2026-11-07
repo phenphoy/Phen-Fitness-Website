@@ -202,7 +202,7 @@
     if (target === null || !lenis) return;
     e.preventDefault();
     // wait a frame so a closing menu or dialog has released the scroll lock
-    requestAnimationFrame(() => lenis.scrollTo(target, { offset: -70, duration: 1.4 }));
+    requestAnimationFrame(() => lenis.scrollTo(target, { offset: window.innerWidth <= 600 ? -118 : -70, duration: 1.4 }));
   }));
 
   /* ---------- Opening: the logo builds on, on every visit ----------
@@ -282,13 +282,18 @@
 
   /* ---------- Nav shows where you are; the phone booking bar appears after the hero ---------- */
   if ("IntersectionObserver" in window) {
-    const links = [...document.querySelectorAll(".nav-links a")];
-    const map = new Map(links.map(a => [a.getAttribute("href"), a]));
+    const links = [...document.querySelectorAll(".nav-links a, .quickbar a")];
+    const map = new Map(); links.forEach(a => { const k = a.getAttribute("href"); map.set(k, (map.get(k) || []).concat(a)); });
+    const qbar = document.getElementById("quickbar");
     const spy = new IntersectionObserver(es => es.forEach(e => {
-      const a = map.get("#" + e.target.id); if (!a) return;
-      if (e.isIntersecting) { links.forEach(l => l.removeAttribute("aria-current")); a.setAttribute("aria-current", "true"); }
+      const as = map.get("#" + e.target.id); if (!as) return;
+      if (e.isIntersecting) {
+        links.forEach(l => l.removeAttribute("aria-current")); as.forEach(a => a.setAttribute("aria-current", "true"));
+        const q = as.find(a => qbar && qbar.contains(a));
+        if (q && qbar.scrollWidth > qbar.clientWidth) qbar.scrollTo({ left: q.offsetLeft - (qbar.clientWidth - q.offsetWidth) / 2, behavior: "smooth" });
+      }
     }), { rootMargin: "-45% 0px -50% 0px" });
-    ["services", "story", "transformation", "qualifications", "gallery", "resources", "book", "contact"].forEach(id => {
+    ["services", "story", "transformation", "qualifications", "gallery", "watch", "challenge", "resources", "book", "contact"].forEach(id => {
       const el = document.getElementById(id); if (!el) return;
       // transformation and story both belong to "My Story"
       if (id === "transformation" && !map.has("#transformation")) map.set("#transformation", map.get("#story"));

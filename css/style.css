@@ -983,3 +983,18 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
   .menu-btn span { position: relative; flex: none; }
   .menu-label { display: inline; }
 }
+
+/* Smartphones only: a swipeable quick-links bar under the logo so every section is one tap away */
+.quickbar { display: none; }
+@media (max-width: 600px) {
+  .quickbar { display: flex; gap: 8px; overflow-x: auto; padding: 0 var(--gutter) 12px; scrollbar-width: none; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent); -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent); }
+  .quickbar::-webkit-scrollbar { display: none; }
+  .quickbar a { flex: none; text-decoration: none; padding: 9px 15px; border-radius: 999px; border: 1px solid var(--line); background: rgba(14, 19, 15, .82); color: var(--soft); font: 600 13px/1 var(--body); white-space: nowrap; }
+  .quickbar a[aria-current] { background: var(--panel-2); border-color: rgba(230, 245, 220, .3); color: var(--fg); }
+  .nav .nav-in { padding-block: 12px 10px; }
+  .nav.scrolled .nav-in { padding-block: 8px 8px; }
+  .nav.scrolled .quickbar { padding-bottom: 10px; }
+  .hero-media > img { top: 56px; }
+  .menu-btn { -webkit-appearance: none; appearance: none; color: var(--fg); }
+  html { scroll-padding-top: 118px; }
+}

@@ -990,6 +990,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 90; pointer-event
   .quickbar { display: flex; gap: 8px; overflow-x: auto; padding: 0 var(--gutter) 12px; scrollbar-width: none; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent); -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent); }
   .quickbar::-webkit-scrollbar { display: none; }
   .quickbar a { flex: none; text-decoration: none; padding: 9px 15px; border-radius: 999px; border: 1px solid var(--line); background: rgba(14, 19, 15, .82); color: var(--soft); font: 600 13px/1 var(--body); white-space: nowrap; }
+  .quickbar a.qb-login { color: var(--fg); font-weight: 700; border-color: rgba(230, 245, 220, .34); }
   .quickbar a[aria-current] { background: var(--panel-2); border-color: rgba(230, 245, 220, .3); color: var(--fg); }
   .nav .nav-in { padding-block: 12px 10px; }
   .nav.scrolled .nav-in { padding-block: 8px 8px; }

@@ -143,3 +143,20 @@ main { counter-reset: sec; }
 /* Keyboard focus stays visible on red buttons and on the light section */
 .btn-primary:focus-visible { outline: 2px solid var(--bone); outline-offset: 3px; }
 .light :focus-visible { outline-color: var(--red-ink); }
+
+/* ---------- Premium motion support ---------- */
+.scroll-progress { position: fixed; left: 0; right: 0; top: 0; height: 2px; z-index: 200; background: var(--red); transform: scaleX(0); transform-origin: left center; pointer-events: none; }
+@property --draw { syntax: "<number>"; inherits: false; initial-value: 1; }
+.svc { border-bottom: 0; }
+.svc::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--line); transform: scaleX(var(--draw)); transform-origin: left center; }
+.svc.featured::after { left: calc(var(--gutter) * -0.5); right: calc(var(--gutter) * -0.5); }
+/* Price-list rows respond quietly to the pointer */
+.svc .svc-main h3, .svc .svc-n { transition: transform .5s cubic-bezier(.2,.7,.2,1), color .3s; }
+@media (hover: hover) {
+  .svc:hover .svc-main h3 { transform: translateX(6px); }
+  .svc:hover .svc-n { color: var(--red-text); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-progress { display: none; }
+  .svc .svc-main h3, .svc .svc-n { transition: none; }
+}

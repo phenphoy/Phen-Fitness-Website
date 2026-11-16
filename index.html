@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Phen Fitness | Certified Personal Trainer in Siem Reap</title>
   <meta name="description" content="Phen Fitness provides certified 1-on-1 personal training, small-group coaching, fitness assessments, and online coaching in Siem Reap, Cambodia.">
-  <meta name="theme-color" content="#070907">
+  <meta name="theme-color" content="#0b0b0b">
   <!-- Icons: one set, shared by the browser tab, the iPhone Home Screen and the web app manifest -->
   <link rel="icon" type="image/png" sizes="32x32" href="images/icons/favicon-32.png?v=7">
   <link rel="icon" type="image/png" sizes="48x48" href="images/icons/favicon-48.png?v=7">
@@ -64,9 +64,10 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
   <link rel="preload" as="image" href="images/web/phen-hero-960.webp" imagesrcset="images/web/phen-hero-640.webp 640w, images/web/phen-hero-960.webp 960w, images/web/phen-hero-1080.webp 1080w" imagesizes="(max-width: 860px) 100vw, 560px">
-  <link rel="stylesheet" href="css/style.css?v=46">
+  <link rel="stylesheet" href="css/style.css?v=47">
+  <link rel="stylesheet" href="css/premium.css?v=1">
   <script>document.documentElement.classList.remove("no-js");</script>
 </head>
 <body>
@@ -86,11 +87,10 @@
     <nav class="nav-links" aria-label="Main">
       <a href="#services">Services</a>
       <a href="#story">My Story</a>
-      <a href="#qualifications">Qualifications</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#watch">Fitness Tips</a>
-      <a href="#challenge">Challenge</a>
-      <a href="#resources">Resources</a>
+      <a href="#testimonials">Results</a>
+      <a href="about.html">Credentials</a>
+      <a href="resources.html">Free Tools</a>
+      <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
     </nav>
     <div class="nav-right">
@@ -105,12 +105,12 @@
   <nav>
     <a href="#services" style="--i:0">Services</a>
     <a href="#story" style="--i:1">My Story</a>
-    <a href="#qualifications" style="--i:2">Qualifications</a>
-    <a href="#gallery" style="--i:3">Gallery</a>
-    <a href="#watch" style="--i:4">Fitness Tips</a>
-    <a href="#challenge" style="--i:5">Challenge</a>
-    <a href="#resources" style="--i:6">Resources</a>
-    <a href="#app" style="--i:7">The App</a>
+    <a href="#testimonials" style="--i:2">Results</a>
+    <a href="about.html" style="--i:3">Credentials</a>
+    <a href="tips.html" style="--i:4">Fitness Tips</a>
+    <a href="challenge.html" style="--i:5">30-Day Challenge</a>
+    <a href="resources.html" style="--i:6">Free Tools</a>
+    <a href="app.html" style="--i:7">The App</a>
     <a href="#contact" style="--i:8">Contact</a>
   </nav>
   <div class="mobile-menu-foot">
@@ -146,28 +146,18 @@
     </div>
   </section>
 
-  <div class="ticker" aria-hidden="true">
-    <div class="ticker-track" id="ticker">
-      <span>EREPS Level 3<i>✦</i>Siem Reap, Cambodia<i>✦</i>Science-based methods<i>✦</i>NASM certified<i>✦</i>Bulldogs Fitness Center<i>✦</i></span>
-      <span>EREPS Level 3<i>✦</i>Siem Reap, Cambodia<i>✦</i>Science-based methods<i>✦</i>NASM certified<i>✦</i>Bulldogs Fitness Center<i>✦</i></span>
+  <div class="cred-bar" aria-label="At a glance">
+    <div class="wrap cred-in">
+      <span>EREPS Level 3</span><span>NASM certified</span><span>Coaching since 2016</span><span>Replies in 1–2 hours</span><span>Bulldogs Fitness Center</span>
     </div>
   </div>
 
-  <section class="wrap" aria-label="Quick facts">
-    <div class="stats">
-      <div class="stat reveal"><b>1–2h</b><span>Typical reply time</span></div>
-      <div class="stat reveal"><b><span class="count" data-to="2016" data-from="1990">2016</span></b><span>Training since</span></div>
-      <div class="stat reveal"><b><span class="count" data-to="5">5</span></b><span>Ways to train with me</span></div>
-      <div class="stat reveal"><b>$<span class="count" data-to="0">0</span></b><span>First 30&#8209;minute consultation</span></div>
-    </div>
-  </section>
-
   <!-- HOW I HELP -->
-  <section class="pad wrap" id="help">
+  <section class="pad wrap idx" id="help">
     <div class="section-head">
       <div>
-        <span class="eyebrow">How I help</span>
-        <h2 class="split"><span class="line"><span>Stronger, healthier, more capable.</span>
+        <span class="eyebrow">Approach</span>
+        <h2 class="split"><span class="line"><span>Stronger, healthier, more capable.</span></span></h2>
       </div>
       <p class="lead">Coaching is designed to improve both physical results and daily confidence, without extreme crash dieting or unnecessary complexity.</p>
     </div>
@@ -196,89 +186,56 @@
   </section>
 
   <!-- SERVICES -->
-  <section class="services pad" id="services">
-    <div class="wrap section-head">
-      <div>
-        <span class="eyebrow">Services</span>
-        <h2 class="split"><span class="line"><span>How you can train with me</span>
-      </div>
-      <p class="lead">Choose the level of support that fits your experience, lifestyle, and schedule.</p>
-    </div>
-    <div class="h-pin" id="hPin">
-      <div class="h-track" id="hTrack">
-        <article class="card tilt">
-          <div class="card-top"><span class="card-tag">Best first step</span><span class="card-n">01</span></div>
-          <h3>Initial fitness consultation</h3>
-          <ul><li>Goal &amp; lifestyle audit</li><li>Training history &amp; mobility review</li><li>Personalized starting pathway</li></ul>
-          <div class="card-actions">
-            <div class="price"><b>Free</b><small>30 minutes</small></div>
-            <a class="btn" href="#book" data-book="0">Book free consultation</a>
-          </div>
-        </article>
-        <article class="card tilt">
-          <div class="card-top"><span class="card-tag">Bulldogs Fitness Center</span><span class="card-n">02</span></div>
-          <h3>Fitness assessment</h3>
-          <ul><li>Visbody 3D body composition scan</li><li>YMCA 3-minute step test (VO₂ max recovery)</li><li>Posture &amp; mobility baseline</li></ul>
-          <div class="card-actions">
-            <button type="button" class="card-link" id="assessBtn" aria-haspopup="dialog">See everything that's measured</button>
-            <div class="price"><b>$20</b><small>$5 for gym members</small></div>
-            <a class="btn" href="#book" data-book="1">Book assessment</a>
-          </div>
-        </article>
-        <article class="card tilt featured">
-          <div class="card-top"><span class="card-tag">Most personalized</span><span class="card-n">03</span></div>
-          <h3>1-on-1 personal training</h3>
-          <ul><li>Progressive resistance plan</li><li>Real-time technique coaching</li><li>Monday to Friday, 1-hour sessions</li><li>Nutrition &amp; lifestyle tracking</li></ul>
-          <div class="card-actions">
-            <div class="price"><b>$200</b><small>per month</small></div>
-            <a class="btn" href="#book" data-book="2">Choose 1-on-1 training</a>
-          </div>
-        </article>
-        <article class="card tilt">
-          <div class="card-top"><span class="card-tag">2–3 members</span><span class="card-n">04</span></div>
-          <h3>Small-group training</h3>
-          <ul><li>Semi-private groups of 2–3</li><li>Structured progression &amp; form coaching</li><li>Shared motivation &amp; accountability</li><li>Flexible group scheduling</li></ul>
-          <div class="card-actions">
-            <div class="price"><b>$175</b><small>per person / month</small></div>
-            <a class="btn" href="#book" data-book="3">Join a small group</a>
-          </div>
-        </article>
-        <article class="card tilt">
-          <div class="card-top"><span class="card-tag">Remote programming</span><span class="card-n">05</span></div>
-          <h3>Online coaching</h3>
-          <ul><li>Custom workout &amp; progression plan</li><li>Video technique review</li><li>Calorie &amp; macro targets</li><li>Direct Telegram access</li></ul>
-          <div class="card-actions">
-            <div class="price"><b>Custom</b><small>flexible plan</small></div>
-            <a class="btn" href="#book" data-book="4">Apply for online coaching</a>
-          </div>
-        </article>
-        <article class="card card-help">
-          <div class="card-top"><span class="card-tag">Not sure yet?</span></div>
-          <h3>Let's find your fit</h3>
-          <p>Tell me your goal and your schedule. I'll suggest the simplest place to start, and the first consultation is free.</p>
-          <div class="card-actions">
-            <a class="btn btn-primary" href="#book" data-book="0">Book free consultation</a>
-            <a class="card-link" href="https://t.me/phenphoy" target="_blank" rel="noopener">Or message me on Telegram ↗</a>
-          </div>
-        </article>
-      </div>
-    </div>
+  <section class="services pad idx" id="services">
     <div class="wrap">
-      <div class="expect">
-        <div class="expect-title"><span class="eyebrow">What you can expect</span></div>
-        <div class="reveal"><b>Goal-based training</b><p>Every session is structured around your priorities, experience, and mobility needs.</p></div>
-        <div class="reveal"><b>Professional guidance</b><p>Constructive feedback, movement corrections, and steady encouragement through each phase.</p></div>
-        <div class="reveal"><b>Progress tracking</b><p>Regular objective reviews so you see real improvements in strength and body composition.</p></div>
-        <div class="reveal"><b>Accountability &amp; habit</b><p>Continuous guidance to build routines that last well beyond the gym.</p></div>
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Services</span>
+          <h2 class="split"><span class="line"><span>Ways to train</span></span></h2>
+        </div>
+        <p class="lead">Transparent monthly pricing. No registration fees, no locked contracts.</p>
       </div>
+      <ol class="svc-list">
+        <li class="svc reveal">
+          <span class="svc-n">01</span>
+          <div class="svc-main"><span class="svc-tag">Best first step</span><h3>Free consultation</h3><p>30 minutes on your goals, training history and schedule. You leave with a clear starting plan.</p></div>
+          <div class="svc-price"><b>Free</b><small>30 minutes</small></div>
+          <a class="btn" href="#book" data-book="0">Book consultation</a>
+        </li>
+        <li class="svc featured reveal">
+          <span class="svc-n">02</span>
+          <div class="svc-main"><span class="svc-tag">Most personalized</span><h3>1-on-1 personal training</h3><p>Your own progressive program with real-time technique coaching. Monday to Friday, 1-hour sessions, plus nutrition and lifestyle tracking.</p></div>
+          <div class="svc-price"><b>$200</b><small>per month</small></div>
+          <a class="btn btn-primary" href="#book" data-book="2">Choose 1-on-1</a>
+        </li>
+        <li class="svc reveal">
+          <span class="svc-n">03</span>
+          <div class="svc-main"><h3>Small-group training</h3><p>Semi-private groups of 2–3 with structured progression, form coaching and shared motivation.</p></div>
+          <div class="svc-price"><b>$175</b><small>per person / month</small></div>
+          <a class="btn" href="#book" data-book="3">Join a group</a>
+        </li>
+        <li class="svc reveal">
+          <span class="svc-n">04</span>
+          <div class="svc-main"><h3>Fitness assessment</h3><p>Visbody 3D body composition scan, YMCA 3-minute step test and a posture &amp; mobility baseline.</p><button type="button" class="svc-more" id="assessBtn" aria-haspopup="dialog">See everything that’s measured</button></div>
+          <div class="svc-price"><b>$20</b><small>$5 for gym members</small></div>
+          <a class="btn" href="#book" data-book="1">Book assessment</a>
+        </li>
+        <li class="svc reveal">
+          <span class="svc-n">05</span>
+          <div class="svc-main"><h3>Online coaching</h3><p>A custom plan, video technique reviews, calorie and macro targets, and direct Telegram access, wherever you train.</p></div>
+          <div class="svc-price"><b>Custom</b><small>flexible plan</small></div>
+          <a class="btn" href="#book" data-book="4">Apply</a>
+        </li>
+      </ol>
+      <p class="svc-help">Not sure which fits? <a href="https://t.me/phenphoy" target="_blank" rel="noopener">Message me your goal on Telegram</a> and I’ll suggest the simplest place to start.</p>
     </div>
   </section>
 
   <!-- STORY -->
-  <section class="pad wrap" id="story">
+  <section class="pad wrap idx" id="story">
     <div class="story-grid">
       <div class="story-media reveal-img">
-        <img id="storyImg" src="images/web/phen-about.webp" alt="Phen Phoy standing in the gym" loading="lazy">
+        <img id="storyImg" src="images/web/coaching-2.webp" alt="Phen coaching a client on the leg press" loading="lazy">
         <div class="story-year"><small>Where it started</small>2016</div>
       </div>
       <div class="story-copy">
@@ -316,73 +273,25 @@
     </div>
   </section>
 
-  <!-- QUALIFICATIONS -->
-  <section class="pad wrap" id="qualifications">
-    <div class="section-head q-head">
-      <div>
-        <span class="eyebrow">Qualifications</span>
-        <h2 class="split"><span class="line"><span>Certified.</span></span><span class="line"><span>Registered.</span></span><span class="line"><span>Verified.</span></span></h2>
+  <!-- CREDENTIALS -->
+  <section class="pad wrap cred-row-wrap" id="qualifications" aria-label="Credentials">
+    <div class="cred-row reveal">
+      <img src="images/web/ereps-logo.png" alt="EREPS Professional 2026 badge" width="72" height="72" loading="lazy">
+      <div class="cred-copy">
+        <h2>Certified. Registered. Verified.</h2>
+        <p>EREPS Level 3 · NASM · Fitness Edutraining Asia · CPR &amp; AED</p>
       </div>
-      <div class="q-head-side"><p class="lead">Professional education supporting safe, science-based coaching. Tap any certificate to see the real document, or check my registration live on EREPS.</p>
-      <ul class="q-stats" aria-label="Credentials at a glance">
-        <li><b>L3</b><span>EREPS registered</span></li>
-        <li><b>9</b><span>Certificates &amp; courses</span></li>
-        <li><b>CPR</b><span>&amp; AED certified</span></li>
-        <li><b>NASM</b><span>Continuing education</span></li>
-      </ul></div>
-    </div>
-    <div class="q-grid">
-      <div class="q-side">
-        <a class="seal-link" id="qSeal" href="https://www.ereps.eu/member-profile/147076" target="_blank" rel="noopener" aria-label="Verify my EREPS registration"><span class="seal"><svg class="seal-ring" viewBox="0 0 100 100" aria-hidden="true"><defs><path id="ringQ" d="M50 50 m-44 0 a44 44 0 1 1 88 0 a44 44 0 1 1 -88 0"/></defs><text><textPath href="#ringQ" textLength="274" lengthAdjust="spacing">European Register of Exercise Professionals · Level 3 · </textPath></text></svg><span class="seal-coin"><img src="images/web/ereps-logo.png" alt="EREPS Professional 2026 badge"></span><span class="seal-shock" aria-hidden="true"></span></span></a>
-        <a class="btn btn-primary" href="https://www.ereps.eu/member-profile/147076" target="_blank" rel="noopener">Verify live on EREPS registry <span class="arrow">↗</span></a>
+      <div class="cred-links">
+        <a class="btn" href="about.html">View all 9 certificates <span class="arrow">→</span></a>
+        <a class="text-link" href="https://www.ereps.eu/member-profile/147076" target="_blank" rel="noopener">Verify on the EREPS register ↗</a>
       </div>
-      <div class="certs" id="certGrid">
-        <button type="button" class="cert is-ereps" data-i="0" data-cursor="View"><span class="cert-img"><img src="images/web/certs/eqf-level-3.webp" alt="Certified Fitness Instructor certificate" loading="lazy" decoding="async"><span class="cert-view">View ↗</span></span><span class="cert-body"><small>EREPS Registered · Fitness Edutraining Asia</small><b>Certified Fitness Instructor</b><span>EQF Level 3 accredited</span></span></button>
-        <button type="button" class="cert" data-i="1" data-cursor="View"><span class="cert-img"><img src="images/web/certs/module-1.webp" alt="Certified Fitness Instructor certificate" loading="lazy" decoding="async"><span class="cert-view">View ↗</span></span><span class="cert-body"><small>Fitness Edutraining Asia</small><b>Certified Fitness Instructor</b><span>Module 1 Foundation</span></span></button>
-        <button type="button" class="cert" data-i="2" data-cursor="View"><span class="cert-img"><img src="images/web/certs/cpr-aed.webp" alt="CPR &amp; AED certificate" loading="lazy" decoding="async"><span class="cert-view">View ↗</span></span><span class="cert-body"><small>Fitness Edutraining Asia</small><b>CPR &amp; AED</b><span>Basic Life Support certified</span></span></button>
-        <button type="button" class="cert" data-i="3" data-cursor="View"><span class="cert-img"><img src="images/web/certs/bootylicious-training.webp" alt="Bootylicious Training Techniques certificate" loading="lazy" decoding="async"><span class="cert-view">View ↗</span></span><span class="cert-body"><small>Fitness Edutraining Asia</small><b>Bootylicious Training Techniques</b><span>Lower body &amp; glute specialization</span></span></button>
-        <button type="button" class="cert" data-i="4" data-cursor="View"><span class="cert-img"><img src="images/web/certs/fitness-trainer.webp" alt="Fitness Trainer certificate" loading="lazy" decoding="async"><span class="cert-view">View ↗</span></span><span class="cert-body"><small>The CPD Group</small><b>Fitness Trainer</b><span>Professional fitness certification</span></span></button>
-        <button type="button" class="cert" data-i="5" data-cursor="View"><span class="cert-img"><img src="images/web/certs/diet-nutrition-coach.webp" alt="Diet &amp; Nutrition Coach certificate" loading="lazy" decoding="async"><span class="cert-view">View ↗</span></span><span class="cert-body"><small>The CPD Group</small><b>Diet &amp; Nutrition Coach</b><span>Evidence-based nutrition principles</span></span></button>
-        <button type="button" class="cert" data-i="6" data-cursor="View"><span class="cert-img"><img src="images/web/certs/exercise-mentoring.webp" alt="Exercise Mentoring Program certificate" loading="lazy" decoding="async"><span class="cert-view">View ↗</span></span><span class="cert-body"><small>Cambodia Fitness Academy</small><b>Exercise Mentoring Program</b><span>Advanced practical coaching</span></span></button>
-        <button type="button" class="cert" data-i="7" data-cursor="View"><span class="cert-img"><img src="images/web/certs/nasm-personal-trainer.webp" alt="Personal Fitness Trainer certificate" loading="lazy" decoding="async"><span class="cert-view">View ↗</span></span><span class="cert-body"><small>National Academy of Sports Medicine</small><b>Personal Fitness Trainer</b><span>NASM continuing education</span></span></button>
-        <button type="button" class="cert" data-i="8" data-cursor="View"><span class="cert-img"><img src="images/web/certs/nasm-weight-loss.webp" alt="Coaching Strategies for Weight Loss certificate" loading="lazy" decoding="async"><span class="cert-view">View ↗</span></span><span class="cert-body"><small>National Academy of Sports Medicine</small><b>Coaching Strategies for Weight Loss</b><span>NASM weight management specialist</span></span></button>
-      </div>
-    </div>
-
-    <div class="steps-block">
-      <span class="eyebrow">How it works</span>
-      <h3 class="steps-h">From first message to real progress</h3>
-      <div class="steps-wrap">
-        <div class="steps-line" aria-hidden="true"><span id="stepsLine"></span></div>
-        <ol class="steps">
-          <li class="reveal"><b>Consultation</b><p>Discuss your history, priorities, schedule, and goals in detail.</p></li>
-          <li class="reveal"><b>Assessment</b><p>Set your starting baseline with a Visbody scan and cardio tests.</p></li>
-          <li class="reveal"><b>Your custom plan</b><p>Receive a structured program built around your targets.</p></li>
-          <li class="reveal"><b>Guided coaching</b><p>Train with direct form feedback, accountability, and technique support.</p></li>
-          <li class="reveal"><b>Review &amp; adapt</b><p>Track weekly progress and fine-tune your program as you improve.</p></li>
-        </ol>
-      </div>
-    </div>
-  </section>
-
-  <!-- GALLERY -->
-  <section class="gallery pad" id="gallery">
-    <div class="wrap section-head">
-      <div>
-        <span class="eyebrow">Coaching in action</span>
-        <h2 class="split"><span class="line"><span>Real effort, Real Progress.</span>
-      </div>
-      <p class="lead">Recent personal training and small-group sessions at Bulldogs Fitness Center.</p>
-    </div>
-    <div class="g-skew" id="gSkew">
-      <div class="g-row" id="gRow1" data-cursor="View"></div>
-      <div class="g-row" id="gRow2" data-cursor="View"></div>
     </div>
   </section>
 
   <!-- TESTIMONIALS -->
-  <section class="pad wrap" id="testimonials" aria-label="Client testimonials">
-    <span class="eyebrow" style="display:block;margin-bottom:28px">Client testimonials</span>
+  <section class="pad light idx" id="testimonials" aria-label="Client results">
+   <div class="wrap">
+    <span class="eyebrow" style="display:block;margin-bottom:28px">Client results</span>
     <div class="t-grid">
       <div class="t-main">
         <blockquote class="quote" id="quote">Working with Phen completely reshaped my relationship with fitness. I lost body fat, built real strength, and now walk into the gym with full confidence.</blockquote>
@@ -399,277 +308,44 @@
       </figure>
     </div>
     </div>
-    <div class="share-story reveal" id="shareStory">
-      <div class="ss-copy">
-        <span class="res-kind">Share your story</span>
-        <h3>Trained with me? Tell it your way.</h3>
-        <p>Write a few lines here, or send a short video on Telegram. I only feature your words, first name and photo with your OK.</p>
-      </div>
-      <form class="ss-form" id="ssForm" autocomplete="off" novalidate>
-        <label class="cf"><span>First name</span><input class="field" id="ssName" type="text" placeholder="e.g. Sokha" maxlength="40"></label>
-        <label class="cf"><span>Your goal</span><select class="field" id="ssGoal"><option>Lose fat</option><option>Build muscle</option><option>Get stronger</option><option>More energy</option><option>Other</option></select></label>
-        <label class="cf ss-wide"><span>Your story</span><textarea class="field" id="ssText" rows="4" maxlength="600" placeholder="Where you started, what changed, how you feel now"></textarea></label>
-        <label class="ss-ok ss-wide"><input type="checkbox" id="ssOk"> <span>I'm happy for Phen to share my words and first name on the website and social media.</span></label>
-        <div class="ss-actions ss-wide">
-          <a class="btn btn-primary" id="ssTg" href="https://t.me/phenphoy" target="_blank" rel="noopener" aria-disabled="true">Send on Telegram <span class="arrow">→</span></a>
-        </div>
-      </form>
-    </div>
+    <p class="t-share">Trained with me? <a href="app.html#shareStory">Share your story</a>.</p>
+   </div>
   </section>
 
-  <!-- WATCH -->
-  <section class="pad wrap" id="watch" aria-label="Fitness tips videos">
-    <div class="section-head">
-      <div>
-        <span class="eyebrow">Fitness tips</span>
-        <h2>Quick tips, straight from the gym.</h2>
-        <p class="lead">Short answers to the questions I hear most, from my TikTok. Tap a clip to play it right here.</p>
-      </div>
-    </div>
-    <div class="vchips" id="vChips" role="group" aria-label="Filter videos" hidden></div>
-    <div class="vgrid" id="vGrid"></div>
-    <div class="vfollow">
-      <a class="vf" href="https://www.youtube.com/@phenfitness" target="_blank" rel="noopener"><span class="vf-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2a2.6 2.6 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.6 2.6 0 0 0 2.4 7.2C2 8.8 2 12 2 12s0 3.2.4 4.8a2.6 2.6 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.6 2.6 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8zM10 15V9l5.2 3L10 15z"/></svg></span><span><b>YouTube</b><small>Subscribe for full workouts</small></span><i aria-hidden="true">↗</i></a>
-      <a class="vf" href="https://tiktok.com/@phen_fitness" target="_blank" rel="noopener"><span class="vf-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 3c.3 2.4 1.7 3.9 4 4.1v3a7 7 0 0 1-4-1.3v6.1A5.9 5.9 0 1 1 10.7 9v3.1a2.9 2.9 0 1 0 2.1 2.8V3h3.8z"/></svg></span><span><b>TikTok</b><small>Follow for daily tips</small></span><i aria-hidden="true">↗</i></a>
-    </div>
-  </section>
-
-  <!-- CHALLENGE -->
-  <section class="pad wrap" id="challenge" aria-label="Monthly challenge">
-    <div class="section-head">
-      <div>
-        <span class="eyebrow">Monthly challenge · Free</span>
-        <h2 id="chName">30-Day Glutes &amp; Core</h2>
-        <p class="lead">Thirty days, no gym needed, about 20 to 30 minutes a day. Join free, tick off each day, and message me when you finish. A new theme starts each month.</p>
-      </div>
-    </div>
-    <div class="ch">
-      <div class="ch-main">
-        <div class="ch-status" id="chStatus" aria-live="polite"></div>
-        <div class="ch-prog"><div class="tv-bar" aria-hidden="true"><span id="chBar" style="--p:0%"></span></div><small id="chCount">0 of 30 days done</small></div>
-        <ol class="ch-days" id="chDays" aria-label="Challenge days"></ol>
-        <div class="ch-cta">
-          <a class="btn btn-primary" id="chJoin" href="https://t.me/phenphoy" target="_blank" rel="noopener">Join free on Telegram <span class="arrow">↗</span></a>
-        </div>
-        <p class="ch-note">Joining just sends me a message so I can add you to the group and send reminders. Your ticks are saved on this device only.</p>
-      </div>
-      <aside class="ch-side" aria-live="polite">
-        <div class="ch-day-h"><small id="chDayK">Day 1 · Week 1</small><h3 id="chDayT">Foundation</h3></div>
-        <ul class="ch-ex" id="chEx"></ul>
-        <button class="btn btn-primary ch-done" id="chDone" type="button">Mark day done</button>
-        <button class="btn-ghost ch-share" id="chShare" type="button" hidden>Share my progress</button>
-        <p class="ch-note">Warm up for 3 minutes first. Stop if anything hurts, and check with your doctor before starting if you have an injury or health condition. This is general guidance, not medical advice.</p>
-      </aside>
-    </div>
-  </section>
-
-  <!-- RESOURCES -->
-  <section class="pad wrap" id="resources">
-    <div class="section-head">
-      <div>
-        <span class="eyebrow">Free resources</span>
-        <h2 class="split"><span class="line"><span>Tools for your fitness journey</span>
-      </div>
-      <p class="lead">Free calculators and tools to support your training between sessions.</p>
-    </div>
-    <div class="calc reveal" id="calculators">
-      <form class="calc-form" id="calcForm" autocomplete="off" novalidate>
-        <div class="calc-title"><b>Your numbers</b><span>Enter them once. Every result updates as you type.</span></div>
-
-        <div class="calc-row two">
-          <fieldset class="seg" aria-label="Units">
-            <legend>Units</legend>
-            <label><input type="radio" name="units" value="metric" checked><span>Metric</span></label>
-            <label><input type="radio" name="units" value="us"><span>US</span></label>
-          </fieldset>
-          <fieldset class="seg" aria-label="Sex">
-            <legend>Sex</legend>
-            <label><input type="radio" name="sex" value="male" checked><span>Male</span></label>
-            <label><input type="radio" name="sex" value="female"><span>Female</span></label>
-          </fieldset>
-        </div>
-
-        <div class="calc-row three">
-          <label class="cf"><span>Age</span><div class="unit"><input class="field" id="cAge" inputmode="numeric" type="text" placeholder="30" maxlength="2"><i>years</i></div></label>
-          <div class="cf" id="hMetric"><span>Height</span><div class="unit"><input class="field" id="cCm" inputmode="decimal" type="text" placeholder="170" aria-label="Height in centimetres"><i>cm</i></div></div>
-          <div class="cf" id="hUs" hidden><span>Height</span><div class="unit two"><input class="field" id="cFt" inputmode="numeric" type="text" placeholder="5" aria-label="Height, feet"><i>ft</i><input class="field" id="cIn" inputmode="decimal" type="text" placeholder="7" aria-label="Height, inches"><i>in</i></div></div>
-          <label class="cf"><span>Weight</span><div class="unit"><input class="field" id="cWt" inputmode="decimal" type="text" placeholder="70"><i id="wUnit">kg</i></div></label>
-        </div>
-
-        <label class="cf"><span>How active are you?</span>
-          <select class="field" id="cAct">
-            <option value="1.2">Mostly sitting: desk job, little exercise</option>
-            <option value="1.375" selected>Light: 1–3 workouts a week</option>
-            <option value="1.55">Moderate: 3–5 workouts a week</option>
-            <option value="1.725">Very active: 6–7 workouts a week</option>
-            <option value="1.9">Athlete or physical job: training twice a day</option>
-          </select>
-        </label>
-
-        <fieldset class="seg wide" aria-label="Your goal">
-          <legend>Your goal</legend>
-          <label><input type="radio" name="goal" value="lose"><span>Lose fat</span></label>
-          <label><input type="radio" name="goal" value="maintain" checked><span>Maintain</span></label>
-          <label><input type="radio" name="goal" value="gain"><span>Build muscle</span></label>
-        </fieldset>
-
-        <details class="calc-more" id="cMore">
-          <summary>Add tape measurements for body fat %</summary>
-          <p>Measure round the narrowest part of your waist (at the navel for men), your neck below the voice box<span id="hipNote"></span>. Keep the tape snug, not tight.</p>
-          <div class="calc-row three">
-            <label class="cf"><span>Waist</span><div class="unit"><input class="field" id="cWaist" inputmode="decimal" type="text" placeholder="85"><i class="lenU">cm</i></div></label>
-            <label class="cf"><span>Neck</span><div class="unit"><input class="field" id="cNeck" inputmode="decimal" type="text" placeholder="38"><i class="lenU">cm</i></div></label>
-            <label class="cf" id="hipWrap" hidden><span>Hips</span><div class="unit"><input class="field" id="cHip" inputmode="decimal" type="text" placeholder="98"><i class="lenU">cm</i></div></label>
-          </div>
-        </details>
-
-        <details class="calc-more" id="cMore2">
-          <summary>Add resting heart rate for sharper zones</summary>
-          <p>Count your pulse for 30 seconds first thing in the morning, then double it. Leave it empty and I will use your age.</p>
-          <div class="calc-row two">
-            <label class="cf"><span>Resting heart rate</span><div class="unit"><input class="field" id="cRhr" inputmode="numeric" type="text" placeholder="60" maxlength="3"><i>bpm</i></div></label>
-          </div>
-        </details>
-
-        <div class="calc-actions"><button class="btn-ghost" type="button" id="cReset">Clear</button><small>Calculated on your device. Nothing you type is sent anywhere.</small></div>
-      </form>
-
-      <div class="calc-out" id="calcOut" aria-live="polite">
-        <p class="calc-empty" id="cEmpty">Add your age, height and weight to see your results.</p>
-        <div class="calc-cards" id="cCards" hidden>
-          <article class="rc rc-bmi"><span class="rc-k">Body mass index</span><b class="rc-v" id="oBmi">–</b><em class="rc-tag" id="oBmiTag"></em>
-            <div class="bar" aria-hidden="true"><i style="--c:#6aa8ff"></i><i style="--c:#a3e635"></i><i style="--c:#ffc247"></i><i style="--c:#ff7a59"></i><s id="oBmiDot"></s></div>
-            <small id="oBmiNote"></small></article>
-          <article class="rc rc-main"><span class="rc-k">Daily calories for your goal</span><b class="rc-v" id="oTarget">–</b><em class="rc-tag" id="oGoalTag"></em><small id="oTdee"></small></article>
-          <article class="rc"><span class="rc-k">Protein per day</span><b class="rc-v" id="oProt">–</b><small id="oProtNote"></small></article>
-          <article class="rc"><span class="rc-k">Healthy weight range</span><b class="rc-v" id="oIdeal">–</b><small id="oIdealNote"></small></article>
-          <article class="rc"><span class="rc-k">Resting burn (BMR)</span><b class="rc-v" id="oBmr">–</b><small>Calories your body uses at complete rest.</small></article>
-          <article class="rc" id="rcFat"><span class="rc-k">Body fat</span><b class="rc-v" id="oFat">–</b><em class="rc-tag" id="oFatTag"></em><small id="oFatNote">Add waist and neck measurements to estimate this.</small></article>
-          <article class="rc rc-wide"><span class="rc-k">Daily macros for your goal</span>
-            <div class="macros">
-              <div><b id="mP">–</b><span>Protein</span><small id="mPp"></small></div>
-              <div><b id="mC">–</b><span>Carbs</span><small id="mCp"></small></div>
-              <div><b id="mF">–</b><span>Fat</span><small id="mFp"></small></div>
-            </div>
-            <div class="mbar" aria-hidden="true"><i id="mbP"></i><i id="mbC"></i><i id="mbF"></i></div>
-            <small id="mNote">Protein first, fat for hormones and fullness, carbs fill the rest for training energy.</small></article>
-          <article class="rc rc-wide"><span class="rc-k">Heart-rate zones</span>
-            <ol class="zones" id="zones"></ol>
-            <small id="zNote"></small></article>
-        </div>
-        <div class="calc-share" id="cShare" hidden>
-          <a class="btn" id="sTg" href="https://t.me/phenphoy" target="_blank" rel="noopener">Send my results on Telegram <span class="arrow">→</span></a>
-          <small>Opens a message with your numbers ready. You choose whether to send it.</small>
-        </div>
-        <p class="calc-disc" id="cDisc" hidden>These are estimates to guide your planning, not medical advice. Real needs vary with your body, sleep, stress and training. <a href="#book">Book a free consult</a> and I will turn them into a plan that fits you.</p>
-      </div>
-    </div>
-
-    <div class="calc calc-lift reveal" id="lift">
-      <form class="calc-form" id="liftForm" autocomplete="off" novalidate>
-        <div class="calc-title"><b>One-rep max</b><span>Lift a weight for a few reps (not to failure) and see your estimated max.</span></div>
-        <div class="calc-row two">
-          <label class="cf"><span>Weight lifted</span><div class="unit"><input class="field" id="lW" inputmode="decimal" type="text" placeholder="60"><i id="lUnit">kg</i></div></label>
-          <label class="cf"><span>Reps completed</span><div class="unit"><input class="field" id="lR" inputmode="numeric" type="text" placeholder="8" maxlength="2"><i>reps</i></div></label>
-        </div>
-        <p class="calc-note">Most accurate for 1–10 reps. Uses your unit choice above. Warm up well and use a spotter for heavy lifts.</p>
-      </form>
-      <div class="calc-out" aria-live="polite">
-        <p class="calc-empty" id="lEmpty">Add the weight and reps to see your estimated one-rep max.</p>
-        <div id="lOut" hidden>
-          <article class="rc rc-main"><span class="rc-k">Estimated one-rep max</span><b class="rc-v" id="lMax">–</b><small id="lNote"></small></article>
-          <table class="ltable"><caption>Training weights from your max</caption><thead><tr><th>Intensity</th><th>Weight</th><th>Typical reps</th></tr></thead><tbody id="lRows"></tbody></table>
-        </div>
-      </div>
-    </div>
-
-    <h3 class="res-h">Free downloads</h3>
-
-    <article class="tracker reveal" id="tracker">
-      <div class="tracker-copy">
-        <span class="res-kind">Google Sheets template · Free</span>
-        <h4>Weight-loss tracker</h4>
-        <p>Enter your start weight, goal and date once. The dashboard works out days to goal, kilos lost and kilos left, and it handles weight gain too.</p>
-        <ul class="tracker-feats">
-          <li>Dashboard with key numbers and a weight timeline</li>
-          <li>Weekly weight log with BMI and milestone rewards</li>
-          <li>Ten body measurements, before and after</li>
-          <li>Progress photo pages, and three colour themes</li>
-        </ul>
-        <div class="tracker-cta">
-          <a class="btn btn-primary" href="https://docs.google.com/spreadsheets/d/1_PmdGrapjvp8smTR0Zr9bI4oO_mPGkwKuuurqWsHO3k/copy" target="_blank" rel="noopener">Get your free copy <span class="arrow">↗</span></a>
-          <small>Opens Google Sheets and saves a copy to your own Drive. Your numbers stay private.</small>
-        </div>
-      </div>
-      <div class="tracker-vis" role="img" aria-label="Preview of the dashboard key numbers, using sample data: start 70 kilograms, now 67, goal 65, 3 kilograms lost, 2 left">
-        <span class="tv-label">Dashboard · sample data</span>
-        <div class="tv-grid">
-          <div><small>Start</small><b>70.0<i>kg</i></b></div>
-          <div><small>Now</small><b>67.0<i>kg</i></b></div>
-          <div><small>Goal</small><b>65.0<i>kg</i></b></div>
-        </div>
-        <div class="tv-bar" aria-hidden="true"><span style="--p:60%"></span></div>
-        <div class="tv-foot"><span><b>3.0 kg</b> lost</span><span><b>2.0 kg</b> to go</span></div>
-      </div>
-    </article>
-
-    <h4 class="res-sub">Training plans</h4>
-    <ul class="rlist reveal">
-      <li><a href="https://docs.google.com/spreadsheets/d/1Z3Gz22-zpHIyXfEmOdgG0izKLbh_eriWOoLRvLXbG8E/copy" target="_blank" rel="noopener"><span class="rl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3.5" width="16" height="17" rx="2.5"/><path d="M4 9h16M4 14.5h16M10 9v11.5"/></svg></span><span class="rl-t"><b>Shoulders &amp; Arms Training Plan</b><small>Google Sheet · makes your own copy</small></span><span class="rl-go" aria-hidden="true">↗</span></a></li>
-      <li><a href="https://drive.google.com/file/d/1Ov4qXtljvOiSvuepitbm1DgBuKelJPih/view?usp=sharing" target="_blank" rel="noopener"><span class="rl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3.5h7l4 4V19a1.5 1.5 0 0 1-1.5 1.5h-9.5A1.5 1.5 0 0 1 5.5 19V5A1.5 1.5 0 0 1 7 3.5z"/><path d="M14 3.5V8h4M9 14h6M9 17h4"/></svg></span><span class="rl-t"><b>Chest &amp; Triceps Workout Plan</b><small>PDF · opens in Google Drive</small></span><span class="rl-go" aria-hidden="true">↗</span></a></li>
-      <li><a href="https://docs.google.com/spreadsheets/d/1dNolmPG9dil1nSDsqw9A2G_DkERnX-nK/copy" target="_blank" rel="noopener"><span class="rl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3.5" width="16" height="17" rx="2.5"/><path d="M4 9h16M4 14.5h16M10 9v11.5"/></svg></span><span class="rl-t"><b>Training Program, 4 Sessions Per Week</b><small>Google Sheet · makes your own copy</small></span><span class="rl-go" aria-hidden="true">↗</span></a></li>
-      <li><a href="https://docs.google.com/spreadsheets/d/1BGZHPCrSy_zVP8YNAifFpJDw-qCJLqN4/copy" target="_blank" rel="noopener"><span class="rl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3.5" width="16" height="17" rx="2.5"/><path d="M4 9h16M4 14.5h16M10 9v11.5"/></svg></span><span class="rl-t"><b>Lower Body Training Program</b><small>Google Sheet · makes your own copy</small></span><span class="rl-go" aria-hidden="true">↗</span></a></li>
-      <li><a href="https://docs.google.com/spreadsheets/d/1vPlmRvlWdszw2wpalnHOcN21PxGVH1av/copy" target="_blank" rel="noopener"><span class="rl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3.5" width="16" height="17" rx="2.5"/><path d="M4 9h16M4 14.5h16M10 9v11.5"/></svg></span><span class="rl-t"><b>Glute Exercise</b><small>Google Sheet · makes your own copy</small></span><span class="rl-go" aria-hidden="true">↗</span></a></li>
-      <li><a href="https://drive.google.com/file/d/1VH3-z5QfKhrQ33YGKX00XaXaAqy_sBpL/view?usp=sharing" target="_blank" rel="noopener"><span class="rl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3.5h7l4 4V19a1.5 1.5 0 0 1-1.5 1.5h-9.5A1.5 1.5 0 0 1 5.5 19V5A1.5 1.5 0 0 1 7 3.5z"/><path d="M14 3.5V8h4M9 14h6M9 17h4"/></svg></span><span class="rl-t"><b>Tracking Your Goals: The Perfect Photo</b><small>PDF · opens in Google Drive</small></span><span class="rl-go" aria-hidden="true">↗</span></a></li>
-    </ul>
-  </section>
-
-  <!-- CLIENT APP -->
-  <section class="pad wrap" id="app" aria-label="Phen Fitness coaching app">
-    <div class="section-head">
-      <div>
-        <span class="eyebrow">Coaching app · For clients</span>
-        <h2>Your coaching, in your pocket</h2>
-      </div>
-      <p class="lead">Training with me? Everything lives in one place: your workouts, your progress and your messages with me.</p>
-    </div>
-    <article class="tracker app-card reveal">
-      <div class="tracker-copy">
-        <span class="res-kind">Phen Fitness app · For my clients</span>
-        <h4>Log in to your portal</h4>
-        <p>Open your workouts, log your progress and keep in touch with me between training days, on your phone or computer.</p>
-        <ul class="tracker-feats">
-          <li>Your workouts, weigh-ins and body measurements</li>
-          <li>Progress photos, meals and habit logs</li>
-          <li>Messages with me, plus your packages and session credits</li>
-          <li>Other clients can never see your information</li>
-        </ul>
-        <div class="tracker-cta">
-          <div class="app-btns">
-            <a class="btn btn-primary" href="https://app.phenfitness.fit/login" rel="noopener">Log in to the app <span class="arrow">→</span></a>
-            <a class="btn" href="#book">Not a client yet? Book a free consultation</a>
-          </div>
-          <small>There is no self sign-up. When you start training with me, I create your account and send you your sign-in details. Forgot your password? Use the link on the login page.</small>
-        </div>
-      </div>
-      <div class="tracker-vis" role="group" aria-label="How to use the app on your phone">
-        <span class="tv-label">Put it on your home screen</span>
-        <ol class="app-steps">
-          <li><b>Open the app in your phone browser</b><span>Safari on iPhone, Chrome on Android.</span></li>
-          <li><b>Find the share or menu button</b><span>On iPhone tap Share. On Android tap the three dots.</span></li>
-          <li><b>Choose Add to Home Screen</b><span>It opens like an app, with no download from an app store.</span></li>
+    <!-- HOW IT WORKS -->
+  <section class="pad wrap idx" id="how">
+    <div class="steps-block">
+      <span class="eyebrow">How it works</span>
+      <h2 class="steps-h">From first message to real progress</h2>
+      <div class="steps-wrap">
+        <div class="steps-line" aria-hidden="true"><span id="stepsLine"></span></div>
+        <ol class="steps">
+          <li class="reveal"><b>Consultation</b><p>Discuss your history, priorities, schedule, and goals in detail.</p></li>
+          <li class="reveal"><b>Assessment</b><p>Set your starting baseline with a Visbody scan and cardio tests.</p></li>
+          <li class="reveal"><b>Your custom plan</b><p>Receive a structured program built around your targets.</p></li>
+          <li class="reveal"><b>Guided coaching</b><p>Train with direct form feedback, accountability, and technique support.</p></li>
+          <li class="reveal"><b>Review &amp; adapt</b><p>Track weekly progress and fine-tune your program as you improve.</p></li>
         </ol>
-        <a class="app-privacy" href="https://app.phenfitness.fit/privacy" rel="noopener">How the app keeps your information safe ↗</a>
       </div>
-    </article>
+    </div>
+  </section>
+
+  <!-- FREE -->
+  <section class="pad wrap" id="free" aria-label="Free resources">
+    <div class="free-head"><h2>Free, between sessions</h2><p>Each one has its own page.</p></div>
+    <div class="free-grid">
+      <a class="free-card reveal" href="challenge.html"><small>Monthly · free</small><b>30-Day Glutes &amp; Core Challenge</b><span>20–30 minutes a day, no gym needed</span><i aria-hidden="true">→</i></a>
+      <a class="free-card reveal" href="resources.html"><small>Tools</small><b>Calculators &amp; trackers</b><span>Calories, protein, 1-rep max and a weight-loss tracker</span><i aria-hidden="true">→</i></a>
+      <a class="free-card reveal" href="tips.html"><small>Video</small><b>Fitness tips</b><span>Short answers from my TikTok and YouTube</span><i aria-hidden="true">→</i></a>
+    </div>
   </section>
 
   <!-- BOOKING -->
-  <section class="pad wrap" id="book">
+  <section class="pad wrap idx" id="book">
     <div class="section-head">
       <div>
         <span class="eyebrow">Availability</span>
-        <h2 class="split"><span class="line"><span>Pick a time, I'll confirm it.</span>
+        <h2 class="split"><span class="line"><span>Pick a time, I'll confirm it.</span></span></h2>
       </div>
       <p class="lead">Choose a service, day and time, and your request opens in Telegram ready to send. I reply to confirm, usually within 1–2 hours.</p>
     </div>
@@ -713,7 +389,7 @@
   </section>
 
   <!-- CONTACT -->
-  <section class="pad wrap" id="faq" aria-label="Frequently asked questions">
+  <section class="pad wrap idx" id="faq" aria-label="Frequently asked questions">
     <div class="section-head">
       <div>
         <span class="eyebrow">Questions</span>
@@ -767,17 +443,7 @@
         </article>
       </div>
 
-      <div class="contact-grid">
-        <div class="start-box reveal">
-          <h3>How getting started works</h3>
-          <ol class="start">
-            <li><div><b>Send a quick message</b><span>Reach out on Telegram with your goal (fat loss, building muscle, fixing posture) and preferred training times.</span></div></li>
-            <li><div><b>Free 30&#8209;minute consultation</b><span>We discuss your lifestyle, injuries, exercise background, and schedule. I recommend the right starting pathway, with no sales pressure.</span></div></li>
-            <li><div><b>Begin your structured routine</b><span>Meet at Bulldogs Fitness Center for your Visbody scan and first guided session, then track your progress week by week.</span></div></li>
-          </ol>
-          <p class="start-note">Transparent coaching: no hidden registration fees or locked contracts.</p>
-        </div>
-        
+      <div class="contact-grid single">
         <div class="info-box reveal">
           <h3>Trainer &amp; facility</h3>
           <dl class="info">
@@ -801,8 +467,12 @@
         <p>Certified personal trainer in Siem Reap. Personalized coaching for strength, confidence, and sustainable progress.</p>
       </div>
       <div>
-        <h4>Quick links</h4>
-        <ul><li><a href="#services">Services</a></li><li><a href="#story">My Story</a></li><li><a href="#qualifications">Qualifications</a></li><li><a href="#gallery">Gallery</a></li><li><a href="#resources">Resources</a></li><li><a href="#app">The App</a></li><li><a href="https://app.phenfitness.fit/login" rel="noopener">Client login</a></li><li><a href="#book">Book</a></li><li><a href="#contact">Contact</a></li></ul>
+        <h4>Coaching</h4>
+        <ul><li><a href="#services">Services &amp; prices</a></li><li><a href="#story">My story</a></li><li><a href="about.html">Credentials</a></li><li><a href="#book">Book</a></li><li><a href="#contact">Contact</a></li></ul>
+      </div>
+      <div>
+        <h4>Free</h4>
+        <ul><li><a href="tips.html">Fitness tips</a></li><li><a href="challenge.html">30-day challenge</a></li><li><a href="resources.html">Calculators &amp; trackers</a></li><li><a href="app.html">Client app</a></li><li><a href="https://app.phenfitness.fit/login" rel="noopener">Client login</a></li></ul>
       </div>
       <div>
         <h4>Follow</h4>
@@ -811,7 +481,6 @@
           <li><a href="https://www.facebook.com/passporttoyourhealthylifestyle" target="_blank" rel="noopener">Facebook</a></li>
           <li><a href="https://tiktok.com/@phen_fitness" target="_blank" rel="noopener">TikTok</a></li>
           <li><a href="https://www.youtube.com/@phenfitness" target="_blank" rel="noopener">YouTube</a></li>
-          <li><a href="https://linktr.ee/phenfitness" target="_blank" rel="noopener">All links (Linktree)</a></li>
         </ul>
       </div>
     </div>
@@ -828,13 +497,6 @@
   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.3 18.7 19.4c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.3-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13 1.4 11.5c-1-.3-1-1 .2-1.5L20.5 2.8c.9-.3 1.6.2 1.4 1.5z"/></svg>
   <span>Chat with Coach Phen</span>
 </a>
-
-<!-- Certificate viewer -->
-<div class="lb" id="lb" role="dialog" aria-modal="true" aria-labelledby="lbTitle" hidden>
-  <div class="lb-top"><div><small id="lbIssuer"></small><b id="lbTitle"></b></div><button type="button" class="icon-btn" id="lbClose" aria-label="Close certificate">✕</button></div>
-  <div class="lb-stage"><img id="lbImg" alt=""></div>
-  <div class="lb-nav"><button type="button" class="icon-btn" id="lbPrev" aria-label="Previous certificate">←</button><span id="lbCount">1 / 9</span><button type="button" class="icon-btn" id="lbNext" aria-label="Next certificate">→</button></div>
-</div>
 
 <!-- Fitness assessment details -->
 <div class="modal" id="assessModal" role="dialog" aria-modal="true" aria-labelledby="assessTitle" hidden>
@@ -882,9 +544,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
 <script src="js/availability.js?v=5" defer></script>
-<script src="js/main.js?v=22" defer></script>
-<script src="js/calculators.js?v=4" defer></script>
-<script src="js/content.js?v=2" defer></script>
-<script src="js/community.js?v=6" defer></script>
+<script src="js/main.js?v=23" defer></script>
 </body>
 </html>

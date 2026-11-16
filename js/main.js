@@ -23,7 +23,7 @@
   const $ = s => document.querySelector(s);
   const $$ = s => Array.from(document.querySelectorAll(s));
 
-  $("#year").textContent = new Date().getFullYear();
+  if ($("#year")) $("#year").textContent = new Date().getFullYear();
 
   /* ---------- Gallery ---------- */
   const captions = ["Resistance & form coaching", "1-on-1 deadlift mechanics", "Core stabilization & posture", "Upper body hypertrophy", "Dumbbell press technique", "Barbell squat calibration", "Functional core engagement", "Small-group team motivation", "Cable row biomechanics", "Focused athletic instruction", "Progressive overload tracking", "Joint mobility & warmup", "Core rotation & balance", "Strength calibration check", "Conditioning & stamina", "Precision movement coaching", "Power & muscular endurance", "Functional kinetic movement", "Posture & shoulder alignment", "Consistency & results"];
@@ -40,35 +40,36 @@
     ids.forEach(i => el.appendChild(make(i, true)));
   }
   const row1 = $("#gRow1"), row2 = $("#gRow2");
-  fillRow(row1, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-  fillRow(row2, [11, 12, 13, 14, 15, 16, 17, 18, 19, 20]);
+  if (row1) fillRow(row1, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+  if (row2) fillRow(row2, [11, 12, 13, 14, 15, 16, 17, 18, 19, 20]);
 
   /* ---------- Testimonial words ---------- */
   const quote = $("#quote");
-  quote.innerHTML = quote.textContent.trim().split(/\s+/).map(w => '<span class="w">' + w + "</span>").join(" ");
+  if (quote) quote.innerHTML = quote.textContent.trim().split(/\s+/).map(w => '<span class="w">' + w + "</span>").join(" ");
 
   /* ---------- Before / after slider ---------- */
   const ba = $("#ba"), baRange = $("#baRange");
-  const setPos = v => ba.style.setProperty("--pos", v + "%");
-  baRange.addEventListener("input", () => setPos(baRange.value));
+  const setPos = v => ba && ba.style.setProperty("--pos", v + "%");
+  if (baRange) baRange.addEventListener("input", () => setPos(baRange.value));
 
   /* ---------- Nav ---------- */
   const nav = $("#nav");
-  const onScrollNav = () => nav.classList.toggle("scrolled", window.scrollY > 40);
+  const onScrollNav = () => nav && nav.classList.toggle("scrolled", window.scrollY > 40);
   window.addEventListener("scroll", onScrollNav, { passive: true });
   onScrollNav();
 
   /* ---------- Phone menu ---------- */
   const menuBtn = $("#menuBtn"), mobileMenu = $("#mobileMenu");
   function setMenu(open) {
+    if (!menuBtn) return;
     document.body.classList.toggle("menu-open", open);
     menuBtn.setAttribute("aria-expanded", String(open));
     menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
     const lbl = menuBtn.querySelector(".menu-label"); if (lbl) lbl.textContent = open ? "Close" : "Menu";
     if (lenis) open ? lenis.stop() : lenis.start();
   }
-  menuBtn.addEventListener("click", () => setMenu(!document.body.classList.contains("menu-open")));
-  mobileMenu.querySelectorAll("a").forEach(a => a.addEventListener("click", () => setMenu(false)));
+  if (menuBtn) menuBtn.addEventListener("click", () => setMenu(!document.body.classList.contains("menu-open")));
+  if (mobileMenu) mobileMenu.querySelectorAll("a").forEach(a => a.addEventListener("click", () => setMenu(false)));
   document.addEventListener("keydown", e => { if (e.key === "Escape" && document.body.classList.contains("menu-open")) setMenu(false); });
 
   /* ---------- Service buttons pre-select the booking form ---------- */
@@ -114,15 +115,17 @@
     if (motion) gsap.fromTo(assess.querySelector(".modal-box"), { y: 40, opacity: 0, scale: 0.97 }, { y: 0, opacity: 1, scale: 1, duration: 0.5, ease: "expo.out" });
   }
   function closeAssess() {
-    if (assess.hidden) return;
+    if (!assess || assess.hidden) return;
     assess.hidden = true;
     if (lenis) lenis.start();
     if (assessReturn) assessReturn.focus();
   }
-  $("#assessBtn").addEventListener("click", openAssess);
-  $("#assessClose").addEventListener("click", closeAssess);
-  assess.addEventListener("click", e => { if (e.target === assess) closeAssess(); });
-  assess.addEventListener("keydown", e => { if (e.key === "Escape") closeAssess(); trapTab(e, assess); });
+  if (assess) {
+    $$("#assessBtn, [data-assess]").forEach(b => b.addEventListener("click", e => { e.preventDefault(); openAssess(); }));
+    $("#assessClose").addEventListener("click", closeAssess);
+    assess.addEventListener("click", e => { if (e.target === assess) closeAssess(); });
+    assess.addEventListener("keydown", e => { if (e.key === "Escape") closeAssess(); trapTab(e, assess); });
+  }
 
   /* ---------- Certificate viewer ---------- */
   const lb = $("#lb"), lbImg = $("#lbImg");
@@ -165,6 +168,7 @@
       gsap.fromTo(lbImg, { x: 40 * d, opacity: 0 }, { x: 0, opacity: 1, duration: 0.35, ease: "power3.out" });
     } });
   }
+  if (lb) {
   certs.forEach((c, i) => c.addEventListener("click", () => openCert(i)));
   $("#lbClose").addEventListener("click", closeCert);
   $("#lbPrev").addEventListener("click", () => stepCert(-1));
@@ -184,6 +188,7 @@
     if (Math.abs(dx) > 50) stepCert(dx < 0 ? 1 : -1);
     touchX = null;
   });
+  }
 
   if (!motion) {
     $$(".quote .w").forEach(w => w.style.opacity = 1);
@@ -218,8 +223,14 @@
   /* ---------- Opening: the logo builds on, on every visit ----------
      Visitors can skip it with a tap, click, scroll or key press. */
   const heroLines = $$(".hero .line > span");
-  const loader = $("#loader");
+  let loader = $("#loader");
+  // The logo intro plays once per visit (session); returning within the session goes straight to the page.
+  let seenIntro = false;
+  try { seenIntro = sessionStorage.getItem("pf-intro") === "1"; sessionStorage.setItem("pf-intro", "1"); } catch (e) {}
+  if (loader && seenIntro) { loader.remove(); loader = null; }
+  const hasHero = !!$("#heroMedia");
   const tl = gsap.timeline();
+  if (hasHero) {
   gsap.set("#nav .brand-icon", { scale: 0.6, opacity: 0 });
   gsap.set("#nav .wm", { y: 10, opacity: 0 });
   gsap.set("#heroSeal", { opacity: 0, y: 20, scale: 0.92 });
@@ -228,11 +239,11 @@
   gsap.set("#heroMedia", { clipPath: "inset(100% 0 0 0)" });
   gsap.set("#heroImg", { scale: 1.18 });
   // The logo builds itself in CSS (.pl-go in style.css, about 2.4 s, then the tagline). The timeline waits for it (same timing as before), then lifts the curtain.
-  tl.addLabel("lift", 2.95)
-    .to(".loader-inner", { opacity: 0, y: -14, duration: 0.45, ease: "power2.in" }, "lift")
+  tl.addLabel("lift", loader ? 2.95 : 0);
+  if (loader) tl.to(".loader-inner", { opacity: 0, y: -14, duration: 0.45, ease: "power2.in" }, "lift")
     .to(loader, { yPercent: -100, duration: 1, ease: "expo.inOut" }, "lift+=0.15")
     .set(loader, { display: "none" });
-  const t0 = 3.35;
+  const t0 = loader ? 3.35 : 0.05;
   tl.to(heroLines, { yPercent: 0, duration: 1.1, ease: "expo.out", stagger: 0.09 }, t0 + 0.1)
     .to("#heroMedia", { clipPath: "inset(0% 0 0 0)", duration: 1.3, ease: "expo.inOut" }, t0 + 0.1)
     .to("#heroImg", { scale: 1, duration: 2.2, ease: "power3.out" }, t0 + 0.1)
@@ -249,6 +260,7 @@
     .fromTo(".hero h1 .dim", { opacity: 1 }, { opacity: 0.42, duration: 0.9, ease: "power2.out" }, t0 + 1.05)
     .fromTo(".hero h1 .stronger .bar", { scaleX: 0 }, { scaleX: 1, duration: 1.1, ease: "expo.out" }, t0 + 1.0)
     .fromTo(".hero h1 .stronger", { backgroundPosition: "115% 0" }, { backgroundPosition: "-15% 0", duration: 1.5, ease: "power2.inOut" }, t0 + 1.1);
+  } else if (loader) { loader.remove(); loader = null; }
 
   /* ---------- Logo life: a glint now and then, and a gentle 3D tilt that follows the pointer ---------- */
   const navShine = $("#nav .brand-icon .shine");
@@ -274,7 +286,7 @@
   // skip: jump straight to the curtain lifting
   const skipEvents = ["pointerdown", "keydown", "wheel", "touchstart"];
   function skipIntro() {
-    if (tl.time() < tl.labels.lift) tl.seek("lift");
+    if (tl.labels.lift !== undefined && tl.time() < tl.labels.lift) tl.seek("lift");
     skipEvents.forEach(ev => window.removeEventListener(ev, skipIntro));
   }
   skipEvents.forEach(ev => window.addEventListener(ev, skipIntro, { passive: true }));
@@ -303,7 +315,7 @@
         if (q && window.scrollY > 120 && qbar.scrollWidth > qbar.clientWidth) qbar.scrollTo({ left: q.offsetLeft - (qbar.clientWidth - q.offsetWidth) / 2, behavior: "smooth" });
       }
     }), { rootMargin: "-45% 0px -50% 0px" });
-    ["services", "story", "transformation", "qualifications", "gallery", "watch", "challenge", "resources", "book", "contact"].forEach(id => {
+    ["services", "story", "transformation", "qualifications", "testimonials", "gallery", "watch", "challenge", "resources", "book", "faq", "contact"].forEach(id => {
       const el = document.getElementById(id); if (!el) return;
       // transformation and story both belong to "My Story"
       if (id === "transformation" && !map.has("#transformation")) map.set("#transformation", map.get("#story"));
@@ -313,15 +325,16 @@
     if (dock) {
       const hide = new Set(); let heroOn = true;
       const upd = () => dock.classList.toggle("on", !heroOn && hide.size === 0);
-      new IntersectionObserver(es => { heroOn = es[0].isIntersecting; upd(); }, { threshold: 0.35 }).observe(document.getElementById("home"));
+      const homeEl = document.getElementById("home") || document.querySelector(".page-hero");
+      if (homeEl) new IntersectionObserver(es => { heroOn = es[0].isIntersecting; upd(); }, { threshold: 0.35 }).observe(homeEl); else { heroOn = false; upd(); }
       const io2 = new IntersectionObserver(es => { es.forEach(e => e.isIntersecting ? hide.add(e.target) : hide.delete(e.target)); upd(); }, { threshold: 0.15 });
       ["#book", "#contact"].forEach(s => { const el = document.querySelector(s); if (el) io2.observe(el); });
     }
   }
 
   /* ---------- Parallax ---------- */
-  gsap.to("#heroImg", { yPercent: 4, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
-  gsap.fromTo("#storyImg", { yPercent: -3 }, { yPercent: 3, ease: "none", scrollTrigger: { trigger: "#story", start: "top bottom", end: "bottom top", scrub: true } });
+  if ($("#heroImg")) gsap.to("#heroImg", { yPercent: 4, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
+  if ($("#storyImg")) gsap.fromTo("#storyImg", { yPercent: -3 }, { yPercent: 3, ease: "none", scrollTrigger: { trigger: "#story", start: "top bottom", end: "bottom top", scrub: true } });
 
   /* ---------- Reveals ---------- */
   $$(".split").forEach(h => {
@@ -349,10 +362,10 @@
     { el: $("#ticker"), speed: 0.6, dir: -1, x: 0, pausable: false },
     { el: row1, speed: 0.5, dir: -1, x: 0, pausable: true },
     { el: row2, speed: 0.5, dir: 1, x: 0, pausable: true }
-  ];
+  ].filter(l => l.el);
   const gSkew = $("#gSkew");
   let skew = 0, hoverPause = 1;
-  [row1, row2].forEach(r => {
+  [row1, row2].filter(Boolean).forEach(r => {
     r.addEventListener("pointerenter", () => { hoverPause = 0.15; });
     r.addEventListener("pointerleave", () => { hoverPause = 1; });
   });
@@ -368,14 +381,14 @@
       l.el.style.transform = "translate3d(" + l.x + "px,0,0)";
     });
     skew += (gsap.utils.clamp(-6, 6, velocity * -0.25) - skew) * 0.1;
-    gSkew.style.transform = "skewY(" + skew.toFixed(2) + "deg)";
+    if (gSkew) gSkew.style.transform = "skewY(" + skew.toFixed(2) + "deg)";
   });
 
   /* ---------- Services: every plan is visible; the cards rise in once ---------- */
-  gsap.from(".card", { y: 36, opacity: 0, duration: 0.9, stagger: 0.07, ease: "expo.out", clearProps: "transform,opacity", scrollTrigger: { trigger: "#hTrack", start: "top 88%", once: true } });
+  if ($("#hTrack")) gsap.from(".card", { y: 36, opacity: 0, duration: 0.9, stagger: 0.07, ease: "expo.out", clearProps: "transform,opacity", scrollTrigger: { trigger: "#hTrack", start: "top 88%", once: true } });
 
   /* ---------- Before / after hint sweep ---------- */
-  ScrollTrigger.create({ trigger: ba, start: "top 60%", once: true, onEnter: () => {
+  if (ba) ScrollTrigger.create({ trigger: ba, start: "top 60%", once: true, onEnter: () => {
     const o = { v: 50 }, upd = () => { setPos(o.v); baRange.value = o.v; };
     gsap.timeline()
       .to(o, { v: 80, duration: 0.8, ease: "power2.inOut", onUpdate: upd }, 1)
@@ -384,16 +397,16 @@
   } });
 
   /* ---------- EREPS seal stamps down ---------- */
-  gsap.timeline({ scrollTrigger: { trigger: "#qSeal", start: "top 80%" } })
+  if ($("#qSeal")) gsap.timeline({ scrollTrigger: { trigger: "#qSeal", start: "top 80%" } })
     .fromTo("#qSeal .seal-coin", { scale: 2.4, rotate: -35, opacity: 0 }, { scale: 1, rotate: 0, opacity: 1, duration: 0.55, ease: "power4.in" })
     .fromTo("#qSeal .seal-shock", { opacity: 1, scale: 1 }, { opacity: 0, scale: 2.2, duration: 0.9, ease: "power2.out" })
     .fromTo("#qSeal .seal", { scale: 0.94 }, { scale: 1, duration: 0.6, ease: "elastic.out(1, 0.4)" }, "<")
     .fromTo("#qSeal .seal-ring", { opacity: 0 }, { opacity: 1, duration: 0.6 }, "<");
-  gsap.from(".q-summary li", { x: -24, opacity: 0, stagger: 0.08, duration: 0.6, ease: "power3.out", scrollTrigger: { trigger: ".q-summary", start: "top 85%" } });
+  if ($(".q-summary")) gsap.from(".q-summary li", { x: -24, opacity: 0, stagger: 0.08, duration: 0.6, ease: "power3.out", scrollTrigger: { trigger: ".q-summary", start: "top 85%" } });
 
   /* ---------- Certificates deal out from a stack ---------- */
   const grid = $("#certGrid");
-  ScrollTrigger.create({ trigger: grid, start: "top 75%", once: true, onEnter: () => {
+  if (grid) ScrollTrigger.create({ trigger: grid, start: "top 75%", once: true, onEnter: () => {
     const g = grid.getBoundingClientRect(), cx = g.left + g.width / 2, cy = g.top + Math.min(g.height, 360) / 2;
     certs.forEach((c, i) => {
       const r = c.getBoundingClientRect();
@@ -405,14 +418,14 @@
 
   /* ---------- How it works: line fills as you scroll ---------- */
   const vertical = window.matchMedia("(max-width: 900px)").matches;
-  gsap.fromTo("#stepsLine", { [vertical ? "scaleY" : "scaleX"]: 0 }, { [vertical ? "scaleY" : "scaleX"]: 1, ease: "none", scrollTrigger: { trigger: ".steps", start: "top 80%", end: "bottom 60%", scrub: true } });
+  if ($("#stepsLine")) gsap.fromTo("#stepsLine", { [vertical ? "scaleY" : "scaleX"]: 0 }, { [vertical ? "scaleY" : "scaleX"]: 1, ease: "none", scrollTrigger: { trigger: ".steps", start: "top 80%", end: "bottom 60%", scrub: true } });
 
   /* ---------- Testimonial words light up ---------- */
-  gsap.to(".quote .w", { opacity: 1, stagger: 0.1, ease: "none", scrollTrigger: { trigger: quote, start: "top 80%", end: "bottom 45%", scrub: true } });
+  if (quote) gsap.to(".quote .w", { opacity: 1, stagger: 0.1, ease: "none", scrollTrigger: { trigger: quote, start: "top 80%", end: "bottom 45%", scrub: true } });
 
   /* ---------- Magnetic button ---------- */
-  const mWrap = $("#magnetWrap"), magnet = $("#magnet"), mLabel = magnet.querySelector("span");
-  if (fine) {
+  const mWrap = $("#magnetWrap"), magnet = $("#magnet"), mLabel = magnet && magnet.querySelector("span");
+  if (fine && mWrap && magnet) {
     mWrap.addEventListener("pointermove", e => {
       const r = mWrap.getBoundingClientRect();
       const dx = e.clientX - (r.left + r.width / 2), dy = e.clientY - (r.top + r.height / 2);
@@ -426,6 +439,7 @@
   if (fine) {
     document.body.classList.add("has-cursor");
     const dot = $("#cursor"), ring = $("#cursorRing"), label = $("#cursorLabel");
+    if (dot && ring) {
     const xD = gsap.quickTo(dot, "x", { duration: 0.1 }), yD = gsap.quickTo(dot, "y", { duration: 0.1 });
     const xR = gsap.quickTo(ring, "x", { duration: 0.45, ease: "power3" }), yR = gsap.quickTo(ring, "y", { duration: 0.45, ease: "power3" });
     window.addEventListener("pointermove", e => { document.body.classList.add("cursor-on"); xD(e.clientX); yD(e.clientY); xR(e.clientX); yR(e.clientY); });
@@ -436,6 +450,7 @@
     });
     document.addEventListener("pointerover", e => { if (e.target.closest("a, button")) gsap.to(ring, { scale: 1.5, duration: 0.3 }); });
     document.addEventListener("pointerout", e => { if (e.target.closest("a, button")) gsap.to(ring, { scale: 1, duration: 0.3 }); });
+    }
   }
 
   window.addEventListener("load", () => ScrollTrigger.refresh());

@@ -125,3 +125,21 @@ main { counter-reset: sec; }
 .page-cta-in p { margin: 0 0 8px; color: var(--muted); }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .subpage .dock { display: none !important; }
+
+/* ---------- Interaction states for the red theme ----------
+   The old theme slid a light layer under dark text on hover. With white text
+   on red, every state keeps white-on-red (deep red on hover). */
+.btn-primary::before { background: #a8040f; }
+.btn-primary:hover, .btn-primary:focus-visible { color: #fff; border-color: #a8040f; box-shadow: 0 10px 28px -12px rgba(225,6,19,.7); }
+.btn:hover, .btn:focus-visible { color: #fff; }
+.light .btn:not(.btn-primary):hover { color: #fff; }
+
+/* Small red text on black uses the brighter red so it stays readable (WCAG AA) */
+.status.open, .hours li.today b::after, .rc-tag, .calc-disc a, .hero-seal-copy small,
+.ba-label.r, .macros div:nth-child(1) b, .faq-i summary:hover, .foot-grid a:hover,
+.app-privacy:hover, .app-privacy:focus-visible, .mobile-menu nav a:hover { color: var(--red-text); }
+.status.open { border-color: rgba(255,77,87,.45); }
+
+/* Keyboard focus stays visible on red buttons and on the light section */
+.btn-primary:focus-visible { outline: 2px solid var(--bone); outline-offset: 3px; }
+.light :focus-visible { outline-color: var(--red-ink); }

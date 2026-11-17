@@ -334,6 +334,37 @@
 
   /* ---------- Parallax ---------- */
   if ($("#heroImg")) gsap.to("#heroImg", { yPercent: 4, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
+
+  /* Hero photo: on hover it tilts toward the pointer, the picture drifts and zooms inside the frame,
+     a red light follows the cursor, and the EREPS seal floats the other way. Mouse and trackpad only. */
+  (function heroHover() {
+    const frame = $("#heroMedia"), img = $("#heroImg"), seal = $("#heroSeal");
+    if (!frame || !img || !motion || !fine) return;
+    const glow = document.createElement("div");
+    glow.className = "hero-glow"; glow.setAttribute("aria-hidden", "true");
+    frame.insertBefore(glow, seal || null);
+    let live = false; setTimeout(() => { live = true; }, 4800); /* wait for the intro to finish */
+    const rx = gsap.quickTo(frame, "rotationX", { duration: 0.7, ease: "power3.out" });
+    const ry = gsap.quickTo(frame, "rotationY", { duration: 0.7, ease: "power3.out" });
+    const ix = gsap.quickTo(img, "x", { duration: 0.9, ease: "power3.out" });
+    const iy = gsap.quickTo(img, "y", { duration: 0.9, ease: "power3.out" });
+    const sx = seal ? gsap.quickTo(seal, "x", { duration: 0.9, ease: "power3.out" }) : null;
+    const sy = seal ? gsap.quickTo(seal, "y", { duration: 0.9, ease: "power3.out" }) : null;
+    gsap.set(frame, { transformPerspective: 1000, transformOrigin: "50% 50%" });
+    frame.addEventListener("pointerenter", () => { if (!live) return; frame.classList.add("is-hover"); gsap.to(img, { scale: 1.07, duration: 1.1, ease: "power3.out", overwrite: "auto" }); });
+    frame.addEventListener("pointermove", e => {
+      if (!live) return;
+      const r = frame.getBoundingClientRect(), px = (e.clientX - r.left) / r.width - 0.5, py = (e.clientY - r.top) / r.height - 0.5;
+      rx(-py * 7); ry(px * 9); ix(-px * 26); iy(-py * 22);
+      if (sx) { sx(px * 16); sy(py * 12); }
+      frame.style.setProperty("--mx", (px + 0.5) * 100 + "%"); frame.style.setProperty("--my", (py + 0.5) * 100 + "%");
+    });
+    frame.addEventListener("pointerleave", () => {
+      frame.classList.remove("is-hover");
+      rx(0); ry(0); ix(0); iy(0); if (sx) { sx(0); sy(0); }
+      gsap.to(img, { scale: 1, duration: 1.2, ease: "power3.out", overwrite: "auto" });
+    });
+  })();
   if ($("#storyImg")) gsap.fromTo("#storyImg", { yPercent: -3 }, { yPercent: 3, ease: "none", scrollTrigger: { trigger: "#story", start: "top bottom", end: "bottom top", scrub: true } });
 
   /* ---------- Reveals ---------- */

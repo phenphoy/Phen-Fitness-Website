@@ -172,3 +172,10 @@ main { counter-reset: sec; }
 .faq-ask p { margin: 0; color: var(--muted); line-height: 1.6; }
 .faq-ask .btn { justify-content: center; }
 @media (max-width: 900px) { .faq-wrap { grid-template-columns: minmax(0, 1fr); } .faq-ask { position: static; } }
+
+/* Hero photo hover: red light that follows the pointer, and a lifted shadow */
+.hero-glow { position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: 0; transition: opacity .5s ease; mix-blend-mode: screen; background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(225, 6, 19, .34), transparent 62%); }
+.hero-media.is-hover .hero-glow { opacity: 1; }
+.hero-media { transition: box-shadow .6s ease; will-change: transform; }
+.hero-media.is-hover { box-shadow: 0 0 0 1px rgba(225, 6, 19, .55), 0 60px 110px -40px rgba(225, 6, 19, .35), 0 44px 90px -40px rgba(0, 0, 0, .85); }
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) { .hero-glow { display: none; } }

@@ -32,7 +32,9 @@ main { counter-reset: sec; }
 @media (max-width: 700px) { .cred-in { justify-content: flex-start; font-size: 11px; gap: 8px 20px; } }
 
 /* ---------- More breathing room ---------- */
-.pad { padding-block: clamp(64px, 8vw, 128px); }
+.pad { padding-block: clamp(44px, 5.2vw, 84px); }
+/* A hairline marks each hand-off between plain sections, so the space between them reads as a pause, not a hole. */
+.pad.wrap:not(.cred-row-wrap) + .pad.wrap:not(.cred-row-wrap)::before { content: ""; position: absolute; top: 0; left: var(--gutter); right: var(--gutter); height: 1px; background: linear-gradient(90deg, var(--line) 0, var(--line) 70%, transparent); }
 .section-head { margin-bottom: clamp(32px, 4vw, 56px); }
 
 /* ---------- Services as a clean price list ---------- */

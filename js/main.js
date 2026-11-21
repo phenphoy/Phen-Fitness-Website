@@ -346,6 +346,69 @@
     }
   }
 
+  /* Hero atmosphere: a field of red and ember dust that drifts, twinkles and gathers along the photo edge,
+     under a breathing red glow. Reacts softly to the cursor. Static when motion is reduced. */
+  (function heroDust() {
+    const hero = $(".hero");
+    if (!hero || !window.HTMLCanvasElement) return;
+    const cv = document.createElement("canvas");
+    cv.className = "hero-dust"; cv.setAttribute("aria-hidden", "true");
+    hero.insertBefore(cv, hero.firstChild);
+    const ctx = cv.getContext("2d");
+    if (!ctx) return;
+    const wide = () => window.matchMedia("(min-width: 861px)").matches;
+    const PAL = ["255,77,87", "255,106,76", "255,138,92", "255,143,176", "225,6,19", "255,196,160", "120,120,255"];
+    const WEIGHT = [26, 22, 16, 12, 14, 8, 2];
+    const pick = () => { let r = Math.random() * 100, i = 0; while (i < WEIGHT.length - 1 && r > WEIGHT[i]) { r -= WEIGHT[i]; i++; } return PAL[i]; };
+    const gauss = () => { let u = 0, v = 0; while (!u) u = Math.random(); while (!v) v = Math.random(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(6.2832 * v); };
+    let W = 0, H = 0, dpr = 1, parts = [], mx = -9999, my = -9999, running = false, visible = true, t0 = performance.now();
+    const spawn = (p, anywhere) => {
+      const isWide = wide(), cx = W * (isWide ? 0.37 : 0.5), sx = W * (isWide ? 0.11 : 0.3);
+      p.x = cx + gauss() * sx; p.y = isWide ? H * (0.5 + gauss() * 0.3) : H * (0.35 + gauss() * 0.3);
+      if (p.x < 0 || p.x > W || p.y < 0 || p.y > H) { p.x = Math.random() * W; p.y = Math.random() * H; }
+      p.vx = 0; p.vy = 0; p.size = Math.random() < 0.15 ? 2.2 : (1 + Math.random() * 0.9);
+      p.a = 0.5 + Math.random() * 0.5; p.ph = Math.random() * 6.28; p.sp = 0.6 + Math.random() * 1.8; p.c = pick();
+      p.fx = (Math.random() - 0.5) * 0.5; p.fy = (Math.random() - 0.5) * 0.5;
+    };
+    const build = () => {
+      const r = hero.getBoundingClientRect();
+      dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      W = Math.round(r.width); H = Math.round(r.height);
+      cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const n = Math.min(wide() ? 2800 : 800, Math.round(W * H / (wide() ? 480 : 1100)));
+      parts = []; for (let i = 0; i < n; i++) { const p = {}; spawn(p, true); parts.push(p); }
+    };
+    const draw = (now, still) => {
+      const t = (now - t0) / 1000;
+      ctx.clearRect(0, 0, W, H);
+      for (let i = 0; i < parts.length; i++) {
+        const p = parts[i];
+        if (!still) {
+          p.x += p.vx + Math.cos(t * 0.15 + p.ph) * 0.09 + p.fx * 0.05;
+          p.y += p.vy + Math.sin(t * 0.12 + p.ph * 1.3) * 0.07 + p.fy * 0.05 - 0.035;
+          const dx = p.x - mx, dy = p.y - my, d2 = dx * dx + dy * dy;
+          if (d2 < 19600) { const d = Math.sqrt(d2) || 1, f = (1 - d / 140) * 0.9; p.vx += dx / d * f; p.vy += dy / d * f; }
+          p.vx *= 0.92; p.vy *= 0.92;
+          if (p.x < -4 || p.x > W + 4 || p.y < -4 || p.y > H + 4) spawn(p);
+        }
+        const tw = still ? 0.8 : 0.5 + 0.5 * Math.sin(t * p.sp + p.ph);
+        ctx.fillStyle = "rgba(" + p.c + "," + (p.a * (0.3 + 0.7 * tw)).toFixed(3) + ")";
+        ctx.fillRect(p.x, p.y, p.size, p.size);
+      }
+    };
+    const loop = now => { if (!running) return; draw(now, false); requestAnimationFrame(loop); };
+    const start = () => { if (running || !motion) return; running = true; requestAnimationFrame(loop); };
+    const stop = () => { running = false; };
+    build();
+    if (!motion) draw(performance.now(), true);
+    else { start(); }
+    let rz; window.addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(() => { build(); if (!motion) draw(performance.now(), true); }, 200); });
+    window.addEventListener("pointermove", e => { const r = hero.getBoundingClientRect(); mx = e.clientX - r.left; my = e.clientY - r.top; }, { passive: true });
+    if ("IntersectionObserver" in window) new IntersectionObserver(es => { visible = es[0].isIntersecting; if (visible && !document.hidden) start(); else stop(); }).observe(hero);
+    document.addEventListener("visibilitychange", () => { if (document.hidden) stop(); else if (visible) start(); });
+    if (motion) gsap.fromTo(cv, { opacity: 0 }, { opacity: 1, duration: 2.4, ease: "power2.out", delay: 3.6 });
+  })();
+
   /* Headline hover: letters near the cursor lift and swell like a wave, and the light on "stronger." follows the pointer. */
   (function headlineHover() {
     const h1 = $(".hero h1");

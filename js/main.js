@@ -636,6 +636,24 @@
   const vertical = window.matchMedia("(max-width: 900px)").matches;
   if ($("#stepsLine")) gsap.fromTo("#stepsLine", { [vertical ? "scaleY" : "scaleX"]: 0 }, { [vertical ? "scaleY" : "scaleX"]: 1, ease: "none", scrollTrigger: { trigger: ".steps", start: "top 80%", end: "bottom 60%", scrub: true } });
 
+  /* ---------- Client feedback: stars pop in, light drifts with scroll, glass catches the cursor ---------- */
+  (function feedbackFx() {
+    const sec = $("#testimonials"); if (!sec) return;
+    $$(".fb .stars").forEach(st => {
+      const stars = st.querySelectorAll("i");
+      gsap.set(stars, { opacity: 0, scale: .3, rotate: -40, y: 8 });
+      ScrollTrigger.create({ trigger: st, start: "top 90%", once: true, onEnter: () => gsap.to(stars, { opacity: 1, scale: 1, rotate: 0, y: 0, duration: .6, ease: "back.out(2.4)", stagger: .09, delay: .25 }) });
+    });
+    const drift = (sel, y) => $$(sel).forEach(el => gsap.fromTo(el, { y: -y }, { y, ease: "none", scrollTrigger: { trigger: sec, start: "top bottom", end: "bottom top", scrub: true } }));
+    drift(".fb-orb.a", 70); drift(".fb-orb.b", -60); drift(".fb-disc.d1", 50); drift(".fb-disc.d2", -40);
+    if (window.matchMedia("(pointer: fine)").matches) {
+      $$(".fb .glass").forEach(g => g.addEventListener("pointermove", e => {
+        const r = g.getBoundingClientRect();
+        g.style.setProperty("--mx", (e.clientX - r.left) + "px"); g.style.setProperty("--my", (e.clientY - r.top) + "px");
+      }));
+    }
+  })();
+
   /* ---------- Testimonial words light up ---------- */
   if (quote) gsap.to(".quote .w", { opacity: 1, stagger: 0.1, ease: "none", scrollTrigger: { trigger: quote, start: "top 80%", end: "bottom 45%", scrub: true } });
 

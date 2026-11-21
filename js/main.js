@@ -335,6 +335,16 @@
   /* ---------- Parallax ---------- */
   if ($("#heroImg")) gsap.to("#heroImg", { yPercent: 4, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
 
+  /* Headline stays alive: a light sweep crosses "stronger." every few seconds, and on scroll
+     "easier." fades back while the rest of the statement holds. Skipped when motion is reduced. */
+  if (motion && $(".hero h1 .stronger")) {
+    gsap.fromTo(".hero h1 .stronger", { backgroundPosition: "115% 0" }, { backgroundPosition: "-15% 0", duration: 1.6, ease: "power2.inOut", repeat: -1, repeatDelay: 5.5, delay: 9, immediateRender: false });
+    if (window.matchMedia("(min-width: 861px)").matches) {
+      gsap.fromTo(".hero h1 .dim", { opacity: 0.42 }, { opacity: 0.08, ease: "none", immediateRender: false, scrollTrigger: { trigger: ".hero", start: "top top", end: "60% top", scrub: true } });
+      gsap.fromTo(".hero h1", { yPercent: 0 }, { yPercent: -6, ease: "none", immediateRender: false, scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
+    }
+  }
+
   /* Hero photo: on hover it tilts toward the pointer, the picture drifts and zooms inside the frame,
      a red light follows the cursor, and the EREPS seal floats the other way. Mouse and trackpad only. */
   (function heroHover() {

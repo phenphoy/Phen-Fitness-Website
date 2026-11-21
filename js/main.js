@@ -618,6 +618,12 @@
     .fromTo("#qSeal .seal-shock", { opacity: 1, scale: 1 }, { opacity: 0, scale: 2.2, duration: 0.9, ease: "power2.out" })
     .fromTo("#qSeal .seal", { scale: 0.94 }, { scale: 1, duration: 0.6, ease: "elastic.out(1, 0.4)" }, "<")
     .fromTo("#qSeal .seal-ring", { opacity: 0 }, { opacity: 1, duration: 0.6 }, "<");
+  /* The same seal in the credentials row: stamps down once, then glints and spins; hover flips it */
+  if ($("#credSeal")) gsap.timeline({ scrollTrigger: { trigger: "#credSeal", start: "top 88%", once: true } })
+    .fromTo("#credSeal .seal-coin", { scale: 2.2, rotate: -30, opacity: 0 }, { scale: 1, rotate: 0, opacity: 1, duration: 0.55, ease: "power4.in" })
+    .fromTo("#credSeal .seal-shock", { opacity: 1, scale: 1 }, { opacity: 0, scale: 2.2, duration: 0.9, ease: "power2.out" })
+    .fromTo("#credSeal", { scale: 0.94 }, { scale: 1, duration: 0.6, ease: "elastic.out(1, 0.4)" }, "<")
+    .fromTo("#credSeal .seal-ring", { opacity: 0 }, { opacity: 1, duration: 0.6 }, "<");
   if ($(".q-summary")) gsap.from(".q-summary li", { x: -24, opacity: 0, stagger: 0.08, duration: 0.6, ease: "power3.out", scrollTrigger: { trigger: ".q-summary", start: "top 85%" } });
 
   /* ---------- Certificates deal out from a stack ---------- */

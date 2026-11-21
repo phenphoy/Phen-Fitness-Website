@@ -333,3 +333,12 @@ main { counter-reset: sec; }
 @media (prefers-reduced-transparency: reduce) { .fb .glass { background: #1a1a1a; -webkit-backdrop-filter: none; backdrop-filter: none; } }
 .fb .t-share a.fb-pill { color: #f2efe8; text-decoration: none; }
 .fb .t-share a.fb-pill.red { color: #fff; }
+
+/* Credentials row: animated EREPS seal (stamp, spinning ring, glint, flip on hover) */
+.cred-row .seal { --seal: 104px; margin: -6px 0; }
+.cred-row .seal-coin img { width: 100%; height: 100%; }
+.cred-row:hover .seal-coin { animation: flip 1s cubic-bezier(.3,.7,.3,1); }
+.cred-row:hover .seal-ring { animation-duration: 4s; }
+.cred-row .seal-ring text { fill: #c9c4ba; }
+.no-motion .seal-ring, .no-motion .seal-coin::after { animation: none; }
+@media (prefers-reduced-motion: reduce) { .seal-ring, .seal-coin::after, .cred-row:hover .seal-coin { animation: none; } }

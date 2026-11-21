@@ -203,3 +203,18 @@ main { counter-reset: sec; }
 
 /* "Today" tag in the opening hours: white on solid red (was red on red) */
 .hours li.today b::after { color: #fff; background: var(--lime); font-weight: 700; font-size: 11px !important; letter-spacing: .1em; padding: 3px 8px; }
+
+/* ---- Desktop nav: floating frosted pill, brighter type, clear current-section state ---- */
+@media (min-width: 981px) {
+  .nav-links { gap: 2px; padding: 5px; border-radius: 999px; font-size: 14px; font-weight: 500; letter-spacing: .005em; color: rgba(242, 239, 232, .86);
+    background: rgba(14, 14, 14, .62); -webkit-backdrop-filter: blur(18px) saturate(1.4); backdrop-filter: blur(18px) saturate(1.4);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, .1), 0 10px 30px -12px rgba(0, 0, 0, .7); }
+  .nav-links a { padding: 8px 15px; border-radius: 999px; transition: background .25s ease, color .25s ease; }
+  .nav-links a::after { display: none; }
+  .nav-links a:hover { color: #fff; background: rgba(255, 255, 255, .1); }
+  .nav-links a[aria-current], .nav-links a.active { color: #fff; background: rgba(255, 255, 255, .16); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .12); }
+  .nav-links a:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+  .nav.scrolled .nav-links { background: rgba(14, 14, 14, .82); }
+}
+@media (min-width: 981px) and (max-width: 1180px) { .nav-links a { padding: 7px 10px; font-size: 13px; } }
+@media (prefers-reduced-transparency: reduce) { .nav-links { background: #151515; -webkit-backdrop-filter: none; backdrop-filter: none; } }

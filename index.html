@@ -67,7 +67,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
   <link rel="preload" as="image" href="images/web/phen-hero-960.webp" imagesrcset="images/web/phen-hero-640.webp 640w, images/web/phen-hero-960.webp 960w, images/web/phen-hero-1080.webp 1080w" imagesizes="(max-width: 860px) 100vw, 66vw">
   <link rel="stylesheet" href="css/style.css?v=48">
-  <link rel="stylesheet" href="css/premium.css?v=33">
+  <link rel="stylesheet" href="css/premium.css?v=34">
   <script>document.documentElement.classList.remove("no-js");</script>
 </head>
 <body>
@@ -86,10 +86,8 @@
     <a class="brand" id="brand" href="#top" aria-label="Phen Fitness home"><span class="brand-icon"><img class="brand-sym" src="images/brand/phen-symbol.svg?v=6" width="1702" height="1449" alt=""><span class="shine" aria-hidden="true"></span></span><img class="wm" src="images/brand/phen-wordmark.svg?v=6" width="2330" height="283" alt=""></a>
     <nav class="nav-links" aria-label="Main">
       <a href="#services">Services</a>
-      <a href="#story">My Story</a>
-      <a href="about.html">Credentials</a>
-      <a href="about.html#gallery">Gallery</a>
-      <a href="#testimonials">Feedback</a>
+      <a href="#testimonials">Results</a>
+      <button class="nav-dd-btn" id="navAboutBtn" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="navAboutMenu">About<svg class="dd-chev" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       <button class="nav-dd-btn" id="navFreeBtn" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="navFreeMenu">Free<svg class="dd-chev" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       <a href="#faq">FAQ</a>
     </nav>
@@ -128,15 +126,36 @@
       </div>
     </div>
   </div>
+  <div class="nav-dd-menu sm" id="navAboutMenu" role="menu" aria-label="About Phen">
+    <div class="dd-panel">
+      <div class="dd-list">
+        <a class="dd-row" role="menuitem" href="#story">
+          <span class="dd-ico"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="dd-row-text"><b>My story</b><span>Who I am and how I coach</span></span>
+          <svg class="dd-arrow" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 9h11M10 4.5 14.5 9 10 13.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="dd-row" role="menuitem" href="about.html">
+          <span class="dd-ico"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3zM8.5 12l2.5 2.5 4.5-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="dd-row-text"><b>Credentials</b><span>9 certificates and my EREPS registration</span></span>
+          <svg class="dd-arrow" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 9h11M10 4.5 14.5 9 10 13.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="dd-row" role="menuitem" href="about.html#gallery">
+          <span class="dd-ico"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zM8.5 10a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM21 15l-5-5L5 21" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="dd-row-text"><b>Gallery</b><span>Coaching in action at the gym</span></span>
+          <svg class="dd-arrow" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 9h11M10 4.5 14.5 9 10 13.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
 </header>
 
 <div class="mobile-menu" id="mobileMenu" aria-label="Menu">
   <nav>
     <a href="#services" style="--i:0">Services</a>
-    <a href="#story" style="--i:1">My Story</a>
-    <a href="about.html" style="--i:2">Credentials</a>
-    <a href="about.html#gallery" style="--i:3">Gallery</a>
-    <a href="#testimonials" style="--i:4">Feedback</a>
+    <a href="#testimonials" style="--i:1">Results</a>
+    <a href="#story" style="--i:2">My Story</a>
+    <a href="about.html" style="--i:3">Credentials</a>
+    <a href="about.html#gallery" style="--i:4">Gallery</a>
     <a href="challenge.html" style="--i:5">30-Day Challenge</a>
     <a href="resources.html" style="--i:6">Free Tools</a>
     <a href="tips.html" style="--i:7">Fitness Tips</a>
@@ -262,6 +281,36 @@
     </div>
   </section>
 
+  <!-- TESTIMONIALS -->
+  <section class="pad idx fb" id="testimonials" aria-label="Client feedback">
+   <div class="fb-orb a" aria-hidden="true"></div><div class="fb-orb b" aria-hidden="true"></div><div class="fb-disc d1" aria-hidden="true"></div><div class="fb-disc d2" aria-hidden="true"></div>
+   <div class="wrap">
+    <span class="eyebrow" style="display:block;margin-bottom:28px">Client feedback</span>
+    <div class="t-grid">
+      <div class="t-main glass reveal">
+        <span class="fb-mark" aria-hidden="true">”</span>
+        <span class="stars" aria-label="5 out of 5 stars"><i aria-hidden="true">★</i><i aria-hidden="true">★</i><i aria-hidden="true">★</i><i aria-hidden="true">★</i><i aria-hidden="true">★</i></span>
+        <blockquote class="quote" id="quote">Working with Phen completely reshaped my relationship with fitness. I lost body fat, built real strength, and now walk into the gym with full confidence.</blockquote>
+        <div class="quote-by"><span class="avatar" aria-hidden="true">SR</span><div><b>Srey Rath</b><small>Personal training client</small></div></div>
+      </div>
+    <div class="t-more">
+      <figure class="t-card glass reveal">
+        <span class="stars" aria-label="5 out of 5 stars"><i aria-hidden="true">★</i><i aria-hidden="true">★</i><i aria-hidden="true">★</i><i aria-hidden="true">★</i><i aria-hidden="true">★</i></span>
+        <blockquote>As a busy professional, I needed a workout routine that fit my demanding schedule. Phen’s structure gave me consistency and energy I haven’t had in years.</blockquote>
+        <figcaption><span class="avatar" aria-hidden="true">DV</span><div><b>Dara Vicheka</b><small>1-on-1 client</small></div></figcaption>
+      </figure>
+      <figure class="t-card glass reveal">
+        <span class="stars" aria-label="5 out of 5 stars"><i aria-hidden="true">★</i><i aria-hidden="true">★</i><i aria-hidden="true">★</i><i aria-hidden="true">★</i><i aria-hidden="true">★</i></span>
+        <blockquote>The individual attention to proper posture and lifting technique made all the difference. I feel stronger, leaner, and healthier than ever before.</blockquote>
+        <figcaption><span class="avatar" aria-hidden="true">CR</span><div><b>Chan Reach</b><small>Small-group training</small></div></figcaption>
+      </figure>
+    </div>
+    </div>
+    <p class="t-share reveal"><span>Have you trained with me?</span> <a class="fb-pill red" href="https://g.page/r/CdZyhrhD3Y1TEBM/review" target="_blank" rel="noopener">Leave a Google review</a> <a class="fb-pill" href="app.html#shareStory">Share your story</a></p>
+   </div>
+  </section>
+
+
   <!-- STORY -->
   <section class="pad wrap idx" id="story">
     <div class="story-grid">
@@ -320,35 +369,6 @@
     </div>
   </section>
 
-  <!-- TESTIMONIALS -->
-  <section class="pad idx fb" id="testimonials" aria-label="Client feedback">
-   <div class="fb-orb a" aria-hidden="true"></div><div class="fb-orb b" aria-hidden="true"></div><div class="fb-disc d1" aria-hidden="true"></div><div class="fb-disc d2" aria-hidden="true"></div>
-   <div class="wrap">
-    <span class="eyebrow" style="display:block;margin-bottom:28px">Client feedback</span>
-    <div class="t-grid">
-      <div class="t-main glass reveal">
-        <span class="fb-mark" aria-hidden="true">”</span>
-        <span class="stars" aria-label="5 out of 5 stars"><i aria-hidden="true">★</i><i aria-hidden="true">★</i><i aria-hidden="true">★</i><i aria-hidden="true">★</i><i aria-hidden="true">★</i></span>
-        <blockquote class="quote" id="quote">Working with Phen completely reshaped my relationship with fitness. I lost body fat, built real strength, and now walk into the gym with full confidence.</blockquote>
-        <div class="quote-by"><span class="avatar" aria-hidden="true">SR</span><div><b>Srey Rath</b><small>Personal training client</small></div></div>
-      </div>
-    <div class="t-more">
-      <figure class="t-card glass reveal">
-        <span class="stars" aria-label="5 out of 5 stars"><i aria-hidden="true">★</i><i aria-hidden="true">★</i><i aria-hidden="true">★</i><i aria-hidden="true">★</i><i aria-hidden="true">★</i></span>
-        <blockquote>As a busy professional, I needed a workout routine that fit my demanding schedule. Phen’s structure gave me consistency and energy I haven’t had in years.</blockquote>
-        <figcaption><span class="avatar" aria-hidden="true">DV</span><div><b>Dara Vicheka</b><small>1-on-1 client</small></div></figcaption>
-      </figure>
-      <figure class="t-card glass reveal">
-        <span class="stars" aria-label="5 out of 5 stars"><i aria-hidden="true">★</i><i aria-hidden="true">★</i><i aria-hidden="true">★</i><i aria-hidden="true">★</i><i aria-hidden="true">★</i></span>
-        <blockquote>The individual attention to proper posture and lifting technique made all the difference. I feel stronger, leaner, and healthier than ever before.</blockquote>
-        <figcaption><span class="avatar" aria-hidden="true">CR</span><div><b>Chan Reach</b><small>Small-group training</small></div></figcaption>
-      </figure>
-    </div>
-    </div>
-    <p class="t-share reveal"><span>Have you trained with me?</span> <a class="fb-pill red" href="https://g.page/r/CdZyhrhD3Y1TEBM/review" target="_blank" rel="noopener">Leave a Google review</a> <a class="fb-pill" href="app.html#shareStory">Share your story</a></p>
-   </div>
-  </section>
-
     <!-- HOW IT WORKS -->
   <div id="howFree">
   <section class="pad wrap idx" id="how">
@@ -378,6 +398,35 @@
     </div>
   </section>
   </div>
+
+  <!-- FAQ -->
+  <section class="pad wrap idx" id="faq" aria-label="Frequently asked questions">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Questions</span>
+        <h2 class="split"><span class="line"><span>Before you message me</span></span></h2>
+      </div>
+      <p class="lead">The things people ask most. Anything else, send me a message.</p>
+    </div>
+    <div class="faq-wrap">
+    <div class="faq reveal">
+      <details class="faq-i"><summary>Is the first consultation really free?</summary><p>Yes. The initial consultation is free and takes 30 minutes. We talk through your goals, lifestyle, injuries, exercise background and schedule, and I recommend a starting pathway. There is no sales pressure.</p></details>
+      <details class="faq-i"><summary>How much does training cost?</summary><p>Initial consultation: free. Fitness assessment: $20 ($5 for gym members). 1-on-1 personal training: $200 per month, Monday to Friday, 1-hour sessions. Small-group training for 2–3 people: $175 per person per month. Online coaching is a custom, flexible plan, so message me for a quote. There are no hidden registration fees or locked contracts.</p></details>
+      <details class="faq-i"><summary>Where and when do you train people?</summary><p>At Bulldogs Fitness Center in Siem Reap. Hours are Monday to Thursday 6:00 AM – 8:00 PM, Friday 6:00 AM – 7:00 PM and Saturday 8:00 AM – 2:00 PM.</p></details>
+      <details class="faq-i"><summary>I am a beginner. Can I still start?</summary><p>Yes. My coaching is built for beginners and busy professionals who want to lose fat, build lean muscle, increase energy and train with lasting confidence. Every plan starts from where you are today, with your injuries and mobility in mind.</p></details>
+      <details class="faq-i"><summary>What happens in the fitness assessment?</summary><p>It includes a Visbody 3D body composition scan, a YMCA 3-minute step test (VO₂ max recovery) and a posture and mobility baseline, so we start from real numbers.</p></details>
+      <details class="faq-i"><summary>How do I book, and how fast do you reply?</summary><p>Message me on Telegram, or use the booking section on this page. I usually reply within 1–2 hours.</p></details>
+      <details class="faq-i"><summary>What are your qualifications?</summary><p>I am EREPS Level 3 registered, CPR & AED certified, and I continue my education through NASM. Open the Qualifications section to see each certificate, or check my registration live on EREPS.</p></details>
+    </div>
+      <aside class="faq-ask reveal">
+        <span class="eyebrow">Still not sure?</span>
+        <h3>Ask me directly</h3>
+        <p>Send your question on Telegram or WhatsApp. I reply within 1&ndash;2 hours, usually sooner.</p>
+        <a class="btn btn-primary" href="https://t.me/phenphoy" target="_blank" rel="noopener">Message on Telegram <span class="arrow">&rarr;</span></a>
+        <a class="btn" href="https://wa.me/85577413470" target="_blank" rel="noopener">WhatsApp</a>
+      </aside>
+    </div>
+  </section>
 
   <!-- BOOKING -->
   <section class="pad wrap idx" id="book">
@@ -427,35 +476,8 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section class="pad wrap idx" id="faq" aria-label="Frequently asked questions">
-    <div class="section-head">
-      <div>
-        <span class="eyebrow">Questions</span>
-        <h2 class="split"><span class="line"><span>Before you message me</span></span></h2>
-      </div>
-      <p class="lead">The things people ask most. Anything else, send me a message.</p>
-    </div>
-    <div class="faq-wrap">
-    <div class="faq reveal">
-      <details class="faq-i"><summary>Is the first consultation really free?</summary><p>Yes. The initial consultation is free and takes 30 minutes. We talk through your goals, lifestyle, injuries, exercise background and schedule, and I recommend a starting pathway. There is no sales pressure.</p></details>
-      <details class="faq-i"><summary>How much does training cost?</summary><p>Initial consultation: free. Fitness assessment: $20 ($5 for gym members). 1-on-1 personal training: $200 per month, Monday to Friday, 1-hour sessions. Small-group training for 2–3 people: $175 per person per month. Online coaching is a custom, flexible plan, so message me for a quote. There are no hidden registration fees or locked contracts.</p></details>
-      <details class="faq-i"><summary>Where and when do you train people?</summary><p>At Bulldogs Fitness Center in Siem Reap. Hours are Monday to Thursday 6:00 AM – 8:00 PM, Friday 6:00 AM – 7:00 PM and Saturday 8:00 AM – 2:00 PM.</p></details>
-      <details class="faq-i"><summary>I am a beginner. Can I still start?</summary><p>Yes. My coaching is built for beginners and busy professionals who want to lose fat, build lean muscle, increase energy and train with lasting confidence. Every plan starts from where you are today, with your injuries and mobility in mind.</p></details>
-      <details class="faq-i"><summary>What happens in the fitness assessment?</summary><p>It includes a Visbody 3D body composition scan, a YMCA 3-minute step test (VO₂ max recovery) and a posture and mobility baseline, so we start from real numbers.</p></details>
-      <details class="faq-i"><summary>How do I book, and how fast do you reply?</summary><p>Message me on Telegram, or use the booking section on this page. I usually reply within 1–2 hours.</p></details>
-      <details class="faq-i"><summary>What are your qualifications?</summary><p>I am EREPS Level 3 registered, CPR & AED certified, and I continue my education through NASM. Open the Qualifications section to see each certificate, or check my registration live on EREPS.</p></details>
-    </div>
-      <aside class="faq-ask reveal">
-        <span class="eyebrow">Still not sure?</span>
-        <h3>Ask me directly</h3>
-        <p>Send your question on Telegram or WhatsApp. I reply within 1&ndash;2 hours, usually sooner.</p>
-        <a class="btn btn-primary" href="https://t.me/phenphoy" target="_blank" rel="noopener">Message on Telegram <span class="arrow">&rarr;</span></a>
-        <a class="btn" href="https://wa.me/85577413470" target="_blank" rel="noopener">WhatsApp</a>
-      </aside>
-    </div>
-  </section>
 
+  <!-- CONTACT -->
   <section class="cta pad" id="contact">
     <div class="wrap">
       <span class="eyebrow">Direct booking &amp; contact</span>
@@ -516,7 +538,7 @@
       </div>
       <div>
         <h4>Coaching</h4>
-        <ul><li><a href="#services">Services &amp; prices</a></li><li><a href="#story">My story</a></li><li><a href="about.html">Credentials</a></li><li><a href="about.html#gallery">Gallery</a></li><li><a href="#book">Book</a></li><li><a href="#contact">Contact</a></li></ul>
+        <ul><li><a href="#services">Services &amp; prices</a></li><li><a href="#testimonials">Results</a></li><li><a href="#story">My story</a></li><li><a href="about.html">Credentials</a></li><li><a href="about.html#gallery">Gallery</a></li><li><a href="#faq">FAQ</a></li><li><a href="#book">Book</a></li><li><a href="#contact">Contact</a></li></ul>
       </div>
       <div>
         <h4>Free</h4>
@@ -593,8 +615,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
 <script src="js/availability.js?v=5" defer></script>
-<script src="js/main.js?v=39" defer></script>
-<script src="js/navmenu.js?v=2" defer></script>
+<script src="js/main.js?v=40" defer></script>
+<script src="js/navmenu.js?v=3" defer></script>
 <script src="js/premium-motion.js?v=1" defer></script>
 <script data-goatcounter="https://phenfitness.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <script src="js/track.js?v=1" defer></script>

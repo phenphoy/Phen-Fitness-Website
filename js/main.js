@@ -306,7 +306,7 @@
   if ("IntersectionObserver" in window) {
     const links = [...document.querySelectorAll(".nav-links a, .quickbar a")];
     const map = new Map(); links.forEach(a => { const k = a.getAttribute("href"); map.set(k, (map.get(k) || []).concat(a)); });
-    const credLinks = map.get("about.html"); if (credLinks && !map.has("#qualifications")) map.set("#qualifications", credLinks); if (credLinks && !map.has("#certificates")) map.set("#certificates", credLinks); /* the Credentials link lights up over the credentials row */
+    const aboutBtn = document.getElementById("navAboutBtn"); if (aboutBtn) { links.push(aboutBtn); ["#story", "#transformation", "#qualifications", "#certificates", "#gallery"].forEach(k => map.set(k, [aboutBtn])); } /* the About menu lights up over the story, transformation, credentials and gallery */
     const ddBtn = document.getElementById("navFreeBtn"); if (ddBtn) { links.push(ddBtn); map.set("#free", [ddBtn]); } /* the Free menu lights up over the free-resources section */
     const qbar = document.getElementById("quickbar");
     const spy = new IntersectionObserver(es => es.forEach(e => {

@@ -306,6 +306,7 @@
   if ("IntersectionObserver" in window) {
     const links = [...document.querySelectorAll(".nav-links a, .quickbar a")];
     const map = new Map(); links.forEach(a => { const k = a.getAttribute("href"); map.set(k, (map.get(k) || []).concat(a)); });
+    const credLinks = map.get("about.html"); if (credLinks && !map.has("#qualifications")) map.set("#qualifications", credLinks); /* the Credentials link lights up over the credentials row */
     const ddBtn = document.getElementById("navFreeBtn"); if (ddBtn) { links.push(ddBtn); map.set("#free", [ddBtn]); } /* the Free menu lights up over the free-resources section */
     const qbar = document.getElementById("quickbar");
     const spy = new IntersectionObserver(es => es.forEach(e => {
@@ -415,6 +416,7 @@
   (function sectionDust() {
     if (!window.HTMLCanvasElement) return;
     const CFG = [
+      { sel: "#qualifications", cx: 0.3, cy: 0.5, sx: 0.3, sy: 0.3, dens: 1300, glow: "14% 50%", bleed: 90 },
       { sel: "#story", cx: 0.42, cy: 0.5, sx: 0.12, sy: 0.3, dens: 1000, glow: "42% 50%" },
       { sel: "#transformation", cx: 0.62, cy: 0.5, sx: 0.16, sy: 0.3, dens: 900, glow: "66% 50%" },
       { sel: "#howFree", cx: 0.5, cy: 0.5, sx: 0.38, sy: 0.36, dens: 1900, glow: "88% 14%" },
@@ -427,11 +429,14 @@
     CFG.forEach(cfg => {
       const host = $(cfg.sel); if (!host) return;
       host.classList.add("has-dust");
+      const bleed = cfg.bleed || 0; /* extra room above and below, for short sections */
       const glow = document.createElement("div"); glow.className = "dust-glow"; glow.setAttribute("aria-hidden", "true");
       glow.style.setProperty("--g", cfg.glow);
+      if (bleed) glow.style.inset = -bleed + "px 0";
       const cv = document.createElement("canvas"); cv.className = "dust-canvas"; cv.setAttribute("aria-hidden", "true");
       host.insertBefore(cv, host.firstChild); host.insertBefore(glow, host.firstChild);
       const ctx = cv.getContext("2d"); if (!ctx) return;
+      if (bleed) { cv.style.top = -bleed + "px"; cv.style.height = "calc(100% + " + bleed * 2 + "px)"; }
       let W = 0, H = 0, parts = [], running = false, visible = false, t0 = performance.now(), mx = -9999, my = -9999;
       const spawn = p => {
         p.x = W * cfg.cx + gauss() * W * cfg.sx; p.y = H * cfg.cy + gauss() * H * cfg.sy;
@@ -442,7 +447,7 @@
       };
       const build = () => {
         const r = host.getBoundingClientRect(), dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-        W = Math.round(r.width); H = Math.round(r.height);
+        W = Math.round(r.width); H = Math.round(r.height + bleed * 2);
         cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
         const n = Math.min(window.matchMedia("(min-width: 861px)").matches ? cfg.dens : cfg.dens * 0.35, Math.round(W * H / 700));
         parts = []; for (let i = 0; i < n; i++) { const p = {}; spawn(p); parts.push(p); }
@@ -467,7 +472,7 @@
       const stop = () => { running = false; };
       build(); if (!motion) draw(performance.now(), true);
       let rz; window.addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(() => { build(); if (!motion) draw(performance.now(), true); }, 200); });
-      window.addEventListener("pointermove", e => { const r = host.getBoundingClientRect(); mx = e.clientX - r.left; my = e.clientY - r.top; }, { passive: true });
+      window.addEventListener("pointermove", e => { const r = host.getBoundingClientRect(); mx = e.clientX - r.left; my = e.clientY - r.top + bleed; }, { passive: true });
       if ("IntersectionObserver" in window) new IntersectionObserver(es => { visible = es[0].isIntersecting; if (visible && !document.hidden) start(); else stop(); }, { rootMargin: "80px" }).observe(host);
       document.addEventListener("visibilitychange", () => { if (document.hidden) stop(); else if (visible) start(); });
     });

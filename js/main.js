@@ -33,7 +33,7 @@
       f.className = "g-item";
       f.style.margin = "0";
       if (dup) f.setAttribute("aria-hidden", "true");
-      f.innerHTML = '<img decoding="async" src="images/web/coaching-' + i + '.webp" alt="' + (dup ? "" : captions[i - 1]) + '"><figcaption>' + captions[i - 1] + "</figcaption>";
+      f.innerHTML = '<img decoding="async" src="images/web/coaching-' + i + '.webp" alt="' + (dup ? "" : captions[i - 1]) + '">';
       return f;
     };
     ids.forEach(i => el.appendChild(make(i, false)));

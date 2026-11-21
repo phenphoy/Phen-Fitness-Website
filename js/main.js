@@ -338,12 +338,62 @@
   /* Headline stays alive: a light sweep crosses "stronger." every few seconds, and on scroll
      "easier." fades back while the rest of the statement holds. Skipped when motion is reduced. */
   if (motion && $(".hero h1 .stronger")) {
-    gsap.fromTo(".hero h1 .stronger", { backgroundPosition: "115% 0" }, { backgroundPosition: "-15% 0", duration: 1.6, ease: "power2.inOut", repeat: -1, repeatDelay: 5.5, delay: 9, immediateRender: false });
+    const sweep = gsap.fromTo(".hero h1 .stronger", { backgroundPosition: "115% 0" }, { backgroundPosition: "-15% 0", duration: 1.6, ease: "power2.inOut", repeat: -1, repeatDelay: 5.5, delay: 9, immediateRender: false });
+    window.__heroSweep = sweep;
     if (window.matchMedia("(min-width: 861px)").matches) {
       gsap.fromTo(".hero h1 .dim", { opacity: 0.42 }, { opacity: 0.08, ease: "none", immediateRender: false, scrollTrigger: { trigger: ".hero", start: "top top", end: "60% top", scrub: true } });
       gsap.fromTo(".hero h1", { yPercent: 0 }, { yPercent: -6, ease: "none", immediateRender: false, scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
     }
   }
+
+  /* Headline hover: letters near the cursor lift and swell like a wave, and the light on "stronger." follows the pointer. */
+  (function headlineHover() {
+    const h1 = $(".hero h1");
+    if (!h1 || !motion || !fine || !window.matchMedia("(min-width: 861px)").matches) return;
+    const chars = [];
+    h1.querySelectorAll(".line > span").forEach(sp => {
+      if (sp.classList.contains("stronger")) return;
+      const walk = node => [...node.childNodes].forEach(n => {
+        if (n.nodeType === 3) {
+          const frag = document.createDocumentFragment();
+          [...n.textContent].forEach(ch => {
+            if (ch === " ") { frag.appendChild(document.createTextNode(" ")); return; }
+            const c = document.createElement("span"); c.className = "hc"; c.textContent = ch; c.setAttribute("aria-hidden", "true"); frag.appendChild(c); chars.push(c);
+          });
+          n.replaceWith(frag);
+        } else if (n.nodeType === 1 && !n.classList.contains("bar")) walk(n);
+      });
+      walk(sp);
+    });
+    h1.setAttribute("aria-label", "It doesn’t get easier. You just get stronger.");
+    const strong = $(".hero h1 .stronger"), bar = $(".hero h1 .stronger .bar");
+    let live = false; setTimeout(() => { live = true; h1.classList.add("is-live"); }, 4800);
+    let raf = 0, mx = 0, my = 0;
+    const R = 190;
+    const frame = () => {
+      raf = 0;
+      chars.forEach(c => {
+        const r = c.getBoundingClientRect(), dx = mx - (r.left + r.width / 2), dy = my - (r.top + r.height / 2), d = Math.hypot(dx, dy);
+        const k = Math.max(0, 1 - d / R), e = k * k * (3 - 2 * k);
+        gsap.to(c, { y: -e * 16, scale: 1 + e * 0.1, duration: 0.45, ease: "power3.out", overwrite: "auto" });
+      });
+      if (strong) {
+        const r = strong.getBoundingClientRect();
+        if (my > r.top - 40 && my < r.bottom + 40 && mx > r.left - 40 && mx < r.right + 40) {
+          if (window.__heroSweep) window.__heroSweep.pause();
+          const px = Math.min(1, Math.max(0, (mx - r.left) / r.width));
+          gsap.to(strong, { backgroundPosition: (115 - px * 130) + "% 0", duration: 0.5, ease: "power3.out", overwrite: "auto" });
+          if (bar) gsap.to(bar, { scaleY: 1.9, duration: 0.4, ease: "power3.out", overwrite: "auto" });
+        } else if (bar) gsap.to(bar, { scaleY: 1, duration: 0.5, ease: "power3.out", overwrite: "auto" });
+      }
+    };
+    h1.addEventListener("pointermove", e => { if (!live) return; mx = e.clientX; my = e.clientY; if (!raf) raf = requestAnimationFrame(frame); });
+    h1.addEventListener("pointerleave", () => {
+      gsap.to(chars, { y: 0, scale: 1, duration: 0.7, ease: "power3.out", overwrite: "auto", stagger: { each: 0.008, from: "center" } });
+      if (bar) gsap.to(bar, { scaleY: 1, duration: 0.5, ease: "power3.out", overwrite: "auto" });
+      if (window.__heroSweep) window.__heroSweep.resume();
+    });
+  })();
 
   /* Hero photo: on hover it tilts toward the pointer, the picture drifts and zooms inside the frame,
      a red light follows the cursor, and the EREPS seal floats the other way. Mouse and trackpad only. */

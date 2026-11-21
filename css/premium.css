@@ -234,3 +234,7 @@ main { counter-reset: sec; }
 @media (min-width: 981px) and (max-width: 1180px) { .nav-right .btn-sm { padding: 0 16px; font-size: 13px; min-height: 40px; } }
 @media (prefers-reduced-transparency: reduce) { .nav-right .nav-login { background: #151515; -webkit-backdrop-filter: none; backdrop-filter: none; } }
 @media (min-width: 981px) and (max-width: 1100px) { .nav-links a { padding: 7px 7px; font-size: 12.5px; } .nav-right .btn-sm { padding: 0 13px; font-size: 12.5px; } .nav-right { gap: 6px; } }
+
+/* Headline hover letters */
+.hero h1 .hc { display: inline-block; will-change: transform; transform-origin: 50% 80%; }
+.hero h1.is-live .line { overflow: visible; }

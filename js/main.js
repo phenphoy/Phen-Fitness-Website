@@ -26,7 +26,7 @@
   if ($("#year")) $("#year").textContent = new Date().getFullYear();
 
   /* ---------- Gallery ---------- */
-  const captions = ["Resistance & form coaching", "1-on-1 deadlift mechanics", "Core stabilization & posture", "Upper body hypertrophy", "Dumbbell press technique", "Barbell squat calibration", "Functional core engagement", "Small-group team motivation", "Cable row biomechanics", "Focused athletic instruction", "Progressive overload tracking", "Joint mobility & warmup", "Core rotation & balance", "Strength calibration check", "Conditioning & stamina", "Precision movement coaching", "Power & muscular endurance", "Functional kinetic movement", "Posture & shoulder alignment", "Consistency & results"];
+  const captions = ["Resistance & form coaching", "1-on-1 deadlift mechanics", "Core stabilization & posture", "Upper body hypertrophy", "Dumbbell press technique", "Barbell squat calibration", "Functional core engagement", "Small-group team motivation", "Cable row biomechanics", "Focused athletic instruction", "Progressive overload tracking", "Joint mobility & warmup", "Core rotation & balance", "Strength calibration check", "Conditioning & stamina", "Precision movement coaching", "Power & muscular endurance", "Functional kinetic movement", "Posture & shoulder alignment", "Consistency & results", "Lat pulldown technique", "Barbell setup & stance", "Deadlift hip hinge", "Barbell hip thrust", "Squat rack coaching", "Hamstring curl form", "Glute bridge with dumbbells", "Deadlift pull position", "Lockout & standing posture", "Incline press machine"];
   function fillRow(el, ids) {
     const make = (i, dup) => {
       const f = document.createElement("figure");
@@ -40,8 +40,8 @@
     ids.forEach(i => el.appendChild(make(i, true)));
   }
   const row1 = $("#gRow1"), row2 = $("#gRow2");
-  if (row1) fillRow(row1, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-  if (row2) fillRow(row2, [11, 12, 13, 14, 15, 16, 17, 18, 19, 20]);
+  if (row1) fillRow(row1, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 21, 22, 23, 24, 25]);
+  if (row2) fillRow(row2, [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 26, 27, 28, 29, 30]);
 
   /* ---------- Testimonial words ---------- */
   const quote = $("#quote");

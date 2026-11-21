@@ -193,10 +193,10 @@ main { counter-reset: sec; }
   .hero-copy { position: relative; z-index: 2; max-width: 74%; gap: 22px; }
   .hero h1 { font-size: clamp(72px, 9vw, 152px); line-height: .86; }
   .hero h1 .accent { color: var(--fg); }
-  .hero h1 .stronger { background: none; -webkit-text-fill-color: currentColor; color: var(--fg); }
+  .hero h1 .stronger { background-image: linear-gradient(100deg, #e10613 0 40%, #ff6a72 50%, #e10613 60% 100%); background-size: 260% 100%; }
   .hero h1 .dim { opacity: .5; }
   .hero h1 .line.has-bar { padding-bottom: .12em; }
-  .hero h1 .stronger .bar { background: var(--lime); height: .07em; bottom: -.04em; }
+  .hero h1 .stronger .bar { background: linear-gradient(90deg, #e10613, #ff4d57 60%, rgba(255, 77, 87, 0)); height: .05em; bottom: -.04em; }
   .hero .lead { max-width: 46ch; }
   .hero-media .hero-seal { right: clamp(20px, 3vw, 48px); bottom: clamp(24px, 4vw, 56px); }
 }

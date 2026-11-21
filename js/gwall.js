@@ -4,6 +4,7 @@
   var stage = document.getElementById("gwStage");
   if (!stage) return;
   var cord = document.getElementById("gwCord");
+  var field = document.getElementById("gwField");
   var titleEl = document.getElementById("gwTitle");
   var subEl = document.getElementById("gwSub");
   var countEl = document.getElementById("gwCount");
@@ -37,7 +38,7 @@
     btn.setAttribute("aria-label", "Photo " + (i + 1) + " of " + N + ": " + ALT[i]);
     var img = new Image(); img.src = src(i); img.alt = ALT[i]; img.decoding = "async"; img.draggable = false;
     if (i > 8) img.loading = "lazy";
-    btn.appendChild(img); el.appendChild(clip); el.appendChild(btn); stage.appendChild(el);
+    btn.appendChild(img); el.appendChild(clip); el.appendChild(btn); field.appendChild(el);
     pins.push({ el: el, btn: btn, sw: 0, sv: 0, off: false, tilt: (seed(i) - 0.5) * 5, lift: (seed(i + 9) - 0.5) * 14 });
     (function (k) {
       btn.addEventListener("click", function () {

@@ -434,9 +434,10 @@ main { counter-reset: sec; }
 .gw-switch { display: flex; border: 1px solid rgba(255,255,255,.14); border-radius: 999px; padding: 3px; background: rgba(255,255,255,.04); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
 .gw-switch button { font-family: var(--mono); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; padding: 9px 16px; border-radius: 999px; color: #8f8c96; background: none; border: 0; cursor: pointer; transition: background .25s, color .25s; }
 .gw-switch button[aria-pressed="true"] { background: #f3f0ea; color: #0a0a0a; }
-.gw-stage { position: relative; height: clamp(500px, 80vh, 780px); overflow: hidden; touch-action: pan-y; cursor: grab; user-select: none; -webkit-user-select: none; margin-top: 8px;
-  background: radial-gradient(70% 45% at 50% 0%, rgba(225,6,19,.13), transparent 70%), radial-gradient(60% 40% at 50% 100%, rgba(225,6,19,.10), transparent 70%), rgba(8,8,11,.55);
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); }
+.gw-stage { position: relative; height: clamp(500px, 80vh, 780px); overflow: hidden; touch-action: pan-y; cursor: grab; user-select: none; -webkit-user-select: none; margin-top: 8px; }
+.gw-field { position: absolute; inset: 0;
+  background: radial-gradient(70% 45% at 50% 0%, rgba(225,6,19,.13), transparent 70%), radial-gradient(60% 40% at 50% 100%, rgba(225,6,19,.10), transparent 70%);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent), linear-gradient(180deg, transparent, #000 14%, #000 88%, transparent); -webkit-mask-composite: source-in; mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent), linear-gradient(180deg, transparent, #000 14%, #000 88%, transparent); mask-composite: intersect; }
 .gw-stage.is-drag { cursor: grabbing; }
 .gw-stage:focus-visible { outline: 2px solid #ff4d57; outline-offset: -4px; }
 .gw-cord { position: absolute; left: 0; top: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
@@ -449,7 +450,7 @@ main { counter-reset: sec; }
 .gw-pin img { display: block; width: 100%; height: 100%; object-fit: cover; pointer-events: none; -webkit-user-drag: none; transition: transform .9s cubic-bezier(.2,.7,.2,1), filter .5s; }
 .gw-pin.is-dim button { filter: brightness(.55); }
 .gw-pin button:focus-visible { outline: 2px solid #ff4d57; outline-offset: 5px; }
-.gw-cap { position: absolute; left: 0; right: 0; bottom: 0; z-index: 4; display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; align-items: end; padding: 14px var(--gutter, 24px) 16px; background: linear-gradient(0deg, rgba(5,5,7,.9), transparent); }
+.gw-cap { position: absolute; left: 0; right: 0; bottom: 0; z-index: 4; display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; align-items: end; padding: 14px var(--gutter, 24px) 16px; }
 .gw-title { margin: 0; grid-column: 1; font-family: var(--display); font-weight: 800; font-size: clamp(24px, 3.4vw, 38px); text-transform: uppercase; letter-spacing: .01em; line-height: 1; }
 .gw-sub, .gw-hint { margin: 0; font-family: var(--mono); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: #8f8c96; }
 .gw-sub { grid-column: 1; }

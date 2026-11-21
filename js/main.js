@@ -417,6 +417,7 @@
     if (!window.HTMLCanvasElement) return;
     const CFG = [
       { sel: "#qualifications", cx: 0.3, cy: 0.5, sx: 0.3, sy: 0.3, dens: 1300, glow: "14% 50%", bleed: 90 },
+      { sel: "#credHero", cx: 0.5, cy: 0.55, sx: 0.4, sy: 0.34, dens: 2000, glow: "12% 62%" },
       { sel: "#story", cx: 0.42, cy: 0.5, sx: 0.12, sy: 0.3, dens: 1000, glow: "42% 50%" },
       { sel: "#transformation", cx: 0.62, cy: 0.5, sx: 0.16, sy: 0.3, dens: 900, glow: "66% 50%" },
       { sel: "#howFree", cx: 0.5, cy: 0.5, sx: 0.38, sy: 0.36, dens: 1900, glow: "88% 14%" },

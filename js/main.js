@@ -355,7 +355,7 @@
     frame.addEventListener("pointermove", e => {
       if (!live) return;
       const r = frame.getBoundingClientRect(), px = (e.clientX - r.left) / r.width - 0.5, py = (e.clientY - r.top) / r.height - 0.5;
-      rx(-py * 7); ry(px * 9); ix(-px * 26); iy(-py * 22);
+      const k = r.width > 800 ? 0.3 : 1; rx(-py * 7 * k); ry(px * 9 * k); ix(-px * 26 * k); iy(-py * 22 * k);
       if (sx) { sx(px * 16); sy(py * 12); }
       frame.style.setProperty("--mx", (px + 0.5) * 100 + "%"); frame.style.setProperty("--my", (py + 0.5) * 100 + "%");
     });

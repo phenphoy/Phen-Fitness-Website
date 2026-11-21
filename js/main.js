@@ -306,6 +306,7 @@
   if ("IntersectionObserver" in window) {
     const links = [...document.querySelectorAll(".nav-links a, .quickbar a")];
     const map = new Map(); links.forEach(a => { const k = a.getAttribute("href"); map.set(k, (map.get(k) || []).concat(a)); });
+    const ddBtn = document.getElementById("navFreeBtn"); if (ddBtn) { links.push(ddBtn); map.set("#free", [ddBtn]); } /* the Free menu lights up over the free-resources section */
     const qbar = document.getElementById("quickbar");
     const spy = new IntersectionObserver(es => es.forEach(e => {
       const as = map.get("#" + e.target.id);

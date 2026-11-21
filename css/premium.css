@@ -342,3 +342,40 @@ main { counter-reset: sec; }
 .cred-row .seal-ring text { fill: #c9c4ba; }
 .no-motion .seal-ring, .no-motion .seal-coin::after { animation: none; }
 @media (prefers-reduced-motion: reduce) { .seal-ring, .seal-coin::after, .cred-row:hover .seal-coin { animation: none; } }
+
+/* ---------- Desktop nav: "Free" dropdown, no box, the links float over the page ---------- */
+.nav-dd-menu { display: none; }
+@media (min-width: 981px) {
+  .nav-dd-btn { display: inline-flex; align-items: center; gap: 8px; padding: 8px 13px 8px 15px; border: 0; border-radius: 999px; background: none; color: inherit; font: inherit; cursor: pointer; transition: background .25s ease, color .25s ease; }
+  .nav-dd-btn:hover, .nav-dd-btn[aria-expanded="true"] { color: #fff; background: rgba(255, 255, 255, .14); }
+  .nav-dd-btn[aria-current] { color: #fff; background: rgba(255, 255, 255, .16); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .12); }
+  .nav-dd-btn:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+  .dd-chev { transition: transform .3s cubic-bezier(.2, .8, .2, 1); }
+  .nav-dd-btn[aria-expanded="true"] .dd-chev { transform: rotate(180deg); }
+
+  .nav-dd-menu { display: flex; position: absolute; left: 50%; top: 100%; width: min(960px, calc(100vw - 64px)); padding-top: 30px; z-index: 60;
+    opacity: 0; visibility: hidden; pointer-events: none; transform: translate(-50%, -8px); transition: opacity .28s ease, transform .35s cubic-bezier(.2, .8, .2, 1), visibility 0s linear .35s; }
+  .nav-dd-menu.open { opacity: 1; visibility: visible; pointer-events: auto; transform: translate(-50%, 0); transition-delay: 0s; }
+  .nav-dd-menu::before { content: ""; position: absolute; left: -120px; right: -120px; top: -30px; bottom: -70px; pointer-events: none; z-index: -1;
+    background: radial-gradient(closest-side at 50% 50%, rgba(10, 10, 10, .93) 0, rgba(10, 10, 10, .9) 55%, rgba(10, 10, 10, .5) 82%, rgba(10, 10, 10, 0) 100%); }
+  .nav-dd-menu a { position: relative; flex: 1; display: flex; flex-direction: column; gap: 10px; padding: 20px 28px; border-top: 1px solid rgba(255, 255, 255, .22); text-decoration: none; color: #f2efe8; outline-offset: -2px; }
+  .nav-dd-menu a:first-child { padding-left: 0; }
+  .nav-dd-menu a:last-child { padding-right: 0; }
+  .nav-dd-menu a::before { content: ""; position: absolute; left: 0; top: -2px; width: 0; height: 3px; border-radius: 99px; background: #e10613; transition: width .35s cubic-bezier(.2, .8, .2, 1); }
+  .nav-dd-menu a:not(:first-child)::before { left: 28px; }
+  .nav-dd-menu a:hover::before, .nav-dd-menu a:focus-visible::before, .nav-dd-menu a[aria-current]::before { width: 64px; }
+  .nav-dd-menu small { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #d6d1c7; }
+  .nav-dd-menu b { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 900; font-size: 26px; line-height: 1.02; text-transform: uppercase; color: #f2efe8; transition: color .25s ease; }
+  .nav-dd-menu a:hover b, .nav-dd-menu a:focus-visible b { color: #fff; }
+  .dd-arrow { flex: none; color: #ff4d57; opacity: 0; transform: translateX(-8px); transition: opacity .25s ease, transform .35s cubic-bezier(.2, .8, .2, 1); }
+  .nav-dd-menu a:hover .dd-arrow, .nav-dd-menu a:focus-visible .dd-arrow { opacity: 1; transform: none; }
+  .nav-dd-menu span { font-size: 14px; line-height: 1.5; color: #d6d1c7; }
+  .nav-dd-menu a:focus-visible { outline: 2px solid #fff; }
+  .nav-dd-menu a { opacity: 0; transform: translateY(8px); transition: opacity .35s ease, transform .45s cubic-bezier(.2, .8, .2, 1); }
+  .nav-dd-menu.open a { opacity: 1; transform: none; }
+  .nav-dd-menu.open a:nth-child(2) { transition-delay: .05s; }
+  .nav-dd-menu.open a:nth-child(3) { transition-delay: .1s; }
+}
+@media (min-width: 981px) and (max-width: 1180px) { .nav-dd-btn { padding: 7px 8px 7px 10px; font-size: 13px; gap: 6px; } .nav-dd-menu b { font-size: 22px; } }
+@media (prefers-reduced-motion: reduce) { .nav-dd-menu, .nav-dd-menu a, .dd-chev, .dd-arrow { transition: none !important; } }
+@media (prefers-reduced-transparency: reduce) { .nav-dd-menu::before { background: rgba(10, 10, 10, .96); } }

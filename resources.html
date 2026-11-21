@@ -43,7 +43,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
   <link rel="stylesheet" href="css/style.css?v=47">
-  <link rel="stylesheet" href="css/premium.css?v=3">
+  <link rel="stylesheet" href="css/premium.css?v=31">
   <script>document.documentElement.classList.remove("no-js");</script>
 </head>
 <body class="subpage">
@@ -58,7 +58,7 @@
       <a href="/#services">Services</a>
       <a href="/#story">My Story</a>
       <a href="/#testimonials">Feedback</a>
-      <a href="resources.html">Free Tools</a>
+      <button class="nav-dd-btn" id="navFreeBtn" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="navFreeMenu" aria-current="page">Free<svg class="dd-chev" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       <a href="/#faq">FAQ</a>
     </nav>
     <div class="nav-right">
@@ -66,6 +66,11 @@
       <a class="btn btn-primary btn-sm" href="/#book">Book Consult</a>
       <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><i class="menu-label">Menu</i></button>
     </div>
+  </div>
+  <div class="nav-dd-menu" id="navFreeMenu" role="menu" aria-label="Free resources">
+      <a role="menuitem" href="challenge.html"><small>Monthly · free</small><b>30-Day Glutes &amp; Core<svg class="dd-arrow" width="20" height="20" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 9h11M10 4.5 14.5 9 10 13.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></b><span>20–30 minutes a day, no gym needed</span></a>
+      <a role="menuitem" href="resources.html" aria-current="page"><small>Tools</small><b>Calculators &amp; trackers<svg class="dd-arrow" width="20" height="20" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 9h11M10 4.5 14.5 9 10 13.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></b><span>Calories, protein, 1-rep max and a weight-loss tracker</span></a>
+      <a role="menuitem" href="tips.html"><small>Video</small><b>Fitness tips<svg class="dd-arrow" width="20" height="20" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 9h11M10 4.5 14.5 9 10 13.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></b><span>Short answers from my TikTok and YouTube</span></a>
   </div>
 </header>
 
@@ -300,6 +305,7 @@
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
 <script src="js/calculators.js?v=4" defer></script>
 <script src="js/main.js?v=23" defer></script>
+<script src="js/navmenu.js?v=2" defer></script>
 <script src="js/premium-motion.js?v=1" defer></script>
 <script data-goatcounter="https://phenfitness.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <script src="js/track.js?v=1" defer></script>

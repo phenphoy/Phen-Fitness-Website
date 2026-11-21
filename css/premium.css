@@ -279,3 +279,9 @@ main { counter-reset: sec; }
 @media (max-width: 480px) { .formula { font-size: 11px; } .formula span { padding: 7px 11px; } }
 @media (max-width: 480px) { .ba-label { font-size: 10px !important; letter-spacing: .06em; padding: 6px 10px; max-width: calc(50% - 12px); line-height: 1.3; } .ba-hint { top: 12px; font-size: 10px; padding: 6px 12px; white-space: nowrap; } }
 .formula .fx-res { flex: none; width: max-content; }
+/* Before/after labels: never overlap or clip, wrap inside their own half */
+.ba-label { max-width: calc(50% - 24px); white-space: normal; line-height: 1.3; border-radius: 18px; align-items: flex-start; }
+.ba-label::before { flex: none; margin-top: .35em; }
+.ba-label.l { left: 14px; }
+.ba-label.r { right: 14px; text-align: left; }
+@media (max-width: 760px) { .ba-label { font-size: 10px !important; letter-spacing: .06em; padding: 7px 11px; gap: 6px; } }

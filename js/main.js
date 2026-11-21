@@ -409,6 +409,66 @@
     if (motion) gsap.fromTo(cv, { opacity: 0 }, { opacity: 1, duration: 2.4, ease: "power2.out", delay: 3.6 });
   })();
 
+  /* The same ember dust and glow in three more sections, tuned per section: where the dust gathers (cx, cy, spread), how thick it is, and where the glow sits. */
+  (function sectionDust() {
+    if (!window.HTMLCanvasElement) return;
+    const CFG = [
+      { sel: "#story", cx: 0.42, cy: 0.5, sx: 0.12, sy: 0.3, dens: 1000, glow: "42% 50%" },
+      { sel: "#book", cx: 0.5, cy: 0.35, sx: 0.32, sy: 0.22, dens: 1700, glow: "50% 0%" },
+      { sel: "#contact", cx: 0.86, cy: 0.38, sx: 0.12, sy: 0.22, dens: 1000, glow: "86% 40%" }
+    ];
+    const PAL = ["255,77,87", "255,106,76", "255,138,92", "255,143,176", "225,6,19", "255,196,160", "120,120,255"], WT = [26, 22, 16, 12, 14, 8, 2];
+    const pick = () => { let r = Math.random() * 100, i = 0; while (i < WT.length - 1 && r > WT[i]) { r -= WT[i]; i++; } return PAL[i]; };
+    const gauss = () => { let u = 0, v = 0; while (!u) u = Math.random(); while (!v) v = Math.random(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(6.2832 * v); };
+    CFG.forEach(cfg => {
+      const host = $(cfg.sel); if (!host) return;
+      host.classList.add("has-dust");
+      const glow = document.createElement("div"); glow.className = "dust-glow"; glow.setAttribute("aria-hidden", "true");
+      glow.style.setProperty("--g", cfg.glow);
+      const cv = document.createElement("canvas"); cv.className = "dust-canvas"; cv.setAttribute("aria-hidden", "true");
+      host.insertBefore(cv, host.firstChild); host.insertBefore(glow, host.firstChild);
+      const ctx = cv.getContext("2d"); if (!ctx) return;
+      let W = 0, H = 0, parts = [], running = false, visible = false, t0 = performance.now(), mx = -9999, my = -9999;
+      const spawn = p => {
+        p.x = W * cfg.cx + gauss() * W * cfg.sx; p.y = H * cfg.cy + gauss() * H * cfg.sy;
+        if (p.x < 0 || p.x > W || p.y < 0 || p.y > H) { p.x = Math.random() * W; p.y = Math.random() * H; }
+        p.vx = 0; p.vy = 0; p.size = Math.random() < 0.15 ? 2.1 : (1 + Math.random() * 0.8);
+        p.a = 0.4 + Math.random() * 0.5; p.ph = Math.random() * 6.28; p.sp = 0.6 + Math.random() * 1.8; p.c = pick();
+        p.fx = (Math.random() - 0.5) * 0.5; p.fy = (Math.random() - 0.5) * 0.5;
+      };
+      const build = () => {
+        const r = host.getBoundingClientRect(), dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+        W = Math.round(r.width); H = Math.round(r.height);
+        cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        const n = Math.min(window.matchMedia("(min-width: 861px)").matches ? cfg.dens : cfg.dens * 0.35, Math.round(W * H / 700));
+        parts = []; for (let i = 0; i < n; i++) { const p = {}; spawn(p); parts.push(p); }
+      };
+      const draw = (now, still) => {
+        const t = (now - t0) / 1000; ctx.clearRect(0, 0, W, H);
+        for (let i = 0; i < parts.length; i++) {
+          const p = parts[i];
+          if (!still) {
+            p.x += p.vx + Math.cos(t * 0.15 + p.ph) * 0.09 + p.fx * 0.05; p.y += p.vy + Math.sin(t * 0.12 + p.ph * 1.3) * 0.07 + p.fy * 0.05 - 0.035;
+            const dx = p.x - mx, dy = p.y - my, d2 = dx * dx + dy * dy;
+            if (d2 < 19600) { const d = Math.sqrt(d2) || 1, f = (1 - d / 140) * 0.9; p.vx += dx / d * f; p.vy += dy / d * f; }
+            p.vx *= 0.92; p.vy *= 0.92;
+            if (p.x < -4 || p.x > W + 4 || p.y < -4 || p.y > H + 4) spawn(p);
+          }
+          const tw = still ? 0.8 : 0.5 + 0.5 * Math.sin(t * p.sp + p.ph);
+          ctx.fillStyle = "rgba(" + p.c + "," + (p.a * (0.3 + 0.7 * tw)).toFixed(3) + ")"; ctx.fillRect(p.x, p.y, p.size, p.size);
+        }
+      };
+      const loop = now => { if (!running) return; draw(now, false); requestAnimationFrame(loop); };
+      const start = () => { if (running || !motion) return; running = true; requestAnimationFrame(loop); };
+      const stop = () => { running = false; };
+      build(); if (!motion) draw(performance.now(), true);
+      let rz; window.addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(() => { build(); if (!motion) draw(performance.now(), true); }, 200); });
+      window.addEventListener("pointermove", e => { const r = host.getBoundingClientRect(); mx = e.clientX - r.left; my = e.clientY - r.top; }, { passive: true });
+      if ("IntersectionObserver" in window) new IntersectionObserver(es => { visible = es[0].isIntersecting; if (visible && !document.hidden) start(); else stop(); }, { rootMargin: "80px" }).observe(host);
+      document.addEventListener("visibilitychange", () => { if (document.hidden) stop(); else if (visible) start(); });
+    });
+  })();
+
   /* Headline hover: letters near the cursor lift and swell like a wave, and the light on "stronger." follows the pointer. */
   (function headlineHover() {
     const h1 = $(".hero h1");

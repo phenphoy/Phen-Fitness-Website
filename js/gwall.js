@@ -36,6 +36,14 @@
     var tick = document.createElement("div"); tick.className = "gw-tick"; tick.setAttribute("aria-hidden", "true"); tick.textContent = pad(i + 1);
     panel.appendChild(btn); panel.appendChild(tick); slot.appendChild(panel); ring.appendChild(slot);
     slots.push({ slot: slot, panel: panel, btn: btn, hidden: false });
+    if (window.matchMedia && matchMedia("(hover: hover) and (pointer: fine)").matches && !reduce) {
+      btn.addEventListener("pointermove", function (e) {
+        if (down) return;
+        var r = this.getBoundingClientRect(), px = (e.clientX - r.left) / r.width - 0.5, py = (e.clientY - r.top) / r.height - 0.5;
+        this.style.setProperty("--ry", (px * 9).toFixed(2) + "deg"); this.style.setProperty("--rx", (-py * 9).toFixed(2) + "deg");
+      });
+      btn.addEventListener("pointerleave", function () { this.style.setProperty("--ry", "0deg"); this.style.setProperty("--rx", "0deg"); });
+    }
     (function (k) {
       btn.addEventListener("click", function () {
         if (moved) return;

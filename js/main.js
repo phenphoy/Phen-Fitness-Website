@@ -423,7 +423,8 @@
       { sel: "#transformation", cx: 0.62, cy: 0.5, sx: 0.16, sy: 0.3, dens: 900, glow: "66% 50%" },
       { sel: "#howFree", cx: 0.5, cy: 0.5, sx: 0.38, sy: 0.36, dens: 1900, glow: "88% 14%" },
       { sel: "#book", cx: 0.5, cy: 0.35, sx: 0.32, sy: 0.22, dens: 1700, glow: "50% 0%" },
-      { sel: "#contact", cx: 0.86, cy: 0.38, sx: 0.12, sy: 0.22, dens: 1000, glow: "86% 40%" }
+      { sel: "#contact", cx: 0.86, cy: 0.38, sx: 0.12, sy: 0.22, dens: 1000, glow: "86% 40%" },
+      { sel: ".site-footer", cx: 0.5, cy: 0.48, sx: 0.4, sy: 0.3, dens: 1500, glow: "22% 40%" }
     ];
     const PAL = ["255,77,87", "255,106,76", "255,138,92", "255,143,176", "225,6,19", "255,196,160", "120,120,255"], WT = [26, 22, 16, 12, 14, 8, 2];
     const pick = () => { let r = Math.random() * 100, i = 0; while (i < WT.length - 1 && r > WT[i]) { r -= WT[i]; i++; } return PAL[i]; };

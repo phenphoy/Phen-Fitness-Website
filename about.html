@@ -43,7 +43,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
   <link rel="stylesheet" href="css/style.css?v=47">
-  <link rel="stylesheet" href="css/premium.css?v=34">
+  <link rel="stylesheet" href="css/premium.css?v=35">
   <script>document.documentElement.classList.remove("no-js");</script>
 </head>
 <body class="subpage">
@@ -182,9 +182,25 @@
       <p class="lead">Recent personal training and small-group sessions at Bulldogs Fitness Center.</p>
     </div>
     <div class="wrap"><h2 class="sub-h">Coaching in action</h2><p class="lead">Recent personal training and small-group sessions at Bulldogs Fitness Center.</p></div>
-    <div class="g-skew" id="gSkew">
-      <div class="g-row" id="gRow1"></div>
-      <div class="g-row" id="gRow2"></div>
+    <div class="wrap gw-bar">
+      <div class="gw-switch" role="group" aria-label="Gallery view">
+        <button type="button" id="gwWall" aria-pressed="true">Wall</button>
+        <button type="button" id="gwList" aria-pressed="false">List</button>
+      </div>
+    </div>
+    <div class="gw">
+      <div class="gw-stage" id="gwStage" tabindex="0" aria-label="Photo wall. Use the left and right arrow keys to move along it.">
+        <div class="gw-ring" id="gwRing"></div>
+        <div class="gw-hud">
+          <p class="gw-hint"><em>Drag or swipe</em> to walk round<span class="gw-long"> · click a photo to look closer</span></p>
+          <div class="gw-nav">
+            <button type="button" class="gw-arrow" id="gwPrev" aria-label="Previous photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+            <span class="gw-count" id="gwCount">03 / 30</span>
+            <button type="button" class="gw-arrow" id="gwNext" aria-label="Next photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+          </div>
+        </div>
+      </div>
+      <div class="wrap gw-list" id="gwListEl" hidden><div class="gw-grid" id="gwGrid"></div></div>
     </div>
   </section>
 
@@ -192,6 +208,17 @@
     <div class="page-cta-in"><h2>Ready for coaching that fits you?</h2><p>Your first 30-minute consultation is free.</p><a class="btn btn-primary" href="/#book">Book a free consultation <span class="arrow">→</span></a></div>
   </section>
 </main>
+
+<!-- Gallery photo viewer -->
+<div class="gw-lb" id="gwLb" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
+  <button type="button" class="gw-x" id="gwLbClose" aria-label="Close photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
+  <img id="gwLbImg" alt="">
+  <div class="gw-lbnav">
+    <button type="button" class="gw-arrow" id="gwLbPrev" aria-label="Previous photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <span class="gw-count" id="gwLbCount"></span>
+    <button type="button" class="gw-arrow" id="gwLbNext" aria-label="Next photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+  </div>
+</div>
 
 <!-- Certificate viewer -->
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-labelledby="lbTitle" hidden>
@@ -244,6 +271,7 @@
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
 <script src="js/main.js?v=42" defer></script>
 <script src="js/navmenu.js?v=3" defer></script>
+<script src="js/gwall.js?v=1" defer></script>
 <script src="js/premium-motion.js?v=1" defer></script>
 <script data-goatcounter="https://phenfitness.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <script src="js/track.js?v=1" defer></script>

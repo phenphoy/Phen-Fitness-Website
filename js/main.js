@@ -306,7 +306,7 @@
   if ("IntersectionObserver" in window) {
     const links = [...document.querySelectorAll(".nav-links a, .quickbar a")];
     const map = new Map(); links.forEach(a => { const k = a.getAttribute("href"); map.set(k, (map.get(k) || []).concat(a)); });
-    const credLinks = map.get("about.html"); if (credLinks && !map.has("#qualifications")) map.set("#qualifications", credLinks); /* the Credentials link lights up over the credentials row */
+    const credLinks = map.get("about.html"); if (credLinks && !map.has("#qualifications")) map.set("#qualifications", credLinks); if (credLinks && !map.has("#certificates")) map.set("#certificates", credLinks); /* the Credentials link lights up over the credentials row */
     const ddBtn = document.getElementById("navFreeBtn"); if (ddBtn) { links.push(ddBtn); map.set("#free", [ddBtn]); } /* the Free menu lights up over the free-resources section */
     const qbar = document.getElementById("quickbar");
     const spy = new IntersectionObserver(es => es.forEach(e => {
@@ -318,7 +318,7 @@
         if (q && window.scrollY > 120 && qbar.scrollWidth > qbar.clientWidth) qbar.scrollTo({ left: q.offsetLeft - (qbar.clientWidth - q.offsetWidth) / 2, behavior: "smooth" });
       }
     }), { rootMargin: "-45% 0px -50% 0px" });
-    ["home", "help", "services", "story", "transformation", "qualifications", "testimonials", "how", "free", "gallery", "watch", "challenge", "resources", "book", "faq", "contact"].forEach(id => {
+    ["home", "help", "services", "story", "transformation", "qualifications", "certificates", "testimonials", "how", "free", "gallery", "watch", "challenge", "resources", "book", "faq", "contact"].forEach(id => {
       const el = document.getElementById(id); if (!el) return;
       // transformation and story both belong to "My Story"
       if (id === "transformation" && !map.has("#transformation")) map.set("#transformation", map.get("#story"));
@@ -417,6 +417,7 @@
     if (!window.HTMLCanvasElement) return;
     const CFG = [
       { sel: "#qualifications", cx: 0.3, cy: 0.5, sx: 0.3, sy: 0.3, dens: 1300, glow: "14% 50%", bleed: 90 },
+      { sel: "#gallery", cx: 0.5, cy: 0.55, sx: 0.4, sy: 0.3, dens: 1800, glow: "50% 45%" },
       { sel: "#credHero", cx: 0.5, cy: 0.55, sx: 0.4, sy: 0.34, dens: 2000, glow: "12% 62%" },
       { sel: "#story", cx: 0.42, cy: 0.5, sx: 0.12, sy: 0.3, dens: 1000, glow: "42% 50%" },
       { sel: "#transformation", cx: 0.62, cy: 0.5, sx: 0.16, sy: 0.3, dens: 900, glow: "66% 50%" },

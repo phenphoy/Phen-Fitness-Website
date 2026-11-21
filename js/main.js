@@ -416,6 +416,7 @@
     const CFG = [
       { sel: "#story", cx: 0.42, cy: 0.5, sx: 0.12, sy: 0.3, dens: 1000, glow: "42% 50%" },
       { sel: "#transformation", cx: 0.62, cy: 0.5, sx: 0.16, sy: 0.3, dens: 900, glow: "66% 50%" },
+      { sel: "#howFree", cx: 0.5, cy: 0.5, sx: 0.38, sy: 0.36, dens: 1900, glow: "88% 14%" },
       { sel: "#book", cx: 0.5, cy: 0.35, sx: 0.32, sy: 0.22, dens: 1700, glow: "50% 0%" },
       { sel: "#contact", cx: 0.86, cy: 0.38, sx: 0.12, sy: 0.22, dens: 1000, glow: "86% 40%" }
     ];

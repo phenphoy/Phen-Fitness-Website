@@ -308,14 +308,15 @@
     const map = new Map(); links.forEach(a => { const k = a.getAttribute("href"); map.set(k, (map.get(k) || []).concat(a)); });
     const qbar = document.getElementById("quickbar");
     const spy = new IntersectionObserver(es => es.forEach(e => {
-      const as = map.get("#" + e.target.id); if (!as) return;
+      const as = map.get("#" + e.target.id);
+      if (!as) { if (e.isIntersecting) links.forEach(l => l.removeAttribute("aria-current")); return; } /* sections without a menu link clear the highlight */
       if (e.isIntersecting) {
         links.forEach(l => l.removeAttribute("aria-current")); as.forEach(a => a.setAttribute("aria-current", "true"));
         const q = as.find(a => qbar && qbar.contains(a));
         if (q && window.scrollY > 120 && qbar.scrollWidth > qbar.clientWidth) qbar.scrollTo({ left: q.offsetLeft - (qbar.clientWidth - q.offsetWidth) / 2, behavior: "smooth" });
       }
     }), { rootMargin: "-45% 0px -50% 0px" });
-    ["services", "story", "transformation", "qualifications", "testimonials", "gallery", "watch", "challenge", "resources", "book", "faq", "contact"].forEach(id => {
+    ["home", "help", "services", "story", "transformation", "qualifications", "testimonials", "how", "free", "gallery", "watch", "challenge", "resources", "book", "faq", "contact"].forEach(id => {
       const el = document.getElementById(id); if (!el) return;
       // transformation and story both belong to "My Story"
       if (id === "transformation" && !map.has("#transformation")) map.set("#transformation", map.get("#story"));

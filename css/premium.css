@@ -200,3 +200,6 @@ main { counter-reset: sec; }
   .hero .lead { max-width: 46ch; }
   .hero-media .hero-seal { right: clamp(20px, 3vw, 48px); bottom: clamp(24px, 4vw, 56px); }
 }
+
+/* "Today" tag in the opening hours: white on solid red (was red on red) */
+.hours li.today b::after { color: #fff; background: var(--lime); font-weight: 700; font-size: 11px !important; letter-spacing: .1em; padding: 3px 8px; }

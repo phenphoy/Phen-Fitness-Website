@@ -155,7 +155,7 @@
   /* pointer: the effect follows the cursor across the photo, even under the headline */
   var R = function () { return W > 700 ? 120 : 84; };
   window.addEventListener("pointermove", function (e) {
-    if (!live || !ready || e.pointerType === "touch") return;
+    if (!live || !ready || e.pointerType === "touch" || (fine && window.__fluidHero)) return;
     var b = frame.getBoundingClientRect(), sc = b.width / (W || 1) || 1;
     var x = (e.clientX - b.left) / sc, y = (e.clientY - b.top) / sc;
     var inside = x >= 0 && y >= 0 && x <= W && y <= H;
@@ -169,7 +169,7 @@
 
   /* click or tap: a ring of heat spreads out and embers burst */
   frame.addEventListener("pointerdown", function (e) {
-    if (!live || !ready || e.target.closest("a")) return;
+    if (!live || !ready || e.target.closest("a") || (fine && window.__fluidHero)) return;
     var b = frame.getBoundingClientRect(), sc = b.width / (W || 1) || 1;
     var x = (e.clientX - b.left) / sc, y = (e.clientY - b.top) / sc;
     stamp(x, y, R() * 0.8, 1); shed(x, y, 0, 0, 36);

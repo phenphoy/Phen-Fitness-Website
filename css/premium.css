@@ -534,3 +534,8 @@ main { counter-reset: sec; }
 }
 @media (max-width: 700px) { .gw-tilt { height: clamp(480px, 76vh, 680px); } .gw-tilt-in { left: -60%; width: 220%; } }
 @media (prefers-reduced-motion: reduce) { .gw-row button, .gw-row img { transition: none; } }
+
+/* Glowing threads behind the FAQ */
+.has-threads { position: relative; isolation: isolate; }
+.threads-canvas { position: absolute; top: 0; bottom: 0; left: 50%; width: 100vw; transform: translateX(-50%); z-index: -1; pointer-events: none; mix-blend-mode: screen; opacity: .55;
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 16%, #000 84%, transparent); mask-image: linear-gradient(180deg, transparent, #000 16%, #000 84%, transparent); }

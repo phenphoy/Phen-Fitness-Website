@@ -498,3 +498,13 @@ main { counter-reset: sec; }
   .gw-hint { font-size: 10px; letter-spacing: .1em; }
 }
 @media (prefers-reduced-motion: reduce) { .gw-switch button, .gw-arrow, .gw-grid button, .gw-grid img, .gw-pin button, .gw-pin img, .gw-clip { transition: none; } .gw-arrow:hover svg { animation: none; } }
+
+/* Star border on the main buttons: a bright spark runs around the outline with a short trail */
+@property --sb-a { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+@keyframes sb-spin { to { --sb-a: 360deg; } }
+.btn-primary::after { content: ""; position: absolute; inset: 0; z-index: 2; border-radius: inherit; padding: 2px; pointer-events: none;
+  background: conic-gradient(from var(--sb-a), transparent 0 70%, rgba(255, 214, 216, .0) 70%, rgba(255, 214, 216, .5) 92%, #fff 99.2%, transparent 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  animation: sb-spin 4s linear infinite; transition: opacity .35s; }
+.btn-primary:hover::after, .btn-primary:focus-visible::after { opacity: 0; }
+@media (prefers-reduced-motion: reduce) { .btn-primary::after { display: none; } }

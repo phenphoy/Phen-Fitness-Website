@@ -240,10 +240,12 @@
   gsap.set("#heroImg", { scale: 1.18 });
   // The logo builds itself in CSS (.pl-go in style.css, about 2.4 s, then the tagline). The timeline waits for it (same timing as before), then lifts the curtain.
   tl.addLabel("lift", loader ? 2.95 : 0);
-  if (loader) tl.to(".loader-inner", { opacity: 0, y: -14, duration: 0.45, ease: "power2.in" }, "lift")
-    .to(loader, { yPercent: -100, duration: 1, ease: "expo.inOut" }, "lift+=0.15")
+  if (loader) tl.to(".loader-inner", { opacity: 0, y: -18, scale: 0.97, duration: 0.4, ease: "power2.in" }, "lift")
+    .to("#ldEdge", { opacity: 1, scaleX: 1, duration: 0.3, ease: "power2.out" }, "lift+=0.1")
+    .to(loader, { yPercent: -100, duration: 0.95, ease: "expo.inOut" }, "lift+=0.2")
+    .to("#ldEdge", { opacity: 0, duration: 0.25, ease: "power1.in" }, "lift+=0.9")
     .set(loader, { display: "none" });
-  const t0 = loader ? 3.35 : 0.05;
+  const t0 = loader ? 3.3 : 0.05;
   tl.to(heroLines, { yPercent: 0, duration: 1.1, ease: "expo.out", stagger: 0.09 }, t0 + 0.1)
     .to("#heroMedia", { clipPath: "inset(0% 0 0 0)", duration: 1.3, ease: "expo.inOut" }, t0 + 0.1)
     .to("#heroImg", { scale: 1, duration: 2.2, ease: "power3.out" }, t0 + 0.1)

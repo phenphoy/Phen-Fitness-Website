@@ -506,5 +506,9 @@ main { counter-reset: sec; }
   background: conic-gradient(from var(--sb-a), transparent 0 70%, rgba(255, 214, 216, .0) 70%, rgba(255, 214, 216, .5) 92%, #fff 99.2%, transparent 100%);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
   animation: sb-spin 4s linear infinite; transition: opacity .35s; }
-.btn-primary:hover::after, .btn-primary:focus-visible::after { opacity: 0; }
-@media (prefers-reduced-motion: reduce) { .btn-primary::after { display: none; } }
+.btn:not(.btn-primary):not(.btn-sm)::after { content: ""; position: absolute; inset: 0; z-index: 2; border-radius: inherit; padding: 1.5px; pointer-events: none;
+  background: conic-gradient(from var(--sb-a), transparent 0 72%, rgba(255, 77, 87, 0) 72%, rgba(255, 77, 87, .45) 92%, #ff6a72 99.2%, transparent 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  animation: sb-spin 5s linear infinite; transition: opacity .35s; }
+.btn-primary:hover::after, .btn-primary:focus-visible::after, .btn:not(.btn-primary):not(.btn-sm):hover::after, .btn:not(.btn-primary):not(.btn-sm):focus-visible::after { opacity: 0; }
+@media (prefers-reduced-motion: reduce) { .btn-primary::after, .btn:not(.btn-primary):not(.btn-sm)::after { display: none; } }

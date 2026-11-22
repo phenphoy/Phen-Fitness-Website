@@ -224,29 +224,64 @@
      Visitors can skip it with a tap, click, scroll or key press. */
   const heroLines = $$(".hero .line > span");
   let loader = $("#loader");
-  // The logo intro plays once per visit (session); returning within the session goes straight to the page.
+  // The logo intro plays once a day; returning the same day goes straight to the page.
   let seenIntro = false;
-  try { seenIntro = sessionStorage.getItem("pf-intro") === "1"; sessionStorage.setItem("pf-intro", "1"); } catch (e) {}
+  try {
+    const day = new Date().toDateString();   // shown once a day per visitor; a new day plays it again
+    seenIntro = localStorage.getItem("pf-intro-day") === day; localStorage.setItem("pf-intro-day", day);
+  } catch (e) { try { seenIntro = sessionStorage.getItem("pf-intro") === "1"; sessionStorage.setItem("pf-intro", "1"); } catch (e2) {} }
   if (loader && seenIntro) { loader.remove(); loader = null; }
   const hasHero = !!$("#heroMedia");
   const tl = gsap.timeline();
   if (hasHero) {
   gsap.set("#nav .brand-icon", { scale: 0.6, opacity: 0 });
   gsap.set("#nav .wm", { y: 10, opacity: 0 });
+  // while the splash plays the menu sits above it, bare: only the logo spot, so the P can land in it
+  if (loader) gsap.set("#nav", { zIndex: 101 }), gsap.set("#nav .nav-links, #nav .nav-right", { opacity: 0 });
   gsap.set("#heroSeal", { opacity: 0, y: 20, scale: 0.92 });
   gsap.set(heroLines, { yPercent: 110 });
   gsap.set(".hero-fade", { opacity: 0, y: 24 });
   gsap.set("#heroMedia", { clipPath: "inset(100% 0 0 0)" });
   gsap.set("#heroImg", { scale: 1.18 });
-  // The logo builds itself in CSS (.pl-go in style.css, about 2.4 s, then the tagline). The timeline waits for it (same timing as before), then lifts the curtain.
-  tl.addLabel("lift", loader ? 2.95 : 0);
-  if (loader) tl.to(".loader-inner", { opacity: 0, y: -18, scale: 0.97, duration: 0.35, ease: "power2.in" }, "lift")
-    .set(".loader-inner", { visibility: "hidden" }, "lift+=0.35")
-    .to("#ldEdge", { opacity: 1, scaleX: 1, duration: 0.3, ease: "power2.out" }, "lift+=0.1")
-    .to(loader, { yPercent: -100, duration: 0.95, ease: "expo.inOut" }, "lift+=0.2")
-    .to("#ldEdge", { opacity: 0, duration: 0.25, ease: "power1.in" }, "lift+=0.9")
-    .set(loader, { display: "none" });
-  const t0 = loader ? 3.3 : 0.05;
+  // The logo builds itself in CSS (about 2.4 s after the first paint, then the tagline). The timeline starts later than that paint
+  // (scripts load after it), so the wait is counted from the paint, not from the timeline start: no dead hold after the tagline lands.
+  let liftAt = 0;
+  if (loader) {
+    let fp = 0.3;
+    try { const e = performance.getEntriesByName("first-contentful-paint")[0]; if (e) fp = e.startTime / 1000; } catch (e) {}
+    liftAt = Math.max(0.05, fp + 2.35 - performance.now() / 1000);
+  }
+  tl.addLabel("lift", liftAt);
+  // The wordmark and tagline step aside, the P travels up into the menu logo, then the curtain lifts behind it.
+  const flyP = () => {
+    const sym = $(".pl-sym"), ic = $("#nav .brand-icon");
+    if (!sym || !ic) return;
+    const lg = sym.closest(".ld-logo"); if (lg) lg.style.animation = "none";   // the logo's own small settle has finished; stop it so it can't replay and skew the flight
+    gsap.set(sym, { x: 0, y: 0, scale: 1 });
+    const a = sym.getBoundingClientRect(), b = ic.getBoundingClientRect();
+    const tcx = b.left + b.width / 2, tcy = b.top + b.height / 2, tw = ic.offsetWidth;
+    let x = tcx - (a.left + a.width / 2), y = tcy - (a.top + a.height / 2), sc = a.width ? tw / a.width : 1;
+    // trial runs: park the P on the landing spot, see where it really lands, and nudge until it sits on the menu logo
+    for (let i = 0; i < 3; i++) {
+      gsap.set(sym, { x, y, scale: sc });
+      const r = sym.getBoundingClientRect();
+      x += tcx - (r.left + r.width / 2); y += tcy - (r.top + r.height / 2);
+      if (r.width) sc *= tw / r.width;
+    }
+    gsap.set(sym, { x: 0, y: 0, scale: 1 });
+    gsap.to(sym, { x, y, scale: sc, duration: 0.65, delay: 0.05, ease: "power3.inOut" });
+  };
+  if (loader) tl.to(".pl-word, .pl-tag", { opacity: 0, y: 8, duration: 0.25, ease: "power2.in" }, "lift")
+    .call(flyP, null, "lift")
+    .set("#nav .brand-icon", { opacity: 1, scale: 1 }, "lift+=0.66")
+    .set(".loader-inner", { visibility: "hidden" }, "lift+=0.82")
+    .to("#ldEdge", { opacity: 1, scaleX: 1, duration: 0.3, ease: "power2.out" }, "lift+=0.45")
+    .to(loader, { yPercent: -100, duration: 0.95, ease: "expo.inOut" }, "lift+=0.55")
+    .to("#ldEdge", { opacity: 0, duration: 0.25, ease: "power1.in" }, "lift+=1.25")
+    .set(loader, { display: "none" })
+    .set("#nav", { clearProps: "zIndex" })
+    .to("#nav .nav-links, #nav .nav-right", { opacity: 1, duration: 0.7, ease: "power2.out", clearProps: "opacity" }, "lift+=1.0");
+  const t0 = loader ? liftAt + 0.85 : 0.05;
   tl.to(heroLines, { yPercent: 0, duration: 1.1, ease: "expo.out", stagger: 0.09 }, t0 + 0.1)
     .to("#heroMedia", { clipPath: "inset(0% 0 0 0)", duration: 1.3, ease: "expo.inOut" }, t0 + 0.1)
     .to("#heroImg", { scale: 1, duration: 2.2, ease: "power3.out" }, t0 + 0.1)
@@ -289,7 +324,7 @@
   // skip: jump straight to the curtain lifting
   const skipEvents = ["pointerdown", "keydown", "wheel", "touchstart"];
   function skipIntro() {
-    if (tl.labels.lift !== undefined && tl.time() < tl.labels.lift) tl.seek("lift");
+    if (tl.labels.lift !== undefined && tl.time() < tl.labels.lift) tl.seek("lift", false);
     skipEvents.forEach(ev => window.removeEventListener(ev, skipIntro));
   }
   skipEvents.forEach(ev => window.addEventListener(ev, skipIntro, { passive: true }));

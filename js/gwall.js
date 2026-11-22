@@ -174,16 +174,78 @@
     else if (e.key === "ArrowRight") showLb(cur + 1);
   });
 
-  /* gallery / list switch */
-  function setView(gal) {
-    stage.hidden = !gal; listEl.hidden = gal;
-    btnWall.setAttribute("aria-pressed", gal); btnList.setAttribute("aria-pressed", !gal);
-    if (gal) measure();
+  /* tilted wall: rows of photos on a slant. Each row slides at its own pace with the pointer (or a drag, or a slow
+     drift on touch), a red light follows the pointer, and the photo under it comes up while the rest dim. */
+  var tiltEl = document.getElementById("gwTiltEl"), tiltIn = document.getElementById("gwTiltIn"), btnTilt = document.getElementById("gwTilt");
+  var rowsX = [], rowEls = [], ROWN = 4, TILES = 18, wallBuilt = false, tw = 150, rowW = 0;
+  var wmx = 0.5, wmy = 0.5, wPtr = false, wLast = 0, wDrag = 0, wDown = false, wDx0 = 0, wMoved = false, wDragStart = 0;
+  var EASE = [0.05, 0.08, 0.11, 0.14, 0.17];
+  function buildWall() {
+    if (wallBuilt || !tiltEl) return; wallBuilt = true;
+    var seen = {};
+    for (var r = 0; r < 5; r++) {
+      var row = document.createElement("div"); row.className = "gw-row"; row.dataset.r = r;
+      for (var c = 0; c < TILES; c++) {
+        var k = (c * 7 + r * 11) % N, b = document.createElement("button"); b.type = "button";
+        b.setAttribute("aria-label", "Open photo " + (k + 1) + ": " + ALT[k]);
+        if (seen[k]) { b.tabIndex = -1; b.setAttribute("aria-hidden", "true"); } else seen[k] = 1;
+        var im = new Image(); im.src = src(k); im.alt = ""; im.decoding = "async"; im.draggable = false; im.loading = "lazy";
+        b.appendChild(im);
+        (function (kk) { b.addEventListener("click", function () { if (wMoved) return; openLb(kk); }); })(k);
+        row.appendChild(b);
+      }
+      tiltIn.appendChild(row); rowEls.push(row); rowsX.push(0);
+    }
   }
-  btnWall.addEventListener("click", function () { setView(true); });
-  btnList.addEventListener("click", function () { setView(false); });
+  function wallMeasure() {
+    if (!tiltEl || tiltEl.hidden) return;
+    var h = tiltEl.clientHeight, narrow = tiltEl.clientWidth < 640;
+    ROWN = narrow ? 5 : 4;
+    tw = Math.max(96, Math.min(230, h / ROWN * (narrow ? 0.72 : 0.8)));
+    tiltEl.style.setProperty("--tw", tw.toFixed(0) + "px");
+    rowEls.forEach(function (el, i) { el.style.display = i < ROWN ? "" : "none"; });
+    rowW = TILES * (tw + 14);
+  }
+  var wOn = true;
+  if ("IntersectionObserver" in window && tiltEl) new IntersectionObserver(function (e) { wOn = e[0].isIntersecting; }).observe(tiltEl);
+  function wallFrame(now) {
+    requestAnimationFrame(wallFrame);
+    if (!tiltEl || tiltEl.hidden || !wOn || !wallBuilt) return;
+    var t = now / 1000, idle = !wPtr && !wDown;
+    var nx = reduce ? 0.5 : (idle ? 0.5 + Math.sin(t * 0.13) * 0.32 : wmx);
+    var range = Math.min(380, tiltEl.clientWidth * 0.3);
+    for (var i = 0; i < ROWN; i++) {
+      var dir = i % 2 ? 1 : -1, tgt = dir * ((nx - 0.5) * 2 * range * (0.7 + i * 0.18) + wDrag * (0.8 + i * 0.12));
+      rowsX[i] += (tgt - rowsX[i]) * (reduce ? 1 : EASE[i]);
+      rowEls[i].style.transform = "translateX(" + (rowsX[i] - rowW / 2 + (i % 2 ? tw * 0.5 : 0)).toFixed(1) + "px)";
+    }
+  }
+  if (tiltEl) {
+    tiltEl.addEventListener("pointermove", function (e) {
+      var b = tiltEl.getBoundingClientRect(); wmx = (e.clientX - b.left) / b.width; wmy = (e.clientY - b.top) / b.height;
+      tiltEl.style.setProperty("--lx", (e.clientX - b.left).toFixed(0) + "px"); tiltEl.style.setProperty("--ly", (e.clientY - b.top).toFixed(0) + "px");
+      if (e.pointerType !== "touch") wPtr = true;
+      if (wDown) { var d = e.clientX - wDx0; if (Math.abs(d) > 6) wMoved = true; wDrag = wDragStart + d; }
+    });
+    tiltEl.addEventListener("pointerleave", function () { wPtr = false; });
+    tiltEl.addEventListener("pointerdown", function (e) { wDown = true; wMoved = false; wDx0 = e.clientX; wDragStart = wDrag; });
+    window.addEventListener("pointerup", function () { if (!wDown) return; wDown = false; setTimeout(function () { wMoved = false; }, 0); });
+    window.addEventListener("pointercancel", function () { wDown = false; });
+    requestAnimationFrame(wallFrame);
+  }
 
-  if ("ResizeObserver" in window) new ResizeObserver(function () { if (!stage.hidden) measure(); }).observe(stage);
-  else window.addEventListener("resize", function () { if (!stage.hidden) measure(); });
+  /* gallery / list / wall switch */
+  function setView(v) {
+    stage.hidden = v !== "line"; listEl.hidden = v !== "list"; if (tiltEl) tiltEl.hidden = v !== "wall";
+    btnWall.setAttribute("aria-pressed", v === "line"); btnList.setAttribute("aria-pressed", v === "list"); if (btnTilt) btnTilt.setAttribute("aria-pressed", v === "wall");
+    if (v === "line") measure();
+    if (v === "wall") { buildWall(); wallMeasure(); }
+  }
+  btnWall.addEventListener("click", function () { setView("line"); });
+  btnList.addEventListener("click", function () { setView("list"); });
+  if (btnTilt) btnTilt.addEventListener("click", function () { setView("wall"); });
+
+  if ("ResizeObserver" in window) { new ResizeObserver(function () { if (!stage.hidden) measure(); }).observe(stage); if (tiltEl) new ResizeObserver(wallMeasure).observe(tiltEl); }
+  else window.addEventListener("resize", function () { if (!stage.hidden) measure(); wallMeasure(); });
   measure(); requestAnimationFrame(frame);
 })();

@@ -43,7 +43,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
   <link rel="stylesheet" href="css/style.css?v=47">
-  <link rel="stylesheet" href="css/premium.css?v=45">
+  <link rel="stylesheet" href="css/premium.css?v=46">
   <script>document.documentElement.classList.remove("no-js");</script>
 </head>
 <body class="subpage">
@@ -185,6 +185,7 @@
     <div class="wrap gw-bar">
       <div class="gw-switch" role="group" aria-label="Gallery view">
         <button type="button" id="gwWall" aria-pressed="true">Gallery</button>
+        <button type="button" id="gwTilt" aria-pressed="false">Wall</button>
         <button type="button" id="gwList" aria-pressed="false">List</button>
       </div>
     </div>
@@ -201,6 +202,10 @@
           </div>
           <p class="gw-hint"><em>Drag</em> to run the line</p>
         </div>
+      </div>
+      <div class="gw-tilt" id="gwTiltEl" hidden role="group" aria-label="Photo wall. Move the mouse or drag to slide the rows. Use Gallery or List for keyboard browsing.">
+        <div class="gw-tilt-in" id="gwTiltIn"></div>
+        <p class="gw-tilt-hint"><em>Move</em> or drag to slide the rows</p>
       </div>
       <div class="wrap gw-list" id="gwListEl" hidden><div class="gw-grid" id="gwGrid"></div></div>
     </div>
@@ -274,7 +279,7 @@
 <script src="js/main.js?v=43" defer></script>
 <script src="js/navmenu.js?v=3" defer></script>
 <script src="js/fluid.js?v=2" defer></script>
-<script src="js/gwall.js?v=4" defer></script>
+<script src="js/gwall.js?v=5" defer></script>
 <script src="js/premium-motion.js?v=1" defer></script>
 <script data-goatcounter="https://phenfitness.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <script src="js/track.js?v=1" defer></script>

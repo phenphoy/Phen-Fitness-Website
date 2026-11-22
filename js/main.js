@@ -224,12 +224,13 @@
      Visitors can skip it with a tap, click, scroll or key press. */
   const heroLines = $$(".hero .line > span");
   let loader = $("#loader");
-  // The logo intro plays once a day; returning the same day goes straight to the page.
+  // The logo intro plays once per visit (session); returning within the session goes straight to the page.
   let seenIntro = false;
   try {
-    const day = new Date().toDateString();   // shown once a day per visitor; a new day plays it again
-    seenIntro = localStorage.getItem("pf-intro-day") === day; localStorage.setItem("pf-intro-day", day);
-  } catch (e) { try { seenIntro = sessionStorage.getItem("pf-intro") === "1"; sessionStorage.setItem("pf-intro", "1"); } catch (e2) {} }
+    // plays once per visit (a new tab or browser session plays it again); add ?intro=1 to the address to play it right now
+    if (/[?&]intro=1/.test(location.search)) sessionStorage.removeItem("pf-intro");
+    seenIntro = sessionStorage.getItem("pf-intro") === "1"; sessionStorage.setItem("pf-intro", "1");
+  } catch (e) {}
   if (loader && seenIntro) { loader.remove(); loader = null; }
   const hasHero = !!$("#heroMedia");
   const tl = gsap.timeline();

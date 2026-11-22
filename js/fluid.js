@@ -1,13 +1,13 @@
 /* Red ink that follows the cursor: a small real-time fluid simulation on the graphics chip (WebGL2).
    Used on the home hero and the footer. Mouse and trackpad only, off for reduced motion, and it quietly
    does nothing where WebGL2 is missing (the hero then keeps its halftone effect).
-   Switched off by default: open the site with ?fluid=1 to try it, ?fluid=0 to turn it off again. */
+   On by default. Open the site with ?fluid=0 to turn it off in your browser, ?fluid=1 to turn it back on. */
 (function () {
   "use strict";
   try {
     var q = location.search.match(/[?&]fluid=(\d)/);
     if (q) localStorage.setItem("pf-fluid", q[1]);
-    if (localStorage.getItem("pf-fluid") !== "1") return;
+    if (localStorage.getItem("pf-fluid") === "0") return;
   } catch (e) { return; }
   if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   if (!(window.matchMedia && matchMedia("(hover: hover) and (pointer: fine)").matches)) return;

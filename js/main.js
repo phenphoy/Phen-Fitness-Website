@@ -26,22 +26,22 @@
   if ($("#year")) $("#year").textContent = new Date().getFullYear();
 
   /* ---------- Gallery ---------- */
-  const captions = ["Resistance & form coaching", "1-on-1 deadlift mechanics", "Core stabilization & posture", "Upper body hypertrophy", "Dumbbell press technique", "Barbell squat calibration", "Functional core engagement", "Small-group team motivation", "Cable row biomechanics", "Focused athletic instruction", "Progressive overload tracking", "Joint mobility & warmup", "Core rotation & balance", "Strength calibration check", "Conditioning & stamina", "Precision movement coaching", "Power & muscular endurance", "Functional kinetic movement", "Posture & shoulder alignment", "Consistency & results"];
+  const captions = ["Resistance & form coaching", "1-on-1 deadlift mechanics", "Core stabilization & posture", "Upper body hypertrophy", "Dumbbell press technique", "Barbell squat calibration", "Functional core engagement", "Small-group team motivation", "Cable row biomechanics", "Focused athletic instruction", "Progressive overload tracking", "Joint mobility & warmup", "Core rotation & balance", "Strength calibration check", "Conditioning & stamina", "Precision movement coaching", "Power & muscular endurance", "Functional kinetic movement", "Posture & shoulder alignment", "Consistency & results", "Lat pulldown technique", "Barbell setup & stance", "Deadlift hip hinge", "Barbell hip thrust", "Squat rack coaching", "Hamstring curl form", "Glute bridge with dumbbells", "Deadlift pull position", "Lockout & standing posture", "Incline press machine"];
   function fillRow(el, ids) {
     const make = (i, dup) => {
       const f = document.createElement("figure");
       f.className = "g-item";
       f.style.margin = "0";
       if (dup) f.setAttribute("aria-hidden", "true");
-      f.innerHTML = '<img decoding="async" src="images/web/coaching-' + i + '.webp" alt="' + (dup ? "" : captions[i - 1]) + '"><figcaption>' + captions[i - 1] + "</figcaption>";
+      f.innerHTML = '<img decoding="async" src="images/web/coaching-' + i + '.webp" alt="' + (dup ? "" : captions[i - 1]) + '">';
       return f;
     };
     ids.forEach(i => el.appendChild(make(i, false)));
     ids.forEach(i => el.appendChild(make(i, true)));
   }
   const row1 = $("#gRow1"), row2 = $("#gRow2");
-  if (row1) fillRow(row1, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-  if (row2) fillRow(row2, [11, 12, 13, 14, 15, 16, 17, 18, 19, 20]);
+  if (row1) fillRow(row1, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 21, 22, 23, 24, 25]);
+  if (row2) fillRow(row2, [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 26, 27, 28, 29, 30]);
 
   /* ---------- Testimonial words ---------- */
   const quote = $("#quote");
@@ -50,7 +50,7 @@
   /* ---------- Before / after slider ---------- */
   const ba = $("#ba"), baRange = $("#baRange");
   const setPos = v => ba && ba.style.setProperty("--pos", v + "%");
-  if (baRange) baRange.addEventListener("input", () => setPos(baRange.value));
+  if (baRange) baRange.addEventListener("input", () => { setPos(baRange.value); ba && ba.classList.add("touched"); });
 
   /* ---------- Nav ---------- */
   const nav = $("#nav");
@@ -226,24 +226,63 @@
   let loader = $("#loader");
   // The logo intro plays once per visit (session); returning within the session goes straight to the page.
   let seenIntro = false;
-  try { seenIntro = sessionStorage.getItem("pf-intro") === "1"; sessionStorage.setItem("pf-intro", "1"); } catch (e) {}
+  try {
+    // plays once per visit (a new tab or browser session plays it again); add ?intro=1 to the address to play it right now
+    if (/[?&]intro=1/.test(location.search)) sessionStorage.removeItem("pf-intro");
+    seenIntro = sessionStorage.getItem("pf-intro") === "1"; sessionStorage.setItem("pf-intro", "1");
+  } catch (e) {}
   if (loader && seenIntro) { loader.remove(); loader = null; }
   const hasHero = !!$("#heroMedia");
   const tl = gsap.timeline();
   if (hasHero) {
   gsap.set("#nav .brand-icon", { scale: 0.6, opacity: 0 });
   gsap.set("#nav .wm", { y: 10, opacity: 0 });
+  // while the splash plays the menu sits above it, bare: only the logo spot, so the P can land in it
+  if (loader) gsap.set("#nav", { zIndex: 101 }), gsap.set("#nav .nav-links, #nav .nav-right", { opacity: 0 });
   gsap.set("#heroSeal", { opacity: 0, y: 20, scale: 0.92 });
   gsap.set(heroLines, { yPercent: 110 });
   gsap.set(".hero-fade", { opacity: 0, y: 24 });
   gsap.set("#heroMedia", { clipPath: "inset(100% 0 0 0)" });
   gsap.set("#heroImg", { scale: 1.18 });
-  // The logo builds itself in CSS (.pl-go in style.css, about 2.4 s, then the tagline). The timeline waits for it (same timing as before), then lifts the curtain.
-  tl.addLabel("lift", loader ? 2.95 : 0);
-  if (loader) tl.to(".loader-inner", { opacity: 0, y: -14, duration: 0.45, ease: "power2.in" }, "lift")
-    .to(loader, { yPercent: -100, duration: 1, ease: "expo.inOut" }, "lift+=0.15")
-    .set(loader, { display: "none" });
-  const t0 = loader ? 3.35 : 0.05;
+  // The logo builds itself in CSS (about 2.4 s after the first paint, then the tagline). The timeline starts later than that paint
+  // (scripts load after it), so the wait is counted from the paint, not from the timeline start: no dead hold after the tagline lands.
+  let liftAt = 0;
+  if (loader) {
+    let fp = 0.3;
+    try { const e = performance.getEntriesByName("first-contentful-paint")[0]; if (e) fp = e.startTime / 1000; } catch (e) {}
+    liftAt = Math.max(0.05, fp + 2.35 - performance.now() / 1000);
+  }
+  tl.addLabel("lift", liftAt);
+  // The wordmark and tagline step aside, the P travels up into the menu logo, then the curtain lifts behind it.
+  const flyP = () => {
+    const sym = $(".pl-sym"), ic = $("#nav .brand-icon");
+    if (!sym || !ic) return;
+    const lg = sym.closest(".ld-logo"); if (lg) lg.style.animation = "none";   // the logo's own small settle has finished; stop it so it can't replay and skew the flight
+    gsap.set(sym, { x: 0, y: 0, scale: 1 });
+    const a = sym.getBoundingClientRect(), b = ic.getBoundingClientRect();
+    const tcx = b.left + b.width / 2, tcy = b.top + b.height / 2, tw = ic.offsetWidth;
+    let x = tcx - (a.left + a.width / 2), y = tcy - (a.top + a.height / 2), sc = a.width ? tw / a.width : 1;
+    // trial runs: park the P on the landing spot, see where it really lands, and nudge until it sits on the menu logo
+    for (let i = 0; i < 3; i++) {
+      gsap.set(sym, { x, y, scale: sc });
+      const r = sym.getBoundingClientRect();
+      x += tcx - (r.left + r.width / 2); y += tcy - (r.top + r.height / 2);
+      if (r.width) sc *= tw / r.width;
+    }
+    gsap.set(sym, { x: 0, y: 0, scale: 1 });
+    gsap.to(sym, { x, y, scale: sc, duration: 0.65, delay: 0.05, ease: "power3.inOut" });
+  };
+  if (loader) tl.to(".pl-word, .pl-tag", { opacity: 0, y: 8, duration: 0.25, ease: "power2.in" }, "lift")
+    .call(flyP, null, "lift")
+    .set("#nav .brand-icon", { opacity: 1, scale: 1 }, "lift+=0.66")
+    .set(".loader-inner", { visibility: "hidden" }, "lift+=0.82")
+    .to("#ldEdge", { opacity: 1, scaleX: 1, duration: 0.3, ease: "power2.out" }, "lift+=0.45")
+    .to(loader, { yPercent: -100, duration: 0.95, ease: "expo.inOut" }, "lift+=0.55")
+    .to("#ldEdge", { opacity: 0, duration: 0.25, ease: "power1.in" }, "lift+=1.25")
+    .set(loader, { display: "none" })
+    .set("#nav", { clearProps: "zIndex" })
+    .to("#nav .nav-links, #nav .nav-right", { opacity: 1, duration: 0.7, ease: "power2.out", clearProps: "opacity" }, "lift+=1.0");
+  const t0 = loader ? liftAt + 0.85 : 0.05;
   tl.to(heroLines, { yPercent: 0, duration: 1.1, ease: "expo.out", stagger: 0.09 }, t0 + 0.1)
     .to("#heroMedia", { clipPath: "inset(0% 0 0 0)", duration: 1.3, ease: "expo.inOut" }, t0 + 0.1)
     .to("#heroImg", { scale: 1, duration: 2.2, ease: "power3.out" }, t0 + 0.1)
@@ -286,7 +325,7 @@
   // skip: jump straight to the curtain lifting
   const skipEvents = ["pointerdown", "keydown", "wheel", "touchstart"];
   function skipIntro() {
-    if (tl.labels.lift !== undefined && tl.time() < tl.labels.lift) tl.seek("lift");
+    if (tl.labels.lift !== undefined && tl.time() < tl.labels.lift) tl.seek("lift", false);
     skipEvents.forEach(ev => window.removeEventListener(ev, skipIntro));
   }
   skipEvents.forEach(ev => window.addEventListener(ev, skipIntro, { passive: true }));
@@ -306,16 +345,19 @@
   if ("IntersectionObserver" in window) {
     const links = [...document.querySelectorAll(".nav-links a, .quickbar a")];
     const map = new Map(); links.forEach(a => { const k = a.getAttribute("href"); map.set(k, (map.get(k) || []).concat(a)); });
+    const aboutBtn = document.getElementById("navAboutBtn"); if (aboutBtn) { links.push(aboutBtn); ["#story", "#transformation", "#qualifications", "#certificates", "#gallery"].forEach(k => map.set(k, [aboutBtn])); } /* the About menu lights up over the story, transformation, credentials and gallery */
+    const ddBtn = document.getElementById("navFreeBtn"); if (ddBtn) { links.push(ddBtn); map.set("#free", [ddBtn]); } /* the Free menu lights up over the free-resources section */
     const qbar = document.getElementById("quickbar");
     const spy = new IntersectionObserver(es => es.forEach(e => {
-      const as = map.get("#" + e.target.id); if (!as) return;
+      const as = map.get("#" + e.target.id);
+      if (!as) { if (e.isIntersecting) links.forEach(l => l.removeAttribute("aria-current")); return; } /* sections without a menu link clear the highlight */
       if (e.isIntersecting) {
         links.forEach(l => l.removeAttribute("aria-current")); as.forEach(a => a.setAttribute("aria-current", "true"));
         const q = as.find(a => qbar && qbar.contains(a));
         if (q && window.scrollY > 120 && qbar.scrollWidth > qbar.clientWidth) qbar.scrollTo({ left: q.offsetLeft - (qbar.clientWidth - q.offsetWidth) / 2, behavior: "smooth" });
       }
     }), { rootMargin: "-45% 0px -50% 0px" });
-    ["services", "story", "transformation", "qualifications", "testimonials", "gallery", "watch", "challenge", "resources", "book", "faq", "contact"].forEach(id => {
+    ["home", "help", "services", "story", "transformation", "qualifications", "certificates", "testimonials", "how", "free", "gallery", "watch", "challenge", "resources", "book", "faq", "contact"].forEach(id => {
       const el = document.getElementById(id); if (!el) return;
       // transformation and story both belong to "My Story"
       if (id === "transformation" && !map.has("#transformation")) map.set("#transformation", map.get("#story"));
@@ -334,6 +376,229 @@
 
   /* ---------- Parallax ---------- */
   if ($("#heroImg")) gsap.to("#heroImg", { yPercent: 4, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
+
+  /* Headline stays alive: a light sweep crosses "stronger." every few seconds, and on scroll
+     "easier." fades back while the rest of the statement holds. Skipped when motion is reduced. */
+  if (motion && $(".hero h1 .stronger")) {
+    const sweep = gsap.fromTo(".hero h1 .stronger", { backgroundPosition: "115% 0" }, { backgroundPosition: "-15% 0", duration: 1.6, ease: "power2.inOut", repeat: -1, repeatDelay: 5.5, delay: 9, immediateRender: false });
+    window.__heroSweep = sweep;
+    if (window.matchMedia("(min-width: 861px)").matches) {
+      gsap.fromTo(".hero h1 .dim", { opacity: 0.42 }, { opacity: 0.08, ease: "none", immediateRender: false, scrollTrigger: { trigger: ".hero", start: "top top", end: "60% top", scrub: true } });
+      gsap.fromTo(".hero h1", { yPercent: 0 }, { yPercent: -6, ease: "none", immediateRender: false, scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
+    }
+  }
+
+  /* Hero atmosphere: a field of red and ember dust that drifts, twinkles and gathers along the photo edge,
+     under a breathing red glow. Reacts softly to the cursor. Static when motion is reduced. */
+  (function heroDust() {
+    const hero = $(".hero");
+    if (!hero || !window.HTMLCanvasElement) return;
+    const cv = document.createElement("canvas");
+    cv.className = "hero-dust"; cv.setAttribute("aria-hidden", "true");
+    hero.insertBefore(cv, hero.firstChild);
+    const ctx = cv.getContext("2d");
+    if (!ctx) return;
+    const wide = () => window.matchMedia("(min-width: 861px)").matches;
+    const PAL = ["255,77,87", "255,106,76", "255,138,92", "255,143,176", "225,6,19", "255,196,160", "120,120,255"];
+    const WEIGHT = [26, 22, 16, 12, 14, 8, 2];
+    const pick = () => { let r = Math.random() * 100, i = 0; while (i < WEIGHT.length - 1 && r > WEIGHT[i]) { r -= WEIGHT[i]; i++; } return PAL[i]; };
+    const gauss = () => { let u = 0, v = 0; while (!u) u = Math.random(); while (!v) v = Math.random(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(6.2832 * v); };
+    let W = 0, H = 0, dpr = 1, parts = [], mx = -9999, my = -9999, running = false, visible = true, t0 = performance.now();
+    const spawn = (p, anywhere) => {
+      const isWide = wide(), cx = W * (isWide ? 0.37 : 0.5), sx = W * (isWide ? 0.11 : 0.3);
+      p.x = cx + gauss() * sx; p.y = isWide ? H * (0.5 + gauss() * 0.3) : H * (0.35 + gauss() * 0.3);
+      if (p.x < 0 || p.x > W || p.y < 0 || p.y > H) { p.x = Math.random() * W; p.y = Math.random() * H; }
+      p.vx = 0; p.vy = 0; p.size = Math.random() < 0.15 ? 2.2 : (1 + Math.random() * 0.9);
+      p.a = 0.5 + Math.random() * 0.5; p.ph = Math.random() * 6.28; p.sp = 0.6 + Math.random() * 1.8; p.c = pick();
+      p.fx = (Math.random() - 0.5) * 0.5; p.fy = (Math.random() - 0.5) * 0.5;
+    };
+    const build = () => {
+      const r = hero.getBoundingClientRect();
+      dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      W = Math.round(r.width); H = Math.round(r.height);
+      cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const n = Math.min(wide() ? 2800 : 800, Math.round(W * H / (wide() ? 480 : 1100)));
+      parts = []; for (let i = 0; i < n; i++) { const p = {}; spawn(p, true); parts.push(p); }
+    };
+    const draw = (now, still) => {
+      const t = (now - t0) / 1000;
+      ctx.clearRect(0, 0, W, H);
+      for (let i = 0; i < parts.length; i++) {
+        const p = parts[i];
+        if (!still) {
+          p.x += p.vx + Math.cos(t * 0.15 + p.ph) * 0.09 + p.fx * 0.05;
+          p.y += p.vy + Math.sin(t * 0.12 + p.ph * 1.3) * 0.07 + p.fy * 0.05 - 0.035;
+          const dx = p.x - mx, dy = p.y - my, d2 = dx * dx + dy * dy;
+          if (d2 < 19600) { const d = Math.sqrt(d2) || 1, f = (1 - d / 140) * 0.9; p.vx += dx / d * f; p.vy += dy / d * f; }
+          p.vx *= 0.92; p.vy *= 0.92;
+          if (p.x < -4 || p.x > W + 4 || p.y < -4 || p.y > H + 4) spawn(p);
+        }
+        const tw = still ? 0.8 : 0.5 + 0.5 * Math.sin(t * p.sp + p.ph);
+        ctx.fillStyle = "rgba(" + p.c + "," + (p.a * (0.3 + 0.7 * tw)).toFixed(3) + ")";
+        ctx.fillRect(p.x, p.y, p.size, p.size);
+      }
+    };
+    const loop = now => { if (!running) return; draw(now, false); requestAnimationFrame(loop); };
+    const start = () => { if (running || !motion) return; running = true; requestAnimationFrame(loop); };
+    const stop = () => { running = false; };
+    build();
+    if (!motion) draw(performance.now(), true);
+    else { start(); }
+    let rz; window.addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(() => { build(); if (!motion) draw(performance.now(), true); }, 200); });
+    window.addEventListener("pointermove", e => { const r = hero.getBoundingClientRect(); mx = e.clientX - r.left; my = e.clientY - r.top; }, { passive: true });
+    if ("IntersectionObserver" in window) new IntersectionObserver(es => { visible = es[0].isIntersecting; if (visible && !document.hidden) start(); else stop(); }).observe(hero);
+    document.addEventListener("visibilitychange", () => { if (document.hidden) stop(); else if (visible) start(); });
+    if (motion) gsap.fromTo(cv, { opacity: 0 }, { opacity: 1, duration: 2.4, ease: "power2.out", delay: 3.6 });
+  })();
+
+  /* The same ember dust and glow in three more sections, tuned per section: where the dust gathers (cx, cy, spread), how thick it is, and where the glow sits. */
+  (function sectionDust() {
+    if (!window.HTMLCanvasElement) return;
+    const CFG = [
+      { sel: "#qualifications", cx: 0.3, cy: 0.5, sx: 0.3, sy: 0.3, dens: 1300, glow: "14% 50%", bleed: 90 },
+      { sel: "#gallery", cx: 0.5, cy: 0.55, sx: 0.4, sy: 0.3, dens: 1800, glow: "50% 45%" },
+      { sel: "#credHero", cx: 0.5, cy: 0.55, sx: 0.4, sy: 0.34, dens: 2000, glow: "12% 62%" },
+      { sel: "#story", cx: 0.42, cy: 0.5, sx: 0.12, sy: 0.3, dens: 1000, glow: "42% 50%" },
+      { sel: "#transformation", cx: 0.62, cy: 0.5, sx: 0.16, sy: 0.3, dens: 900, glow: "66% 50%" },
+      { sel: "#howFree", cx: 0.5, cy: 0.5, sx: 0.38, sy: 0.36, dens: 1900, glow: "88% 14%" },
+      { sel: "#book", cx: 0.5, cy: 0.35, sx: 0.32, sy: 0.22, dens: 1700, glow: "50% 0%" },
+      { sel: "#contact", cx: 0.86, cy: 0.38, sx: 0.12, sy: 0.22, dens: 1000, glow: "86% 40%" },
+      { sel: ".site-footer", cx: 0.5, cy: 0.48, sx: 0.4, sy: 0.3, dens: 1500, glow: "22% 40%" }
+    ];
+    const PAL = ["255,77,87", "255,106,76", "255,138,92", "255,143,176", "225,6,19", "255,196,160", "120,120,255"], WT = [26, 22, 16, 12, 14, 8, 2];
+    const pick = () => { let r = Math.random() * 100, i = 0; while (i < WT.length - 1 && r > WT[i]) { r -= WT[i]; i++; } return PAL[i]; };
+    const gauss = () => { let u = 0, v = 0; while (!u) u = Math.random(); while (!v) v = Math.random(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(6.2832 * v); };
+    CFG.forEach(cfg => {
+      const host = $(cfg.sel); if (!host) return;
+      host.classList.add("has-dust");
+      const bleed = cfg.bleed || 0; /* extra room above and below, for short sections */
+      const glow = document.createElement("div"); glow.className = "dust-glow"; glow.setAttribute("aria-hidden", "true");
+      glow.style.setProperty("--g", cfg.glow);
+      if (bleed) glow.style.inset = -bleed + "px 0";
+      const cv = document.createElement("canvas"); cv.className = "dust-canvas"; cv.setAttribute("aria-hidden", "true");
+      host.insertBefore(cv, host.firstChild); host.insertBefore(glow, host.firstChild);
+      const ctx = cv.getContext("2d"); if (!ctx) return;
+      if (bleed) { cv.style.top = -bleed + "px"; cv.style.height = "calc(100% + " + bleed * 2 + "px)"; }
+      let W = 0, H = 0, parts = [], running = false, visible = false, t0 = performance.now(), mx = -9999, my = -9999;
+      const spawn = p => {
+        p.x = W * cfg.cx + gauss() * W * cfg.sx; p.y = H * cfg.cy + gauss() * H * cfg.sy;
+        if (p.x < 0 || p.x > W || p.y < 0 || p.y > H) { p.x = Math.random() * W; p.y = Math.random() * H; }
+        p.vx = 0; p.vy = 0; p.size = Math.random() < 0.15 ? 2.1 : (1 + Math.random() * 0.8);
+        p.a = 0.4 + Math.random() * 0.5; p.ph = Math.random() * 6.28; p.sp = 0.6 + Math.random() * 1.8; p.c = pick();
+        p.fx = (Math.random() - 0.5) * 0.5; p.fy = (Math.random() - 0.5) * 0.5;
+      };
+      const build = () => {
+        const r = host.getBoundingClientRect(), dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+        W = Math.round(r.width); H = Math.round(r.height + bleed * 2);
+        cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        const n = Math.min(window.matchMedia("(min-width: 861px)").matches ? cfg.dens : cfg.dens * 0.35, Math.round(W * H / 700));
+        parts = []; for (let i = 0; i < n; i++) { const p = {}; spawn(p); parts.push(p); }
+      };
+      const draw = (now, still) => {
+        const t = (now - t0) / 1000; ctx.clearRect(0, 0, W, H);
+        for (let i = 0; i < parts.length; i++) {
+          const p = parts[i];
+          if (!still) {
+            p.x += p.vx + Math.cos(t * 0.15 + p.ph) * 0.09 + p.fx * 0.05; p.y += p.vy + Math.sin(t * 0.12 + p.ph * 1.3) * 0.07 + p.fy * 0.05 - 0.035;
+            const dx = p.x - mx, dy = p.y - my, d2 = dx * dx + dy * dy;
+            if (d2 < 19600) { const d = Math.sqrt(d2) || 1, f = (1 - d / 140) * 0.9; p.vx += dx / d * f; p.vy += dy / d * f; }
+            p.vx *= 0.92; p.vy *= 0.92;
+            if (p.x < -4 || p.x > W + 4 || p.y < -4 || p.y > H + 4) spawn(p);
+          }
+          const tw = still ? 0.8 : 0.5 + 0.5 * Math.sin(t * p.sp + p.ph);
+          ctx.fillStyle = "rgba(" + p.c + "," + (p.a * (0.3 + 0.7 * tw)).toFixed(3) + ")"; ctx.fillRect(p.x, p.y, p.size, p.size);
+        }
+      };
+      const loop = now => { if (!running) return; draw(now, false); requestAnimationFrame(loop); };
+      const start = () => { if (running || !motion) return; running = true; requestAnimationFrame(loop); };
+      const stop = () => { running = false; };
+      build(); if (!motion) draw(performance.now(), true);
+      let rz; window.addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(() => { build(); if (!motion) draw(performance.now(), true); }, 200); });
+      window.addEventListener("pointermove", e => { const r = host.getBoundingClientRect(); mx = e.clientX - r.left; my = e.clientY - r.top + bleed; }, { passive: true });
+      if ("IntersectionObserver" in window) new IntersectionObserver(es => { visible = es[0].isIntersecting; if (visible && !document.hidden) start(); else stop(); }, { rootMargin: "80px" }).observe(host);
+      document.addEventListener("visibilitychange", () => { if (document.hidden) stop(); else if (visible) start(); });
+    });
+  })();
+
+  /* Headline hover: letters near the cursor lift and swell like a wave, and the light on "stronger." follows the pointer. */
+  (function headlineHover() {
+    const h1 = $(".hero h1");
+    if (!h1 || !motion || !fine || !window.matchMedia("(min-width: 861px)").matches) return;
+    const chars = [];
+    h1.querySelectorAll(".line > span").forEach(sp => {
+      if (sp.classList.contains("stronger")) return;
+      const walk = node => [...node.childNodes].forEach(n => {
+        if (n.nodeType === 3) {
+          const frag = document.createDocumentFragment();
+          [...n.textContent].forEach(ch => {
+            if (ch === " ") { frag.appendChild(document.createTextNode(" ")); return; }
+            const c = document.createElement("span"); c.className = "hc"; c.textContent = ch; c.setAttribute("aria-hidden", "true"); frag.appendChild(c); chars.push(c);
+          });
+          n.replaceWith(frag);
+        } else if (n.nodeType === 1 && !n.classList.contains("bar")) walk(n);
+      });
+      walk(sp);
+    });
+    h1.setAttribute("aria-label", "It doesn’t get easier. You just get stronger.");
+    const strong = $(".hero h1 .stronger"), bar = $(".hero h1 .stronger .bar");
+    let live = false; setTimeout(() => { live = true; h1.classList.add("is-live"); }, 4800);
+    let raf = 0, mx = 0, my = 0;
+    const R = 190;
+    const frame = () => {
+      raf = 0;
+      chars.forEach(c => {
+        const r = c.getBoundingClientRect(), dx = mx - (r.left + r.width / 2), dy = my - (r.top + r.height / 2), d = Math.hypot(dx, dy);
+        const k = Math.max(0, 1 - d / R), e = k * k * (3 - 2 * k);
+        gsap.to(c, { y: -e * 16, scale: 1 + e * 0.1, duration: 0.45, ease: "power3.out", overwrite: "auto" });
+      });
+      if (strong) {
+        const r = strong.getBoundingClientRect();
+        if (my > r.top - 40 && my < r.bottom + 40 && mx > r.left - 40 && mx < r.right + 40) {
+          if (window.__heroSweep) window.__heroSweep.pause();
+          const px = Math.min(1, Math.max(0, (mx - r.left) / r.width));
+          gsap.to(strong, { backgroundPosition: (115 - px * 130) + "% 0", duration: 0.5, ease: "power3.out", overwrite: "auto" });
+          if (bar) gsap.to(bar, { scaleY: 1.9, duration: 0.4, ease: "power3.out", overwrite: "auto" });
+        } else if (bar) gsap.to(bar, { scaleY: 1, duration: 0.5, ease: "power3.out", overwrite: "auto" });
+      }
+    };
+    h1.addEventListener("pointermove", e => { if (!live) return; mx = e.clientX; my = e.clientY; if (!raf) raf = requestAnimationFrame(frame); });
+    h1.addEventListener("pointerleave", () => {
+      gsap.to(chars, { y: 0, scale: 1, duration: 0.7, ease: "power3.out", overwrite: "auto", stagger: { each: 0.008, from: "center" } });
+      if (bar) gsap.to(bar, { scaleY: 1, duration: 0.5, ease: "power3.out", overwrite: "auto" });
+      if (window.__heroSweep) window.__heroSweep.resume();
+    });
+  })();
+
+  /* Hero photo: on hover it tilts toward the pointer, the picture drifts and zooms inside the frame,
+     a red light follows the cursor, and the EREPS seal floats the other way. Mouse and trackpad only. */
+  (function heroHover() {
+    const frame = $("#heroMedia"), img = $("#heroImg"), seal = $("#heroSeal");
+    if (!frame || !img || !motion || !fine) return;
+    const glow = document.createElement("div");
+    glow.className = "hero-glow"; glow.setAttribute("aria-hidden", "true");
+    frame.insertBefore(glow, seal || null);
+    let live = false; setTimeout(() => { live = true; }, 4800); /* wait for the intro to finish */
+    const rx = gsap.quickTo(frame, "rotationX", { duration: 0.7, ease: "power3.out" });
+    const ry = gsap.quickTo(frame, "rotationY", { duration: 0.7, ease: "power3.out" });
+    const ix = gsap.quickTo(img, "x", { duration: 0.9, ease: "power3.out" });
+    const iy = gsap.quickTo(img, "y", { duration: 0.9, ease: "power3.out" });
+    const sx = seal ? gsap.quickTo(seal, "x", { duration: 0.9, ease: "power3.out" }) : null;
+    const sy = seal ? gsap.quickTo(seal, "y", { duration: 0.9, ease: "power3.out" }) : null;
+    gsap.set(frame, { transformPerspective: 1000, transformOrigin: "50% 50%" });
+    frame.addEventListener("pointerenter", () => { if (!live) return; frame.classList.add("is-hover"); gsap.to(img, { scale: 1.07, duration: 1.1, ease: "power3.out", overwrite: "auto" }); });
+    frame.addEventListener("pointermove", e => {
+      if (!live) return;
+      const r = frame.getBoundingClientRect(), px = (e.clientX - r.left) / r.width - 0.5, py = (e.clientY - r.top) / r.height - 0.5;
+      const k = r.width > 800 ? 0.3 : 1; rx(-py * 7 * k); ry(px * 9 * k); ix(-px * 26 * k); iy(-py * 22 * k);
+      if (sx) { sx(px * 16); sy(py * 12); }
+      frame.style.setProperty("--mx", (px + 0.5) * 100 + "%"); frame.style.setProperty("--my", (py + 0.5) * 100 + "%");
+    });
+    frame.addEventListener("pointerleave", () => {
+      frame.classList.remove("is-hover");
+      rx(0); ry(0); ix(0); iy(0); if (sx) { sx(0); sy(0); }
+      gsap.to(img, { scale: 1, duration: 1.2, ease: "power3.out", overwrite: "auto" });
+    });
+  })();
   if ($("#storyImg")) gsap.fromTo("#storyImg", { yPercent: -3 }, { yPercent: 3, ease: "none", scrollTrigger: { trigger: "#story", start: "top bottom", end: "bottom top", scrub: true } });
 
   /* ---------- Reveals ---------- */
@@ -402,6 +667,12 @@
     .fromTo("#qSeal .seal-shock", { opacity: 1, scale: 1 }, { opacity: 0, scale: 2.2, duration: 0.9, ease: "power2.out" })
     .fromTo("#qSeal .seal", { scale: 0.94 }, { scale: 1, duration: 0.6, ease: "elastic.out(1, 0.4)" }, "<")
     .fromTo("#qSeal .seal-ring", { opacity: 0 }, { opacity: 1, duration: 0.6 }, "<");
+  /* The same seal in the credentials row: stamps down once, then glints and spins; hover flips it */
+  if ($("#credSeal")) gsap.timeline({ scrollTrigger: { trigger: "#credSeal", start: "top 88%", once: true } })
+    .fromTo("#credSeal .seal-coin", { scale: 2.2, rotate: -30, opacity: 0 }, { scale: 1, rotate: 0, opacity: 1, duration: 0.55, ease: "power4.in" })
+    .fromTo("#credSeal .seal-shock", { opacity: 1, scale: 1 }, { opacity: 0, scale: 2.2, duration: 0.9, ease: "power2.out" })
+    .fromTo("#credSeal", { scale: 0.94 }, { scale: 1, duration: 0.6, ease: "elastic.out(1, 0.4)" }, "<")
+    .fromTo("#credSeal .seal-ring", { opacity: 0 }, { opacity: 1, duration: 0.6 }, "<");
   if ($(".q-summary")) gsap.from(".q-summary li", { x: -24, opacity: 0, stagger: 0.08, duration: 0.6, ease: "power3.out", scrollTrigger: { trigger: ".q-summary", start: "top 85%" } });
 
   /* ---------- Certificates deal out from a stack ---------- */
@@ -419,6 +690,24 @@
   /* ---------- How it works: line fills as you scroll ---------- */
   const vertical = window.matchMedia("(max-width: 900px)").matches;
   if ($("#stepsLine")) gsap.fromTo("#stepsLine", { [vertical ? "scaleY" : "scaleX"]: 0 }, { [vertical ? "scaleY" : "scaleX"]: 1, ease: "none", scrollTrigger: { trigger: ".steps", start: "top 80%", end: "bottom 60%", scrub: true } });
+
+  /* ---------- Client feedback: stars pop in, light drifts with scroll, glass catches the cursor ---------- */
+  (function feedbackFx() {
+    const sec = $("#testimonials"); if (!sec) return;
+    $$(".fb .stars").forEach(st => {
+      const stars = st.querySelectorAll("i");
+      gsap.set(stars, { opacity: 0, scale: .3, rotate: -40, y: 8 });
+      ScrollTrigger.create({ trigger: st, start: "top 90%", once: true, onEnter: () => gsap.to(stars, { opacity: 1, scale: 1, rotate: 0, y: 0, duration: .6, ease: "back.out(2.4)", stagger: .09, delay: .25 }) });
+    });
+    const drift = (sel, y) => $$(sel).forEach(el => gsap.fromTo(el, { y: -y }, { y, ease: "none", scrollTrigger: { trigger: sec, start: "top bottom", end: "bottom top", scrub: true } }));
+    drift(".fb-orb.a", 70); drift(".fb-orb.b", -60); drift(".fb-disc.d1", 50); drift(".fb-disc.d2", -40);
+    if (window.matchMedia("(pointer: fine)").matches) {
+      $$(".fb .glass").forEach(g => g.addEventListener("pointermove", e => {
+        const r = g.getBoundingClientRect();
+        g.style.setProperty("--mx", (e.clientX - r.left) + "px"); g.style.setProperty("--my", (e.clientY - r.top) + "px");
+      }));
+    }
+  })();
 
   /* ---------- Testimonial words light up ---------- */
   if (quote) gsap.to(".quote .w", { opacity: 1, stagger: 0.1, ease: "none", scrollTrigger: { trigger: quote, start: "top 80%", end: "bottom 45%", scrub: true } });

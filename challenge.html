@@ -43,7 +43,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
   <link rel="stylesheet" href="css/style.css?v=47">
-  <link rel="stylesheet" href="css/premium.css?v=3">
+  <link rel="stylesheet" href="css/premium.css?v=48">
   <script>document.documentElement.classList.remove("no-js");</script>
 </head>
 <body class="subpage">
@@ -56,12 +56,10 @@
     <a class="brand" id="brand" href="/" aria-label="Phen Fitness home"><span class="brand-icon"><img class="brand-sym" src="images/brand/phen-symbol.svg?v=6" width="1702" height="1449" alt=""><span class="shine" aria-hidden="true"></span></span><img class="wm" src="images/brand/phen-wordmark.svg?v=6" width="2330" height="283" alt=""></a>
     <nav class="nav-links" aria-label="Main">
       <a href="/#services">Services</a>
-      <a href="/#story">My Story</a>
       <a href="/#testimonials">Results</a>
-      <a href="about.html">Credentials</a>
-      <a href="resources.html">Free Tools</a>
+      <button class="nav-dd-btn" id="navAboutBtn" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="navAboutMenu">About<svg class="dd-chev" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button class="nav-dd-btn" id="navFreeBtn" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="navFreeMenu" aria-current="page">Free<svg class="dd-chev" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       <a href="/#faq">FAQ</a>
-      <a href="/#contact">Contact</a>
     </nav>
     <div class="nav-right">
       <a class="btn btn-sm nav-login" href="https://app.phenfitness.fit/login" rel="noopener">Log in</a>
@@ -69,19 +67,71 @@
       <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><i class="menu-label">Menu</i></button>
     </div>
   </div>
+  <div class="nav-dd-menu" id="navFreeMenu" role="menu" aria-label="Free resources">
+    <div class="dd-panel">
+      <a class="dd-feature" role="menuitem" href="challenge.html" aria-current="page">
+        <img src="images/web/coaching-13.webp" width="733" height="1100" alt="" decoding="async">
+        <span class="dd-shade" aria-hidden="true"></span>
+        <small class="dd-tag"><i aria-hidden="true"></i>Monthly · free</small>
+        <span class="dd-feat-body">
+          <span class="dd-feat-text"><b>30-Day Glutes<br>&amp; Core Challenge</b><span>20–30 minutes a day, no gym needed</span></span>
+          <span class="dd-cta">Start now <svg class="dd-arrow" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 9h11M10 4.5 14.5 9 10 13.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </span>
+      </a>
+      <div class="dd-side">
+        <div class="dd-list">
+          <span class="dd-eyebrow">Also free</span>
+          <a class="dd-row" role="menuitem" href="resources.html">
+            <img src="images/web/nav-tools.webp" width="260" height="390" alt="" decoding="async">
+            <span class="dd-row-text"><small>Tools</small><b>Calculators &amp; trackers</b><span>Calories, protein, 1-rep max, weight-loss tracker</span></span>
+            <svg class="dd-arrow" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 9h11M10 4.5 14.5 9 10 13.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="dd-row" role="menuitem" href="tips.html">
+            <img src="images/web/nav-tips.webp" width="260" height="390" alt="" decoding="async">
+            <span class="dd-row-text"><small>Video</small><b>Fitness tips</b><span>Short answers from my TikTok and YouTube</span></span>
+            <svg class="dd-arrow" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 9h11M10 4.5 14.5 9 10 13.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <div class="dd-foot"><span>Each has its own page</span><a role="menuitem" href="index.html#free">See all free resources →</a></div>
+      </div>
+    </div>
+  </div>
+  <div class="nav-dd-menu sm" id="navAboutMenu" role="menu" aria-label="About Phen">
+    <div class="dd-panel">
+      <div class="dd-list">
+        <a class="dd-row" role="menuitem" href="/#story">
+          <span class="dd-ico"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="dd-row-text"><b>My story</b><span>Who I am and how I coach</span></span>
+          <svg class="dd-arrow" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 9h11M10 4.5 14.5 9 10 13.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="dd-row" role="menuitem" href="about.html">
+          <span class="dd-ico"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3zM8.5 12l2.5 2.5 4.5-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="dd-row-text"><b>Credentials</b><span>9 certificates and my EREPS registration</span></span>
+          <svg class="dd-arrow" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 9h11M10 4.5 14.5 9 10 13.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="dd-row" role="menuitem" href="about.html#gallery">
+          <span class="dd-ico"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zM8.5 10a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM21 15l-5-5L5 21" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="dd-row-text"><b>Gallery</b><span>Coaching in action at the gym</span></span>
+          <svg class="dd-arrow" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 9h11M10 4.5 14.5 9 10 13.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
 </header>
 
 <div class="mobile-menu" id="mobileMenu" aria-label="Menu">
   <nav>
     <a href="/#services" style="--i:0">Services</a>
-    <a href="/#story" style="--i:1">My Story</a>
-    <a href="/#testimonials" style="--i:2">Results</a>
+    <a href="/#testimonials" style="--i:1">Results</a>
+    <a href="/#story" style="--i:2">My Story</a>
     <a href="about.html" style="--i:3">Credentials</a>
-    <a href="tips.html" style="--i:4">Fitness Tips</a>
+    <a href="about.html#gallery" style="--i:4">Gallery</a>
     <a href="challenge.html" style="--i:5">30-Day Challenge</a>
     <a href="resources.html" style="--i:6">Free Tools</a>
-    <a href="app.html" style="--i:7">The App</a>
-    <a href="/#contact" style="--i:8">Contact</a>
+    <a href="tips.html" style="--i:7">Fitness Tips</a>
+    <a href="app.html" style="--i:8">The App</a>
+    <a href="/#faq" style="--i:9">FAQ</a>
+    <a href="/#contact" style="--i:10">Contact</a>
   </nav>
   <div class="mobile-menu-foot">
     <a class="btn btn-primary" href="/#book">Book a free consultation <span class="arrow">→</span></a>
@@ -134,11 +184,11 @@
       </div>
       <div>
         <h4>Coaching</h4>
-        <ul><li><a href="/#services">Services &amp; prices</a></li><li><a href="/#story">My story</a></li><li><a href="about.html">Credentials</a></li><li><a href="/#book">Book</a></li><li><a href="/#contact">Contact</a></li></ul>
+        <ul><li><a href="/#services">Services &amp; prices</a></li><li><a href="/#testimonials">Results</a></li><li><a href="/#story">My story</a></li><li><a href="about.html">Credentials</a></li><li><a href="about.html#gallery">Gallery</a></li><li><a href="/#faq">FAQ</a></li><li><a href="/#book">Book</a></li><li><a href="/#contact">Contact</a></li></ul>
       </div>
       <div>
         <h4>Free</h4>
-        <ul><li><a href="tips.html">Fitness tips</a></li><li><a href="challenge.html">30-day challenge</a></li><li><a href="resources.html">Calculators &amp; trackers</a></li><li><a href="app.html">Client app</a></li><li><a href="https://app.phenfitness.fit/login" rel="noopener">Client login</a></li></ul>
+        <ul><li><a href="challenge.html">30-day challenge</a></li><li><a href="resources.html">Calculators &amp; trackers</a></li><li><a href="tips.html">Fitness tips</a></li><li><a href="app.html">Client app</a></li><li><a href="https://app.phenfitness.fit/login" rel="noopener">Client login</a></li></ul>
       </div>
       <div>
         <h4>Follow</h4>
@@ -169,7 +219,11 @@
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
 <script src="js/content.js?v=2" defer></script>
 <script src="js/community.js?v=6" defer></script>
-<script src="js/main.js?v=23" defer></script>
+<script src="js/main.js?v=53" defer></script>
+<script src="js/navmenu.js?v=3" defer></script>
+<script src="js/fluid.js?v=2" defer></script>
 <script src="js/premium-motion.js?v=1" defer></script>
+<script data-goatcounter="https://phenfitness.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script src="js/track.js?v=1" defer></script>
 </body>
 </html>

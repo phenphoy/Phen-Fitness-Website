@@ -144,7 +144,7 @@
       "Age " + fmt(p.age) + ", " + body + ". Goal: " + goalTxt + ".\n" +
       "BMI " + round(bmi, 1).toFixed(1) + " · about " + fmt(target) + " kcal a day · protein " + fmt(p.w * pr[0]) + "–" + fmt(p.w * pr[1]) + " g a day" +
       (bf ? " · body fat " + round(bf, 1).toFixed(1) + "%" : "") + ".\n" +
-      "I would like to book a free consultation.";
+      "I would like to book a consultation.";
     $("#sTg").href = "https://t.me/phenphoy?text=" + encodeURIComponent(msg);
     save();
   }

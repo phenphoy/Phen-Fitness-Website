@@ -20,7 +20,7 @@ const AVAILABILITY = {
   daysAhead: 14,       // how far ahead clients can book
   telegram: "phenphoy",
   services: [
-    { name: "Free Consultation", minutes: 30 },
+    { name: "Consultation", minutes: 45 },
     { name: "Fitness Assessment", minutes: 60 },
     { name: "1-on-1 Training", minutes: 60 },
     { name: "Small-Group Training", minutes: 60 },
